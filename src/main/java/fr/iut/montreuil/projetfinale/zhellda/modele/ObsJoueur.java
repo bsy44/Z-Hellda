@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;

@@ -8,4 +8,6 @@ module fr.iut.montreuil.projetfinale.zhellda {
     exports fr.iut.montreuil.projetfinale.zhellda;
     exports fr.iut.montreuil.projetfinale.zhellda.controleur;
     opens fr.iut.montreuil.projetfinale.zhellda.controleur to javafx.fxml;
+    exports fr.iut.montreuil.projetfinale.zhellda.modele;
+    opens fr.iut.montreuil.projetfinale.zhellda.modele to javafx.fxml;
 }
