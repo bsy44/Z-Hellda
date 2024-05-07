@@ -1,7 +1,5 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.ObsJoueur;
-
 public class Environnement {
     private final int width;
 

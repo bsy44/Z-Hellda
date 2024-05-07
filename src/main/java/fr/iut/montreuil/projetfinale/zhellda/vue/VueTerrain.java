@@ -10,7 +10,6 @@ import java.net.URL;
 
 public class VueTerrain {
     public VueTerrain(Terrain t, TilePane tp){
-        System.out.println("Dans vu terrain");
         for (int i = 0; i < t.getTerrain().length;i++) {
 
             for (int j = 0; j < t.getTerrain()[i].length;j++) {
