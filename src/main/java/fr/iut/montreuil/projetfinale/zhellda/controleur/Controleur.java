@@ -6,7 +6,6 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
@@ -62,9 +61,6 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         System.out.println("un tour");
-                        leCercle.setLayoutX(leCercle.getLayoutX()+5);
-                        leCercle.setLayoutY(leCercle.getLayoutY()+5);
-
                     }
                     temps++;
                 })
