@@ -17,8 +17,8 @@ public class VueJoueur {
         Image image = new Image(String.valueOf(url));;
         ImageView imageView = new ImageView(image);
 
-        imageView.setFitHeight(20);
-        imageView.setFitWidth(20);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
 
         imageView.setId(j.getId());
         imageView.translateXProperty().bind(j.getXProperty());

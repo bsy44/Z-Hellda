@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.scene.input.KeyEvent;
 
-import static fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur.j;
+import static fr.iut.montreuil.projetfinale.zhellda.modele.Environnement.getJ;
 
 public class Clavier {
 
@@ -11,16 +11,16 @@ public class Clavier {
 
             //déplacements
             case Z:
-                j.deplacerHaut();
+                getJ().deplacerHaut();
                 break;
             case Q:
-                j.deplacerGauche();
+                getJ().deplacerGauche();
                 break;
             case S:
-                j.deplacerBas();
+                getJ().deplacerBas();
                 break;
             case D:
-                j.deplacerDroite();
+                getJ().deplacerDroite();
                 break;
 
             //attaques

@@ -10,7 +10,7 @@ public class Environnement {
     private ObservableList<Joueur> obsJoueur;
     private Terrain terrain;
 
-    private Joueur j;
+    private static Joueur j;
 
     public Environnement(int width, int height) {
         this.width = width;
@@ -37,11 +37,7 @@ public class Environnement {
         return obsJoueur;
     }
 
-    public Joueur getJ() {
-        for (Joueur j : obsJoueur) {
-            return j;
-        }
-        System.out.println("null");
-        return null;
+    public static Joueur getJ() {
+        return j;
     }
 }
