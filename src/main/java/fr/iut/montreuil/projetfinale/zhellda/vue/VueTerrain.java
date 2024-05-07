@@ -19,12 +19,6 @@ public class VueTerrain {
                 ImageView imv = new ImageView(im);
                 imv.setFitHeight(30);
                 imv.setFitWidth(30);
-                /*if (t.getTerrain()[i][j] == 0) {
-                    imv.setImage(im);
-                }
-                else if (t.getTerrain()[i][j] == 1) {
-                    imv.setImage(im);
-                }*/
 
                 tp.getChildren().add(imv);
             }
