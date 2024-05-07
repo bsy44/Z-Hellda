@@ -1,10 +1,13 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-public class Environnement {
-    private final int width;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-    private final int height;
-    private ObsJoueur obsJoueur;
+public class Environnement {
+    private int width;
+
+    private int height;
+    private ObservableList<Joueur> obsJoueur;
     private Terrain terrain;
 
     private Joueur j;
@@ -14,6 +17,8 @@ public class Environnement {
         this.height = height;
         this.terrain= new Terrain();
         this.j = new Joueur();
+        this.obsJoueur = FXCollections.observableArrayList();
+        this.obsJoueur.add(j);
     }
 
     public int getWidth() {
@@ -28,7 +33,15 @@ public class Environnement {
         return terrain;
     }
 
+    public ObservableList<Joueur> getObsJoueur() {
+        return obsJoueur;
+    }
+
     public Joueur getJ() {
-        return j;
+        for (Joueur j : obsJoueur) {
+            return j;
+        }
+        System.out.println("null");
+        return null;
     }
 }

@@ -4,7 +4,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.awt.*;
 
-import static fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur.j;
 
 public class Clavier extends java.awt.event.KeyEvent {
 
@@ -17,7 +16,7 @@ public class Clavier extends java.awt.event.KeyEvent {
         switch (e.getCode()){
 
             //déplacements
-            case Z:
+            /*case Z:
                 j.deplacerHaut();
                 break;
             case Q:
@@ -28,7 +27,7 @@ public class Clavier extends java.awt.event.KeyEvent {
                 break;
             case D:
                 j.deplacerDroite();
-                break;
+                break;*/
 
             //attaques
             case UP:
