@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.ObsClavier;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ public class Lancement extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("Vue.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
+        scene.setOnKeyPressed(e -> ObsClavier.keyPressed(e));
         stage.setTitle("Z-Hellda");
         stage.setScene(scene);
         stage.show();
