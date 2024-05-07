@@ -1,12 +1,14 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Terrain;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
     private Terrain terrain;
-    public static Joueur j = new Joueur();
+    private Environnement env;
     private Timeline gameLoop;
     @FXML
     private Pane pane;
@@ -32,19 +34,21 @@ public class Controleur implements Initializable {
 
         this.terrain = new Terrain();
         new VueTerrain(terrain, tilePane);
-        creerSprite(j);
+        creerSprite(env.getJ());
+        initAnimation();
+        gameLoop.play();
+        ListChangeListener<Joueur>listeObsJ= new ObsJoueur(pane);
     }
 
-    private void creerSprite (Joueur j){
+    public void creerSprite (Joueur j){
         Circle r = new Circle(5);
         r.setFill(Color.RED);
         r.setId(j.getId());
         r.translateXProperty().bind(j.getXProperty());
         r.translateYProperty().bind(j.getYProperty());
         this.tilePane.getChildren().add(r);
-        initAnimation();
-        gameLoop.play();
     }
+
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
@@ -62,8 +66,9 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         System.out.println("un tour");
-                        leCercle.setLayoutX(leCercle.getLayoutX()+5);
-                        leCercle.setLayoutY(leCercle.getLayoutY()+5);
+                        Node joueur = pane.lookup(env.getJ().getId());
+                        joueur.setLayoutX(joueur.getLayoutX()+5);
+                        joueur.setLayoutY(joueur.getLayoutY()+5);
 
                     }
                     temps++;
