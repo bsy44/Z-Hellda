@@ -1,7 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Terrain;
+import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -10,19 +11,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
     private Terrain terrain;
-    public static Joueur j = new Joueur();
+    private Environnement env;
     private Timeline gameLoop;
+    private int temps;
     @FXML
     private Pane pane;
-    private int temps;
     @FXML
     private TilePane tilePane;
 
@@ -30,20 +28,17 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         this.terrain = new Terrain();
+        this.env = new Environnement(300,300);
         new VueTerrain(terrain, tilePane);
-        creerSprite(j);
-    }
+        new VueJoueur(pane,env.getJ(),"Joueur.png");
 
-    private void creerSprite (Joueur j){
-        Circle r = new Circle(5);
-        r.setFill(Color.RED);
-        r.setId(j.getId());
-        r.translateXProperty().bind(j.getXProperty());
-        r.translateYProperty().bind(j.getYProperty());
-        this.tilePane.getChildren().add(r);
         initAnimation();
         gameLoop.play();
+
+        /*ListChangeListener<Joueur>listeObsJ = new ObsJoueur(env, pane);
+        this.env.getObsJoueur().addListener(listeObsJ);*/
     }
+
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
@@ -67,5 +62,4 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-
 }
