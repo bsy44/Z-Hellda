@@ -2,21 +2,15 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.scene.input.KeyEvent;
 
-import java.awt.*;
+import static fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur.j;
 
+public class Clavier {
 
-public class Clavier extends java.awt.event.KeyEvent {
-
-    public Clavier(Component source, int id, long when, int modifiers, int keyCode, char keyChar, int keyLocation) {
-        super(source, id, when, modifiers, keyCode, keyChar, keyLocation);
-    }
-
-    public static void keyPressed (KeyEvent e){
-
+    public static void  keyPressed(KeyEvent e) {
         switch (e.getCode()){
 
             //déplacements
-            /*case Z:
+            case Z:
                 j.deplacerHaut();
                 break;
             case Q:
@@ -27,7 +21,7 @@ public class Clavier extends java.awt.event.KeyEvent {
                 break;
             case D:
                 j.deplacerDroite();
-                break;*/
+                break;
 
             //attaques
             case UP:

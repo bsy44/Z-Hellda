@@ -38,7 +38,6 @@ public class Controleur implements Initializable {
         /*ListChangeListener<Joueur>listeObsJ = new ObsJoueur(env, pane);
         this.env.getObsJoueur().addListener(listeObsJ);*/
     }
-
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
@@ -62,4 +61,5 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
+
 }
