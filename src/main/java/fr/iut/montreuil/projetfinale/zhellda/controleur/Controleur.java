@@ -62,8 +62,8 @@ public class Controleur implements Initializable {
                     }
                     else if (temps%5==0){
                         System.out.println("un tour");
-                        leCercle.setLayoutX(leCercle.getLayoutX()+5);
-                        leCercle.setLayoutY(leCercle.getLayoutY()+5);
+//                        leCercle.setLayoutX(leCercle.getLayoutX()+5);
+//                        leCercle.setLayoutY(leCercle.getLayoutY()+5);
 
                     }
                     temps++;
