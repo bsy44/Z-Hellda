@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" prefHeight="900.0" prefWidth="900.0" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
     <Pane fx:id="pane" prefWidth="900" prefHeight="900">
-        <TilePane fx:id="tilePane" prefColumns="30" prefHeight="900" prefWidth="900"></TilePane>
+        <TilePane fx:id="tilePane" prefColumns="30" prefHeight="900" prefWidth="900"/>
     </Pane>
+
 </BorderPane>
