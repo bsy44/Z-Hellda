@@ -8,11 +8,13 @@ public class Joueur {
     private IntegerProperty y = new SimpleIntegerProperty();
 
     private int id;
+    private Arme arme;
 
     public Joueur(){
         this.x.setValue(10);
         this.y.setValue(10);
         this.id = 1;
+        this.arme=new epee();
     }
 
     public void deplacerGauche () {
