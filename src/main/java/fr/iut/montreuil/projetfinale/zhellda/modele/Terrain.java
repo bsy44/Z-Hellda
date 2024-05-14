@@ -30,4 +30,8 @@ public class Terrain {
     public int[][] getTerrain() {
         return tab;
     }
+
+    public boolean dansTerrain(int x, int y){
+        return ((y <= 30 && y > 0) && (x <= 18 && x > 0));
+    }
 }

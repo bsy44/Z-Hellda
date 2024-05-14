@@ -1,7 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Terrain;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
@@ -15,7 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
-    private Terrain terrain;
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
@@ -27,9 +25,8 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        this.terrain = new Terrain();
         this.env = new Environnement(300,300);
-        new VueTerrain(terrain, tilePane);
+        new VueTerrain(env.getTerrain(), tilePane);
         new VueJoueur(pane,env.getJ(),"Joueur.png");
 
         initAnimation();

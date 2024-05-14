@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Clavier;
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Clavier;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
