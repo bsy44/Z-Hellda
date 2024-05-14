@@ -27,7 +27,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        this.terrain = new Terrain();
+//        this.terrain = new Terrain();
         this.env = new Environnement(300,300);
         new VueTerrain(terrain, tilePane);
         new VueJoueur(pane,env.getJ(),"Joueur.png");
