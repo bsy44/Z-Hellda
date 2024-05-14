@@ -15,13 +15,13 @@ public class Clavier {
                 Environnement.getJ().deplacerHaut();
                 break;
             case Q:
-                getJ().deplacerGauche();
+                Environnement.getJ().deplacerGauche();
                 break;
             case S:
-                getJ().deplacerBas();
+                Environnement.getJ().deplacerBas();
                 break;
             case D:
-                getJ().deplacerDroite();
+                Environnement.getJ().deplacerDroite();
                 break;
 
             //attaques
