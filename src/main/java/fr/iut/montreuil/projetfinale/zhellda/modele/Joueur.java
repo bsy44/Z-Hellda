@@ -47,11 +47,12 @@ public class Joueur {
     public final IntegerProperty getYProperty () { return y; }
 
     public final void deplacement(int x, int y) {
-        System.out.println("x:"+(getX()+x)/30  + "y"+(getY()+y)/30);
+        System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
 
-        while (Environnement.getTerrain().dansTerrain((getX()+x)/30, (getY()+y)/30)) {
+        if (Environnement.getTerrain().dansTerrain((int)Math.ceil((this.getX() + x) / 30.0), (int)Math.ceil((this.getY() + y) / 30.0))) {
             this.x.setValue(getX() + x);
             this.y.setValue(getY() + y);
         }
+
     }
 }
