@@ -50,10 +50,7 @@ public class Joueur {
 
     public final void deplacement(int x, int y) {
         System.out.println("x:"+(getX()+x)/30  + "y"+(getY()+y)/30);
-
-        while (Environnement.getTerrain().dansTerrain((getX()+x)/30, (getY()+y)/30)) {
-            this.x.setValue(getX() + x);
-            this.y.setValue(getY() + y);
-        }
+        this.x.setValue(getX() + x);
+        this.y.setValue(getY() + y);
     }
 }
