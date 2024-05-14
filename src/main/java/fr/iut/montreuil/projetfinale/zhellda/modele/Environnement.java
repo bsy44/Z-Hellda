@@ -12,6 +12,8 @@ public class Environnement {
 
     private static Joueur j;
 
+    private ObservableList<Ennemis> obsEnnemis;
+
     public Environnement(int width, int height) {
         this.width = width;
         this.height = height;
