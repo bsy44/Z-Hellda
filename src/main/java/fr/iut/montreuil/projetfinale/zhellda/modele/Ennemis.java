@@ -29,4 +29,8 @@ public abstract class Ennemis {
 
     public IntegerProperty getYProperty () { return y; }
 
+    public void setVie(int dmg) {
+        this.vie.set((this.vie.get()-dmg));
+    }
+
 }

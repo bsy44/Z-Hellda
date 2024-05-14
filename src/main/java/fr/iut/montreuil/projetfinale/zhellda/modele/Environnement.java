@@ -5,7 +5,9 @@ import javafx.collections.ObservableList;
 
 public class Environnement {
     private int width;
+
     private int height;
+    private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
 
@@ -16,6 +18,8 @@ public class Environnement {
         this.height = height;
         this.terrain= new Terrain();
         this.j = new Joueur();
+        this.obsJoueur = FXCollections.observableArrayList();
+        this.obsJoueur.add(j);
     }
 
     public int getWidth() {
@@ -29,6 +33,16 @@ public class Environnement {
     public static Terrain getTerrain() {
         return terrain;
     }
+
+    public ObservableList<Joueur> getObsJoueur() {
+        return obsJoueur;
+    }
+
+    public ObservableList<Ennemis> getObsEnnemis(){
+        return obsEnnemis;
+    }
+
+
 
     public static Joueur getJ() {
         return j;

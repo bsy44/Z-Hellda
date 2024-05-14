@@ -25,19 +25,22 @@ public class Clavier {
                 break;
 
             //attaques
-            case UP:
-                System.out.println("Attaque haut");
-                break;
-            case DOWN:
-                System.out.println("Attaque bas");
-                break;
-            case LEFT:
-                System.out.println("Attaque gauche");
-                break;
-            case RIGHT:
-                System.out.println("Attaque droit");
-                break;
+//            case UP:
+//                System.out.println("Attaque haut");
+//                break;
+//            case DOWN:
+//                System.out.println("Attaque bas");
+//                break;
+//            case LEFT:
+//                System.out.println("Attaque gauche");
+//                break;
+//            case RIGHT:
+//                System.out.println("Attaque droit");
+//                break;
+            case K:
 
+                System.out.println("Attaque");
+                break;
 
             default :
                 System.out.println("default");

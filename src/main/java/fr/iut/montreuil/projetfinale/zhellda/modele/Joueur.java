@@ -13,7 +13,7 @@ public class Joueur {
         this.x = new SimpleIntegerProperty(10);
         this.y = new SimpleIntegerProperty(10);
         this.id = 1;
-        this.arme=new epee();
+        this.arme=new Epee();
     }
 
     /*public void deplacerGauche () {
