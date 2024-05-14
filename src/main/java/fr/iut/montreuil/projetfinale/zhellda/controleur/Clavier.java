@@ -12,16 +12,16 @@ public class Clavier {
 
             //déplacements
             case Z:
-                Environnement.getJ().deplacerHaut();
+                Environnement.getJ().deplacement(0, -10);
                 break;
             case Q:
-                Environnement.getJ().deplacerGauche();
+                Environnement.getJ().deplacement(-10, 0);
                 break;
             case S:
-                Environnement.getJ().deplacerBas();
+                Environnement.getJ().deplacement(0, 10);
                 break;
             case D:
-                Environnement.getJ().deplacerDroite();
+                Environnement.getJ().deplacement(10, 0);
                 break;
 
             //attaques
