@@ -39,6 +39,12 @@ public class Environnement {
         return obsJoueur;
     }
 
+    public ObservableList<Ennemis> getObsEnnemis(){
+        return obsEnnemis;
+    }
+
+
+
     public static Joueur getJ() {
         return j;
     }

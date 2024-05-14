@@ -14,7 +14,7 @@ public class Joueur {
         this.x.setValue(10);
         this.y.setValue(10);
         this.id = 1;
-        this.arme=new epee();
+        this.arme=new Epee();
     }
 
     public void deplacerGauche () {
