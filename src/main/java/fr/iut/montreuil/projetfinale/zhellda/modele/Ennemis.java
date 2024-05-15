@@ -23,12 +23,24 @@ public class Ennemis {
         return (""+id);
     }
 
+    public int getVie() {
+        return vie.get();
+    }
+
+    public IntegerProperty vieProperty() {
+        return vie;
+    }
+
     public IntegerProperty getXProperty () { return x; }
 
     public IntegerProperty getYProperty () { return y; }
 
     public void degat (int dmg) {
-        this.vie.set((this.vie.get()-dmg));
+        if ((this.vie.get()-dmg)<=0)
+            this.vie.set(0);
+        else
+            this.vie.set((this.vie.get()-dmg));
+        System.out.println(this.vie.get());
     }
 
 }

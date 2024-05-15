@@ -11,6 +11,9 @@ public class Joueur extends Acteur {
        this.arme=new Epee();
     }
 
+    public Arme getArme() {
+        return arme;
+    }
     /*public void deplacerGauche () {
         this.x.setValue(this.x.getValue()-10);
     }
@@ -26,6 +29,22 @@ public class Joueur extends Acteur {
     public void deplacerBas () {
         this.y.setValue(this.y.getValue()+10);
     }*/
+
+    public String getId() {
+        return ("id"+id);
+    }
+
+    public final int getX() {
+        return x.getValue();
+    }
+
+    public final int getY() {
+        return y.getValue();
+    }
+
+    public final IntegerProperty getXProperty () { return x; }
+
+    public final IntegerProperty getYProperty () { return y; }
 
     public final void deplacement(int x, int y) {
         System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);

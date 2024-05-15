@@ -38,6 +38,8 @@ public class Clavier {
 //                System.out.println("Attaque droit");
 //                break;
             case K:
+                System.out.println("k press");
+                Environnement.getJ().getArme().attaquer(Environnement.getJ());
 
                 System.out.println("Attaque");
                 break;
