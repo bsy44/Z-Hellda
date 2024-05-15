@@ -42,8 +42,6 @@ public class Environnement {
         return obsEnnemis;
     }
 
-
-
     public static Joueur getJ() {
         return j;
     }
