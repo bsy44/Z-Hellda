@@ -3,7 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Ennemis extends Acteur{
+public abstract class Ennemis extends Acteur{
 
     private IntegerProperty x = new SimpleIntegerProperty();
     private IntegerProperty y = new SimpleIntegerProperty();
@@ -11,35 +11,21 @@ public class Ennemis extends Acteur{
     private int id;
     private int vitesse;
     private IntegerProperty vie = new SimpleIntegerProperty();
+    private int attaque;
 
-    public Ennemis(int x, int y, int vie, int vitesse) {
-        super(x, y, vie, "#"+compteur);
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque){
+        super(x, y, vie,""+compteur);
         compteur++;
         this.vitesse = vitesse;
-        this.vie.setValue(vie);
-    }
-    public String getId() {
-        return (""+id);
+        this.attaque = attaque;
     }
 
-    public IntegerProperty getVie() {
-        return vie;
+    public int getAttaque() {
+        return attaque;
     }
 
-    public IntegerProperty vieProperty() {
-        return vie;
-    }
+    public abstract void attaquer (Joueur j);
 
-    public IntegerProperty getXProperty () { return x; }
-
-    public IntegerProperty getYProperty () { return y; }
-
-    public void degat (int dmg) {
-        if ((this.vie.get()-dmg)<=0)
-            this.vie.set(0);
-        else
-            this.vie.set((this.vie.get()-dmg));
-        System.out.println(this.vie.get());
-    }
+    public abstract void seDeplacer ();
 
 }
