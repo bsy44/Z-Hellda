@@ -21,7 +21,7 @@ public abstract class Arme {
 
             double distance = Math.sqrt(Math.pow(ennemie.getXProperty().get()- j.getXProperty().get(),2)+Math.pow(ennemie.getYProperty().get() - j.getYProperty().get(),2));
             if (distance <= this.portee && distance >= 0) {
-                ennemie.degat(this.attaque);
+                ennemie.subirDegats(this.attaque);
                 environnement.ennemiMort();
                 return ennemie;
             }

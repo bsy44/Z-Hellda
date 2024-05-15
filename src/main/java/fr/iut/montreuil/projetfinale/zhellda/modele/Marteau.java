@@ -12,7 +12,7 @@ public class Marteau extends Arme{
 
             double distance = Math.sqrt(Math.pow(ennemie.getXProperty().get()- j.getXProperty().get(),2)+Math.pow(ennemie.getYProperty().get() - j.getYProperty().get(),2));
             if (distance <= this.getPortee() && distance >= 0) {
-                ennemie.degat(this.getAttaque());
+                ennemie.subirDegats(this.getAttaque());
             }
         }
     }
