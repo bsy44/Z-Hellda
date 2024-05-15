@@ -3,7 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 public abstract class Arme {
     private int portee;
     private int attaque;
-    private Environnement environnement;
+    protected Environnement environnement;
 
     public Arme (int attaque, int portee){
         this.attaque=attaque;
@@ -18,7 +18,7 @@ public abstract class Arme {
 
             double distance = Math.sqrt(Math.pow(ennemie.getXProperty().get()- j.getXProperty().get(),2)+Math.pow(ennemie.getYProperty().get() - j.getYProperty().get(),2));
             if (distance <= this.portee && distance >= 0) {
-                ennemie.setVie(this.attaque);
+                ennemie.degat(this.attaque);
                 return ennemie;
             }
         }

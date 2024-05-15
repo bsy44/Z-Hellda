@@ -20,6 +20,7 @@ public class Environnement {
         this.j = new Joueur();
         this.obsJoueur = FXCollections.observableArrayList();
         this.obsJoueur.add(j);
+        this.obsEnnemis = FXCollections.observableArrayList();
     }
 
     public int getWidth() {
@@ -40,6 +41,11 @@ public class Environnement {
 
     public ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
+    }
+
+    public void ajouterEnnemi (Ennemis ennemi){
+        this.obsEnnemis.add(ennemi);
+
     }
 
 

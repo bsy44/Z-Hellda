@@ -3,7 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Ennemis {
+public class Ennemis {
 
     private IntegerProperty x = new SimpleIntegerProperty();
     private IntegerProperty y = new SimpleIntegerProperty();
@@ -20,7 +20,6 @@ public abstract class Ennemis {
         this.vitesse = vitesse;
         this.vie.setValue(vie);
     }
-
     public String getId() {
         return (""+id);
     }
@@ -29,7 +28,7 @@ public abstract class Ennemis {
 
     public IntegerProperty getYProperty () { return y; }
 
-    public void setVie(int dmg) {
+    public void degat (int dmg) {
         this.vie.set((this.vie.get()-dmg));
     }
 
