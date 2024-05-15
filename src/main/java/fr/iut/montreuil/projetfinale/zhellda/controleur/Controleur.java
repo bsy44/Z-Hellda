@@ -31,7 +31,7 @@ public class Controleur implements Initializable {
         this.env = new Environnement(300,300);
         new VueTerrain(env.getTerrain(), tilePane);
         new VueJoueur(pane,env.getJ(),"Joueur.png");
-        Ennemis e = new Ennemis(10,10);
+        Ennemis e = new Ennemis(10,10,10,2);
         env.ajouterEnnemi(e);
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);

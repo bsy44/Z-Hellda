@@ -50,7 +50,7 @@ public class Environnement {
 
     public void ennemiMort(){
         for (int i = 0; i < getObsEnnemis().size(); i++) {
-            if (getObsEnnemis().get(i).getVie()==0){
+            if (getObsEnnemis().get(i).getVie().getValue()==0){
                 getObsEnnemis().remove(i);
             }
 

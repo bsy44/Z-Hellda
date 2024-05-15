@@ -36,11 +36,11 @@ public abstract class Acteur {
         this.y.setValue(y);
     }
 
-    public final IntegerProperty getXProperty () {
+    public IntegerProperty getXProperty() {
         return x;
     }
 
-    public final IntegerProperty getYProperty () {
+    public IntegerProperty getYProperty() {
         return y;
     }
 

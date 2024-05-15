@@ -1,14 +1,13 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class Joueur extends Acteur {
     private Arme arme;
 
-    public Joueur(){
+    public Joueur(Environnement environnement){
        super(10,10, 10,"joueur");
-       this.arme=new Epee();
+       this.arme=new Epee(environnement);
     }
 
     public Arme getArme() {
@@ -29,22 +28,6 @@ public class Joueur extends Acteur {
     public void deplacerBas () {
         this.y.setValue(this.y.getValue()+10);
     }*/
-
-    public String getId() {
-        return ("id"+id);
-    }
-
-    public final int getX() {
-        return x.getValue();
-    }
-
-    public final int getY() {
-        return y.getValue();
-    }
-
-    public final IntegerProperty getXProperty () { return x; }
-
-    public final IntegerProperty getYProperty () { return y; }
 
     public final void deplacement(int x, int y) {
         System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
