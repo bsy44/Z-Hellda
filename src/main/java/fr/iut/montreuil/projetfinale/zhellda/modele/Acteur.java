@@ -48,9 +48,10 @@ public abstract class Acteur {
         return this.vie;
     }
 
-    public void setVie(int dmg) {
+    public void subirDegats (int dmg) {
         this.vie.set((this.vie.get()-dmg));
     }
+
 
 
 }
