@@ -49,7 +49,11 @@ public abstract class Acteur {
     }
 
     public void subirDegats (int dmg) {
-        this.vie.set((this.vie.get()-dmg));
+        if ((this.vie.get()-dmg)<=0)
+            this.vie.set(0);
+        else
+            this.vie.set((this.vie.get()-dmg));
+        System.out.println(this.vie.get());
     }
 
 
