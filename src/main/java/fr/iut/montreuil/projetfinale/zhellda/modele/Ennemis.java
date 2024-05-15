@@ -37,7 +37,7 @@ public class Ennemis {
     public IntegerProperty getYProperty () { return y; }
 
     public void degat (int dmg) {
-        if ((this.vie.get()-dmg)<0)
+        if ((this.vie.get()-dmg)<=0)
             this.vie.set(0);
         else
             this.vie.set((this.vie.get()-dmg));

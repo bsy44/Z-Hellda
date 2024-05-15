@@ -52,8 +52,6 @@ public class Environnement {
         for (int i = 0; i < getObsEnnemis().size(); i++) {
             if (getObsEnnemis().get(i).getVie()==0){
                 getObsEnnemis().remove(i);
-
-
             }
 
         }

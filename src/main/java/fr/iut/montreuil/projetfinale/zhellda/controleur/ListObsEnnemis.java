@@ -15,9 +15,9 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
     }
     @Override
     public void onChanged(Change<? extends Ennemis> change) {
-        System.out.println("on changed");
         while (change.next()) {
             for (Ennemis e : change.getRemoved()) {
+                System.out.println("#" + e.getId());
                 Node n = pane.lookup("#" + e.getId());
                 this.pane.getChildren().remove(n);
 

@@ -39,7 +39,7 @@ public class Joueur {
     }*/
 
     public String getId() {
-        return (""+id);
+        return ("id"+id);
     }
 
     public final int getX() {
