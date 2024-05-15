@@ -17,7 +17,7 @@ public class Environnement {
         this.width = width;
         this.height = height;
         this.terrain= new Terrain();
-        this.j = new Joueur();
+        this.j = new Joueur(this);
         this.obsJoueur = FXCollections.observableArrayList();
         this.obsJoueur.add(j);
         this.obsEnnemis = FXCollections.observableArrayList();
@@ -45,7 +45,18 @@ public class Environnement {
 
     public void ajouterEnnemi (Ennemis ennemi){
         this.obsEnnemis.add(ennemi);
+        System.out.println("ajouter");
+    }
 
+    public void ennemiMort(){
+        for (int i = 0; i < getObsEnnemis().size(); i++) {
+            if (getObsEnnemis().get(i).getVie()==0){
+                getObsEnnemis().remove(i);
+
+
+            }
+
+        }
     }
 
 

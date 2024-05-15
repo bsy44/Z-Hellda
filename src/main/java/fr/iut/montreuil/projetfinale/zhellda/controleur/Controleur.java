@@ -6,6 +6,7 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
@@ -32,6 +33,8 @@ public class Controleur implements Initializable {
         new VueJoueur(pane,env.getJ(),"Joueur.png");
         Ennemis e = new Ennemis(10,10);
         env.ajouterEnnemi(e);
+        ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
+        env.getObsEnnemis().addListener(listeEnnemis);
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
         }

@@ -9,13 +9,19 @@ public class Joueur {
     private int id;
     private Arme arme;
 
-    public Joueur(){
+    private Environnement env;
+
+    public Joueur(Environnement env){
         this.x = new SimpleIntegerProperty(10);
         this.y = new SimpleIntegerProperty(10);
         this.id = 1;
-        this.arme=new Epee();
+        this.env=env;
+        this.arme=new Epee(env);
     }
 
+    public Arme getArme() {
+        return arme;
+    }
     /*public void deplacerGauche () {
         this.x.setValue(this.x.getValue()-10);
     }
