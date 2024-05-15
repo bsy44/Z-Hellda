@@ -10,27 +10,11 @@ public class Joueur {
     private Arme arme;
 
     public Joueur(){
-        this.x = new SimpleIntegerProperty(10);
-        this.y = new SimpleIntegerProperty(10);
+        this.x = new SimpleIntegerProperty(0);
+        this.y = new SimpleIntegerProperty(0);
         this.id = 1;
         this.arme=new epee();
     }
-
-    /*public void deplacerGauche () {
-        this.x.setValue(this.x.getValue()-10);
-    }
-
-    public void deplacerDroite () {
-        this.x.setValue(this.x.getValue()+10);
-    }
-
-    public void deplacerHaut () {
-        this.y.setValue(this.y.getValue()-10);
-    }
-
-    public void deplacerBas () {
-        this.y.setValue(this.y.getValue()+10);
-    }*/
 
     public String getId() {
         return (""+id);
@@ -50,11 +34,12 @@ public class Joueur {
 
     public final void deplacement(int x, int y) {
         System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
+        double posX = (this.getX() + x) / 30.0;
+        double posY = (this.getY() + y) / 30.0;
 
-        if (Environnement.getTerrain().dansTerrain((int)Math.ceil((this.getX() + x) / 30.0), (int)Math.ceil((this.getY() + y) / 30.0))) {
+        if (Environnement.getTerrain().dansTerrain(posX, posY) && (!Environnement.getTerrain().obstacle((int)posX, (int)posY))) {
             this.x.setValue(getX() + x);
             this.y.setValue(getY() + y);
         }
-
     }
 }
