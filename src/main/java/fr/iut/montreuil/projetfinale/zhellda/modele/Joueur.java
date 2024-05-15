@@ -29,6 +29,8 @@ public class Joueur extends Acteur {
 
     public final void deplacement(int x, int y) {
         System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
+        double posX = (this.getX() + x) / 30.0;
+        double posY = (this.getY() + y) / 30.0;
 
         if (Environnement.getTerrain().dansTerrain((int)Math.ceil((this.getX() + x) / 30.0), (int)Math.ceil((this.getY() + y) / 30.0))) {
             this.setXProperty(getX() + x);
