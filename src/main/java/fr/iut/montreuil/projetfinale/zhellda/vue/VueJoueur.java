@@ -5,7 +5,10 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
 import java.net.URL;
 
 public class VueJoueur {
@@ -23,6 +26,16 @@ public class VueJoueur {
         imageView.setId(j.getId());
         imageView.translateXProperty().bind(j.getXProperty());
         imageView.translateYProperty().bind(j.getYProperty());
+
+        /*Rectangle hitbox = new Rectangle(j.getX(), j.getY(), 30,25);
+        hitbox.setFill(Color.BLACK);
+        hitbox.setId(j.getId());
+        hitbox.xProperty().bind(j.getXProperty());
+        hitbox.yProperty().bind(j.getYProperty());*/
+
+        j.getHitbox().xProperty().bind(j.getXProperty());
+        j.getHitbox().yProperty().bind(j.getYProperty());
+
         pane.getChildren().add(imageView);
     }
 }
