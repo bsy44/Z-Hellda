@@ -2,18 +2,21 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.shape.Rectangle;
 
 public class Joueur {
     private IntegerProperty x;
     private IntegerProperty y;
     private int id;
     private Arme arme;
+    private Rectangle hitbox;
 
     public Joueur(){
         this.x = new SimpleIntegerProperty(0);
         this.y = new SimpleIntegerProperty(0);
         this.id = 1;
-        this.arme=new Epee();
+        this.arme = new Epee();
+        this.hitbox = new Rectangle(this.getX(), this.getY(), 25, 25);
     }
 
     public String getId() {
@@ -32,14 +35,38 @@ public class Joueur {
 
     public final IntegerProperty getYProperty () { return y; }
 
-    public final void deplacement(int x, int y) {
-        System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
-        double posX = (this.getX() + x) / 30.0;
-        double posY = (this.getY() + y) / 30.0;
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
 
-        if (Environnement.getTerrain().dansTerrain(posX, posY) && (!Environnement.getTerrain().obstacle((int)posX, (int)posY))) {
-            this.x.setValue(getX() + x);
-            this.y.setValue(getY() + y);
+    public void deplacement(int x, int y) {
+        System.out.println("x :" + (Math.round(getX() + x) / 30) + ", y : " + Math.round(getY() + y) / 30);
+
+        int hitboxWidth = (int) hitbox.getWidth();
+        int hitboxHeight = (int) hitbox.getHeight();
+
+        int posX = getX() + x;
+        int posY = getY() + y;
+
+        int gauche = posX / 30;
+        int droite = (posX + hitboxWidth) / 30;
+        int haut = posY / 30;
+        int bas = (posY + hitboxHeight) / 30;
+
+        if (Environnement.getTerrain().dansTerrain(gauche, haut) &&
+                Environnement.getTerrain().dansTerrain(droite, haut) &&
+                Environnement.getTerrain().dansTerrain(gauche, bas) &&
+                Environnement.getTerrain().dansTerrain(droite, bas) &&
+                (colision(haut, bas, droite, gauche))){
+            this.x.setValue(posX);
+            this.y.setValue(posY);
         }
+    }
+
+    public boolean colision(int haut, int bas, int droite, int gauche){
+        return  !Environnement.getTerrain().obstacle(gauche, haut) &&
+                !Environnement.getTerrain().obstacle(droite, haut) &&
+                !Environnement.getTerrain().obstacle(gauche, bas) &&
+                !Environnement.getTerrain().obstacle(droite, bas);
     }
 }
