@@ -13,12 +13,13 @@ import java.net.URL;
 
 public class VueJoueur {
     private Joueur j;
+    private static ImageView imageView;
 
     public VueJoueur(Pane pane, Joueur j, String urlImg){
         this.j = j;
         URL url = Lancement.class.getResource(urlImg);
-        Image image = new Image(String.valueOf(url));;
-        ImageView imageView = new ImageView(image);
+        Image image = new Image(String.valueOf(url));
+        this.imageView = new ImageView(image);
 
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
@@ -38,4 +39,12 @@ public class VueJoueur {
 
         pane.getChildren().add(imageView);
     }
+
+    public static void modifierImage(String urlImg) {
+        URL url = Lancement.class.getResource(urlImg);
+        Image image = new Image(String.valueOf(url));
+        imageView.setImage(image);
+    }
+
+
 }
