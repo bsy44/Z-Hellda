@@ -33,8 +33,8 @@ public class Terrain {
         return tab;
     }
 
-    public boolean dansTerrain(double x, double y){
-        return (0 <= x && x < 29 && 0 <= y && y < 19);
+    public boolean dansTerrain(int x, int y){
+        return (0 <= x && x < 30 && 0 <= y && y < 20);
     }
 
     public boolean obstacle(int x, int y){

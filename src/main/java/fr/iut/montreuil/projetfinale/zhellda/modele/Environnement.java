@@ -10,7 +10,6 @@ public class Environnement {
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
-
     private ObservableList<Ennemis> obsEnnemis;
 
     public Environnement(int width, int height) {
