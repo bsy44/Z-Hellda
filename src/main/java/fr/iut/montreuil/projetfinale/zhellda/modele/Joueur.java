@@ -14,13 +14,7 @@ public class Joueur extends Acteur {
     public Arme getArme() {
         return arme;
     }
-    /*public void deplacerGauche () {
-        this.x.setValue(this.x.getValue()-10);
-    }
 
-    public void deplacerDroite () {
-        this.x.setValue(this.x.getValue()+10);
-    }
 
     public void deplacement(int x, int y) {
         System.out.println("x :" + (Math.round(getX() + x) / 30) + ", y : " + Math.round(getY() + y) / 30);

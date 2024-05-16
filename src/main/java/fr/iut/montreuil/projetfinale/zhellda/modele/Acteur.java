@@ -10,11 +10,10 @@ public abstract class Acteur {
     private IntegerProperty vie = new SimpleIntegerProperty();
     private String id;
     Environnement environnement;
-
-    public Acteur (int x, int y, int vie, String id, Environnement environnement){
     private Rectangle hitbox;
 
-    public Acteur (int x, int y, int vie, String id){
+    public Acteur (int x, int y, int vie, String id, Environnement environnement){
+
         this.x.setValue(x);
         this.y.setValue(y);
         this.vie.setValue(vie);
