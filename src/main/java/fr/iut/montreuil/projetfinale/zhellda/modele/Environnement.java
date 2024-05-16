@@ -45,7 +45,6 @@ public class Environnement {
 
     public void ajouterEnnemi (Ennemis ennemi){
         this.obsEnnemis.add(ennemi);
-        System.out.println("ajouter");
     }
 
     public void ennemiMort(){
@@ -54,6 +53,13 @@ public class Environnement {
                 getObsEnnemis().remove(i);
             }
 
+        }
+    }
+
+    public void mortJoueur(){
+        if (getObsJoueur().get(0).getVie().getValue()==0) {
+            getObsJoueur().remove(0);
+            System.out.println("Vous avez perdu.");
         }
     }
 

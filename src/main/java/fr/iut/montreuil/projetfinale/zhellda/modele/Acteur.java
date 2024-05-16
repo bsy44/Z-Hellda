@@ -8,12 +8,14 @@ public abstract class Acteur {
     private IntegerProperty y = new SimpleIntegerProperty();
     private IntegerProperty vie = new SimpleIntegerProperty();
     private String id;
+    Environnement environnement;
 
-    public Acteur (int x, int y, int vie, String id){
+    public Acteur (int x, int y, int vie, String id, Environnement environnement){
         this.x.setValue(x);
         this.y.setValue(y);
         this.vie.setValue(vie);
         this.id = id;
+        this.environnement=environnement;
     }
 
     public String getId() {
@@ -53,7 +55,6 @@ public abstract class Acteur {
             this.vie.set(0);
         else
             this.vie.set((this.vie.get()-dmg));
-        System.out.println(this.vie.get());
     }
 
 
