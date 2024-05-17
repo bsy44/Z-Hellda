@@ -10,7 +10,7 @@ public class Environnement {
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
-    private ObservableList<Ennemis> obsEnnemis;
+    private static ObservableList<Ennemis> obsEnnemis;
 
     public Environnement(int width, int height) {
         this.width = width;
@@ -38,7 +38,7 @@ public class Environnement {
         return obsJoueur;
     }
 
-    public ObservableList<Ennemis> getObsEnnemis(){
+    public static ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
     }
 
@@ -52,11 +52,8 @@ public class Environnement {
             if (getObsEnnemis().get(i).getVie().getValue()==0){
                 getObsEnnemis().remove(i);
             }
-
         }
     }
-
-
 
     public static Joueur getJ() {
         return j;

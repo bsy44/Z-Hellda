@@ -5,19 +5,17 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Ennemis extends Acteur{
 
-    private IntegerProperty x = new SimpleIntegerProperty();
-    private IntegerProperty y = new SimpleIntegerProperty();
     private static int compteur = 1;
-    private int id;
     private int vitesse;
-    private IntegerProperty vie = new SimpleIntegerProperty();
+    private IntegerProperty vie;
     private int attaque;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque){
-        super(x, y, vie,""+compteur);
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int tailleHx, int tailleHy){
+        super(x, y, vie,""+compteur, tailleHx, tailleHy);
         compteur++;
         this.vitesse = vitesse;
         this.attaque = attaque;
+        this.vie = new SimpleIntegerProperty();
     }
 
     public int getAttaque() {

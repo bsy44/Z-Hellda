@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class Zombie extends Ennemis{
     public Zombie(int x, int y) {
-        super(x, y, 10, 2, 1);
+        super(x, y, 10, 2, 1, 22, 20);
     }
     //La vie et la vitesse seront à équilibrer plus tard
 
