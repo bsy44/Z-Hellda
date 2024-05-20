@@ -5,20 +5,20 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Acteur {
-    private IntegerProperty x = new SimpleIntegerProperty();
-    private IntegerProperty y = new SimpleIntegerProperty();
-    private IntegerProperty vie = new SimpleIntegerProperty();
+    private IntegerProperty x ;
+    private IntegerProperty y;
+    private IntegerProperty vie;
     private String id;
     Environnement environnement;
     private Rectangle hitbox;
 
     public Acteur (int x, int y, int vie, String id, Environnement environnement){
 
-        this.x.setValue(x);
-        this.y.setValue(y);
-        this.vie.setValue(vie);
+        this.x = new SimpleIntegerProperty();
+        this.y = new SimpleIntegerProperty();
+        this.vie = new SimpleIntegerProperty();
         this.id = id;
-        this.environnement=environnement;
+        this.environnement = environnement;
         this.hitbox = new Rectangle(this.getX(), this.getY(), 25, 25);
     }
 

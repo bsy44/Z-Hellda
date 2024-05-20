@@ -1,6 +1,11 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.arme;
 
-public class Marteau extends Arme{
+import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
+
+public class Marteau extends Arme {
     public Marteau(Environnement environnement) {
         super(environnement,20,20);
     }

@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import javafx.scene.shape.Rectangle;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Epee;
 
 public class Joueur extends Acteur {
     private Arme arme;

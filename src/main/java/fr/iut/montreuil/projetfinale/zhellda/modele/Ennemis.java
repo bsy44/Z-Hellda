@@ -1,15 +1,9 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public abstract class Ennemis extends Acteur{
-
-    private IntegerProperty x = new SimpleIntegerProperty();
-    private IntegerProperty y = new SimpleIntegerProperty();
     private static int compteur = 1;
     private int vitesse;
-    private IntegerProperty vie = new SimpleIntegerProperty();
+
     private int attaque;
 
     private int portee;
