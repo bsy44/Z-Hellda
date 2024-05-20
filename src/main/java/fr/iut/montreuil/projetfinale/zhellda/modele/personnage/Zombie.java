@@ -1,8 +1,11 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-public class Zombie extends Ennemis{
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+
+public class Zombie extends Ennemis {
     public Zombie(int x, int y) {
-        super(x, y, 10, 2, 1, 22, 20);
+        super(x, y, 10, 2, 1, 22, 25);
     }
     //La vie et la vitesse seront à équilibrer plus tard
 

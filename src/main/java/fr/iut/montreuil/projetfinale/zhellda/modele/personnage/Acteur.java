@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -31,19 +31,11 @@ public abstract class Acteur {
         this.x.setValue(x);
     }
 
-    public void setXProperty (int x){
-        this.x.setValue(x);
-    }
-
     public final int getY() {
         return y.getValue();
     }
 
     public void setY(int y) {
-        this.y.setValue(y);
-    }
-
-    public void setYProperty (int y){
         this.y.setValue(y);
     }
 
@@ -69,12 +61,5 @@ public abstract class Acteur {
         else
             this.vie.set((this.vie.get()-dmg));
         System.out.println(this.vie.get());
-    }
-
-    public boolean colisionEnv(int haut, int bas, int droite, int gauche){
-        return  !Environnement.getTerrain().obstacle(gauche, haut) &&
-                !Environnement.getTerrain().obstacle(droite, haut) &&
-                !Environnement.getTerrain().obstacle(gauche, bas) &&
-                !Environnement.getTerrain().obstacle(droite, bas);
     }
 }
