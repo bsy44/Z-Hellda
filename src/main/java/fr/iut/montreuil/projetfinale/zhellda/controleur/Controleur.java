@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
-
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Zombie;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
@@ -37,7 +37,7 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
-        ListChangeListener<Joueur> listeJoueur=new ObsJoueur(pane);
+        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
         env.getObsJoueur().addListener(listeJoueur);
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {

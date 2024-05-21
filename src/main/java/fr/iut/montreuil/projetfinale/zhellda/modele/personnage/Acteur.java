@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Rectangle;
@@ -9,13 +10,15 @@ public abstract class Acteur {
     private IntegerProperty y;
     private IntegerProperty vie;
     private String id;
+    protected Environnement environnement;
     private Rectangle hitbox;
 
-    public Acteur (int x, int y, int vie, String id, int tailleHx, int tailleHy){
+    public Acteur (int x, int y, int vie, String id, int tailleHx, int tailleHy, Environnement environnement){
         this.x =  new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.vie= new SimpleIntegerProperty(vie);
         this.id = id;
+        this.environnement = environnement;
         this.hitbox = new Rectangle(this.getX(), this.getY(), tailleHx, tailleHy);
     }
 

@@ -53,8 +53,6 @@ public class Environnement {
         }
     }
 
-
-
     public static Joueur getJ() {
         return j;
     }

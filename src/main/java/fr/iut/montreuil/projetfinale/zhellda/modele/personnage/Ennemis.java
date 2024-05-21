@@ -1,13 +1,15 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+
 public abstract class Ennemis extends Acteur{
     private static int compteur = 1;
     private int vitesse;
     private int attaque;
     private int portee;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int HitBoxW, int HitBoxH){
-        super(x, y, vie,"#"+compteur, HitBoxW, HitBoxH);
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement){
+        super(x, y, vie,"#"+compteur, HitBoxW, HitBoxH, environnement);
         compteur++;
         this.vitesse = vitesse;
         this.attaque = attaque;
