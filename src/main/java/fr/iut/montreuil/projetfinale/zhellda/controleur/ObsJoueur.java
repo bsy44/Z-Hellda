@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

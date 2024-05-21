@@ -1,8 +1,10 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Acteur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 
-public abstract class Ennemis extends Acteur{
+public abstract class Ennemis extends Acteur {
     private static int compteur = 1;
     private int vitesse;
     private int attaque;
@@ -27,7 +29,8 @@ public abstract class Ennemis extends Acteur{
             double distance = Math.sqrt(Math.pow(this.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(this.getYProperty().get() - j.getYProperty().get(), 2));
             if (distance <= this.portee && distance >= 0) {
                 j.subirDegats(this.attaque);
-                environnement.mortJoueur();this.x.getValue();
+                environnement.mortJoueur();
+                this.getX();
             }
         }
     }

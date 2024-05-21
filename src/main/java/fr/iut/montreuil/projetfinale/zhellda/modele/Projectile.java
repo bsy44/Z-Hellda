@@ -1,12 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.ObservableList;
-
-import java.util.List;
 
 public class Projectile {
     private int vitesse;

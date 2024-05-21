@@ -1,6 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Zombie;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
@@ -28,7 +30,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
         new VueTerrain(env.getTerrain(), tilePane);
-        new VueJoueur(pane,env.getJ(),"Joueur.png");
+        new VueJoueur(pane, env.getJ(),"Joueur.png");
 
         Ennemis e = new Zombie(80,80, this.env);
         env.ajouterEnnemi(e);
