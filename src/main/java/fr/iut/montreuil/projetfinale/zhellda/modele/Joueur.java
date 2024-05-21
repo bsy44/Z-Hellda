@@ -16,25 +16,27 @@ public class Joueur extends Acteur {
 
 
     public void deplacement(int x, int y) {
+        int gauche = (getX() + x) / 30; //représente le point à en haut à gauche de la Hitnox
+        int droite =  ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
+        int haut = (getY() + y) / 30; //représente le point à en haut à gauche de la Hitnox
+        int bas =  ((getY() + y + (int)getHitbox().getHeight()) / 30); //représente le point à en bas à gauche de la Hitnox
 
-        int hitboxWidth = (int) getHitbox().getWidth();
-        int hitboxHeight = (int) getHitbox().getHeight();
-
-        int posX = getX() + x;
-        int posY = getY() + y;
-
-        int gauche = posX / 30;
-        int droite = (posX + hitboxWidth) / 30;
-        int haut = posY / 30;
-        int bas = (posY + hitboxHeight) / 30;
+        int oldX = this.getX();
+        int oldY = this.getY();
 
         if (Environnement.getTerrain().dansTerrain(gauche, haut) &&
                 Environnement.getTerrain().dansTerrain(droite, haut) &&
                 Environnement.getTerrain().dansTerrain(gauche, bas) &&
                 Environnement.getTerrain().dansTerrain(droite, bas) &&
-                (colisionEnv(haut, bas, droite, gauche))){
-            this.setX(posX);
-            this.setY(posY);
+                colisionEnv(haut, bas, droite, gauche)) {
+
+            this.setX(getX() + x);
+            this.setY(getY() + y);
+
+            if (colisionEnnemis()) {
+                this.setX(oldX);
+                this.setY(oldY);
+            }
         }
     }
 
