@@ -1,14 +1,11 @@
 package fr.iut.montreuil.projetfinale.zhellda.vue;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
 import java.net.URL;
 
 public class VueJoueur {

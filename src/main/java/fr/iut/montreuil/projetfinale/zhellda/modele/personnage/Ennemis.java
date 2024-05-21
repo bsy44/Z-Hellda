@@ -1,21 +1,15 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 public abstract class Ennemis extends Acteur{
-
-    private IntegerProperty x = new SimpleIntegerProperty();
-    private IntegerProperty y = new SimpleIntegerProperty();
     private static int compteur = 1;
     private int vitesse;
-    private IntegerProperty vie = new SimpleIntegerProperty();
     private int attaque;
-
     private int portee;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, Environnement environnement){
-        super(x, y, vie,""+compteur, environnement);
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement){
+        super(x, y, vie,"#"+compteur, HitBoxW, HitBoxH, environnement);
         compteur++;
         this.vitesse = vitesse;
         this.attaque = attaque;

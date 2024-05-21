@@ -1,5 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,23 +15,13 @@ public class Environnement {
     private ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
 
-    public Environnement(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Environnement() {
         this.terrain= new Terrain();
         this.j = new Joueur(this);
         this.obsJoueur = FXCollections.observableArrayList();
         this.obsJoueur.add(j);
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public static Terrain getTerrain() {
@@ -40,7 +32,7 @@ public class Environnement {
         return obsJoueur;
     }
 
-    public ObservableList<Ennemis> getObsEnnemis(){
+    public static ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
     }
 
