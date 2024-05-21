@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;

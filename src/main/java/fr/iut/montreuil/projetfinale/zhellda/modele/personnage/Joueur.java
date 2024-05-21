@@ -1,5 +1,9 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
+
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arc;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 public class Joueur extends Acteur {
     private Arme arme;
