@@ -20,9 +20,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
                 System.out.println("#" + e.getId());
                 Node n = pane.lookup("#" + e.getId());
                 this.pane.getChildren().remove(n);
-
             }
-
         }
     }
 }

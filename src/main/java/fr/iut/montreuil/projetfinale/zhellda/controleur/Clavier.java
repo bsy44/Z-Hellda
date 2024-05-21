@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Arc;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import javafx.scene.input.KeyEvent;
@@ -29,19 +30,27 @@ public class Clavier {
                 VueJoueur.modifierImage("Joueur.png");
                 break;
 
-            //attaques
-//            case UP:
-//                System.out.println("Attaque haut");
-//                break;
-//            case DOWN:
-//                System.out.println("Attaque bas");
-//                break;
-//            case LEFT:
-//                System.out.println("Attaque gauche");
-//                break;
-//            case RIGHT:
-//                System.out.println("Attaque droit");
-//                break;
+            case UP:
+                if (Environnement.getJ().getArme() instanceof Arc) {
+                    ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
+                }
+                break;
+            case DOWN:
+                if (Environnement.getJ().getArme() instanceof Arc) {
+                    ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+ getJ().getArme().getPortee());
+                }
+                System.out.println("Attaque bas");
+                break;
+            case LEFT:
+                if (Environnement.getJ().getArme() instanceof Arc) {
+                    ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
+                }
+                break;
+            case RIGHT:
+                if (Environnement.getJ().getArme() instanceof Arc) {
+                    ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
+                }
+                break;
 
             case K:
                 System.out.println("k press");

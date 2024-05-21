@@ -33,7 +33,7 @@ public abstract class Ennemis extends Acteur{
             double distance = Math.sqrt(Math.pow(this.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(this.getYProperty().get() - j.getYProperty().get(), 2));
             if (distance <= this.portee && distance >= 0) {
                 j.subirDegats(this.attaque);
-                environnement.mortJoueur();
+                environnement.mortJoueur();this.x.getValue();
             }
         }
     }

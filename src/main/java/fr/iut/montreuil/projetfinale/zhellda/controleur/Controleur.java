@@ -1,9 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Zombie;
+import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
@@ -41,6 +38,8 @@ public class Controleur implements Initializable {
         env.getObsEnnemis().addListener(listeEnnemis);
         ListChangeListener<Joueur> listeJoueur=new ObsJoueur(pane);
         env.getObsJoueur().addListener(listeJoueur);
+        ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
+        env.getObsProjectile().addListener(listeProjectile);
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
@@ -66,6 +65,7 @@ public class Controleur implements Initializable {
                     for (int i = 0; i < env.getObsEnnemis().size(); i++) {
                         env.getObsEnnemis().get(i).attaquer();
                     }
+                    env.actionProjectile();
                 })
         );
         gameLoop.getKeyFrames().add(kf);

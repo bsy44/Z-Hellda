@@ -11,6 +11,7 @@ public class Environnement {
     private static Terrain terrain;
     private static Joueur j;
     private ObservableList<Ennemis> obsEnnemis;
+    private ObservableList<Projectile> obsProjectile;
 
     public Environnement(int width, int height) {
         this.width = width;
@@ -20,6 +21,7 @@ public class Environnement {
         this.obsJoueur = FXCollections.observableArrayList();
         this.obsJoueur.add(j);
         this.obsEnnemis = FXCollections.observableArrayList();
+        this.obsProjectile = FXCollections.observableArrayList();
     }
 
     public int getWidth() {
@@ -45,9 +47,12 @@ public class Environnement {
     public void ajouterEnnemi (Ennemis ennemi){
         this.obsEnnemis.add(ennemi);
     }
+    public void ajouterProjectile (Projectile projectile){
+        this.obsProjectile.add(projectile);
+    }
 
     public void ennemiMort(){
-        for (int i = 0; i < getObsEnnemis().size(); i++) {
+        for (int i = getObsEnnemis().size()-1; i >=0 ; i--) {
             if (getObsEnnemis().get(i).getVie().getValue()==0){
                 getObsEnnemis().remove(i);
             }
@@ -61,8 +66,25 @@ public class Environnement {
             System.out.println("Vous avez perdu.");
         }
     }
+    public void actionProjectile(){
+        System.out.println("oui");
+        for (int i = obsProjectile.size()-1; i >=0 ; i--) {
+            if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche()){
+                ennemiMort();
+                System.out.println(obsProjectile.get(i).getX()+obsProjectile.get(i).getY());
+                System.out.println("supprimerP");
+                obsProjectile.remove(i);
+
+                System.out.println("est supprimé");
+            }
+        }
+
+    }
 
 
+    public ObservableList<Projectile> getObsProjectile() {
+        return obsProjectile;
+    }
 
     public static Joueur getJ() {
         return j;

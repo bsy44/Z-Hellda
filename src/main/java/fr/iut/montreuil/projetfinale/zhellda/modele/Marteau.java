@@ -5,8 +5,8 @@ public class Marteau extends Arme{
         super(environnement,20,20);
     }
 
-    public void Attaquer (){
-        Joueur j = getEnvironnement().getObsJoueur().get(0);
+    @Override
+    public void attaquer(Joueur j) {
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size();i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
 

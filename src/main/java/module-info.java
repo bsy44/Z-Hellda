@@ -10,4 +10,6 @@ module fr.iut.montreuil.projetfinale.zhellda {
     opens fr.iut.montreuil.projetfinale.zhellda.controleur to javafx.fxml;
     exports fr.iut.montreuil.projetfinale.zhellda.modele;
     opens fr.iut.montreuil.projetfinale.zhellda.modele to javafx.fxml;
+    exports fr.iut.montreuil.projetfinale.zhellda.vue;
+    opens fr.iut.montreuil.projetfinale.zhellda.vue to javafx.fxml;
 }

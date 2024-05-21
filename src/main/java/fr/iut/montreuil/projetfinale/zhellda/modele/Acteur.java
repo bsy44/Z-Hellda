@@ -71,7 +71,6 @@ public abstract class Acteur {
             this.vie.set(0);
         else
             this.vie.set((this.vie.get()-dmg));
-        System.out.println(this.vie.get());
     }
 
     public boolean colision(int haut, int bas, int droite, int gauche){
