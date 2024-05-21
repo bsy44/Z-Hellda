@@ -26,11 +26,7 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
                     System.out.println("#" + j.getId());
                     Node n = pane.lookup("#" + j.getId());
                     this.pane.getChildren().remove(n);
-
             }
-
         }
-
-
     }
 }

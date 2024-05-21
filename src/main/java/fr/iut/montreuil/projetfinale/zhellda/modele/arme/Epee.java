@@ -5,6 +5,6 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
 
 public class Epee extends Arme {
     public Epee(Environnement environnement){
-        super(environnement,2,10);
+        super(environnement,50,25);
     }
 }
