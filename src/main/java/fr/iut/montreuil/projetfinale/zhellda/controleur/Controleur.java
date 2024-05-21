@@ -29,12 +29,11 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        this.env = new Environnement(300,300);
+        this.env = new Environnement();
         new VueTerrain(env.getTerrain(), tilePane);
         new VueJoueur(pane,env.getJ(),"Joueur.png");
 
-        Ennemis e = new Zombie(20,20, this.env);
+        Ennemis e = new Zombie(80,80, this.env);
         env.ajouterEnnemi(e);
 
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
@@ -48,9 +47,6 @@ public class Controleur implements Initializable {
 
         initAnimation();
         gameLoop.play();
-
-        /*ListChangeListener<Joueur>listeObsJ = new ObsJoueur(env, pane);
-        this.env.getObsJoueur().addListener(listeObsJ);*/
     }
     private void initAnimation() {
         gameLoop = new Timeline();
