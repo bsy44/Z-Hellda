@@ -1,6 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 
+import javafx.beans.property.IntegerProperty;
+
 public class Joueur extends Acteur {
     private Arme arme;
 
@@ -62,5 +64,13 @@ public class Joueur extends Acteur {
             return joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY;
         }
         return false;
+    }
+
+    @Override
+    public IntegerProperty getVie() {
+        return super.getVie();
+    }
+    public int getVieMax() {
+        return 10;
     }
 }

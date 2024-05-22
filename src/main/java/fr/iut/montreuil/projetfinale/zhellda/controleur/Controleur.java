@@ -7,9 +7,11 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
@@ -25,6 +27,8 @@ public class Controleur implements Initializable {
     private Pane pane;
     @FXML
     private TilePane tilePane;
+    @FXML
+    private HBox coeur;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,7 +37,13 @@ public class Controleur implements Initializable {
         new VueJoueur(pane, env.getJ(),"Joueur.png");
 
         Ennemis e = new Zombie(80,80, this.env);
+        Ennemis e2 = new Zombie(110,110, this.env);
         env.ajouterEnnemi(e);
+        env.ajouterEnnemi(e2);
+        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
+
+        // Mettre à jour l'affichage initial des cœurs
+        listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
