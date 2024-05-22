@@ -35,6 +35,7 @@ public abstract class Ennemis extends Acteur {
         }
     }
 
+    public abstract int getPvMax();
     public abstract void seDeplacer ();
 
 }

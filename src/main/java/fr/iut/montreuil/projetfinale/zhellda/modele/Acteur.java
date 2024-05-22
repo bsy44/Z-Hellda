@@ -58,6 +58,8 @@ public abstract class Acteur {
         return hitbox;
     }
 
+
+
     public void subirDegats (int dmg) {
         if ((this.vie.get()-dmg)<=0)
             this.vie.set(0);

@@ -14,4 +14,6 @@ public class Zombie extends Ennemis {
         //A faire lorsque l'on aura le BFS
     }
 
+    public int getPvMax() {return 10;}
+
 }

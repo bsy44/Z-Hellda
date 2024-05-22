@@ -43,7 +43,7 @@ public class Environnement {
 
     public void ennemiMort(){
         for (int i = getObsEnnemis().size()-1; i >=0 ; i--) {
-            if (getObsEnnemis().get(i).getVie().getValue()==0){
+            if (getObsEnnemis().get(i).getVie().get()==0){
                 getObsEnnemis().remove(i);
             }
 
@@ -57,7 +57,6 @@ public class Environnement {
         }
     }
     public void actionProjectile(){
-        System.out.println("oui");
         for (int i = obsProjectile.size()-1; i >=0 ; i--) {
             if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche()){
                 ennemiMort();
