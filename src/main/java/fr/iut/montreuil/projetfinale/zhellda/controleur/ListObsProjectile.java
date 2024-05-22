@@ -19,7 +19,7 @@ public class ListObsProjectile implements ListChangeListener<Projectile> {
         while (change.next()) {
             if (change.wasAdded()) {
                 for (Projectile projectile : change.getAddedSubList()) {
-                    new VueProjectile(pane, projectile, "fleche.png");
+                    new VueProjectile(pane, projectile, "bouleDeFeu.png");
                 }
             }
             if (change.wasRemoved()) {
