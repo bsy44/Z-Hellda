@@ -1,7 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -20,9 +19,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
                 System.out.println("#" + e.getId());
                 Node n = pane.lookup("#" + e.getId());
                 this.pane.getChildren().remove(n);
-
             }
-
         }
     }
 }

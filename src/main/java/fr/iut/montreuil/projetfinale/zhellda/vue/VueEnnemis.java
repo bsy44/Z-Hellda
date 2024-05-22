@@ -22,6 +22,10 @@ public class VueEnnemis {
             imageView.setId(e.getId());
             imageView.translateXProperty().bind(e.getXProperty());
             imageView.translateYProperty().bind(e.getYProperty());
+
+            ennemis.getHitbox().xProperty().bind(ennemis.getXProperty());
+            ennemis.getHitbox().yProperty().bind(ennemis.getYProperty());
+
             pane.getChildren().add(imageView);
         }
 }

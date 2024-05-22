@@ -5,6 +5,7 @@ import javafx.beans.property.IntegerProperty;
 public class Joueur extends Acteur {
     private Arme arme;
 
+
     public Joueur(Environnement environnement){
        super(700,30, 10,"joueur");
        this.arme=new Epee(environnement);
@@ -13,31 +14,54 @@ public class Joueur extends Acteur {
     public Arme getArme() {
         return arme;
     }
-    /*public void deplacerGauche () {
-        this.x.setValue(this.x.getValue()-10);
-    }
 
-    public void deplacerDroite () {
-        this.x.setValue(this.x.getValue()+10);
-    }
 
-    public void deplacerHaut () {
-        this.y.setValue(this.y.getValue()-10);
-    }
+    public void deplacement(int x, int y) {
+        int gauche = (getX() + x) / 30; //représente le point à en haut à gauche de la Hitnox
+        int droite =  ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
+        int haut = (getY() + y) / 30; //représente le point à en haut à gauche de la Hitnox
+        int bas =  ((getY() + y + (int)getHitbox().getHeight()) / 30); //représente le point à en bas à gauche de la Hitnox
 
-    public void deplacerBas () {
-        this.y.setValue(this.y.getValue()+10);
-    }*/
+        int oldX = this.getX();
+        int oldY = this.getY();
 
-    public final void deplacement(int x, int y) {
-        System.out.println("x :"+(Math.round(getX() + x)/30)  + ", y : "+ Math.round(getY()+ y)/30);
-        double posX = (this.getX() + x) / 30.0;
-        double posY = (this.getY() + y) / 30.0;
+        if (Environnement.getTerrain().dansTerrain(gauche, haut) &&
+                Environnement.getTerrain().dansTerrain(droite, haut) &&
+                Environnement.getTerrain().dansTerrain(gauche, bas) &&
+                Environnement.getTerrain().dansTerrain(droite, bas) &&
+                colisionEnv(haut, bas, droite, gauche)) {
 
-        if (Environnement.getTerrain().dansTerrain((int)Math.ceil((this.getX() + x) / 30.0), (int)Math.ceil((this.getY() + y) / 30.0))) {
-            this.setXProperty(getX() + x);
-            this.setYProperty(getY() + y);
+            this.setX(getX() + x);
+            this.setY(getY() + y);
+
+            if (colisionEnnemis()) {
+                this.setX(oldX);
+                this.setY(oldY);
+            }
         }
+    }
 
+    public boolean colisionEnv(int haut, int bas, int droite, int gauche){
+        return  !Environnement.getTerrain().obstacle(gauche, haut) &&
+                !Environnement.getTerrain().obstacle(droite, haut) &&
+                !Environnement.getTerrain().obstacle(gauche, bas) &&
+                !Environnement.getTerrain().obstacle(droite, bas);
+    }
+
+    public boolean colisionEnnemis() {
+        int joueurX = (int) this.getHitbox().getX();
+        int joueurY = (int) this.getHitbox().getY();
+        int joueurWidth = (int) this.getHitbox().getWidth();
+        int joueurHeight = (int) this.getHitbox().getHeight();
+
+        for (Ennemis ennemi : Environnement.getObsEnnemis()) {
+            int ennemiX = (int) ennemi.getHitbox().getX();
+            int ennemiY = (int) ennemi.getHitbox().getY();
+            int ennemiWidth = (int) ennemi.getHitbox().getWidth();
+            int ennemiHeight = (int) ennemi.getHitbox().getHeight();
+
+            return joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY;
+        }
+        return false;
     }
 }

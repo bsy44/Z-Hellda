@@ -1,8 +1,10 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Acteur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 
+public abstract class Ennemis extends Acteur {
 import java.util.ArrayList;
 
 public abstract class Ennemis extends Acteur{
@@ -10,26 +12,37 @@ public abstract class Ennemis extends Acteur{
     private IntegerProperty x = new SimpleIntegerProperty();
     private IntegerProperty y = new SimpleIntegerProperty();
     private static int compteur = 1;
-    private int id;
     private int vitesse;
-    private IntegerProperty vie = new SimpleIntegerProperty();
     private int attaque;
+    private int portee;
 
     private ArrayList<Case> bfs;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque){
-        super(x, y, vie,""+compteur);
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement){
+        super(x, y, vie,"#"+compteur, HitBoxW, HitBoxH, environnement);
         compteur++;
         this.vitesse = vitesse;
         this.attaque = attaque;
         this.bfs = new Bfs(Math.round(x/30), Math.round(y/30)).getChemin();
+        this.portee=portee;
     }
 
     public int getAttaque() {
         return attaque;
     }
 
-    public abstract void attaquer (Joueur j);
+    public void attaquer () {
+        for (int i = 0; i < environnement.getObsJoueur().size(); i++) {
+            Joueur j = environnement.getObsJoueur().get(i);
+
+            double distance = Math.sqrt(Math.pow(this.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(this.getYProperty().get() - j.getYProperty().get(), 2));
+            if (distance <= this.portee && distance >= 0) {
+                j.subirDegats(this.attaque);
+                environnement.mortJoueur();
+                this.getX();
+            }
+        }
+    }
 
     public void seDeplacer (){
         int x;

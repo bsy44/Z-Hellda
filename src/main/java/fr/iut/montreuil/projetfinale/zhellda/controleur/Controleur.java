@@ -1,8 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Bfs;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Zombie;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
@@ -29,14 +27,20 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        this.env = new Environnement(300,300);
+        this.env = new Environnement();
         new VueTerrain(env.getTerrain(), tilePane);
-        new VueJoueur(pane,env.getJ(),"Joueur.png");
-        Ennemis e = new Zombie(20,20);
+        new VueJoueur(pane, env.getJ(),"Joueur.png");
+
+        Ennemis e = new Zombie(80,80, this.env);
         env.ajouterEnnemi(e);
+
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
+        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
+        env.getObsJoueur().addListener(listeJoueur);
+        ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
+        env.getObsProjectile().addListener(listeProjectile);
+
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
         }
@@ -57,18 +61,14 @@ public class Controleur implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.017),
+                Duration.seconds(0.5),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if(temps==100){
-                        System.out.println("fini");
-                        gameLoop.stop();
+                    for (int i = 0; i < env.getObsEnnemis().size(); i++) {
+                        env.getObsEnnemis().get(i).attaquer();
                     }
-                    else if (temps%5==0){
-                        System.out.println("un tour");
-                    }
-                    temps++;
+                    env.actionProjectile();
                 })
         );
         gameLoop.getKeyFrames().add(kf);

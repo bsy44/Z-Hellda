@@ -1,19 +1,25 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.shape.Rectangle;
 
 public abstract class Acteur {
-    private IntegerProperty x = new SimpleIntegerProperty();
-    private IntegerProperty y = new SimpleIntegerProperty();
-    private IntegerProperty vie = new SimpleIntegerProperty();
+    private IntegerProperty x;
+    private IntegerProperty y;
+    private IntegerProperty vie;
     private String id;
+    protected Environnement environnement;
+    private Rectangle hitbox;
 
-    public Acteur (int x, int y, int vie, String id){
-        this.x.setValue(x);
-        this.y.setValue(y);
-        this.vie.setValue(vie);
+    public Acteur (int x, int y, int vie, String id, int tailleHx, int tailleHy, Environnement environnement){
+        this.x =  new SimpleIntegerProperty(x);
+        this.y = new SimpleIntegerProperty(y);
+        this.vie= new SimpleIntegerProperty(vie);
         this.id = id;
+        this.environnement = environnement;
+        this.hitbox = new Rectangle(this.getX(), this.getY(), tailleHx, tailleHy);
     }
 
     public String getId() {
@@ -24,7 +30,7 @@ public abstract class Acteur {
         return x.getValue();
     }
 
-    public void setXProperty (int x){
+    public void setX(int x) {
         this.x.setValue(x);
     }
 
@@ -32,7 +38,7 @@ public abstract class Acteur {
         return y.getValue();
     }
 
-    public void setYProperty (int y){
+    public void setY(int y) {
         this.y.setValue(y);
     }
 
@@ -48,14 +54,14 @@ public abstract class Acteur {
         return this.vie;
     }
 
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
     public void subirDegats (int dmg) {
         if ((this.vie.get()-dmg)<=0)
             this.vie.set(0);
         else
             this.vie.set((this.vie.get()-dmg));
-        System.out.println(this.vie.get());
     }
-
-
-
 }
