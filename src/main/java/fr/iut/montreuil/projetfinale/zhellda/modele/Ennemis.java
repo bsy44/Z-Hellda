@@ -48,12 +48,16 @@ public abstract class Ennemis extends Acteur{
     public void seDeplacer (){
         int x;
         int y;
-        for (int i=1; i<vitesse+1;i++){
-            x = bfs.get(i).getX() - Math.round(getX()/30);
-            y = bfs.get(i).getY() - Math.round(getY()/30);
-            System.out.println("x :"+ x + ", y:"+y);
-            this.setX(Math.round(getX() + x*30));
-            this.setY(Math.round(getY() + y*30));
+        for (int i=0; i< vitesse; i++) {
+            if (!bfs.isEmpty()){
+                x = bfs.get(0).getX() - Math.round(getX() / 30);
+                y = bfs.get(0).getY() - Math.round(getY() / 30);
+                System.out.println(bfs.get(i));
+                System.out.println(bfs.size());
+                this.setX(Math.round(getX() + x * 30));
+                this.setY(Math.round(getY() + y * 30));
+                bfs.remove(0);
+            }
         }
     }
 

@@ -75,12 +75,14 @@ public class Bfs {
                 if (!parcours[c.getX()][c.getY()]) {
                     parcours[c.getX()][c.getY()] = true;
                     System.out.println("parcours");
-                    predecesseur.put(c, c1);
-                    System.out.println(predecesseur.get(c));
-                    fifo.addLast(c);
-                    if (c.getX() == posJ.getX() && c.getY() == posJ.getY()) {
-                        System.out.println(c);
-                        return c;
+                    if (terrain[c.getX()][c.getY()] != 1) {
+                        predecesseur.put(c, c1);
+                        System.out.println(predecesseur.get(c));
+                        fifo.addLast(c);
+                        if (c.getX() == posJ.getX() && c.getY() == posJ.getY()) {
+                            System.out.println(c);
+                            return c;
+                        }
                     }
                 }
             }
