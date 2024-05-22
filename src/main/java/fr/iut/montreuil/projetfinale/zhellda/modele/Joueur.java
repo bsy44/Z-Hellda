@@ -6,7 +6,7 @@ public class Joueur extends Acteur {
     private Arme arme;
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur");
+       super(700,30, 10,"joueur");
        this.arme=new Epee(environnement);
     }
 

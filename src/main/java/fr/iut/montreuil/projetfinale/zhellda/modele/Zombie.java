@@ -12,9 +12,4 @@ public class Zombie extends Ennemis{
         j.subirDegats(getAttaque());
     }
 
-    @Override
-    public void seDeplacer (){
-        //A faire lorsque l'on aura le BFS
-    }
-
 }

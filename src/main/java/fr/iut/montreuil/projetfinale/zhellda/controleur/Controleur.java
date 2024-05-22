@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Bfs;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Zombie;
@@ -39,6 +40,9 @@ public class Controleur implements Initializable {
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
         }
+
+        //Test BFS
+        Bfs bfs = new Bfs(0,0);
 
         initAnimation();
         gameLoop.play();
