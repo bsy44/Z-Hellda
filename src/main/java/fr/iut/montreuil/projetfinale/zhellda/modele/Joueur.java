@@ -7,7 +7,7 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement){
-       super(700,30, 10,"joueur");
+       super(700,30, 10,"joueur",22,25, environnement);
        this.arme=new Epee(environnement);
     }
 

@@ -9,9 +9,4 @@ public class Zombie extends Ennemis {
     }
     //La vie et la vitesse seront à équilibrer plus tard
 
-    @Override
-    public void seDeplacer (){
-        //A faire lorsque l'on aura le BFS
-    }
-
 }

@@ -3,8 +3,9 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Acteur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Ennemis extends Acteur {
 import java.util.ArrayList;
 
 public abstract class Ennemis extends Acteur{
@@ -48,10 +49,11 @@ public abstract class Ennemis extends Acteur{
         int x;
         int y;
         for (int i=1; i<vitesse+1;i++){
-            x = bfs.get(i).getX() - getX();
-            y = bfs.get(i).getY() - getY();
-            System.out.println("x :"+(Math.round((getX() + x)/30))  + ", y : "+ Math.round((getY()+ y)/30));
-
+            x = bfs.get(i).getX() - Math.round(getX()/30);
+            y = bfs.get(i).getY() - Math.round(getY()/30);
+            System.out.println("x :"+ x + ", y:"+y);
+            this.setX(Math.round(getX() + x*30));
+            this.setY(Math.round(getY() + y*30));
         }
     }
 
