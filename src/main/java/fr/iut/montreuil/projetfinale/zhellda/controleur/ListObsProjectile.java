@@ -19,7 +19,16 @@ public class ListObsProjectile implements ListChangeListener<Projectile> {
         while (change.next()) {
             if (change.wasAdded()) {
                 for (Projectile projectile : change.getAddedSubList()) {
-                    new VueProjectile(pane, projectile, "bouleDeFeu.png");
+                    if (projectile.getX()>projectile.getxDirection())
+                        new VueProjectile(pane, projectile, "flecheGauche.png");
+                    else if (projectile.getX()< projectile.getxDirection()) {
+                        new VueProjectile(pane, projectile, "flecheDroite.png");
+                    }
+                    else if (projectile.getY()< projectile.getyDirection()){
+                            new VueProjectile(pane, projectile, "flecheBas.png");
+                    }
+                    else
+                        new VueProjectile(pane, projectile, "flecheHaut.png");
                 }
             }
             if (change.wasRemoved()) {

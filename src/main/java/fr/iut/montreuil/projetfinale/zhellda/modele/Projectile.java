@@ -111,5 +111,12 @@ public class Projectile {
         return this.y.get();
     }
 
+    public int getxDirection() {
+        return xDirection;
+    }
+
+    public int getyDirection() {
+        return yDirection;
+    }
 }
 
