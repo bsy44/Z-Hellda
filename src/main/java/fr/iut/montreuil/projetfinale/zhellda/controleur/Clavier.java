@@ -14,19 +14,19 @@ public class Clavier {
 
             //déplacements
             case Z:
-                Environnement.getJ().deplacement(0, -10);
+                Environnement.getJ().deplacement(0, -3);
                 VueJoueur.modifierImage("Personnage_dos_droit.png");
                 break;
             case Q:
-                Environnement.getJ().deplacement(-10, 0);
+                Environnement.getJ().deplacement(-3, 0);
                 VueJoueur.modifierImage("perso2.png");
                 break;
             case S:
-                Environnement.getJ().deplacement(0, 10);
+                Environnement.getJ().deplacement(0, 3);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
             case D:
-                Environnement.getJ().deplacement(10, 0);
+                Environnement.getJ().deplacement(3, 0);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
 
@@ -62,8 +62,6 @@ public class Clavier {
             default :
                 System.out.println("default");
                 break;
-
         }
     }
-
 }

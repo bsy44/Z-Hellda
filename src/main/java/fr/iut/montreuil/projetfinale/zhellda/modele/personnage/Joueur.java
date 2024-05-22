@@ -1,6 +1,5 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-
 import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arc;
 import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
@@ -10,7 +9,7 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur",22,25, environnement);
+       super(10,10, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
     }
 
@@ -21,7 +20,7 @@ public class Joueur extends Acteur {
 
     public void deplacement(int x, int y) {
         int gauche = (getX() + x) / 30; //représente le point à en haut à gauche de la Hitnox
-        int droite =  ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
+        int droite = ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
         int haut = (getY() + y) / 30; //représente le point à en haut à gauche de la Hitnox
         int bas =  ((getY() + y + (int)getHitbox().getHeight()) / 30); //représente le point à en bas à gauche de la Hitnox
 

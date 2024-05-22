@@ -5,7 +5,6 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Terrain;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-
 import java.net.URL;
 
 public class VueTerrain {
@@ -24,3 +23,4 @@ public class VueTerrain {
         }
     }
 }
+

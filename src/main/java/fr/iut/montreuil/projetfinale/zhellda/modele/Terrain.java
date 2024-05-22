@@ -1,10 +1,4 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
-
-
-import javafx.scene.layout.TilePane;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class Terrain {
 
     private int tab[][];

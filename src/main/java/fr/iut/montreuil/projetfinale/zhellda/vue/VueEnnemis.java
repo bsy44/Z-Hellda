@@ -5,6 +5,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 
@@ -23,9 +24,14 @@ public class VueEnnemis {
             imageView.translateXProperty().bind(e.getXProperty());
             imageView.translateYProperty().bind(e.getYProperty());
 
+            e.getHitbox().setFill(Color.TRANSPARENT);
+            e.getHitbox().setStroke(Color.RED);
+            e.getHitbox().setStrokeWidth(2);
+
             ennemis.getHitbox().xProperty().bind(ennemis.getXProperty());
             ennemis.getHitbox().yProperty().bind(ennemis.getYProperty());
 
             pane.getChildren().add(imageView);
+            pane.getChildren().add(e.getHitbox());
         }
 }
