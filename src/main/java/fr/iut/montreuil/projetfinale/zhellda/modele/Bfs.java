@@ -75,7 +75,7 @@ public class Bfs {
                 if (!parcours[c.getX()][c.getY()]) {
                     parcours[c.getX()][c.getY()] = true;
                     System.out.println("parcours");
-                    if (terrain[c.getX()][c.getY()] != 1) {
+                    if (!Environnement.getTerrain().obstacle(c.getX(), c.getY())) {
                         predecesseur.put(c, c1);
                         System.out.println(predecesseur.get(c));
                         fifo.addLast(c);
