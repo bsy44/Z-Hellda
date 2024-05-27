@@ -15,7 +15,7 @@ public abstract class Arme {
         return env;
     }
 
-    public abstract void attaquer (Joueur j);
+    public abstract void attaquer(Joueur j, int x, int y);
 
 
     public int getPortee (){

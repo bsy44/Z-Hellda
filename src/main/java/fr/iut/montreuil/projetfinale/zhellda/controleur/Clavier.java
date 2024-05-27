@@ -31,36 +31,36 @@ public class Clavier {
                 break;
 
             case UP:
+                VueJoueur.modifierImage("Personnage_dos_droit.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
-                    VueJoueur.modifierImage("Personnage_dos_droit.png");
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 }
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 break;
             case DOWN:
+                VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
-                    VueJoueur.modifierImage("Joueur.png");
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+ getJ().getArme().getPortee());
                 }
-                System.out.println("Attaque bas");
+
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+getJ().getArme().getPortee());
                 break;
             case LEFT:
+                VueJoueur.modifierImage("perso2.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
-                    VueJoueur.modifierImage("perso2.png");
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
+
                 }
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
                 break;
             case RIGHT:
+                VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
-                    VueJoueur.modifierImage("Joueur.png");
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
+
                 }
-                break;
 
-            case K:
-                System.out.println("k press");
-                Environnement.getJ().getArme().attaquer(Environnement.getJ());
-
-                System.out.println("Attaque");
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
                 break;
 
             default :

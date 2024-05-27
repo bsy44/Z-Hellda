@@ -6,7 +6,7 @@ public class Marteau extends Arme{
     }
 
     @Override
-    public void attaquer(Joueur j) {
+    public void attaquer(Joueur j, int x, int y) {
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size();i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
 
