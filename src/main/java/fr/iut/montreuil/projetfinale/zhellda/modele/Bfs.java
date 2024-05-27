@@ -10,7 +10,7 @@ public class Bfs {
     private ArrayList<Case> chemin;
 
     public Bfs (int x, int y){
-        this.terrain = Environnement.getTerrain().getTerrain();
+        terrain = Environnement.getTerrain().getTerrain();
         source = new Case(x, y);
         parcours = tabFalse();
         predecesseur = new HashMap<Case, Case>();
@@ -46,6 +46,7 @@ public class Bfs {
         Case c = lastChance();
         System.out.println("fin algo bfs");
         System.out.println(c);
+        chemin.add(0, c);
         while (c != source){
             System.out.println("tant que");
             System.out.println(predecesseur.get(c));
