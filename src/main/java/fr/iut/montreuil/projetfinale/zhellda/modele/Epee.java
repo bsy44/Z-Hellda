@@ -1,5 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import static java.lang.Math.sqrt;
+
 public class Epee extends Arme{
     public Epee(Environnement environnement){
         super(environnement,2,30);
@@ -12,18 +14,16 @@ public class Epee extends Arme{
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size() && ennemieTouche==false; i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
 
-            System.out.println(x + " j : "+ j.getX());
 
             if (j.getX()==x) {
-                System.out.println("x=x");
-                if ((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y))) {
+                if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
                     ennemie.subirDegats(getAttaque());
                     this.getEnvironnement().ennemiMort();
                     ennemieTouche = true;
                 }
             }
             else {
-                if ((ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
+                if ((sqrt(Math.pow(ennemie.getY()- j.getY(),2)))<=6 && (ennemie.getY() >= j.getY() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
                     System.out.println("dzdz");
                     ennemie.subirDegats(getAttaque());
                     this.getEnvironnement().ennemiMort();
