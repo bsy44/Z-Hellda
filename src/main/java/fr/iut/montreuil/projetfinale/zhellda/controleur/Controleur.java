@@ -1,8 +1,10 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Zombie;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Zombie;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
@@ -34,7 +36,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
-        new VueTerrain(env.getTerrain(), tilePane);
+        new VueTerrain(Environnement.getTerrain(), tilePane);
         new VueJoueur(pane, env.getJ(),"Joueur.png");
 
         Ennemis e = new Zombie(80,80, this.env);
@@ -48,10 +50,22 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
+
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
         env.getObsJoueur().addListener(listeJoueur);
+
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
+
+        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
+            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+        });
+        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
+            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
+        });
+
+        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");

@@ -1,5 +1,4 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
-
 public class Terrain {
 
     private int tab[][];

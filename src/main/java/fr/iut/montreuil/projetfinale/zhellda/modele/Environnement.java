@@ -1,5 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

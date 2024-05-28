@@ -1,5 +1,7 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.arme;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -43,9 +45,7 @@ public class Projectile {
             return true;
         }
         return false;
-
-
-        }
+    }
 
 
 //    public boolean estTouche() {
@@ -67,10 +67,10 @@ public class Projectile {
         for (int i = 0; i < environnement.getObsEnnemis().size(); i++) {
             Ennemis ennemieCible = environnement.getObsEnnemis().get(i);
 
-            if (this.getX() >= ennemieCible.getHitbox().getX() &&
-                    this.getX() <= ennemieCible.getHitbox().getX() + ennemieCible.getHitbox().getWidth() &&
-                    this.getY() >= ennemieCible.getHitbox().getY() &&
-                    this.getY() <= ennemieCible.getHitbox().getY() + ennemieCible.getHitbox().getHeight()) {
+            if (this.getX() >= ennemieCible.getHitbox().getX() - 6 &&
+                    this.getX() <= ennemieCible.getHitbox().getX() - 6 + ennemieCible.getHitbox().getWidth() &&
+                    this.getY() >= ennemieCible.getHitbox().getY() - 6 &&
+                    this.getY() <= ennemieCible.getHitbox().getY() - 6 + ennemieCible.getHitbox().getHeight()) {
                 System.out.println("Ennemi touché");
                 ennemieCible.subirDegats(degat);
                 environnement.ennemiMort();
@@ -79,9 +79,6 @@ public class Projectile {
         }
         return false;
     }
-
-
-
 
     public String getId () {
         return this.id;

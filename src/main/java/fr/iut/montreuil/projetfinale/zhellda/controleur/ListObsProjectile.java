@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueProjectile;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
