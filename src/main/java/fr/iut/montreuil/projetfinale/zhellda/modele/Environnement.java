@@ -3,6 +3,9 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Environnement {
     private int width;
 
@@ -41,13 +44,14 @@ public class Environnement {
         this.obsProjectile.add(projectile);
     }
 
-    public void ennemiMort(){
-        for (int i = getObsEnnemis().size()-1; i >=0 ; i--) {
-            if (getObsEnnemis().get(i).getVie().get()==0){
-                getObsEnnemis().remove(i);
-            }
-
+    public void ennemiMort() {
+        for(int i=getObsEnnemis().size()-1; i>=0;i--){
+            Acteur a = getObsEnnemis().get(i);
+        if(a.getVie().get()==0){
+            System.out.println("mort de : " + a);
+            getObsEnnemis().remove(i);
         }
+    }
     }
 
     public void mortJoueur(){
