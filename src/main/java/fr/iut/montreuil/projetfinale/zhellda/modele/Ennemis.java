@@ -1,6 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
-
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public abstract class Ennemis extends Acteur {
     private static int compteur = 1;

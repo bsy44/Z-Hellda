@@ -1,7 +1,7 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.arme;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 
 public abstract class Arme {
     private int portee;

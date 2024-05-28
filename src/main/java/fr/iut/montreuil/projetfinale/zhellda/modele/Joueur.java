@@ -1,8 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
-
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arc;
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arme;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.beans.property.IntegerProperty;
 

@@ -6,7 +6,6 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
 import java.net.URL;
 

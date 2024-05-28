@@ -1,8 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.arme;
-
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class Epee extends Arme {
     public Epee(Environnement environnement){

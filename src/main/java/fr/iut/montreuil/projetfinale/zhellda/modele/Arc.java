@@ -1,7 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.arme;
-
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class Arc extends Arme {
 

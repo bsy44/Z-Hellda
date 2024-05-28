@@ -11,8 +11,4 @@ module fr.iut.montreuil.projetfinale.zhellda {
     opens fr.iut.montreuil.projetfinale.zhellda.controleur to javafx.fxml;
     exports fr.iut.montreuil.projetfinale.zhellda.modele;
     opens fr.iut.montreuil.projetfinale.zhellda.modele to javafx.fxml;
-    exports fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
-    opens fr.iut.montreuil.projetfinale.zhellda.modele.personnage to javafx.fxml;
-    exports fr.iut.montreuil.projetfinale.zhellda.modele.arme;
-    opens fr.iut.montreuil.projetfinale.zhellda.modele.arme to javafx.fxml;
 }

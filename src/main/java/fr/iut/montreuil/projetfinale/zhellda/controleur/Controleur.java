@@ -1,19 +1,16 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Zombie;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;

@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,6 +21,8 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
                     System.out.println("#" + j.getId());
                     Node n = pane.lookup("#" + j.getId());
                     this.pane.getChildren().remove(n);
+                    Node n1 = pane.lookup("#" + j.getId());
+                    this.pane.getChildren().remove(n1);
             }
         }
     }

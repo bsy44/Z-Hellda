@@ -5,7 +5,6 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueCoeurs;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
