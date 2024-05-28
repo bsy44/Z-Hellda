@@ -23,8 +23,7 @@ public class Epee extends Arme{
                 }
             }
             else {
-                if ((sqrt(Math.pow(ennemie.getY()- j.getY(),2)))<=6 && (ennemie.getY() >= j.getY() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
-                    System.out.println("dzdz");
+                if ((sqrt(Math.pow(ennemie.getY()- j.getY(),2)))<=6 && (ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
                     ennemie.subirDegats(getAttaque());
                     this.getEnvironnement().ennemiMort();
                     ennemieTouche = true;

@@ -1,19 +1,31 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-public class Marteau extends Arme{
+import static java.lang.Math.sqrt;
+
+public class Marteau extends Arme {
     public Marteau(Environnement environnement) {
-        super(environnement,20,20);
+        super(environnement, 1, 40);
     }
 
     @Override
     public void attaquer(Joueur j, int x, int y) {
-        for (int i = 0; i < getEnvironnement().getObsEnnemis().size();i++) {
+        for (int i = 0; i < getEnvironnement().getObsEnnemis().size(); i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
 
-            double distance = Math.sqrt(Math.pow(ennemie.getXProperty().get()- j.getXProperty().get(),2)+Math.pow(ennemie.getYProperty().get() - j.getYProperty().get(),2));
-            if (distance <= this.getPortee() && distance >= 0) {
-                ennemie.subirDegats(this.getAttaque());
+
+            if (j.getX() == x) {
+                if ((sqrt(Math.pow(ennemie.getX() - j.getX(), 2))) <= 40 && ((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
+                    ennemie.subirDegats(getAttaque());
+                }
+            } else {
+                if ((sqrt(Math.pow(ennemie.getY() - j.getY(), 2))) <= 40 && ((ennemie.getX() >= j.getX() && ennemie.getY() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x)))) {
+                    ennemie.subirDegats(getAttaque());
+                }
             }
+
+
+
         }
+        this.getEnvironnement().ennemiMort();
     }
 }

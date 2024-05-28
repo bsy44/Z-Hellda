@@ -9,7 +9,7 @@ public class Joueur extends Acteur {
 
     public Joueur(Environnement environnement){
        super(10,10, 10,"joueur",22,25, environnement);
-       this.arme=new Epee(environnement);
+       this.arme=new Marteau(environnement);
     }
 
     public Arme getArme() {
