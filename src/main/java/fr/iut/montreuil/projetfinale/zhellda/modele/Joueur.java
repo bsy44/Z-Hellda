@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import javafx.beans.property.IntegerProperty;
 
 import javafx.beans.property.IntegerProperty;
 
@@ -8,8 +9,8 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur",22,25, environnement);
-       this.arme=new Arc(environnement);
+       super(700,300, 10,"joueur",22,25, environnement);
+       this.arme=new Epee(environnement);
     }
 
     public Arme getArme() {

@@ -8,6 +8,8 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,6 +60,15 @@ public class Controleur implements Initializable {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
         }
 
+        //Test BFS
+        ChangeListener<? super Number> listener = ((olbs, old, nouv) -> {
+            for (int i = 0; i < env.getObsEnnemis().size(); i++) {
+                env.getObsEnnemis().get(i).setBfs();
+            }
+        });
+        Environnement.getJ().getXProperty().addListener(listener);
+        Environnement.getJ().getYProperty().addListener(listener);
+
         initAnimation();
         gameLoop.play();
     }
@@ -72,6 +84,7 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     for (int i = 0; i < env.getObsEnnemis().size(); i++) {
+                        env.getObsEnnemis().get(i).seDeplacer();
                         env.getObsEnnemis().get(i).attaquer();
                     }
                     env.actionProjectile();
