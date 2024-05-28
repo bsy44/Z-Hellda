@@ -10,8 +10,4 @@ public class Arc extends Arme {
         getEnvironnement().ajouterProjectile(projectile);
     }
 
-    @Override
-    public void attaquer(Joueur j) {
-        System.out.println("action impossible, vous avez un arc !! Utilisez les fleche");
-    }
 }

@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+
 import javafx.beans.property.IntegerProperty;
 
 public class Joueur extends Acteur {
