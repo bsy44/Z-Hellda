@@ -6,6 +6,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 
@@ -36,10 +37,15 @@ public class VueEnnemis {
             imageView.translateXProperty().bind(e.getXProperty());
             imageView.translateYProperty().bind(e.getYProperty());
 
+            ennemis.getHitbox().setFill(Color.TRANSPARENT);
+            ennemis.getHitbox().setStroke(Color.RED);
+            ennemis.getHitbox().setStrokeWidth(2);
+            ennemis.getHitbox().setId(ennemis.getId() + 2);
             ennemis.getHitbox().xProperty().bind(ennemis.getXProperty());
             ennemis.getHitbox().yProperty().bind(ennemis.getYProperty());
 
             pane.getChildren().add(imageView);
+            pane.getChildren().add(e.getHitbox());
             pane.getChildren().add(barreDeVie);
         }
 }

@@ -2,15 +2,13 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.beans.property.IntegerProperty;
 
-import javafx.beans.property.IntegerProperty;
-
 public class Joueur extends Acteur {
     private Arme arme;
 
 
     public Joueur(Environnement environnement){
-       super(700,300, 10,"joueur",22,25, environnement);
-       this.arme=new Epee(environnement);
+       super(10,10, 10,"joueur",30,30, environnement);
+       this.arme=new Arc(environnement);
     }
 
     public Arme getArme() {
@@ -20,7 +18,7 @@ public class Joueur extends Acteur {
 
     public void deplacement(int x, int y) {
         int gauche = (getX() + x) / 30; //représente le point à en haut à gauche de la Hitnox
-        int droite =  ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
+        int droite = ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
         int haut = (getY() + y) / 30; //représente le point à en haut à gauche de la Hitnox
         int bas =  ((getY() + y + (int)getHitbox().getHeight()) / 30); //représente le point à en bas à gauche de la Hitnox
 
