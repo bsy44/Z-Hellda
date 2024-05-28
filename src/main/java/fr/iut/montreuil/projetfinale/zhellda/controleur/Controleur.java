@@ -46,6 +46,16 @@ public class Controleur implements Initializable {
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
 
+        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
+            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+        });
+        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
+            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
+        });
+
+        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
+
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
         }

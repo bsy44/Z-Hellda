@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" prefHeight="900.0" prefWidth="900.0" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
-    <Pane fx:id="pane" prefWidth="900" prefHeight="900">
-        <TilePane fx:id="tilePane" prefColumns="30" prefHeight="900" prefWidth="900"/>
-    </Pane>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+   <center>
+      <Pane fx:id="pane" prefHeight="200" prefWidth="200" BorderPane.alignment="CENTER">
+          <TilePane fx:id="tilePane" prefWidth="900" prefHeight="900" prefColumns="30"/>
+      </Pane>
+   </center>
 </BorderPane>
