@@ -46,7 +46,7 @@ public abstract class Ennemis extends Acteur{
     }
 
     public void setBfs (){
-        this.bfs = new Bfs(Math.round(x.getValue()/30), Math.round(y.getValue()/30)).getChemin();
+        this.bfs = new Bfs(Math.round(getX()/30), Math.round(getY()/30)).getChemin();
     }
 
     public void seDeplacer (){

@@ -67,28 +67,30 @@ public class Bfs {
         Case posJ = new Case((int) Math.round(Environnement.getJ().getX()/30),(int) Math.round(Environnement.getJ().getY()/30));
         System.out.println(posJ);
 
-
-        while(!fifo.isEmpty()){
-            c1 = (Case) fifo.pollFirst();
-            System.out.println("Poll : x:"+c1.getX() + ", y:"+c1.getY());
-            for (Case c : c1.adjacents()){
-                System.out.println("c2 : x:" + c.getX() + ", y:" + c.getY());
-                if (!parcours[c.getX()][c.getY()]) {
-                    parcours[c.getX()][c.getY()] = true;
-                    System.out.println("parcours");
-                    if (!Environnement.getTerrain().obstacle(c.getX(), c.getY())) {
-                        predecesseur.put(c, c1);
-                        System.out.println(predecesseur.get(c));
-                        fifo.addLast(c);
-                        if (c.getX() == posJ.getX() && c.getY() == posJ.getY()) {
-                            System.out.println(c);
-                            return c;
+        if (source ==  posJ) return source;
+        else {
+            while (!fifo.isEmpty()) {
+                c1 = (Case) fifo.pollFirst();
+                System.out.println("Poll : x:" + c1.getX() + ", y:" + c1.getY());
+                for (Case c : c1.adjacents()) {
+                    System.out.println("c2 : x:" + c.getX() + ", y:" + c.getY());
+                    if (!parcours[c.getX()][c.getY()]) {
+                        parcours[c.getX()][c.getY()] = true;
+                        System.out.println("parcours");
+                        if (!Environnement.getTerrain().obstacle(c.getX(), c.getY())) {
+                            predecesseur.put(c, c1);
+                            System.out.println(predecesseur.get(c));
+                            fifo.addLast(c);
+                            if (c.getX() == posJ.getX() && c.getY() == posJ.getY()) {
+                                System.out.println(c);
+                                return c;
+                            }
                         }
                     }
                 }
             }
+            return null;
         }
-        return null;
     }
 
     public ArrayList<Case> getChemin() {
