@@ -8,7 +8,7 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur",30,30, environnement);
+       super(700,300, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
     }
 
