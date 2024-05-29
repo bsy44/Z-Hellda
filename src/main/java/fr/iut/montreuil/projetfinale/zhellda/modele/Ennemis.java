@@ -49,21 +49,23 @@ public abstract class Ennemis extends Acteur{
         this.bfs = new Bfs(Math.round(getX()/30), Math.round(getY()/30)).getChemin();
     }
 
-    public void seDeplacer (){
-        int x;
-        int y;
-        for (int i=0; i< vitesse; i++) {
-            if (!bfs.isEmpty()){
-                x = bfs.get(0).getX() - Math.round(getX() / 30);
-                y = bfs.get(0).getY() - Math.round(getY() / 30);
-                if (x > 0) this.setX(Math.round(getX() + x * 30) - (int) getHitbox().getWidth());
-                if (x < 0) this.setX(Math.round(getX() + x * 30) + (int) getHitbox().getWidth());
-                if (y > 0)  this.setY(Math.round(getY() + y * 30) + (int) getHitbox().getHeight());
-                if (y < 0)  this.setY(Math.round(getY() + y * 30) - (int) getHitbox().getHeight());
-                bfs.remove(0);
+    public void seDeplacer () {
+        if (!bfs.isEmpty()) {
+            int x;
+            int y;
+            for (int i = 0; i < vitesse; i++) {
+                if (!bfs.isEmpty()) {
+                    x = bfs.get(0).getX() - Math.round(getX() / 30);
+                    y = bfs.get(0).getY() - Math.round(getY() / 30);
+                    if (x > 0) this.setX(Math.round(getX() + x * 30) - (int) getHitbox().getWidth());
+                    if (x < 0) this.setX(Math.round(getX() + x * 30) + (int) getHitbox().getWidth());
+                    if (y > 0) this.setY(Math.round(getY() + y * 30) + (int) getHitbox().getHeight());
+                    if (y < 0) this.setY(Math.round(getY() + y * 30) - (int) getHitbox().getHeight());
+                    bfs.remove(0);
+                }
+                System.out.println("width :" + getHitbox().getWidth());
+                System.out.println("height :" + getHitbox().getHeight());
             }
-            System.out.println("width :" + getHitbox().getWidth());
-            System.out.println("height :" + getHitbox().getHeight());
         }
     }
 

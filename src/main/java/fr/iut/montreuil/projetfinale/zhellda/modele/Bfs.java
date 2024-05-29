@@ -18,47 +18,26 @@ public class Bfs {
 //        lastChance();
     }
 
-    private void algoBFS () {
-        LinkedList fifo = new LinkedList<Case>();
-        fifo.addFirst(source);
-        this.predecesseur.put(source, null);
-        this.parcours[source.getX()][source.getY()] = true;
-        Case c1;
-
-        while(!fifo.isEmpty()){
-            c1 = (Case) fifo.pollFirst();
-            System.out.println("Poll : x:"+c1.getX() + ", y:"+c1.getY());
-            for (Case c : c1.adjacents()){
-                System.out.println("c2 : x:" + c.getX() + ", y:" + c.getY());
-                if (!parcours[c.getX()][c.getY()]) {
-                    parcours[c.getX()][c.getY()] = true;
-                    System.out.println("parcours");
-                    predecesseur.put(c, c1);
-                    System.out.println(predecesseur.get(c));
-                    fifo.addLast(c);
-                }
-            }
-        }
-    }
-
     public ArrayList<Case> cheminVersSource(){
         ArrayList<Case> chemin = new ArrayList<>();
-        Case c = lastChance();
+        Case c = algoBfs();
         System.out.println("fin algo bfs");
         System.out.println(c);
-        chemin.add(0, c);
-        while (c != source){
-            System.out.println("tant que");
-            System.out.println(predecesseur.get(c));
-            c = predecesseur.get(c);
+        if (c != null) {
             chemin.add(0, c);
+            while (c != source) {
+                System.out.println("tant que");
+                System.out.println(predecesseur.get(c));
+                c = predecesseur.get(c);
+                chemin.add(0, c);
+            }
+            System.out.println("return chemin :");
+            System.out.println(chemin);
         }
-        System.out.println("return chemin :");
-        System.out.println(chemin);
         return chemin;
     }
 
-    private Case lastChance () {
+    private Case algoBfs() {
         LinkedList fifo = new LinkedList<Case>();
         fifo.addFirst(source);
         this.predecesseur.put(source, null);
@@ -67,8 +46,7 @@ public class Bfs {
         Case posJ = new Case((int) Math.round(Environnement.getJ().getX()/30),(int) Math.round(Environnement.getJ().getY()/30));
         System.out.println(posJ);
 
-        if (source ==  posJ) return source;
-        else {
+        if (source !=  posJ) {
             while (!fifo.isEmpty()) {
                 c1 = (Case) fifo.pollFirst();
                 System.out.println("Poll : x:" + c1.getX() + ", y:" + c1.getY());
@@ -91,6 +69,8 @@ public class Bfs {
             }
             return null;
         }
+        else return null;
+
     }
 
     public ArrayList<Case> getChemin() {
