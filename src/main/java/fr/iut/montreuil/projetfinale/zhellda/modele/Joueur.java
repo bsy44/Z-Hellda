@@ -50,20 +50,26 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnnemis() {
+        int cpt=0;
         int joueurX = (int) this.getHitbox().getX();
         int joueurY = (int) this.getHitbox().getY();
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
 
         for (Ennemis ennemi : Environnement.getObsEnnemis()) {
+            System.out.println(ennemi.getId());
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
             int ennemiHeight = (int) ennemi.getHitbox().getHeight();
 
-            return joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY;
+            if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
+                cpt++;
+            }
         }
-        return false;
+        System.out.println(cpt);
+        System.out.println(Environnement.getObsEnnemis().size());
+        return (cpt!=0);
     }
 
     @Override
