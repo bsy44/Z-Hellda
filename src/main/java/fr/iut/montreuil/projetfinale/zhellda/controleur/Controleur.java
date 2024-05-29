@@ -23,6 +23,7 @@ public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
+    private int elapsedTime = 0;
     @FXML
     private Pane pane;
     @FXML
@@ -34,10 +35,10 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
         new VueTerrain(Environnement.getTerrain(), tilePane);
-        new VueJoueur(pane, env.getJ(),"Joueur.png");
+        new VueJoueur(pane, env.getJ(), "Joueur.png");
 
-        Ennemis e = new Zombie(80,80, this.env);
-        Ennemis e2 = new Zombie(110,110, this.env);
+        Ennemis e = new Zombie(80, 80, this.env);
+        Ennemis e2 = new Zombie(110, 110, this.env);
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
@@ -45,7 +46,7 @@ public class Controleur implements Initializable {
         // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
 
-        ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
+        ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
 
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
@@ -65,30 +66,33 @@ public class Controleur implements Initializable {
         this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
-            new VueEnnemis(pane,env.getObsEnnemis().get(i),"ennemi.png");
+            new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
         }
 
         initAnimation();
         gameLoop.play();
     }
+
     private void initAnimation() {
         gameLoop = new Timeline();
-        temps=0;
+        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.2),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
-                (ev ->{
-                    for (int i = 0; i < env.getObsEnnemis().size(); i++) {
-                        env.getObsEnnemis().get(i).attaquer();
+                Duration.seconds(0.01),
+                (ev -> {
+                    elapsedTime += 10;
+                    Environnement.getJ().seDeplacer();
+
+                    if (elapsedTime % 1000 == 0) {
+                        for (Ennemis ennemi : env.getObsEnnemis()) {
+                            ennemi.attaquer();
+                        }
                     }
+
                     env.actionProjectile();
                 })
         );
         gameLoop.getKeyFrames().add(kf);
     }
-
 }

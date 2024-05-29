@@ -4,49 +4,78 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.beans.property.IntegerProperty;
 
 public class Joueur extends Acteur {
+    private boolean []directions; //haut, gauche, bas, droite
     private Arme arme;
-
-
     public Joueur(Environnement environnement){
        super(10,10, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
+       this.directions= new boolean[]{false, false, false, false};
     }
 
     public Arme getArme() {
         return arme;
     }
 
+    public void setDirections(int i, boolean d) {
+        for (int j = 0; j < this.directions.length; j++) {
+            this.directions[j]=false;
+        }
+        directions[i]=true;
+    }
 
-    public void deplacement(int x, int y) {
-        int gauche = (getX() + x) / 30; //représente le point à en haut à gauche de la Hitnox
-        int droite = ((getX() + x + (int)getHitbox().getWidth()) / 30); //représente le point en haut à droite de la Hitbox
-        int haut = (getY() + y) / 30; //représente le point à en haut à gauche de la Hitnox
-        int bas =  ((getY() + y + (int)getHitbox().getHeight()) / 30); //représente le point à en bas à gauche de la Hitnox
 
+
+    public void seDeplacer() {
+
+        int deltaX = 0;
+        int deltaY = 0;
+        
         int oldX = this.getX();
         int oldY = this.getY();
 
-        if (Environnement.getTerrain().dansTerrain(gauche, haut) &&
-                Environnement.getTerrain().dansTerrain(droite, haut) &&
-                Environnement.getTerrain().dansTerrain(gauche, bas) &&
-                Environnement.getTerrain().dansTerrain(droite, bas) &&
-                colisionEnv(haut, bas, droite, gauche)) {
+        int newX = this.getX() + deltaX;
+        int newY = this.getY() + deltaY;
 
-            this.setX(getX() + x);
-            this.setY(getY() + y);
+        int gauche = (newX + 3) / 30;
+        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 30;
+        int haut = (newY + 3) / 30;
+        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 30);
 
-            if (colisionEnnemis()) {
-                this.setX(oldX);
-                this.setY(oldY);
-            }
+        if (this.directions[0]) {
+            deltaY = -3;
+        } else if (this.directions[1]) {
+            deltaX = -3;
+        } else if (this.directions[2]) {
+            deltaY = 3;
+        } else if (this.directions[3]) {
+            deltaX = 3;
+        }
+
+        if (colisionEnv(haut, bas, droite, gauche)) {
+            this.setX(newX);
+            this.setY(newY);
+        }
+        if (colisionEnnemis()){
+            this.setX(oldX);
+            this.setY(oldY);
+        }
+
+        for (int i = 0; i < this.directions.length; i++) {
+            this.directions[i] = false;
         }
     }
 
     public boolean colisionEnv(int haut, int bas, int droite, int gauche){
-        return  !Environnement.getTerrain().obstacle(gauche, haut) &&
-                !Environnement.getTerrain().obstacle(droite, haut) &&
-                !Environnement.getTerrain().obstacle(gauche, bas) &&
-                !Environnement.getTerrain().obstacle(droite, bas);
+        if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
+                gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {
+            return  !Environnement.getTerrain().obstacle(gauche, haut) &&
+                    !Environnement.getTerrain().obstacle(droite, haut) &&
+                    !Environnement.getTerrain().obstacle(gauche, bas) &&
+                    !Environnement.getTerrain().obstacle(droite, bas);
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean colisionEnnemis() {
@@ -67,8 +96,6 @@ public class Joueur extends Acteur {
                 cpt++;
             }
         }
-        System.out.println(cpt);
-        System.out.println(Environnement.getObsEnnemis().size());
         return (cpt!=0);
     }
 

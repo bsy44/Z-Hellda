@@ -14,19 +14,19 @@ public class Clavier {
 
             //déplacements
             case Z:
-                Environnement.getJ().deplacement(0, -4);
+                Environnement.getJ().setDirections(0, true);
                 VueJoueur.modifierImage("Personnage_dos_droit.png");
                 break;
             case Q:
-                Environnement.getJ().deplacement(-4, 0);
+                Environnement.getJ().setDirections(1, true);
                 VueJoueur.modifierImage("perso2.png");
                 break;
             case S:
-                Environnement.getJ().deplacement(0, 4);
+                Environnement.getJ().setDirections(2, true);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
             case D:
-                Environnement.getJ().deplacement(4, 0);
+                Environnement.getJ().setDirections(3, true);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
 
