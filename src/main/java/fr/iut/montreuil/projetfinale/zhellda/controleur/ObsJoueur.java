@@ -18,11 +18,11 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
     public void onChanged(Change<? extends Joueur> change) {
         while(change.next()){
             for (Joueur j : change.getRemoved()) {
-                    System.out.println("#" + j.getId());
-                    Node n = pane.lookup("#" + j.getId());
-                    this.pane.getChildren().remove(n);
-                    Node n1 = pane.lookup("#" + j.getId());
-                    this.pane.getChildren().remove(n1);
+                Node n = pane.lookup("#" + j.getId());
+                this.pane.getChildren().remove(n);
+
+                Node n1 = pane.lookup("#" + j.getId());
+                this.pane.getChildren().remove(n1);
             }
         }
     }

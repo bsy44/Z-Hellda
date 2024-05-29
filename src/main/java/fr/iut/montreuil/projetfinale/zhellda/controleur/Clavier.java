@@ -15,30 +15,26 @@ public class Clavier {
             //déplacements
             case Z:
                 Environnement.getJ().setDirections(0, true);
-                VueJoueur.modifierImage("Personnage_dos_droit.png");
                 break;
             case Q:
                 Environnement.getJ().setDirections(1, true);
-                VueJoueur.modifierImage("perso2.png");
                 break;
             case S:
                 Environnement.getJ().setDirections(2, true);
-                VueJoueur.modifierImage("Joueur.png");
                 break;
             case D:
                 Environnement.getJ().setDirections(3, true);
-                VueJoueur.modifierImage("Joueur.png");
                 break;
 
             case UP:
-                VueJoueur.modifierImage("Personnage_dos_droit.png");
+                //VueJoueur.modifierImage("Personnage_dos_droit.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 }
                 Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 break;
             case DOWN:
-                VueJoueur.modifierImage("Joueur.png");
+                //VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+ getJ().getArme().getPortee());
                 }
@@ -46,7 +42,7 @@ public class Clavier {
                 Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+getJ().getArme().getPortee());
                 break;
             case LEFT:
-                VueJoueur.modifierImage("perso2.png");
+                //VueJoueur.modifierImage("perso2.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
 
@@ -54,7 +50,7 @@ public class Clavier {
                 Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
                 break;
             case RIGHT:
-                VueJoueur.modifierImage("Joueur.png");
+                //VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
 

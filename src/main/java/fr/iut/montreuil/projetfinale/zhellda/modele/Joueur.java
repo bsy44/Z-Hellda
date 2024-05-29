@@ -12,6 +12,10 @@ public class Joueur extends Acteur {
        this.directions= new boolean[]{false, false, false, false};
     }
 
+    public boolean getDirections(int i) {
+        return directions[i];
+    }
+
     public Arme getArme() {
         return arme;
     }
@@ -26,20 +30,10 @@ public class Joueur extends Acteur {
 
 
     public void seDeplacer() {
-
         int deltaX = 0;
         int deltaY = 0;
-        
         int oldX = this.getX();
         int oldY = this.getY();
-
-        int newX = this.getX() + deltaX;
-        int newY = this.getY() + deltaY;
-
-        int gauche = (newX + 3) / 30;
-        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 30;
-        int haut = (newY + 3) / 30;
-        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 30);
 
         if (this.directions[0]) {
             deltaY = -3;
@@ -50,6 +44,14 @@ public class Joueur extends Acteur {
         } else if (this.directions[3]) {
             deltaX = 3;
         }
+
+        int newX = this.getX() + deltaX;
+        int newY = this.getY() + deltaY;
+
+        int gauche = (newX + 3) / 30;
+        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 30;
+        int haut = (newY + 3) / 30;
+        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 30);
 
         if (colisionEnv(haut, bas, droite, gauche)) {
             this.setX(newX);
