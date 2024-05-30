@@ -1,10 +1,10 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Environnement {
     private int width;
@@ -44,13 +44,14 @@ public class Environnement {
         this.obsProjectile.add(projectile);
     }
 
-    public void ennemiMort(){
-        for (int i = getObsEnnemis().size()-1; i >=0 ; i--) {
-            if (getObsEnnemis().get(i).getVie().getValue()==0){
-                getObsEnnemis().remove(i);
-            }
-
+    public void ennemiMort() {
+        for(int i=getObsEnnemis().size()-1; i>=0;i--){
+            Acteur a = getObsEnnemis().get(i);
+        if(a.getVie().get()==0){
+            System.out.println("mort de : " + a);
+            getObsEnnemis().remove(i);
         }
+    }
     }
 
     public void mortJoueur(){
@@ -60,7 +61,6 @@ public class Environnement {
         }
     }
     public void actionProjectile(){
-        System.out.println("oui");
         for (int i = obsProjectile.size()-1; i >=0 ; i--) {
             if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche()){
                 ennemiMort();

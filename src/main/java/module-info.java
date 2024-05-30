@@ -2,7 +2,6 @@ module fr.iut.montreuil.projetfinale.zhellda {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
-    requires com.google.gson;
 
 
     opens fr.iut.montreuil.projetfinale.zhellda to javafx.fxml;
@@ -11,8 +10,4 @@ module fr.iut.montreuil.projetfinale.zhellda {
     opens fr.iut.montreuil.projetfinale.zhellda.controleur to javafx.fxml;
     exports fr.iut.montreuil.projetfinale.zhellda.modele;
     opens fr.iut.montreuil.projetfinale.zhellda.modele to javafx.fxml;
-    exports fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
-    opens fr.iut.montreuil.projetfinale.zhellda.modele.personnage to javafx.fxml;
-    exports fr.iut.montreuil.projetfinale.zhellda.modele.arme;
-    opens fr.iut.montreuil.projetfinale.zhellda.modele.arme to javafx.fxml;
 }

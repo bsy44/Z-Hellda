@@ -1,10 +1,9 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Zombie;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
@@ -12,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
@@ -27,6 +27,8 @@ public class Controleur implements Initializable {
     private Pane pane;
     @FXML
     private TilePane tilePane;
+    @FXML
+    private HBox coeur;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,7 +37,13 @@ public class Controleur implements Initializable {
         new VueJoueur(pane, env.getJ(),"Joueur.png");
 
         Ennemis e = new Zombie(80,80, this.env);
+        Ennemis e2 = new Zombie(110,110, this.env);
         env.ajouterEnnemi(e);
+        env.ajouterEnnemi(e2);
+        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
+
+        // Mettre à jour l'affichage initial des cœurs
+        listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis=new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
@@ -70,7 +78,7 @@ public class Controleur implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.5),
+                Duration.seconds(0.2),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{

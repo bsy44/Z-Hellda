@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.vue;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Projectile;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -17,8 +17,8 @@ public class VueProjectile {
         URL url = Lancement.class.getResource(urlImg);
         Image image = new Image(String.valueOf(url));;
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(10);
-        imageView.setFitWidth(10);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
 
         imageView.setId(p.getId());
         imageView.translateXProperty().bind(p.getXProperty());

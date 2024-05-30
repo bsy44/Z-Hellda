@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.arme.Arc;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Arc;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import javafx.scene.input.KeyEvent;
@@ -14,54 +14,60 @@ public class Clavier {
 
             //déplacements
             case Z:
-                Environnement.getJ().deplacement(0, -3);
+                Environnement.getJ().deplacement(0, -4);
                 VueJoueur.modifierImage("Personnage_dos_droit.png");
                 break;
             case Q:
-                Environnement.getJ().deplacement(-3, 0);
+                Environnement.getJ().deplacement(-4, 0);
                 VueJoueur.modifierImage("perso2.png");
                 break;
             case S:
-                Environnement.getJ().deplacement(0, 3);
+                Environnement.getJ().deplacement(0, 4);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
             case D:
-                Environnement.getJ().deplacement(3, 0);
+                Environnement.getJ().deplacement(4, 0);
                 VueJoueur.modifierImage("Joueur.png");
                 break;
 
             case UP:
+                VueJoueur.modifierImage("Personnage_dos_droit.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 }
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
                 break;
             case DOWN:
+                VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+ getJ().getArme().getPortee());
                 }
-                System.out.println("Attaque bas");
+
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+getJ().getArme().getPortee());
                 break;
             case LEFT:
+                VueJoueur.modifierImage("perso2.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
+
                 }
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
                 break;
             case RIGHT:
+                VueJoueur.modifierImage("Joueur.png");
                 if (Environnement.getJ().getArme() instanceof Arc) {
                     ((Arc) Environnement.getJ().getArme()).attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
+
                 }
-                break;
 
-            case K:
-                System.out.println("k press");
-                Environnement.getJ().getArme().attaquer(Environnement.getJ());
-
-                System.out.println("Attaque");
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
                 break;
 
             default :
                 System.out.println("default");
                 break;
+
         }
     }
+
 }

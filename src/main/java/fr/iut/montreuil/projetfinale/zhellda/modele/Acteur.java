@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
@@ -57,6 +57,8 @@ public abstract class Acteur {
     public Rectangle getHitbox() {
         return hitbox;
     }
+
+
 
     public void subirDegats (int dmg) {
         if ((this.vie.get()-dmg)<=0)
