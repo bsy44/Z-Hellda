@@ -67,6 +67,12 @@ public class Joueur extends Acteur {
         }
     }
 
+    public void resetDeplacement (){
+        for (int i = 0; i < this.directions.length; i++) {
+            this.directions[i] = false;
+        }
+    }
+
     public boolean colisionEnv(int haut, int bas, int droite, int gauche){
         if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
                 gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {

@@ -48,21 +48,6 @@ public class Projectile {
     }
 
 
-//    public boolean estTouche() {
-//        Ennemis ennemieCible;
-//        for (int i = 0; i < environnement.getObsEnnemis().size(); i++) {
-//            ennemieCible = environnement.getObsEnnemis().get(i);
-////            if (this.getX() >= ennemieCible.getX() && this.getY() <= (ennemieCible.getHitbox().getX() + ennemieCible.getHitbox().getWidth()) && this.getY() >= ennemieCible.getHitbox().getY() && this.getY() <= (ennemieCible.getHitbox().getY() + ennemieCible.getHitbox().getHeight())) {
-//            if (!(this.getX()>=ennemieCible.getHitbox().getX()+ ennemieCible.getHitbox().getWidth() && this.getY()>=ennemieCible.getHitbox().getY()+ ennemieCible.getHitbox().getHeight())){
-//                System.out.println("cest la merde");
-//                ennemieCible.subirDegats(degat);
-//                return true;
-//            }
-//        }
-//                return false;
-//
-//    }
-
     public boolean estTouche() {
         for (int i = 0; i < environnement.getObsEnnemis().size(); i++) {
             Ennemis ennemieCible = environnement.getObsEnnemis().get(i);

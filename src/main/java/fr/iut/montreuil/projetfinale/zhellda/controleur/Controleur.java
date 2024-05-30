@@ -43,7 +43,6 @@ public class Controleur implements Initializable {
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
 
-        // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -83,6 +82,8 @@ public class Controleur implements Initializable {
                 (ev -> {
                     elapsedTime += 10;
                     Environnement.getJ().seDeplacer();
+
+                    Environnement.getJ().resetDeplacement();
                     if (elapsedTime % 1000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
                             ennemi.attaquer();
