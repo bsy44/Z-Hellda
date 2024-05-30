@@ -2,14 +2,17 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Joueur extends Acteur {
     private boolean []directions; //haut, gauche, bas, droite
     private Arme arme;
+    private IntegerProperty directionProperty;
     public Joueur(Environnement environnement){
        super(10,10, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
        this.directions= new boolean[]{false, false, false, false};
+        this.directionProperty = new SimpleIntegerProperty(-1);
     }
 
     public boolean getDirections(int i) {
@@ -22,9 +25,13 @@ public class Joueur extends Acteur {
 
     public void setDirections(int i, boolean d) {
         for (int j = 0; j < this.directions.length; j++) {
-            this.directions[j]=false;
+            this.directions[j] = false;
         }
-        directions[i]=true;
+        directions[i] = true;
+        directionProperty.set(i);
+    }
+    public IntegerProperty directionProperty() {
+        return directionProperty;
     }
 
 

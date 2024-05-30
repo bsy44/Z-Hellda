@@ -1,9 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
@@ -53,16 +50,6 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
-
-        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        });
-        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
-        });
-
-        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
