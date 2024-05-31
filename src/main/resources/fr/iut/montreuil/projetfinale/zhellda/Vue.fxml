@@ -2,10 +2,10 @@
 
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
-   <center>
-      <Pane fx:id="pane" prefHeight="200" prefWidth="200" BorderPane.alignment="CENTER">
-          <TilePane fx:id="tilePane" prefWidth="900" prefHeight="900" prefColumns="30"/>
-      </Pane>
-   </center>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur" >
+    <center>
+        <Pane fx:id="pane" BorderPane.alignment="CENTER">
+            <TilePane fx:id="tilePane" prefWidth="800" prefHeight="304" prefColumns="50"/>
+        </Pane>
+    </center>
 </BorderPane>
