@@ -20,7 +20,7 @@ public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
-    private int elapsedTime = 0;
+    private int tempsEcoule = 0;
     @FXML
     private Pane pane;
     @FXML
@@ -54,7 +54,6 @@ public class Controleur implements Initializable {
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
         }
-
         initAnimation();
         gameLoop.play();
     }
@@ -65,18 +64,20 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.01),
+                Duration.seconds(0.001),
                 (ev -> {
-                    elapsedTime += 10;
+                    tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
 
                     Environnement.getJ().resetDeplacement();
-                    if (elapsedTime % 1000 == 0) {
+                    if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
                             ennemi.attaquer();
                         }
                     }
-                    env.actionProjectile();
+                    if (tempsEcoule % 500 == 0) {
+                        env.actionProjectile();
+                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
