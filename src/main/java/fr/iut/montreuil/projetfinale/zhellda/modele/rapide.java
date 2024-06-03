@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class rapide extends Ennemis{
     public rapide(int x, int y, Environnement environnement) {
-        super(x, y, 5, 3, 50, 35,30,30, environnement);
+        super(x, y, 5, 3, 50, 50,30,30, environnement);
     }
 
     @Override

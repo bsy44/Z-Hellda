@@ -72,7 +72,6 @@ public class Controleur implements Initializable {
                     if (Environnement.getJ().isEtatAltere()){
                         tempsAlteration+=10;
                     }
-                    System.out.println(tempsAlteration);
                     if (tempsAlteration==50000){
                         tempsAlteration=0;
                         Environnement.getJ().buffVitesse(2);
