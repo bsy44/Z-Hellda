@@ -8,11 +8,14 @@ public class Joueur extends Acteur {
     private boolean []directions; //haut, gauche, bas, droite
     private Arme arme;
     private IntegerProperty directionProperty;
+    boolean etatAltere;
+
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur",30,30, environnement);
+       super(10,10, 10,3,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
        this.directions= new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
+        this.etatAltere=false;
     }
 
     public boolean getDirections(int i) {
@@ -43,22 +46,22 @@ public class Joueur extends Acteur {
         int oldY = this.getY();
 
         if (this.directions[0]) {
-            deltaY = -3;
+            deltaY = -this.vitesse;
         } else if (this.directions[1]) {
-            deltaX = -3;
+            deltaX = -this.vitesse;
         } else if (this.directions[2]) {
-            deltaY = 3;
+            deltaY = this.vitesse;
         } else if (this.directions[3]) {
-            deltaX = 3;
+            deltaX = this.vitesse;
         }
 
         int newX = this.getX() + deltaX;
         int newY = this.getY() + deltaY;
 
-        int gauche = (newX + 3) / 30;
-        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 30;
-        int haut = (newY + 3) / 30;
-        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 30);
+        int gauche = (newX + this.vitesse) / 30;
+        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 30;
+        int haut = (newY + this.vitesse) / 30;
+        int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 30);
 
         if (colisionEnv(haut, bas, droite, gauche)) {
             this.setX(newX);
@@ -93,6 +96,7 @@ public class Joueur extends Acteur {
         }
     }
 
+
     public boolean colisionEnnemis() {
         int cpt=0;
         int joueurX = (int) this.getHitbox().getX();
@@ -114,6 +118,10 @@ public class Joueur extends Acteur {
         return (cpt!=0);
     }
 
+    public boolean isEtatAltere() {
+        return etatAltere;
+    }
+
     @Override
     public IntegerProperty getVie() {
         return super.getVie();
@@ -121,4 +129,11 @@ public class Joueur extends Acteur {
     public int getVieMax() {
         return 10;
     }
+    public void debuffVitesse(int viteseDebuff){
+        this.vitesse=(vitesse-viteseDebuff);
+    }
+    public void buffVitesse(int viteseBuff){
+        this.vitesse=(vitesse+viteseBuff);
+    }
+
 }

@@ -20,6 +20,7 @@ public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
+    private int tempsAlteration=0;
     private int tempsEcoule = 0;
     @FXML
     private Pane pane;
@@ -34,8 +35,8 @@ public class Controleur implements Initializable {
         new VueTerrain(Environnement.getTerrain(), tilePane);
         new VueJoueur(pane, env.getJ());
 
-        Ennemis e = new Zombie(80, 80, this.env);
-        Ennemis e2 = new Zombie(110, 110, this.env);
+        Ennemis e = new Tank(80, 80, this.env);
+        Ennemis e2 = new Tank(110, 110, this.env);
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
@@ -68,6 +69,15 @@ public class Controleur implements Initializable {
                 (ev -> {
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
+                    if (Environnement.getJ().isEtatAltere()){
+                        tempsAlteration+=10;
+                    }
+                    System.out.println(tempsAlteration);
+                    if (tempsAlteration==50000){
+                        tempsAlteration=0;
+                        Environnement.getJ().buffVitesse(2);
+                    }
+
 
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
