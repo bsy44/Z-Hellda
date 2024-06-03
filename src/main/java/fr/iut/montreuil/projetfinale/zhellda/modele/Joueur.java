@@ -9,7 +9,7 @@ public class Joueur extends Acteur {
     private Arme arme;
     private IntegerProperty directionProperty;
     public Joueur(Environnement environnement){
-       super(10,10, 10,"joueur",30,30, environnement);
+       super(282,10, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
        this.directions= new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
@@ -110,6 +110,8 @@ public class Joueur extends Acteur {
                 cpt++;
             }
         }
+        System.out.println(cpt);
+        System.out.println(Environnement.getObsEnnemis().size());
         return (cpt!=0);
     }
 
