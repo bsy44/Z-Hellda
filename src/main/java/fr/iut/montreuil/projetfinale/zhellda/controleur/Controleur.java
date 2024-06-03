@@ -33,7 +33,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
-        new VueTerrain(Environnement.getTerrain(), tilePane);
+        new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ(),"Joueur.png");
 
         Ennemis e = new Zombie(80,80, this.env);
