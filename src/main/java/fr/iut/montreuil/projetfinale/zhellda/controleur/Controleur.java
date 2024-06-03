@@ -35,7 +35,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
         new VueTerrain(tilePane, env);
-        new VueJoueur(pane, env.getJ(),"Joueur.png");
+        new VueJoueur(pane, env.getJ());
 
         Ennemis e = new Zombie(80, 80, this.env);
         Ennemis e2 = new Zombie(110, 110, this.env);

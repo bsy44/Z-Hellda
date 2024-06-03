@@ -55,10 +55,10 @@ public class Joueur extends Acteur {
         int newX = this.getX() + deltaX;
         int newY = this.getY() + deltaY;
 
-        int gauche = (newX + 3) / 30;
-        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 30;
-        int haut = (newY + 3) / 30;
-        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 30);
+        int gauche = (newX + 3) / 16;
+        int droite = (newX + 3 + (int) getHitbox().getWidth()) / 16;
+        int haut = (newY + 3) / 16;
+        int bas = ((newY + 3 + (int) getHitbox().getHeight()) / 16);
 
         if (colisionEnv(haut, bas, droite, gauche)) {
             this.setX(newX);
