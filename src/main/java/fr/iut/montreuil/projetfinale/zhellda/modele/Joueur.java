@@ -101,7 +101,6 @@ public class Joueur extends Acteur {
         int joueurHeight = (int) this.getHitbox().getHeight();
 
         for (Ennemis ennemi : Environnement.getObsEnnemis()) {
-            System.out.println(ennemi.getId());
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();

@@ -62,7 +62,7 @@ public class Environnement {
     }
     public void actionProjectile(){
         for (int i = obsProjectile.size()-1; i >=0 ; i--) {
-            if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche()){
+            if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche() || Environnement.getTerrain().obstacle(obsProjectile.get(i).getX()/30, obsProjectile.get(i).getY()/30)){
                 ennemiMort();
                 System.out.println(obsProjectile.get(i).getX()+obsProjectile.get(i).getY());
                 System.out.println("supprimerP");
