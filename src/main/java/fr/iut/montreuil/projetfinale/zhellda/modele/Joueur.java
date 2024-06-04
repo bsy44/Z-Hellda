@@ -11,7 +11,7 @@ public class Joueur extends Acteur {
     boolean etatAltere;
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,3,"joueur",30,30, environnement);
+       super(50,100, 10,3,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
        this.directions= new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
