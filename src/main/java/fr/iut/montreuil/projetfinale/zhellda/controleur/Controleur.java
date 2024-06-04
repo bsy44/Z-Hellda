@@ -5,12 +5,14 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
+import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -38,11 +40,15 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        Ennemis e = new Tank(80, 80, this.env);
-        Ennemis e2 = new Tank(110, 110, this.env);
+        Ennemis e = new Zombie(80, 80, this.env);
+        Ennemis e2 = new Zombie(410, 110, this.env);
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
+
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
+
+        ListChangeListener<Item> listObsItem = new ListObsItem(pane);
+        Environnement.getObsItemParTerre().addListener(listObsItem);
 
         // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
@@ -94,6 +100,11 @@ public class Controleur implements Initializable {
                     }
                     System.out.println(Environnement.getJ().getVitesse());
 
+                    env.actionItem();
+                    /*System.out.println("Item id : " + Environnement.getObsItem().toString());
+                    for (Node n : pane.getChildren()) {
+                        System.out.println("Item node id :" + n.getId());
+                    }*/
 
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {

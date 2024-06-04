@@ -10,12 +10,15 @@ public class Joueur extends Acteur {
     private IntegerProperty directionProperty;
     boolean etatAltere;
 
+    private Inventaire inventaire;
     public Joueur(Environnement environnement){
-       super(50,100, 10,3,"joueur",30,30, environnement);
+       super(282,10, 10,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
        this.directions= new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere=false;
+       this.directionProperty = new SimpleIntegerProperty(-1);
+       this.inventaire = new Inventaire();
     }
 
     public boolean getDirections(int i) {
@@ -96,7 +99,6 @@ public class Joueur extends Acteur {
         }
     }
 
-
     public boolean colisionEnnemis() {
         int cpt=0;
         int joueurX = (int) this.getHitbox().getX();
@@ -105,7 +107,6 @@ public class Joueur extends Acteur {
         int joueurHeight = (int) this.getHitbox().getHeight();
 
         for (Ennemis ennemi : Environnement.getObsEnnemis()) {
-            System.out.println(ennemi.getId());
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
@@ -115,6 +116,8 @@ public class Joueur extends Acteur {
                 cpt++;
             }
         }
+        System.out.println(cpt);
+        System.out.println(Environnement.getObsEnnemis().size());
         return (cpt!=0);
     }
 
@@ -128,6 +131,20 @@ public class Joueur extends Acteur {
     }
     public int getVieMax() {
         return 10;
+    }
+
+    public boolean ramasserItem() {
+        for (Item i : Environnement.getObsItemParTerre()) {
+            return  (i.getX()+10 >= this.getHitbox().getX() &&
+                    i.getX()+10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                    i.getY()+10 >= this.getHitbox().getY() &&
+                    i.getY()+10 <= this.getHitbox().getY() + this.getHitbox().getHeight());
+        }
+        return false;
+    }
+
+    public Inventaire getInventaire() {
+        return inventaire;
     }
 
     public void setEtatAltere(boolean etatAltere) {

@@ -44,6 +44,10 @@ public abstract class Acteur {
         this.y.setValue(y);
     }
 
+    public void setVie(int vie) {
+        this.vie.setValue(this.vie.getValue() + vie);
+    }
+
     public IntegerProperty getXProperty() {
         return x;
     }
@@ -62,6 +66,11 @@ public abstract class Acteur {
 
     public int getVitesse() {
         return vitesse;
+    }
+    public static boolean reussitProba(double pourcent){
+        double x= Math.random();
+        double pp=pourcent/100;
+        return (x<=pp);
     }
 
     public void subirDegats (int dmg) {
