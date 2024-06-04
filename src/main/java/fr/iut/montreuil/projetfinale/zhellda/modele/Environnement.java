@@ -3,18 +3,13 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class Environnement {
-    private int width;
-
-    private int height;
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
     private static ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
+    private static ObservableList<Item> obsItemParTerre;
 
     public Environnement() {
         this.terrain= new Terrain();
@@ -23,6 +18,7 @@ public class Environnement {
         this.obsJoueur.add(j);
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
+        this.obsItemParTerre = FXCollections.observableArrayList();
     }
 
     public static Terrain getTerrain() {
@@ -40,18 +36,23 @@ public class Environnement {
     public void ajouterEnnemi (Ennemis ennemi){
         this.obsEnnemis.add(ennemi);
     }
+
     public void ajouterProjectile (Projectile projectile){
         this.obsProjectile.add(projectile);
     }
 
     public void ennemiMort() {
-        for(int i=getObsEnnemis().size()-1; i>=0;i--){
+        for(int i = getObsEnnemis().size()-1; i>=0;i--){
             Acteur a = getObsEnnemis().get(i);
-        if(a.getVie().get()==0){
-            System.out.println("mort de : " + a);
-            getObsEnnemis().remove(i);
+            if(a.getVie().get()==0){
+                if (Acteur.reussitProba(Zombie.getPourcentageDropItem())){
+                    Item pommeOr = new PommeDor(a.getX(), a.getY());
+                    obsItemParTerre.add(pommeOr);
+                }
+                System.out.println("mort de : " + a);
+                getObsEnnemis().remove(i);
+            }
         }
-    }
     }
 
     public void mortJoueur(){
@@ -59,6 +60,7 @@ public class Environnement {
             getObsJoueur().remove(0);
         }
     }
+
     public void actionProjectile(){
         for (int i = obsProjectile.size()-1; i >=0 ; i--) {
             if(!(obsProjectile.get(i).tirProjectile()) || obsProjectile.get(i).estTouche()){
@@ -66,12 +68,23 @@ public class Environnement {
                 obsProjectile.remove(i);
             }
         }
-
     }
 
+    public void actionItem(){
+        for (int i = obsItemParTerre.size()-1; i >=0 ; i--) {
+            if (Environnement.j.ramasserItem()) {
+                Environnement.getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
+                obsItemParTerre.remove(obsItemParTerre.get(i));
+            }
+        }
+    }
 
-    public ObservableList<Projectile> getObsProjectile() {
+    public  ObservableList<Projectile> getObsProjectile() {
         return obsProjectile;
+    }
+
+    public static ObservableList<Item> getObsItemParTerre() {
+        return obsItemParTerre;
     }
 
     public static Joueur getJ() {

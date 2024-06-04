@@ -33,7 +33,6 @@ public class ListObsProjectile implements ListChangeListener<Projectile> {
             }
             if (change.wasRemoved()) {
                 for (Projectile p : change.getRemoved()) {
-                    System.out.println("P#" + p.getId());
                     Node n = pane.lookup( "#"+p.getId());
                     if (n != null) {
                         this.pane.getChildren().remove(n);
