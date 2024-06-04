@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.HBox?>
-
 <?import javafx.scene.control.ProgressBar?>
-<BorderPane prefHeight="900.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+
+<BorderPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
     <Pane fx:id="pane">
-        <TilePane fx:id="tilePane"  prefHeight="1600" prefWidth="1600" />
+        <TilePane fx:id="tilePane" prefHeight="1600" prefWidth="1600" />
     </Pane>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -24,5 +24,21 @@
          </children>
       </Pane>
    </center>
+   <right>
+      <VBox prefHeight="900.0" prefWidth="153.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="InventaireItem" prefHeight="300.0" prefWidth="153.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="98.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="167.0" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </right>
 
 </BorderPane>

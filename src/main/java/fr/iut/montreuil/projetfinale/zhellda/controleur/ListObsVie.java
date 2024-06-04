@@ -13,7 +13,7 @@ public class ListObsVie {
     private Image coeurPlein;
     private Image coeurVide;
     private Joueur joueur;
-    Pane pane;
+    private Pane pane;
 
     public ListObsVie(Pane pane, Joueur joueur, HBox coeur) {
         this.pane = pane;
