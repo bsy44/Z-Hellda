@@ -98,13 +98,8 @@ public class Controleur implements Initializable {
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
-                    System.out.println(Environnement.getJ().getVitesse());
 
                     env.actionItem();
-                    /*System.out.println("Item id : " + Environnement.getObsItem().toString());
-                    for (Node n : pane.getChildren()) {
-                        System.out.println("Item node id :" + n.getId());
-                    }*/
 
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {

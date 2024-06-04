@@ -12,11 +12,10 @@ public class Joueur extends Acteur {
 
     private Inventaire inventaire;
     public Joueur(Environnement environnement){
-       super(282,10, 10,"joueur",30,30, environnement);
+       super(282,10, 10,3,"joueur",30,30, environnement);
        this.arme=new Arc(environnement);
-       this.directions= new boolean[]{false, false, false, false};
-        this.directionProperty = new SimpleIntegerProperty(-1);
-        this.etatAltere=false;
+       this.directions = new boolean[]{false, false, false, false};
+       this.etatAltere = false;
        this.directionProperty = new SimpleIntegerProperty(-1);
        this.inventaire = new Inventaire();
     }
@@ -116,8 +115,6 @@ public class Joueur extends Acteur {
                 cpt++;
             }
         }
-        System.out.println(cpt);
-        System.out.println(Environnement.getObsEnnemis().size());
         return (cpt!=0);
     }
 
@@ -129,16 +126,17 @@ public class Joueur extends Acteur {
     public IntegerProperty getVie() {
         return super.getVie();
     }
+
     public int getVieMax() {
         return 10;
     }
 
     public boolean ramasserItem() {
         for (Item i : Environnement.getObsItemParTerre()) {
-            return  (i.getX()+10 >= this.getHitbox().getX() &&
-                    i.getX()+10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
-                    i.getY()+10 >= this.getHitbox().getY() &&
-                    i.getY()+10 <= this.getHitbox().getY() + this.getHitbox().getHeight());
+            return  (i.getX() + 10 >= this.getHitbox().getX() &&
+                    i.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                    i.getY() + 10 >= this.getHitbox().getY() &&
+                    i.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight());
         }
         return false;
     }
