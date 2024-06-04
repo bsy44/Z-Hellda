@@ -5,16 +5,22 @@ public abstract class Ennemis extends Acteur {
     private int vitesse;
     private int attaque;
     private int portee;
+    private int type;//0 pour sol et 1 pour aérien
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement){
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH,int type, Environnement environnement){
         super(x, y, vie,vitesse,"#"+compteur, HitBoxW, HitBoxH, environnement);
         compteur++;
         this.attaque = attaque;
         this.portee=portee;
+        this.type=type;
     }
 
     public int getPortee() {
         return portee;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public int getVitesse() {
@@ -26,6 +32,7 @@ public abstract class Ennemis extends Acteur {
     }
 
     public abstract void attaquer();
+
 
     public abstract int getPvMax();
 

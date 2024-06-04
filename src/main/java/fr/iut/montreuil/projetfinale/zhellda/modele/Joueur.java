@@ -129,6 +129,11 @@ public class Joueur extends Acteur {
     public int getVieMax() {
         return 10;
     }
+
+    public void setEtatAltere(boolean etatAltere) {
+        this.etatAltere = etatAltere;
+    }
+
     public void debuffVitesse(int viteseDebuff){
         this.vitesse=(vitesse-viteseDebuff);
     }

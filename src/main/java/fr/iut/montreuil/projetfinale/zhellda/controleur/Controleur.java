@@ -89,8 +89,10 @@ public class Controleur implements Initializable {
                     }
                     if (tempsAlteration==50000){
                         tempsAlteration=0;
+                        Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
+                    System.out.println(Environnement.getJ().getVitesse());
 
 
                     Environnement.getJ().resetDeplacement();

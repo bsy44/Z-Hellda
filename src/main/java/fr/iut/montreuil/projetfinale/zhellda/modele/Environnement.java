@@ -67,7 +67,6 @@ public class Environnement {
                 System.out.println(obsProjectile.get(i).getX()+obsProjectile.get(i).getY());
                 System.out.println("supprimerP");
                 obsProjectile.remove(i);
-
                 System.out.println("est supprimé");
             }
         }
