@@ -4,7 +4,7 @@ import static java.lang.Math.sqrt;
 
 public class Epee extends Arme{
     public Epee(Environnement environnement){
-        super(environnement,2,30);
+        super(environnement,2,40);
     }
 
 
@@ -13,20 +13,22 @@ public class Epee extends Arme{
         boolean ennemieTouche = false;
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size() && ennemieTouche==false; i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
+            if (ennemie.getType()==0){
 
 
-            if (j.getX()==x) {
-                if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
-                    ennemie.subirDegats(getAttaque());
-                    this.getEnvironnement().ennemiMort();
-                    ennemieTouche = true;
+                if (j.getX()==x) {
+                    if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
+                        ennemie.subirDegats(getAttaque());
+                        this.getEnvironnement().ennemiMort();
+                        ennemieTouche = true;
+                    }
                 }
-            }
-            else {
-                if ((sqrt(Math.pow(ennemie.getY()- j.getY(),2)))<=6 && (ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
-                    ennemie.subirDegats(getAttaque());
-                    this.getEnvironnement().ennemiMort();
-                    ennemieTouche = true;
+                else {
+                    if ((sqrt(Math.pow(ennemie.getY() - j.getY(), 2))) <= 6 && (ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
+                        ennemie.subirDegats(getAttaque());
+                        this.getEnvironnement().ennemiMort();
+                        ennemieTouche = true;
+                    }
                 }
             }
 

@@ -11,12 +11,13 @@ public class Joueur extends Acteur {
     boolean etatAltere;
 
     public Joueur(Environnement environnement){
-       super(10,10, 10,3,"joueur",30,30, environnement);
-       this.arme=new Arc(environnement);
+       super(282 ,10, 10,3,"joueur",30,30, environnement);
+       this.arme=new Epee(environnement);
        this.directions= new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere=false;
     }
+
 
     public boolean getDirections(int i) {
         return directions[i];
@@ -58,10 +59,10 @@ public class Joueur extends Acteur {
         int newX = this.getX() + deltaX;
         int newY = this.getY() + deltaY;
 
-        int gauche = (newX + this.vitesse) / 30;
-        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 30;
-        int haut = (newY + this.vitesse) / 30;
-        int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 30);
+        int gauche = (newX + this.vitesse) / 16;
+        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
+        int haut = (newY + this.vitesse) / 16;
+        int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 16);
 
         if (colisionEnv(haut, bas, droite, gauche)) {
             this.setX(newX);
@@ -129,6 +130,11 @@ public class Joueur extends Acteur {
     public int getVieMax() {
         return 10;
     }
+
+    public void setEtatAltere(boolean etatAltere) {
+        this.etatAltere = etatAltere;
+    }
+
     public void debuffVitesse(int viteseDebuff){
         this.vitesse=(vitesse-viteseDebuff);
     }

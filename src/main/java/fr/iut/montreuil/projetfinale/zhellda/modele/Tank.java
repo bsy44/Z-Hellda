@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class Tank extends Ennemis{
     public Tank(int x, int y,  Environnement environnement) {
-        super(x, y, 20, 1, 2, 35, 30, 30, environnement);
+        super(x, y, 20, 1, 2, 35, 30, 30, 0, environnement);
     }
 
     @Override

@@ -60,8 +60,9 @@ public abstract class Acteur {
         return hitbox;
     }
 
-
-
+    public int getVitesse() {
+        return vitesse;
+    }
 
     public void subirDegats (int dmg) {
         if ((this.vie.get()-dmg)<=0)
