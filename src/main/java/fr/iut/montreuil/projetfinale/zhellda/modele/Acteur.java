@@ -10,6 +10,7 @@ public abstract class Acteur {
     private IntegerProperty y;
     private IntegerProperty vie;
     private String id;
+
     protected Environnement environnement;
     private Rectangle hitbox;
     int vitesse;
@@ -62,6 +63,10 @@ public abstract class Acteur {
 
     public Rectangle getHitbox() {
         return hitbox;
+    }
+
+    public Environnement getEnvironnement() {
+        return environnement;
     }
 
     public int getVitesse() {

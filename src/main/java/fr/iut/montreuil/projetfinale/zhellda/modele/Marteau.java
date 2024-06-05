@@ -4,7 +4,7 @@ import static java.lang.Math.sqrt;
 
 public class Marteau extends Arme {
     public Marteau(Environnement environnement) {
-        super(environnement, 1, 40);
+        super(environnement, 1, 60);
     }
 
     @Override

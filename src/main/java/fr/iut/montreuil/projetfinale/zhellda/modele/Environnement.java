@@ -7,9 +7,9 @@ public class Environnement {
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
-    private static ObservableList<Ennemis> obsEnnemis;
+    private ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
-    private static ObservableList<Item> obsItemParTerre;
+    private  ObservableList<Item> obsItemParTerre;
 
     public Environnement() {
         this.terrain= new Terrain();
@@ -29,7 +29,7 @@ public class Environnement {
         return obsJoueur;
     }
 
-    public static ObservableList<Ennemis> getObsEnnemis(){
+    public ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
     }
 
@@ -87,7 +87,7 @@ public class Environnement {
         return obsProjectile;
     }
 
-    public static ObservableList<Item> getObsItemParTerre() {
+    public ObservableList<Item> getObsItemParTerre() {
         return obsItemParTerre;
     }
 

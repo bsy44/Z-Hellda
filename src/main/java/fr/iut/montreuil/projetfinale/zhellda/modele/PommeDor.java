@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class PommeDor extends Item{
     public PommeDor(int posX, int posY) {
-        super(posX, posY, "PommeDorre");
+        super(posX, posY, "pommeOr");
     }
 
     public void ajouterPv(){

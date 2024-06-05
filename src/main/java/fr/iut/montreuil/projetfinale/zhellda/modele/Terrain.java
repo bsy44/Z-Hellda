@@ -120,6 +120,6 @@ public class Terrain {
     }
 
     public boolean obstacle(int x, int y){
-        return (tab[y][x] > 521 &&  tab[y][x] < 613 || tab[y][x] == 102 || tab[y][x] == 141 || tab[y][x] == 142 || tab[y][x] == 143 || tab[y][x] == 181 || tab[y][x] == 182 || tab[y][x] == 221 || tab[y][x] == 222 || tab[y][x] > 367 &&  tab[y][x] < 443);
+        return (tab[y][x] == 61 || tab[y][x] == 100 || tab[y][x] == 102 || tab[y][x] == 141 || tab[y][x] == 142 || tab[y][x] == 143 || tab[y][x] == 181 || tab[y][x] == 182 || tab[y][x] == 221 || tab[y][x] == 222 || tab[y][x] > 367 &&  tab[y][x] < 443 ||tab[y][x] > 521 &&  tab[y][x] < 613);
     }
 }

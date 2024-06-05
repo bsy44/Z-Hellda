@@ -5,18 +5,17 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +32,8 @@ public class Controleur implements Initializable {
     private TilePane tilePane;
     @FXML
     private HBox coeur;
+    @FXML
+    private VBox inventaireItem;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,13 +43,21 @@ public class Controleur implements Initializable {
 
         Ennemis e = new Zombie(80, 80, this.env);
         Ennemis e2 = new Zombie(410, 110, this.env);
+        Ennemis e3 = new Zombie(510, 110, this.env);
+        Ennemis e4 = new Zombie(610, 110, this.env);
+        Ennemis e5 = new Zombie(510, 210, this.env);
+        Ennemis e6 = new Zombie(610, 210, this.env);
+        Ennemis e7 = new Zombie(410, 210, this.env);
+
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
+        env.ajouterEnnemi(e3);
+        env.ajouterEnnemi(e4);
+        env.ajouterEnnemi(e5);
+        env.ajouterEnnemi(e6);
+        env.ajouterEnnemi(e7);
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
-
-        ListChangeListener<Item> listObsItem = new ListObsItem(pane);
-        Environnement.getObsItemParTerre().addListener(listObsItem);
 
         // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
@@ -61,6 +70,9 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
+
+        ListChangeListener<Item> listObsItem = new ListObsItem(pane, inventaireItem);
+        env.getObsItemParTerre().addListener(listObsItem);
 
         /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
             this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());

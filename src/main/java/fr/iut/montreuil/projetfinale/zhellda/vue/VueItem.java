@@ -12,7 +12,7 @@ public class VueItem {
 
     public VueItem(Pane pane, Item item, String urlImg){
         URL url = Lancement.class.getResource(urlImg);
-        Image image = new Image(String.valueOf(url));;
+        Image image = new Image(String.valueOf(url));
         ImageView imageView = new ImageView(image);
 
         imageView.translateXProperty().bind(item.xProperty());

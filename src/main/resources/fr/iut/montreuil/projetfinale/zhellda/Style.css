@@ -1,0 +1,69 @@
+/*Style for the entire VBox containing the inventory */
+
+#inventaireItem {
+    -fx-background-color: #3a3a3a;
+    -fx-padding: 10px;
+    -fx-border-color: #e0c080;
+    -fx-border-width: 3px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0.5, 0, 0);
+}
+
+#inventaireItem > .label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0c080;
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 2px;
+}
+
+.hbox {
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+}
+
+.hbox .vbox {
+    -fx-background-color: #2b2b2b;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
+}
+
+.hbox .vbox .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #d4af37;
+    -fx-padding: 5px;
+    -fx-border-color: #e0c080;
+    -fx-border-width: 3px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-background-color: #3a3a3a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0.3, 0, 0);
+}
+
+/* Hover effects */
+.image-view:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#enemy-health-bar {
+    -fx-accent: red; /* La couleur de la barre de progression */
+    -fx-control-inner-background: darkgray; /* La couleur de fond de la barre */
+    -fx-background-color: transparent; /* La couleur de fond de la ProgressBar elle-même */
+    -fx-border-color: black; /* La couleur de la bordure */
+    -fx-border-width: 2px; /* La largeur de la bordure */
+    -fx-text-box-border: transparent; /* Enlever la bordure interne */
+    -fx-text-fill: white; /* La couleur du texte (si applicable) */
+}
+
+
