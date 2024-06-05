@@ -49,15 +49,15 @@ public abstract class Acteur {
         this.vie.setValue(this.vie.getValue() + vie);
     }
 
-    public IntegerProperty getXProperty() {
+    public final IntegerProperty getXProperty() {
         return x;
     }
 
-    public IntegerProperty getYProperty() {
+    public final IntegerProperty getYProperty() {
         return y;
     }
 
-    public IntegerProperty getVie (){
+    public final IntegerProperty getVie (){
         return this.vie;
     }
 

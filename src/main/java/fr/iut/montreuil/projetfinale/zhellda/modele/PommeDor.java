@@ -5,7 +5,8 @@ public class PommeDor extends Item{
         super(posX, posY, "pommeOr");
     }
 
-    public void ajouterPv(){
+    @Override
+    public void consommerItem() {
         Environnement.getJ().setVie(2);
     }
 }

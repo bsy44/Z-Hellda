@@ -76,8 +76,8 @@ public class Environnement {
 
     public void actionItem(){
         for (int i = obsItemParTerre.size()-1; i >=0 ; i--) {
-            if (Environnement.j.ramasserItem()) {
-                Environnement.getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
+            if (getJ().ramasserItem()) {
+                getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
                 obsItemParTerre.remove(obsItemParTerre.get(i));
             }
         }

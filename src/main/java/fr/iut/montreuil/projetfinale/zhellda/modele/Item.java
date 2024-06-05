@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Item {
+public abstract class Item {
 
     private IntegerProperty x;
     private IntegerProperty y;
@@ -52,6 +52,8 @@ public class Item {
     public StringProperty getNom() {
         return nom;
     }
+
+    public abstract void consommerItem();
 
     @Override
     public String toString() {

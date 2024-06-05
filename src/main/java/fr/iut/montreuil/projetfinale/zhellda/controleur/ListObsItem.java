@@ -6,6 +6,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -65,6 +66,40 @@ public class ListObsItem implements ListChangeListener<Item> {
                     imageView.setId(item.getId());
                     System.out.println("Image ajoutée");
                     labelItem.textProperty().bind(item.getNom());
+
+                    imageView.setOnMouseClicked(mouseEvent -> {
+                        Button boutonConsommer  = new Button();
+                        boutonConsommer.setText("Consommer");
+                        boutonConsommer.setTranslateX(imageView.getX());
+                        boutonConsommer.setTranslateY(imageView.getY());
+
+
+                        Button boutonRetirer  = new Button();
+                        boutonRetirer.setText("Retirer");
+                        boutonRetirer.setTranslateX(imageView.getX());
+                        boutonRetirer.setTranslateY(imageView.getY());
+
+                        Button buttonAnnuler  = new Button();
+                        buttonAnnuler.setText("X");
+                        buttonAnnuler.setTranslateX(imageView.getX());
+                        buttonAnnuler.setTranslateY(imageView.getY());
+
+                        inventaireItem.getChildren().add(boutonConsommer);
+                        inventaireItem.getChildren().add(boutonRetirer);
+                        inventaireItem.getChildren().add(buttonAnnuler);
+
+                        boutonConsommer.setOnAction(event -> {
+                            item.consommerItem();
+                            Environnement.getJ().getInventaire().retirerItem(item);
+                        });
+
+
+                        buttonAnnuler.setOnAction(event -> {
+                            inventaireItem.getChildren().remove(boutonRetirer);
+                            inventaireItem.getChildren().remove(buttonAnnuler);
+                            inventaireItem.getChildren().remove(boutonConsommer);
+                        });
+                    });
                 }
             }
         }

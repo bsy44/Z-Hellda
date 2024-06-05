@@ -122,10 +122,7 @@ public class Joueur extends Acteur {
         return etatAltere;
     }
 
-    @Override
-    public IntegerProperty getVie() {
-        return super.getVie();
-    }
+
 
     public int getVieMax() {
         return 10;
