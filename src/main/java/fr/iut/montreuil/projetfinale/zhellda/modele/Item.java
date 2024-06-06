@@ -17,7 +17,7 @@ public abstract class Item {
         this.x = new SimpleIntegerProperty(posX);
         this.y = new SimpleIntegerProperty(posY);
         this.nom = new SimpleStringProperty(nom);
-        this.id = nom + "#" + cpt;
+        this.id = "item"  + cpt;
         cpt++;
     }
 

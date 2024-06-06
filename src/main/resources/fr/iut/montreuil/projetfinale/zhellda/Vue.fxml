@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="900.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+<BorderPane prefHeight="900.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
     <Pane fx:id="pane">
         <TilePane fx:id="tilePane" prefHeight="1600" prefWidth="1600" />
     </Pane>
@@ -32,7 +28,7 @@
                </VBox.margin></Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="117.0" prefWidth="139.0">
+                  <VBox fx:id="case0" prefHeight="117.0" prefWidth="139.0">
                      <children>
                         <ImageView fx:id="item1" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -45,7 +41,7 @@
                         <Label fx:id="labelItm1" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="123.0" textFill="WHITE" />
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
+                  <VBox fx:id="case1" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
                      <children>
                         <ImageView fx:id="item2" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
@@ -64,7 +60,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
+                  <VBox fx:id="case2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
                      <children>
                         <ImageView fx:id="item3" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
@@ -73,7 +69,7 @@
                         <Label fx:id="labelItm3" alignment="CENTER" prefHeight="17.0" prefWidth="123.0" textFill="WHITE" />
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="153.0">
+                  <VBox fx:id="case3" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="153.0">
                      <children>
                         <ImageView fx:id="item4" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
@@ -89,7 +85,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="45.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
+                  <VBox fx:id="case4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
                      <children>
                         <ImageView fx:id="item5" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
@@ -98,7 +94,7 @@
                         <Label fx:id="labelItm5" alignment="CENTER" prefHeight="17.0" prefWidth="123.0" textFill="WHITE" />
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
+                  <VBox fx:id="case5" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0">
                      <children>
                         <ImageView fx:id="item6" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>

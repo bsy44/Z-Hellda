@@ -7,6 +7,13 @@ public class PommeDor extends Item{
 
     @Override
     public void consommerItem() {
-        Environnement.getJ().setVie(2);
+        if (Environnement.getJ().getVie().getValue() < Environnement.getJ().getVieMax()) {
+            if (Environnement.getJ().getVie().getValue() == 9) {
+                Environnement.getJ().setVie(1);
+            }
+            else {
+                Environnement.getJ().setVie(2);
+            }
+        }
     }
 }

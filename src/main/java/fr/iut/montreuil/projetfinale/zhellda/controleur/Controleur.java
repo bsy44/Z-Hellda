@@ -74,6 +74,8 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsItem = new ListObsItem(pane, inventaireItem);
         env.getObsItemParTerre().addListener(listObsItem);
 
+        ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
+        Environnement.getJ().getInventaire().getListItem().addListener(listObsItemInventaire);
         /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
             this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
         });
@@ -100,6 +102,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
+                    System.out.println(Environnement.getJ().getVie());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()){
