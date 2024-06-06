@@ -11,12 +11,16 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -71,7 +75,7 @@ public class Controleur implements Initializable {
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
 
-        ListChangeListener<Item> listObsItem = new ListObsItem(pane, inventaireItem);
+        ListChangeListener<Item> listObsItem = new ListObsItem(pane);
         env.getObsItemParTerre().addListener(listObsItem);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
@@ -102,7 +106,6 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    System.out.println(Environnement.getJ().getVie());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()){
@@ -113,9 +116,7 @@ public class Controleur implements Initializable {
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
-
                     env.actionItem();
-
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
@@ -129,5 +130,4 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-
 }

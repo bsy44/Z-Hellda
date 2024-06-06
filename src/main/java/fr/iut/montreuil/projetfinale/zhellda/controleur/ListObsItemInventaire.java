@@ -1,10 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import javafx.collections.ListChangeListener;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,74 +27,56 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
             }
 
             if (change.wasRemoved()) {
-                for (int i = change.getRemoved().size() - 1; i >= 0; i--) {
-                    Item item = change.getRemoved().get(i);
-                    ImageView imageView = (ImageView) inventaireItem.lookup("#" + item.getId());
-                    interactionItem(item, imageView);
-                    imageView.setImage(null);
+                for (Item item : change.getRemoved()) {
+                    retirerImageDeInventaire(item);
                 }
             }
         }
     }
 
     public void ajouterImageVersInventaire(Item item) {
-        URL url = Lancement.class.getResource(item.getNom().getValue() + ".png");
+        URL url = Lancement.class.getResource(item.getNom() + ".png");
         if (url != null) {
             Image image = new Image(url.toExternalForm());
-            for (int i = 0; i < Environnement.getJ().getInventaire().getListItem().size(); i++) {
-                ImageView imageView = (ImageView) inventaireItem.lookup("#" + Environnement.getJ().getInventaire().getListItem().get(i).getId());
-                Label labelItem = (Label) inventaireItem.lookup("#labelItm" + i);
 
-                if (imageView != null && imageView.getImage() == null) {
+            int index = getFirstSlot();// Trouver le premier slot disponible
+            if (index != -1) {
+                ImageView imageView = (ImageView) inventaireItem.lookup("#item" + index);// Récupérer l'ImageView et le Label correspondants
+                Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() +  index);
+
+                if (imageView != null && labelItem != null) {
                     imageView.setImage(image);
-                    labelItem.textProperty().bind(item.getNom());
-                    interactionItem(item, imageView);
+                    labelItem.setText(item.getNom());
+                    item.setIndexInventaire(index);  // Stocker l'index de l'inventaire dans l'item
                 }
             }
         }
     }
 
-    public void interactionItem(Item item, ImageView imageView) {
-        imageView.setOnMouseClicked(mouseEvent -> {
-            Button boutonConsommer = new Button();
-            boutonConsommer.setText("Consommer");
-            boutonConsommer.setTranslateX(imageView.getX());
-            boutonConsommer.setTranslateY(imageView.getY());
 
-            Button boutonRetirer = new Button();
-            boutonRetirer.setText("Retirer");
-            boutonRetirer.setTranslateX(imageView.getX());
-            boutonRetirer.setTranslateY(imageView.getY());
+    public void retirerImageDeInventaire(Item item) {
+        int index = item.getIndexInventaire();
+        if (index != -1) {
+            ImageView imageView = (ImageView) inventaireItem.lookup("#item" + index);
+            Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() +  index);
 
-            Button buttonAnnuler = new Button();
-            buttonAnnuler.setText("X");
-            buttonAnnuler.setTranslateX(imageView.getX());
-            buttonAnnuler.setTranslateY(imageView.getY());
-
-            inventaireItem.getChildren().addAll(boutonConsommer, boutonRetirer, buttonAnnuler);
-
-            boutonConsommer.setOnAction(event -> {
-                item.consommerItem();
-                Environnement.getJ().getInventaire().retirerItem(item);
-                disableAndRemoveButtons(boutonConsommer, boutonRetirer, buttonAnnuler);
-            });
-
-            boutonRetirer.setOnAction(event -> {
-                Environnement.getJ().getInventaire().retirerItem(item);
-                disableAndRemoveButtons(boutonConsommer, boutonRetirer, buttonAnnuler);
-            });
-
-            buttonAnnuler.setOnAction(event -> {
-                disableAndRemoveButtons(boutonConsommer, boutonRetirer, buttonAnnuler);
-            });
-        });
-    }
-
-    private void disableAndRemoveButtons(Button... buttons) {
-        for (Button button : buttons) {
-            button.setDisable(true);
-            inventaireItem.getChildren().remove(button);
+            if (imageView != null) {
+                imageView.setImage(null);
+            }
+            if (labelItem != null) {
+                labelItem.setText("");
+            }
+            item.setIndexInventaire(-1);  // Réinitialiser l'index de l'inventaire dans l'item
         }
     }
 
+    private int getFirstSlot() {// Méthode pour trouver le premier slot disponible dans l'inventaire
+        for (int i = 0; i < 6; i++) {
+            ImageView imageView = (ImageView) inventaireItem.lookup("#item" + i);
+            if (imageView != null && imageView.getImage() == null) {
+                return i;  // Retourner le premier slot disponible
+            }
+        }
+        return -1;  // Retourner -1 si l'inventaire est plein
+    }
 }
