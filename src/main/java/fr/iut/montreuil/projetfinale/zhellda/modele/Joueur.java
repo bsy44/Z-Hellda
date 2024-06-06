@@ -98,6 +98,7 @@ public class Joueur extends Acteur {
         }
     }
 
+
     public boolean colisionEnnemis() {
         int cpt=0;
         int joueurX = (int) this.getHitbox().getX();

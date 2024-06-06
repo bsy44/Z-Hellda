@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Case {
 
@@ -19,9 +20,6 @@ public class Case {
         return y;
     }
 
-    public boolean dansTerrain (){
-        return (0 <= x && x <= 29 && 0 <= y && y <= 19);
-    }
 
     public ArrayList<Case> adjacents (){
         ArrayList<Case> adj = new ArrayList<>();
@@ -31,7 +29,7 @@ public class Case {
 
         for (int i=0; i<4; i++){
             c = new Case(x+dx[i], y+dy[i]);
-            if (c.dansTerrain()) adj.add(c);
+            if (Environnement.getTerrain().dansTerrain(c.getX(),c.getY())) adj.add(c);
         }
         return adj;
     }
@@ -42,5 +40,18 @@ public class Case {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Case aCase = (Case) o;
+        return x == aCase.x && y == aCase.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

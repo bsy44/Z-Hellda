@@ -3,13 +3,20 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Environnement {
+    private int width;
+
+    private int height;
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
     private ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
     private  ObservableList<Item> obsItemParTerre;
+    private static Bfs bfs;
 
     public Environnement() {
         this.terrain= new Terrain();
@@ -19,6 +26,7 @@ public class Environnement {
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
         this.obsItemParTerre = FXCollections.observableArrayList();
+        bfs = new Bfs();
     }
 
     public static Terrain getTerrain() {
@@ -33,10 +41,17 @@ public class Environnement {
         return obsEnnemis;
     }
 
+    public static Bfs getBfs (){
+        return bfs;
+    }
+
+    public static void nouveauBfs(){
+        bfs = new Bfs();
+    }
+
     public void ajouterEnnemi (Ennemis ennemi){
         this.obsEnnemis.add(ennemi);
     }
-
     public void ajouterProjectile (Projectile projectile){
         this.obsProjectile.add(projectile);
     }
@@ -69,9 +84,11 @@ public class Environnement {
                 System.out.println(obsProjectile.get(i).getX()+obsProjectile.get(i).getY());
                 System.out.println("supprimerP");
                 obsProjectile.remove(i);
+
                 System.out.println("est supprimé");
             }
         }
+
     }
 
     public void actionItem(){
