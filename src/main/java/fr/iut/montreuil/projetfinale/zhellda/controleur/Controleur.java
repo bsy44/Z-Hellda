@@ -38,8 +38,8 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        Ennemis e = new Tank(80, 80, this.env);
-        Ennemis e2 = new Tank(110, 110, this.env);
+        Ennemis e = new Zombie(80, 80, this.env);
+        Ennemis e2 = new Zombie(110, 110, this.env);
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
@@ -56,15 +56,15 @@ public class Controleur implements Initializable {
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
 
-        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        });
-        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
-        });
-
-        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
+//        Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
+//            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+//        });
+//        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
+//            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
+//        });
+//
+//        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+//        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
@@ -96,6 +96,7 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
+                            ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }

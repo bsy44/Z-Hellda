@@ -15,6 +15,7 @@ public class Environnement {
     private static Joueur j;
     private static ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
+    private static Bfs bfs;
 
     public Environnement() {
         this.terrain= new Terrain();
@@ -23,6 +24,7 @@ public class Environnement {
         this.obsJoueur.add(j);
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
+        bfs = new Bfs();
     }
 
     public static Terrain getTerrain() {
@@ -35,6 +37,14 @@ public class Environnement {
 
     public static ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
+    }
+
+    public static Bfs getBfs (){
+        return bfs;
+    }
+
+    public static void nouveauBfs(){
+        bfs = new Bfs();
     }
 
     public void ajouterEnnemi (Ennemis ennemi){
