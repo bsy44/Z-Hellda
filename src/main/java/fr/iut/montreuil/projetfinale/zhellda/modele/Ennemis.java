@@ -29,10 +29,6 @@ public abstract class Ennemis extends Acteur {
         return type;
     }
 
-    public int getVitesse() {
-        return vitesse;
-    }
-
     public int getAttaque() {
         return attaque;
     }

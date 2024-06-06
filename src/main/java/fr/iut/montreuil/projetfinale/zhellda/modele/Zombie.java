@@ -7,7 +7,7 @@ public class Zombie extends Ennemis {
 
     private static DoubleProperty pourcentageDropItem = new SimpleDoubleProperty(100);
     public Zombie(int x, int y, Environnement environnement) {
-        super(x, y, 10, 2, 1, 35,30, 30,0,  environnement);
+        super(x, y, 10, 2, 1, 35,30, 30, environnement);
     }
     //La vie et la vitesse seront à équilibrer plus tard
 

@@ -35,6 +35,7 @@ public class Bfs {
                     }
                 }
             }
+        System.out.println("fin");
     }
 
     public ArrayList<Case> cheminVersSource(int x, int y){

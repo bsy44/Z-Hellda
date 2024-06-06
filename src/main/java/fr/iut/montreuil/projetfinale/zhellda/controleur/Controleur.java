@@ -65,7 +65,7 @@ public class Controleur implements Initializable {
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
 
-        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
+        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
         env.getObsJoueur().addListener(listeJoueur);
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
