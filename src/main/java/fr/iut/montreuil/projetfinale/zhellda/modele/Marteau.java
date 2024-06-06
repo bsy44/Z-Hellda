@@ -19,7 +19,7 @@ public class Marteau extends Arme {
                         ennemie.subirDegats(getAttaque());
                     }
                 } else {
-                    if ((sqrt(Math.pow(ennemie.getY() - j.getY(), 2))) <= 40 && ((ennemie.getX() >= j.getX() && ennemie.getY() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x)))) {
+                    if ((sqrt(Math.pow(ennemie.getY() - j.getY(), 2))) <= 40 && ((ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x)))) {
                         ennemie.subirDegats(getAttaque());
                     }
                 }

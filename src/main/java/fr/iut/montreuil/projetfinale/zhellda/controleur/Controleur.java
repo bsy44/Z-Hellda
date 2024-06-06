@@ -1,21 +1,21 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
+import fr.iut.montreuil.projetfinale.zhellda.vue.VueInventaireArme;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,6 +31,9 @@ public class Controleur implements Initializable {
     private TilePane tilePane;
     @FXML
     private HBox coeur;
+    @FXML
+    private ListView<Arme> inventaireArmes;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,7 +47,6 @@ public class Controleur implements Initializable {
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
 
-        // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -55,16 +57,6 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
-
-        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        });
-        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
-        });
-
-        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
@@ -79,6 +71,7 @@ public class Controleur implements Initializable {
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
+
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
@@ -92,9 +85,6 @@ public class Controleur implements Initializable {
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
-                    System.out.println(Environnement.getJ().getVitesse());
-
-
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
@@ -108,5 +98,4 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-
 }

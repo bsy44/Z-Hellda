@@ -1,18 +1,23 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import java.awt.*;
 
 public abstract class Arme {
     private int portee;
     private int attaque;
     private Environnement env;
+//    Image image;
 
     public Arme (Environnement env, int attaque, int portee){
         this.attaque=attaque;
         this.portee=portee;
         this.env =env;
+//        this.image=image;
     }
+//
+//    public Image getImage() {
+//        return image;
+//    }
 
     public Environnement getEnvironnement() {
         return env;

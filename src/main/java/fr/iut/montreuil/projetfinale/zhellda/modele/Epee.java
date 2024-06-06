@@ -1,10 +1,14 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import javafx.scene.image.Image;
+
 import static java.lang.Math.sqrt;
 
 public class Epee extends Arme{
+    private Image image;
     public Epee(Environnement environnement){
         super(environnement,2,40);
+        this.image=new Image(getClass().getResource("/fr/iut/montreuil/projetfinale/zhellda/bouleDeFeu.png").toExternalForm());
     }
 
 
@@ -40,5 +44,8 @@ public class Epee extends Arme{
 //                this.getEnvironnement().ennemiMort();
 //                ennemieTouche=true;
         }
+    }
+    public Image getImage() {
+        return image;
     }
 }

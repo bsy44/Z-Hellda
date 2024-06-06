@@ -12,8 +12,8 @@ public class Tank extends Ennemis{
 
             double distance = Math.sqrt(Math.pow(this.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(this.getYProperty().get() - j.getYProperty().get(), 2));
             if (distance <= this.getPortee() && distance >= 0) {
-                if (!j.etatAltere){
-                    j.etatAltere=true;
+                if (!j.isEtatAltere()){
+                    j.setEtatAltere(true);
                     j.debuffVitesse(2);
                 }
                 j.subirDegats(this.getAttaque());

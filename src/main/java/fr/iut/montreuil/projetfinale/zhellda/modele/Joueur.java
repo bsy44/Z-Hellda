@@ -1,29 +1,46 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Joueur extends Acteur {
-    private boolean []directions; //haut, gauche, bas, droite
-    private Arme arme;
+    private boolean[] directions; //haut, gauche, bas, droite
+    private Arme arme1;
+    private Arme arme2;
+    private Arme arme3;
+    private int numArmeUtilise;
     private IntegerProperty directionProperty;
-    boolean etatAltere;
+    private boolean etatAltere;
+    private ObservableList<Arme> inventaire;
 
-    public Joueur(Environnement environnement){
-       super(50,100, 10,3,"joueur",30,30, environnement);
-       this.arme=new Arc(environnement);
-       this.directions= new boolean[]{false, false, false, false};
+    public Joueur(Environnement environnement) {
+        super(50, 100, 10, 3, "joueur", 30, 30, environnement);
+        this.arme1 = new Arc(environnement);
+        this.arme2 = null;
+        this.arme3 = null;
+        this.numArmeUtilise=1;
+        this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
-        this.etatAltere=false;
+        this.etatAltere = false;
+        this.inventaire = FXCollections.observableArrayList();
     }
 
     public boolean getDirections(int i) {
         return directions[i];
     }
-
     public Arme getArme() {
-        return arme;
+        if (numArmeUtilise == 1)
+            return this.arme1;
+        else if (numArmeUtilise == 2)
+            return this.arme2;
+        else
+            return this.arme3;
+    }
+
+    public void setNumArmeUtilise(int numArmeUtilise) {
+        this.numArmeUtilise = numArmeUtilise;
     }
 
     public void setDirections(int i, boolean d) {
@@ -33,11 +50,23 @@ public class Joueur extends Acteur {
         directions[i] = true;
         directionProperty.set(i);
     }
+
     public IntegerProperty directionProperty() {
         return directionProperty;
     }
 
+    public ObservableList<Arme> getInventaire() {
+        return inventaire;
+    }
 
+    public boolean ramasserArme(Arme arme) {
+        if (inventaire.size() < 3) {
+            inventaire.add(arme);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public void seDeplacer() {
         int deltaX = 0;
@@ -67,7 +96,7 @@ public class Joueur extends Acteur {
             this.setX(newX);
             this.setY(newY);
         }
-        if (colisionEnnemis()){
+        if (colisionEnnemis()) {
             this.setX(oldX);
             this.setY(oldY);
         }
@@ -77,45 +106,42 @@ public class Joueur extends Acteur {
         }
     }
 
-    public void resetDeplacement (){
+    public void resetDeplacement() {
         for (int i = 0; i < this.directions.length; i++) {
             this.directions[i] = false;
         }
     }
 
-    public boolean colisionEnv(int haut, int bas, int droite, int gauche){
+    public boolean colisionEnv(int haut, int bas, int droite, int gauche) {
         if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
                 gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {
-            return  !Environnement.getTerrain().obstacle(gauche, haut) &&
+            return !Environnement.getTerrain().obstacle(gauche, haut) &&
                     !Environnement.getTerrain().obstacle(droite, haut) &&
                     !Environnement.getTerrain().obstacle(gauche, bas) &&
                     !Environnement.getTerrain().obstacle(droite, bas);
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-
     public boolean colisionEnnemis() {
-        int cpt=0;
+        int cpt = 0;
         int joueurX = (int) this.getHitbox().getX();
         int joueurY = (int) this.getHitbox().getY();
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
 
         for (Ennemis ennemi : Environnement.getObsEnnemis()) {
-            System.out.println(ennemi.getId());
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
             int ennemiHeight = (int) ennemi.getHitbox().getHeight();
 
-            if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
+            if (joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY) {
                 cpt++;
             }
         }
-        return (cpt!=0);
+        return (cpt != 0);
     }
 
     public boolean isEtatAltere() {
@@ -126,6 +152,7 @@ public class Joueur extends Acteur {
     public IntegerProperty getVie() {
         return super.getVie();
     }
+
     public int getVieMax() {
         return 10;
     }
@@ -134,11 +161,11 @@ public class Joueur extends Acteur {
         this.etatAltere = etatAltere;
     }
 
-    public void debuffVitesse(int viteseDebuff){
-        this.vitesse=(vitesse-viteseDebuff);
-    }
-    public void buffVitesse(int viteseBuff){
-        this.vitesse=(vitesse+viteseBuff);
+    public void debuffVitesse(int viteseDebuff) {
+        this.vitesse = (vitesse - viteseDebuff);
     }
 
+    public void buffVitesse(int viteseBuff) {
+        this.vitesse = (vitesse + viteseBuff);
+    }
 }
