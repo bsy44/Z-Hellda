@@ -1,15 +1,18 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Inventaire {
 
-    private ArrayList<Arme> listArme;
-    private ArrayList<Item> listItem;
+    private ObservableList<Arme> listArme;
+    private ObservableList<Item> listItem;
 
     public Inventaire(){
-        this.listArme = new ArrayList<>(4);
-        this.listItem = new ArrayList<>(6);
+        this.listArme = FXCollections.observableArrayList();
+        this.listItem = FXCollections.observableArrayList();
     }
 
     public void ajouterArme(Arme a){
@@ -26,11 +29,11 @@ public class Inventaire {
 
     public void retirerItem(Item i){listItem.remove(i);}
 
-    public ArrayList<Arme> getListArme() {
+    public ObservableList<Arme> getListArme() {
         return listArme;
     }
 
-    public ArrayList<Item> getListItem() {
+    public ObservableList<Item> getListItem() {
         return listItem;
     }
 

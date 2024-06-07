@@ -92,14 +92,14 @@ public class Environnement {
     }
 
     public void actionItem(){
-        for (int i = obsItemParTerre.size()-1; i >=0 ; i--) {
-            if (Environnement.j.ramasserItem()) {
-                Environnement.getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
+        for (int i = obsItemParTerre.size() - 1; i >= 0 ; i--) {
+            if (getJ().ramasserItem(obsItemParTerre.get(i))) {
+                getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
                 obsItemParTerre.remove(obsItemParTerre.get(i));
             }
         }
     }
-
+    
     public  ObservableList<Projectile> getObsProjectile() {
         return obsProjectile;
     }

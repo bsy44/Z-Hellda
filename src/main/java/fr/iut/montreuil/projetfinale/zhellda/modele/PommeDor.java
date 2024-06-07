@@ -5,7 +5,16 @@ public class PommeDor extends Item{
         super(posX, posY, "pommeOr");
     }
 
-    public void ajouterPv(){
-        Environnement.getJ().setVie(2);
+    @Override
+    public void consommerItem() {
+        if (Environnement.getJ().getVie().getValue() < Environnement.getJ().getVieMax()) {
+            if (Environnement.getJ().getVie().getValue() == 9) {
+                Environnement.getJ().setVie(1);
+            }
+            else {
+                Environnement.getJ().setVie(2);
+            }
+        }
+        Environnement.getJ().getInventaire().retirerItem(this);
     }
 }

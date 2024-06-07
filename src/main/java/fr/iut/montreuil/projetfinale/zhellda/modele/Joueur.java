@@ -12,12 +12,12 @@ public class Joueur extends Acteur {
 
     private Inventaire inventaire;
     public Joueur(Environnement environnement){
-       super(282,10, 10,3,"joueur",30,30, environnement);
-       this.arme=new Marteau(environnement);
-       this.directions = new boolean[]{false, false, false, false};
-       this.etatAltere = false;
-       this.directionProperty = new SimpleIntegerProperty(-1);
-       this.inventaire = new Inventaire();
+        super(282,10, 10,3,"joueur",30,30, environnement);
+        this.arme = new Arc(environnement);
+        this.directions = new boolean[]{false, false, false, false};
+        this.etatAltere = false;
+        this.directionProperty = new SimpleIntegerProperty(-1);
+        this.inventaire = new Inventaire();
     }
 
     public boolean getDirections(int i) {
@@ -98,7 +98,6 @@ public class Joueur extends Acteur {
         }
     }
 
-
     public boolean colisionEnnemis() {
         int cpt=0;
         int joueurX = (int) this.getHitbox().getX();
@@ -123,28 +122,20 @@ public class Joueur extends Acteur {
         return etatAltere;
     }
 
-    @Override
-    public IntegerProperty getVie() {
-        return super.getVie();
-    }
-
     public int getVieMax() {
         return 10;
     }
 
-    public boolean ramasserItem() {
+    public boolean ramasserItem(Item item) {
         if (this.getInventaire().estPlein()) {
             return false;
         }
 
-        for (int i = getEnvironnement().getObsItemParTerre().size() - 1; i >= 0; i--) {
-            Item item = getEnvironnement().getObsItemParTerre().get(i);
-            if (item.getX() + 10 >= this.getHitbox().getX() &&
-                    item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
-                    item.getY() + 10 >= this.getHitbox().getY() &&
-                    item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
-                return true;
-            }
+        if (item.getX() + 10 >= this.getHitbox().getX() &&
+                item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                item.getY() + 10 >= this.getHitbox().getY() &&
+                item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+            return true;
         }
         return false;
     }
