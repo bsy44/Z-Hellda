@@ -2,45 +2,79 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.scene.input.KeyEvent;
-import static fr.iut.montreuil.projetfinale.zhellda.modele.Environnement.getJ;
+import javafx.scene.input.KeyCode;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Clavier {
 
-    public static void  keyPressed(KeyEvent e) {
-        switch (e.getCode()){
+    private static final Set<KeyCode> currentlyPressedKeys = new HashSet<>();
 
+    public static void keyPressed(KeyEvent e) {
+        currentlyPressedKeys.add(e.getCode());
+        deplacerPersonnage(currentlyPressedKeys);
+        gererAttaques(e);
+    }
 
-            case Z:
-                Environnement.getJ().setDirections(0, true);
+    public static void keyReleased(KeyEvent e) {
+        currentlyPressedKeys.remove(e.getCode());
+    }
 
-                break;
-            case Q:
-                Environnement.getJ().setDirections(1, true);
-                break;
-            case S:
-                Environnement.getJ().setDirections(2, true);
-                break;
-            case D:
-                Environnement.getJ().setDirections(3, true);
-                break;
+    private static void deplacerPersonnage(Set<KeyCode> directions) {
+        boolean haut = directions.contains(KeyCode.Z);
+        boolean bas = directions.contains(KeyCode.S);
+        boolean gauche = directions.contains(KeyCode.Q);
+        boolean droite = directions.contains(KeyCode.D);
 
+        if (haut && gauche) {
+            Environnement.getJ().setDoubleDirections(0, 1); // Diagonale haut-gauche
+        } else if (haut && droite) {
+            Environnement.getJ().setDoubleDirections(0, 3); // Diagonale haut-droite
+        } else if (bas && gauche) {
+            Environnement.getJ().setDoubleDirections(2, 1); // Diagonale bas-gauche
+        } else if (bas && droite) {
+            Environnement.getJ().setDoubleDirections(2, 3); // Diagonale bas-droite
+        } else if (haut) {
+            Environnement.getJ().setDirections(0); // Haut
+        } else if (bas) {
+            Environnement.getJ().setDirections(2); // Bas
+        } else if (gauche) {
+            Environnement.getJ().setDirections(1); // Gauche
+        } else if (droite) {
+            Environnement.getJ().setDirections(3); // Droite
+        }
+    }
+
+    private static void gererAttaques(KeyEvent e) {
+        switch (e.getCode()) {
             case UP:
-                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()- getJ().getArme().getPortee());
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), Environnement.getJ().getX(), Environnement.getJ().getY() - Environnement.getJ().getArme().getPortee());
                 break;
             case DOWN:
-                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX(), getJ().getY()+getJ().getArme().getPortee());
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), Environnement.getJ().getX(), Environnement.getJ().getY() + Environnement.getJ().getArme().getPortee());
                 break;
             case LEFT:
-                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()- getJ().getArme().getPortee(), getJ().getY());
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), Environnement.getJ().getX() - Environnement.getJ().getArme().getPortee(), Environnement.getJ().getY());
                 break;
             case RIGHT:
-                Environnement.getJ().getArme().attaquer(Environnement.getJ(), getJ().getX()+ getJ().getArme().getPortee(), getJ().getY());
+                Environnement.getJ().getArme().attaquer(Environnement.getJ(), Environnement.getJ().getX() + Environnement.getJ().getArme().getPortee(), Environnement.getJ().getY());
                 break;
-
-            default :
+            case AMPERSAND:
+                System.out.println("arme 1");
+                Environnement.getJ().setNumArmeUtilise(1);
+                break;
+            case UNDEFINED:
+                System.out.println("arme 2");
+                Environnement.getJ().setNumArmeUtilise(2);
+                break;
+            case QUOTEDBL:
+                System.out.println("arme 3");
+                Environnement.getJ().setNumArmeUtilise(3);
+                break;
+            default:
                 System.out.println("default");
                 break;
-
         }
     }
 

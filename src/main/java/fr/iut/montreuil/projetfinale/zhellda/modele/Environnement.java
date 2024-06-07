@@ -56,6 +56,10 @@ public class Environnement {
         this.obsProjectile.add(projectile);
     }
 
+    public void ajouterItem(Item item){
+        this.obsItemParTerre.add(item);
+    }
+
     public void ennemiMort() {
         for(int i = getObsEnnemis().size()-1; i>=0;i--){
             Acteur a = getObsEnnemis().get(i);
@@ -94,7 +98,14 @@ public class Environnement {
     public void actionItem(){
         for (int i = obsItemParTerre.size() - 1; i >= 0 ; i--) {
             if (getJ().ramasserItem(obsItemParTerre.get(i))) {
-                getJ().getInventaire().ajouterItem(obsItemParTerre.get(i));
+                if (obsItemParTerre.get(i) instanceof Arme){
+                    getJ().getInventaireArme().ajouterItem(obsItemParTerre.get(i));
+                    System.out.println("Arme ajouté à l'inventaire d'arme");
+                }
+                else {
+                    getJ().getInventaireItem().ajouterItem(obsItemParTerre.get(i));
+                    System.out.println("Consomable ajouté à l'inventaire");
+                }
                 obsItemParTerre.remove(obsItemParTerre.get(i));
             }
         }

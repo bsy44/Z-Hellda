@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -74,7 +75,7 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
     }
 
     public int getFirstSlot() {// Méthode pour trouver le premier slot disponible dans l'inventaire
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < Environnement.getJ().getInventaireItem().getCapaciteMax(); i++) {
             ImageView imageView = (ImageView) inventaireItem.lookup("#item" + i);
             if (imageView != null && imageView.getImage() == null) {
                 return i;  // Retourner le premier slot disponible

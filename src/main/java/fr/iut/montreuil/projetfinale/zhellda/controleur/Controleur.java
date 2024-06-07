@@ -1,16 +1,13 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Projectile;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
+import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,8 +17,6 @@ import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,6 +34,12 @@ public class Controleur implements Initializable {
     private HBox coeur;
     @FXML
     private VBox inventaireItem;
+    @FXML HBox inventaireArme;
+
+    public void initKeyHandlers(Scene scene) {
+        scene.setOnKeyPressed(Clavier::keyPressed);
+        scene.setOnKeyReleased(Clavier::keyReleased);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,6 +55,14 @@ public class Controleur implements Initializable {
         Ennemis e6 = new Zombie(610, 210, this.env);
         Ennemis e7 = new Zombie(410, 210, this.env);
 
+        Arc arc = new Arc(320, 110, env);
+        Epee epee = new Epee(env, 410, 367);
+        Marteau marteau = new Marteau(env, 710, 210);
+        env.ajouterItem(arc);
+        env.ajouterItem(epee);
+        env.ajouterItem(marteau);
+
+
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
         env.ajouterEnnemi(e3);
@@ -64,7 +73,12 @@ public class Controleur implements Initializable {
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
 
-        // Mettre à jour l'affichage initial des cœurs
+        pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                initKeyHandlers(newScene);
+            }
+        });
+
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -80,7 +94,10 @@ public class Controleur implements Initializable {
         env.getObsItemParTerre().addListener(listObsItem);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
-        Environnement.getJ().getInventaire().getListItem().addListener(listObsItemInventaire);
+        Environnement.getJ().getInventaireItem().getListItem().addListener(listObsItemInventaire);
+
+        ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
+        Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
         /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
             this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
@@ -94,6 +111,10 @@ public class Controleur implements Initializable {
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
+        }
+
+        for (Item item:env.getObsItemParTerre()) {
+            new VueItem(pane, item, item.getNom() + ".png");
         }
 
         initAnimation();
@@ -144,35 +165,36 @@ public class Controleur implements Initializable {
             Button boutonJeter = new Button("Jeter");
             Button boutonAnuler = new Button("X");
 
-            inventaireItem.getChildren().add(boutonConsommer);
-            inventaireItem.getChildren().add(boutonJeter);
-            inventaireItem.getChildren().add(boutonAnuler);
+            VBox hBox = new VBox();
+            hBox.getChildren().add(boutonConsommer);
+            hBox.getChildren().add(boutonJeter);
+            hBox.getChildren().add(boutonAnuler);
+            hBox.setSpacing(7);
+            inventaireItem.getChildren().add(hBox);
 
             boutonConsommer.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
-                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
+                ItemConsomable item = (ItemConsomable) Environnement.getJ().getInventaireItem().getListItem().get(index);
                 item.consommerItem();
 
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
 
             boutonJeter.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
-                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
-                Environnement.getJ().getInventaire().retirerItem(item);
+                Item item = Environnement.getJ().getInventaireItem().getListItem().get(index);
+                Environnement.getJ().jeterItem(item);
 
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
 
             boutonAnuler.setOnAction(event1 -> {
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
+
+            boutonConsommer.getStyleClass().add("bouton-dynamique");
+            boutonJeter.getStyleClass().add("bouton-dynamique");
+            boutonAnuler.getStyleClass().add("bouton-dynamique");
         }
     }
 }
