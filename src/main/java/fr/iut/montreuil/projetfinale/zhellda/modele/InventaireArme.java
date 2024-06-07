@@ -23,7 +23,8 @@ public class InventaireArme {
             return false;
         }
 
-        public void retirerArme(Arme arme) {
+
+    public void retirerArme(Arme arme) {
             armes.remove(arme);
         }
 

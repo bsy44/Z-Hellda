@@ -6,10 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Joueur extends Acteur {
-    private boolean[] directions; //haut, gauche, bas, droite
-    private Arme arme1;
-    private Arme arme2;
-    private Arme arme3;
+    private boolean[] directions; // haut, gauche, bas, droite
+    private InventaireArme inventaireArme;
     private int numArmeUtilise;
     private IntegerProperty directionProperty;
     private boolean etatAltere;
@@ -17,10 +15,9 @@ public class Joueur extends Acteur {
 
     public Joueur(Environnement environnement) {
         super(50, 100, 10, 3, "joueur", 30, 30, environnement);
-        this.arme1 = new Arc(environnement);
-        this.arme2 = null;
-        this.arme3 = null;
-        this.numArmeUtilise=1;
+        this.inventaireArme = new InventaireArme();
+        inventaireArme.ajouterArme(new Epee(environnement));
+        this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere = false;
@@ -30,25 +27,33 @@ public class Joueur extends Acteur {
     public boolean getDirections(int i) {
         return directions[i];
     }
+
     public Arme getArme() {
-        if (numArmeUtilise == 1)
-            return this.arme1;
-        else if (numArmeUtilise == 2)
-            return this.arme2;
-        else
-            return this.arme3;
+        if (this.inventaireArme.getArmes().size() - 1 > numArmeUtilise)
+            return null;
+        return this.inventaireArme.getArmes().get(numArmeUtilise - 1);
     }
 
     public void setNumArmeUtilise(int numArmeUtilise) {
         this.numArmeUtilise = numArmeUtilise;
     }
 
-    public void setDirections(int i, boolean d) {
+    public void setDirections(int i) {
         for (int j = 0; j < this.directions.length; j++) {
             this.directions[j] = false;
         }
         directions[i] = true;
         directionProperty.set(i);
+    }
+
+    public void setDoubleDirections(int i, int j) {
+        for (int z = 0; z < this.directions.length; z++) {
+            this.directions[z] = false;
+        }
+        directions[i] = true;
+        directionProperty.set(i);
+        directions[j] = true;
+        directionProperty.set(j);
     }
 
     public IntegerProperty directionProperty() {
@@ -74,15 +79,10 @@ public class Joueur extends Acteur {
         int oldX = this.getX();
         int oldY = this.getY();
 
-        if (this.directions[0]) {
-            deltaY = -this.vitesse;
-        } else if (this.directions[1]) {
-            deltaX = -this.vitesse;
-        } else if (this.directions[2]) {
-            deltaY = this.vitesse;
-        } else if (this.directions[3]) {
-            deltaX = this.vitesse;
-        }
+        if (this.directions[0]) deltaY -= this.vitesse; // Haut
+        if (this.directions[1]) deltaX -= this.vitesse; // Gauche
+        if (this.directions[2]) deltaY += this.vitesse; // Bas
+        if (this.directions[3]) deltaX += this.vitesse; // Droite
 
         int newX = this.getX() + deltaX;
         int newY = this.getY() + deltaY;

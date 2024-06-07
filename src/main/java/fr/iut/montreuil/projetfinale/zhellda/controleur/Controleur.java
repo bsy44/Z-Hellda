@@ -1,21 +1,18 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueInventaireArme;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueJoueur;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
+import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,8 +20,9 @@ public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
-    private int tempsAlteration=0;
+    private int tempsAlteration = 0;
     private int tempsEcoule = 0;
+
     @FXML
     private Pane pane;
     @FXML
@@ -34,6 +32,10 @@ public class Controleur implements Initializable {
     @FXML
     private ListView<Arme> inventaireArmes;
 
+    public void initKeyHandlers(Scene scene) {
+        scene.setOnKeyPressed(Clavier::keyPressed);
+        scene.setOnKeyReleased(Clavier::keyReleased);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +49,14 @@ public class Controleur implements Initializable {
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
 
+        // Initialiser les gestionnaires de touches après que la scène soit prête
+        pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                initKeyHandlers(newScene);
+            }
+        });
+
+        // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -71,17 +81,16 @@ public class Controleur implements Initializable {
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
-                    if (Environnement.getJ().isEtatAltere()){
-                        tempsAlteration+=10;
+                    if (Environnement.getJ().isEtatAltere()) {
+                        tempsAlteration += 10;
                     }
-                    if (tempsAlteration==50000){
-                        tempsAlteration=0;
+                    if (tempsAlteration == 50000) {
+                        tempsAlteration = 0;
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
@@ -94,6 +103,7 @@ public class Controleur implements Initializable {
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
+                    System.out.println(Environnement.getJ().getArme());
                 })
         );
         gameLoop.getKeyFrames().add(kf);

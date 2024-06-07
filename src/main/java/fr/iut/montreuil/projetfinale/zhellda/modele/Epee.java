@@ -7,7 +7,7 @@ import static java.lang.Math.sqrt;
 public class Epee extends Arme{
     private Image image;
     public Epee(Environnement environnement){
-        super(environnement,2,40);
+        super(environnement,2,80);
         this.image=new Image(getClass().getResource("/fr/iut/montreuil/projetfinale/zhellda/bouleDeFeu.png").toExternalForm());
     }
 
