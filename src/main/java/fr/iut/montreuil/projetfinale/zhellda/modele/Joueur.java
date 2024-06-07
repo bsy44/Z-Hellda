@@ -155,15 +155,22 @@ public class Joueur extends Acteur {
                 item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
                 item.getY() + 10 >= this.getHitbox().getY() &&
                 item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+            System.out.println("Ramasser");
             return true;
         }
         return false;
     }
 
-    public void jeterItem(Item i){
-        inventaireItem.supprimerItem(i);
-        i.setX(getX() + 10);
-        getEnvironnement().getObsItemParTerre().add(i);
+    public void jeterItem(Item item){
+        item.setX(getX());
+        item.setY(getY() - 30);
+        if (item instanceof Arme){
+            inventaireArme.supprimerItem(item);
+        }
+        else {
+            inventaireItem.supprimerItem(item);
+        }
+        getEnvironnement().getObsItemParTerre().add(item);
     }
     
     public void setEtatAltere(boolean etatAltere) {

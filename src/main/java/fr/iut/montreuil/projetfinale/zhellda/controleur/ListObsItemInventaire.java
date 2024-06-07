@@ -4,14 +4,10 @@ import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import javafx.collections.ListChangeListener;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-
-import java.awt.event.ActionEvent;
 import java.net.URL;
 
 public class ListObsItemInventaire implements ListChangeListener<Item> {
@@ -44,15 +40,15 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
         if (url != null) {
             Image image = new Image(url.toExternalForm());
 
-            int index = getFirstSlot();// Trouver le premier slot disponible
+            int index = getFirstSlot();
             if (index != -1) {
-                ImageView imageView = (ImageView) inventaireItem.lookup("#item" + index);// Récupérer l'ImageView et le Label correspondants
-                Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() +  index);
+                ImageView imageView = (ImageView) inventaireItem.lookup("#item" + index);
+                Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() + index);
 
                 if (imageView != null && labelItem != null) {
                     imageView.setImage(image);
                     labelItem.setText(item.getNom());
-                    item.setIndexInventaire(index);  // Stocker l'index de l'inventaire dans l'item
+                    item.setIndexInventaire(index);
                 }
             }
         }
@@ -60,9 +56,9 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
 
     public void retirerImageDeInventaire(Item item) {
         int index = item.getIndexInventaire();
-        if (index != -1) {
+        if (index != -1) {// Vide le slot actuel
             ImageView imageView = (ImageView) inventaireItem.lookup("#item" + index);
-            Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() +  index);
+            Label labelItem = (Label) inventaireItem.lookup("#" + item.getLabelItem() + index);
 
             if (imageView != null) {
                 imageView.setImage(null);
@@ -70,17 +66,37 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
             if (labelItem != null) {
                 labelItem.setText("");
             }
-            item.setIndexInventaire(-1);  // Réinitialiser l'index de l'inventaire dans l'item
+            item.setIndexInventaire(-1);// Réinitialise l'index de l'item supprimé
+
+            mettreAjourInventaire();
         }
     }
 
-    public int getFirstSlot() {// Méthode pour trouver le premier slot disponible dans l'inventaire
+    public void mettreAjourInventaire() {
+        for (int i = 0; i < Environnement.getJ().getInventaireItem().getCapaciteMax(); i++) {// Réinitialise les slots de l'inventaire
+            ImageView imageView = (ImageView) inventaireItem.lookup("#item" + i);
+            Label labelItem = (Label) inventaireItem.lookup("#labelItem" + i);
+            if (imageView != null) {
+                imageView.setImage(null);
+            }
+            if (labelItem != null) {
+                labelItem.setText("");
+            }
+        }
+
+        for (int i = 0; i < Environnement.getJ().getInventaireItem().getListItem().size(); i++) {
+            Item currentItem = Environnement.getJ().getInventaireItem().getListItem().get(i);
+            ajouterImageVersInventaire(currentItem);
+        }
+    }
+
+    public int getFirstSlot() {
         for (int i = 0; i < Environnement.getJ().getInventaireItem().getCapaciteMax(); i++) {
             ImageView imageView = (ImageView) inventaireItem.lookup("#item" + i);
             if (imageView != null && imageView.getImage() == null) {
-                return i;  // Retourner le premier slot disponible
+                return i;
             }
         }
-        return -1;  // Retourner -1 si l'inventaire est plein
+        return -1;
     }
 }

@@ -59,8 +59,8 @@ public class Controleur implements Initializable {
         Epee epee = new Epee(env, 410, 367);
         Marteau marteau = new Marteau(env, 710, 210);
         env.ajouterItem(arc);
-        env.ajouterItem(epee);
-        env.ajouterItem(marteau);
+        /*env.ajouterItem(epee);
+        env.ajouterItem(marteau);*/
 
 
         env.ajouterEnnemi(e);
@@ -143,7 +143,7 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
-                            ennemi.seDeplacer();
+                            //ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }
@@ -169,7 +169,7 @@ public class Controleur implements Initializable {
             hBox.getChildren().add(boutonConsommer);
             hBox.getChildren().add(boutonJeter);
             hBox.getChildren().add(boutonAnuler);
-            hBox.setSpacing(7);
+            hBox.setSpacing(5);
             inventaireItem.getChildren().add(hBox);
 
             boutonConsommer.setOnAction(event1 -> {

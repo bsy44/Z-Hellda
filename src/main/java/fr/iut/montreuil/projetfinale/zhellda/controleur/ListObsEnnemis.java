@@ -2,6 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
+import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -18,6 +19,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
         while (change.next()) {
             if (change.wasAdded()){
                 for (Ennemis e : change.getRemoved()) {
+                    new VueEnnemis(pane, e, e.getNom() + ".png");
                 }
             }
 

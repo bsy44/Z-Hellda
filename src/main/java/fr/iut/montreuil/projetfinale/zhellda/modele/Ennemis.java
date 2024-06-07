@@ -9,15 +9,17 @@ public abstract class Ennemis extends Acteur {
     private int vitesse;
     private int attaque;
     private int portee;
+    private String nom;
     private int type;//0 pour sol et 1 pour aérien
     private ArrayList<Case> cheminVersJoueur;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement){
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom){
         super(x, y, vie,vitesse,"#"+compteur, HitBoxW, HitBoxH, environnement);
         compteur++;
         this.attaque = attaque;
         this.portee=portee;
         this.type=type;
+        this.nom = nom;
         this.cheminVersJoueur = Environnement.getBfs().cheminVersSource(x, y);
     }
 
@@ -35,8 +37,11 @@ public abstract class Ennemis extends Acteur {
 
     public abstract void attaquer();
 
-
     public abstract int getPvMax();
+
+    public String getNom() {
+        return nom;
+    }
 
     public void seDeplacer (){
         Case c;

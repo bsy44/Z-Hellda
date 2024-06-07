@@ -14,18 +14,18 @@ public class Bfs {
     }
 
     private void algoBfs() {
-        System.out.println("debut algo bfs");
+        //System.out.println("debut algo bfs");
         LinkedList fifo = new LinkedList<Case>();
         fifo.addFirst(source);
         this.predecesseur.put(source, null);
         Case c1;
-        System.out.println("source :" + source);
+
             while (!fifo.isEmpty()) {
-                System.out.println("while");
+
                 c1 = (Case) fifo.pollFirst();
-                System.out.println(c1);
+
                 for (Case c : c1.adjacents()) {
-                    System.out.println(c);
+
                     if (!visite[c.getX()][c.getY()]) {
                         visite[c.getX()][c.getY()] = true;
                         if (!Environnement.getTerrain().obstacle(c.getX(), c.getY())) {
@@ -35,7 +35,7 @@ public class Bfs {
                     }
                 }
             }
-        System.out.println("fin");
+        //System.out.println("fin");
     }
 
     public ArrayList<Case> cheminVersSource(int x, int y){

@@ -8,9 +8,8 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 
 public class ObsJoueur implements ListChangeListener<Joueur> {
     @FXML
@@ -40,7 +39,6 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
         Environnement.getJ().getXProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                System.out.println("HELP X");
                 Environnement.nouveauBfs();
                 for (Ennemis e : env.getObsEnnemis()) {
                     e.nouveauChemin();
@@ -51,7 +49,6 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
         Environnement.getJ().getYProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                System.out.println("HELP Y");
                 Environnement.nouveauBfs();
                 for (Ennemis e : env.getObsEnnemis()) {
                     e.nouveauChemin();

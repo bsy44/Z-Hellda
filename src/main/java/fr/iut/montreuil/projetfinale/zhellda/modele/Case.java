@@ -34,13 +34,7 @@ public class Case {
         return adj;
     }
 
-    @Override
-    public String toString() {
-        return "Case{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
