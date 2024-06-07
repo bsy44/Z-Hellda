@@ -55,10 +55,13 @@ public class Controleur implements Initializable {
         Ennemis e6 = new Zombie(610, 210, this.env);
         Ennemis e7 = new Zombie(410, 210, this.env);
 
-        Arc arc = new Arc(310, 110, env);
+        Arc arc = new Arc(320, 110, env);
+        Epee epee = new Epee(env, 410, 367);
+        Marteau marteau = new Marteau(env, 710, 210);
         env.ajouterItem(arc);
-        new VueItem(pane, arc, arc.getNom()+".png");
-        System.out.println(arc.getId());
+        env.ajouterItem(epee);
+        env.ajouterItem(marteau);
+
 
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
@@ -110,6 +113,10 @@ public class Controleur implements Initializable {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
         }
 
+        for (Item item:env.getObsItemParTerre()) {
+            new VueItem(pane, item, item.getNom() + ".png");
+        }
+
         initAnimation();
         gameLoop.play();
     }
@@ -157,18 +164,19 @@ public class Controleur implements Initializable {
             Button boutonJeter = new Button("Jeter");
             Button boutonAnuler = new Button("X");
 
-            inventaireItem.getChildren().add(boutonConsommer);
-            inventaireItem.getChildren().add(boutonJeter);
-            inventaireItem.getChildren().add(boutonAnuler);
+            VBox hBox = new VBox();
+            hBox.getChildren().add(boutonConsommer);
+            hBox.getChildren().add(boutonJeter);
+            hBox.getChildren().add(boutonAnuler);
+            hBox.setSpacing(7);
+            inventaireItem.getChildren().add(hBox);
 
             boutonConsommer.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
                 ItemConsomable item = (ItemConsomable) Environnement.getJ().getInventaireItem().getListItem().get(index);
                 item.consommerItem();
 
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
 
             boutonJeter.setOnAction(event1 -> {
@@ -176,16 +184,16 @@ public class Controleur implements Initializable {
                 Item item = Environnement.getJ().getInventaireItem().getListItem().get(index);
                 Environnement.getJ().jeterItem(item);
 
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
 
             boutonAnuler.setOnAction(event1 -> {
-                inventaireItem.getChildren().remove(boutonConsommer);
-                inventaireItem.getChildren().remove(boutonJeter);
-                inventaireItem.getChildren().remove(boutonAnuler);
+                inventaireItem.getChildren().remove(hBox);
             });
+
+            boutonConsommer.getStyleClass().add("bouton-dynamique");
+            boutonJeter.getStyleClass().add("bouton-dynamique");
+            boutonAnuler.getStyleClass().add("bouton-dynamique");
         }
     }
 }

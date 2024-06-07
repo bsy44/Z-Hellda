@@ -42,7 +42,6 @@ public class ListObsInventaireArme implements ListChangeListener<Item> {
         URL url = Lancement.class.getResource(arme.getNom() + ".png");
         if (url != null) {
             Image image = new Image(url.toExternalForm());
-
             int index = getFirstSlot();
             if (index != -1) {
                 ImageView imageView = (ImageView) inventaireArme.lookup("#arme" + index);

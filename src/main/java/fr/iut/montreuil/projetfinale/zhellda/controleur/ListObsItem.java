@@ -1,18 +1,10 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import java.net.URL;
 
 public class ListObsItem implements ListChangeListener<Item> {
     private Pane pane;
