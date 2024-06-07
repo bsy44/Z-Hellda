@@ -6,8 +6,8 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,8 +17,6 @@ import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,7 +26,6 @@ public class Controleur implements Initializable {
     private int temps;
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
-
     @FXML
     private Pane pane;
     @FXML
@@ -36,14 +33,13 @@ public class Controleur implements Initializable {
     @FXML
     private HBox coeur;
     @FXML
-    private ListView<Arme> inventaireArmes;
+    private VBox inventaireItem;
+    @FXML HBox inventaireArme;
 
     public void initKeyHandlers(Scene scene) {
         scene.setOnKeyPressed(Clavier::keyPressed);
         scene.setOnKeyReleased(Clavier::keyReleased);
     }
-    @FXML
-    private VBox inventaireItem;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,6 +54,11 @@ public class Controleur implements Initializable {
         Ennemis e5 = new Zombie(510, 210, this.env);
         Ennemis e6 = new Zombie(610, 210, this.env);
         Ennemis e7 = new Zombie(410, 210, this.env);
+
+        Arc arc = new Arc(310, 110, env);
+        env.ajouterItem(arc);
+        new VueItem(pane, arc, arc.getNom()+".png");
+        System.out.println(arc.getId());
 
         env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
@@ -74,6 +75,7 @@ public class Controleur implements Initializable {
                 initKeyHandlers(newScene);
             }
         });
+
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -89,7 +91,10 @@ public class Controleur implements Initializable {
         env.getObsItemParTerre().addListener(listObsItem);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
-        Environnement.getJ().getInventaire().getListItem().addListener(listObsItemInventaire);
+        Environnement.getJ().getInventaireItem().getListItem().addListener(listObsItemInventaire);
+
+        ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
+        Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
         /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
             this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
@@ -158,7 +163,7 @@ public class Controleur implements Initializable {
 
             boutonConsommer.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
-                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
+                ItemConsomable item = (ItemConsomable) Environnement.getJ().getInventaireItem().getListItem().get(index);
                 item.consommerItem();
 
                 inventaireItem.getChildren().remove(boutonConsommer);
@@ -168,8 +173,8 @@ public class Controleur implements Initializable {
 
             boutonJeter.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
-                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
-                Environnement.getJ().getInventaire().retirerItem(item);
+                Item item = Environnement.getJ().getInventaireItem().getListItem().get(index);
+                Environnement.getJ().jeterItem(item);
 
                 inventaireItem.getChildren().remove(boutonConsommer);
                 inventaireItem.getChildren().remove(boutonJeter);
@@ -183,5 +188,4 @@ public class Controleur implements Initializable {
             });
         }
     }
-
 }

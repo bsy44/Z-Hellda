@@ -1,28 +1,24 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class Joueur extends Acteur {
     private boolean[] directions; // haut, gauche, bas, droite
-    private InventaireArme inventaireArme;
     private int numArmeUtilise;
     private IntegerProperty directionProperty;
     private boolean etatAltere;
-    private ObservableList<Arme> inventaire;
+    private Inventaire inventaireArme;
+    private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(50, 100, 10, 3, "joueur", 30, 30, environnement);
-        this.inventaireArme = new InventaireArme();
-        inventaireArme.ajouterArme(new Epee(environnement));
+        super(282, 100, 10, 3, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere = false;
-        this.inventaire = FXCollections.observableArrayList();
+        this.inventaireArme = new Inventaire(3);
+        this.inventaireItem = new Inventaire(6);
     }
 
     public boolean getDirections(int i) {
@@ -30,9 +26,17 @@ public class Joueur extends Acteur {
     }
 
     public Arme getArme() {
-        if (this.inventaireArme.getArmes().size() - 1 > numArmeUtilise)
+        if (this.inventaireArme.getListItem().size() - 1 > numArmeUtilise)
             return null;
-        return this.inventaireArme.getArmes().get(numArmeUtilise - 1);
+        return (Arme) this.inventaireArme.getListItem().get(numArmeUtilise - 1);
+    }
+
+    public Inventaire getInventaireItem() {
+        return inventaireItem;
+    }
+
+    public Inventaire getInventaireArme() {
+        return inventaireArme;
     }
 
     public void setNumArmeUtilise(int numArmeUtilise) {
@@ -59,19 +63,6 @@ public class Joueur extends Acteur {
 
     public IntegerProperty directionProperty() {
         return directionProperty;
-    }
-
-    public ObservableList<Arme> getInventaire() {
-        return inventaire;
-    }
-
-    public boolean ramasserArme(Arme arme) {
-        if (inventaire.size() < 3) {
-            inventaire.add(arme);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public void seDeplacer() {
@@ -134,8 +125,6 @@ public class Joueur extends Acteur {
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
 
-        for (Ennemis ennemi : Environnement.getObsEnnemis()) {
-
         for (Ennemis ennemi : getEnvironnement().getObsEnnemis()) {
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
@@ -158,7 +147,7 @@ public class Joueur extends Acteur {
     }
 
     public boolean ramasserItem(Item item) {
-        if (this.getInventaire().estPlein()) {
+        if (inventaireItem.estPlein()) {
             return false;
         }
 
@@ -170,8 +159,11 @@ public class Joueur extends Acteur {
         }
         return false;
     }
-    public Inventaire getInventaire() {
-        return inventaire;
+
+    public void jeterItem(Item i){
+        inventaireItem.supprimerItem(i);
+        i.setX(getX() + 10);
+        getEnvironnement().getObsItemParTerre().add(i);
     }
 
     public void setEtatAltere(boolean etatAltere) {

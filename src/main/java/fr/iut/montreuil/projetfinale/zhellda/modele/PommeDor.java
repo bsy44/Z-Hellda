@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-public class PommeDor extends Item{
+public class PommeDor extends ItemConsomable{
     public PommeDor(int posX, int posY) {
         super(posX, posY, "pommeOr");
     }
@@ -14,7 +14,7 @@ public class PommeDor extends Item{
             else {
                 Environnement.getJ().setVie(2);
             }
+            Environnement.getJ().getInventaireItem().supprimerItem(this);
         }
-        Environnement.getJ().getInventaire().retirerItem(this);
     }
 }

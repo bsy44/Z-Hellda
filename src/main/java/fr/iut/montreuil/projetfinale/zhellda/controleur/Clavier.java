@@ -61,12 +61,15 @@ public class Clavier {
                 Environnement.getJ().getArme().attaquer(Environnement.getJ(), Environnement.getJ().getX() + Environnement.getJ().getArme().getPortee(), Environnement.getJ().getY());
                 break;
             case AMPERSAND:
+                System.out.println("arme 1");
                 Environnement.getJ().setNumArmeUtilise(1);
                 break;
             case UNDEFINED:
+                System.out.println("arme 2");
                 Environnement.getJ().setNumArmeUtilise(2);
                 break;
             case QUOTEDBL:
+                System.out.println("arme 3");
                 Environnement.getJ().setNumArmeUtilise(3);
                 break;
             default:

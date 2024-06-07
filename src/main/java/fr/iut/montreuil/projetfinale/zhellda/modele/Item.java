@@ -3,8 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Item {
-
+public class Item {
     private IntegerProperty x;
     private IntegerProperty y;
     private String id;
@@ -13,11 +12,11 @@ public abstract class Item {
     private static int cpt = 0;
     private int indexInventaire;
 
-    public Item(int posX, int posY, String nom){
+    public Item(int posX, int posY, String nom, String id){
         this.x = new SimpleIntegerProperty(posX);
         this.y = new SimpleIntegerProperty(posY);
         this.nom = nom;
-        this.id = "item" + cpt;
+        this.id = id + cpt;
         this.labelItem = "labelItem";
         this.indexInventaire = -1;
         cpt++;
@@ -51,12 +50,18 @@ public abstract class Item {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }
+
     public String getLabelItem() {
         return labelItem;
     }
+
     public int getIndexInventaire() {
         return indexInventaire;
     }
@@ -64,8 +69,6 @@ public abstract class Item {
     public void setIndexInventaire(int indexInventaire) {
         this.indexInventaire = indexInventaire;
     }
-
-    public abstract void consommerItem();
 
     @Override
     public String toString() {
