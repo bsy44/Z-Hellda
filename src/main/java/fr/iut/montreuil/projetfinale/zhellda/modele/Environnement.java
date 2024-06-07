@@ -96,7 +96,7 @@ public class Environnement {
     }
 
     public void actionItem(){
-        for (int i = obsItemParTerre.size() - 1; i >= 0 ; i--) {
+        for (int i = 0; i < obsItemParTerre.size() ; i++) {
             if (getJ().ramasserItem(obsItemParTerre.get(i))) {
                 if (obsItemParTerre.get(i) instanceof Arme){
                     getJ().getInventaireArme().ajouterItem(obsItemParTerre.get(i));
