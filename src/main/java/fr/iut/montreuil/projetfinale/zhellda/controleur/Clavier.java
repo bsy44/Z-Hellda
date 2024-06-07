@@ -71,6 +71,8 @@ public class Clavier {
                 break;
             default:
                 break;
+
         }
     }
+
 }

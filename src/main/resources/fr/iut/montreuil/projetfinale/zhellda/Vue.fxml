@@ -1,30 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+//RENTRE CHEZ TOI SALE NEZ GROS
+//trouve toi des PAPIERS AU LIEU DE TROUVER UNE ALTERNANCE
+
+
+<BorderPane prefHeight="900.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
     <Pane fx:id="pane">
         <TilePane fx:id="tilePane" prefHeight="1600" prefWidth="1600" />
     </Pane>
-    <center>
-        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox fx:id="coeur" prefHeight="41.0" prefWidth="900.0" />
-            </children>
-        </Pane>
-    </center>
-    <bottom>
-        <ListView fx:id="inventaireArme" prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-    </bottom>
+   <center>
+      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+              <HBox fx:id="coeur" prefHeight="41.0" prefWidth="900.0">
+        </HBox>
+         </children>
+      </Pane>
+   </center>
+   <right>
+      <VBox fx:id="inventaireItem" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="900.0" prefWidth="304.0" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="260.0" styleClass="label-title" text="Inventaire">
+               <VBox.margin>
+                  <Insets bottom="30.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding></Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <VBox fx:id="case0" prefHeight="117.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton0" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item0" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="labelItem0" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="178.0" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="case1" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+
+                        <Label fx:id="labelItem1" alignment="CENTER" prefHeight="0.0" prefWidth="118.0" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <VBox fx:id="case2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton2" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="labelItem2" alignment="CENTER" prefHeight="17.0" prefWidth="165.0" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="case3" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton3" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="labelItem3" alignment="CENTER" prefHeight="17.0" prefWidth="170.0" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="45.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <VBox fx:id="case4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton4" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="labelItem4" alignment="CENTER" prefHeight="17.0" prefWidth="154.0" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="case5" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="153.0" styleClass="case">
+                     <children>
+                        <Button fx:id="bouton5" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                           <graphic>
+                              <ImageView fx:id="item5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="labelItem5" alignment="CENTER" prefHeight="17.0" prefWidth="158.0" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="12.0" right="10.0" />
+         </padding>
+      </VBox>
+   </right>
+
+    //RENTRE CHEZ TOI SALE NEZ GROS
+    //trouve toi des PAPIERS AU LIEU DE TROUVER UNE ALTERNANCE
+
+    //RENTRE CHEZ TOI SALE NEZ GROS
+    //trouve toi des PAPIERS AU LIEU DE TROUVER UNE ALTERNANCE
+
+    //RENTRE CHEZ TOI SALE NEZ GROS
+    //trouve toi des PAPIERS AU LIEU DE TROUVER UNE ALTERNANCE
+
+
 </BorderPane>

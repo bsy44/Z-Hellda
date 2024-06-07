@@ -10,6 +10,7 @@ public abstract class Acteur {
     private IntegerProperty y;
     private IntegerProperty vie;
     private String id;
+
     protected Environnement environnement;
     private Rectangle hitbox;
     int vitesse;
@@ -44,15 +45,19 @@ public abstract class Acteur {
         this.y.setValue(y);
     }
 
-    public IntegerProperty getXProperty() {
+    public void setVie(int vie) {
+        this.vie.setValue(this.vie.getValue() + vie);
+    }
+
+    public final IntegerProperty getXProperty() {
         return x;
     }
 
-    public IntegerProperty getYProperty() {
+    public final IntegerProperty getYProperty() {
         return y;
     }
 
-    public IntegerProperty getVie (){
+    public final IntegerProperty getVie (){
         return this.vie;
     }
 
@@ -60,8 +65,17 @@ public abstract class Acteur {
         return hitbox;
     }
 
+    public Environnement getEnvironnement() {
+        return environnement;
+    }
+
     public int getVitesse() {
         return vitesse;
+    }
+    public static boolean reussitProba(double pourcent){
+        double x= Math.random();
+        double pp=pourcent/100;
+        return (x<=pp);
     }
 
     public void subirDegats (int dmg) {

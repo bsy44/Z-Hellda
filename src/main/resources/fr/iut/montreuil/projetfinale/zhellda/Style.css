@@ -1,0 +1,76 @@
+/* Style pour les boutons */
+#inventaireItem {
+    -fx-background-color: #333333;
+}
+
+.button {
+    -fx-background-color: #dba028;
+    -fx-border-color: transparent;
+    -fx-cursor: hand; /* Pour indiquer qu'il s'agit d'un lien cliquable */
+}
+
+.button:hover {
+    -fx-background-color: #e0c080; /* Couleur de fond au survol */
+    -fx-border-color: #e0c080; /* Bordure au survol */
+    -fx-text-fill: black; /* Couleur du texte au survol */
+}
+
+.case {
+    -fx-border-color: #e0c080;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
+}
+
+.label {
+    -fx-font-family: "Zapfino", cursive;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
+}
+
+.label-title {
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0c080;
+    -fx-padding: 5px 10px; 
+    -fx-border-color: #e0c080; 
+    -fx-border-width: 2px; 
+    -fx-border-radius: 5px; 
+}
+
+.progress-bar {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #2b2b2b, #1c1c1c); /* Couleur de fond sombre avec un dégradé */
+    -fx-padding: 0; /* Retirer les marges */
+    -fx-border-insets: 0; /* Ajuster les marges de bordure */
+    -fx-border-radius: 0; /* Pas d'arrondi des bords */
+    -fx-background-radius: 0; /* Pas d'arrondi du fond */
+    -fx-accent: linear-gradient(from 0% 0% to 100% 100%, #ff0000, #8b0000); /* Dégradé rouge pour la barre de progression */
+    -fx-pref-height: 5px; /* Réduire la hauteur de la barre */
+}
+
+.progress-bar .track {
+    -fx-background-color: #3d3d3d; /* Fond sombre de la piste */
+    -fx-background-insets: 0; /* Ajuster les marges intérieures */
+    -fx-border-color: transparent; /* Supprimer la couleur de la bordure de la piste */
+    -fx-border-width: 0px; /* Supprimer la largeur de la bordure de la piste */
+    -fx-border-radius: 0; /* Pas d'arrondi de la bordure */
+    -fx-background-radius: 0; /* Pas d'arrondi du fond de la piste */
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ff0000, #8b0000); /* Dégradé rouge pour la barre de progression */
+    -fx-background-insets: 0; /* Ajuster les marges intérieures */
+    -fx-border-radius: 0; /* Pas d'arrondi de la barre */
+    -fx-background-radius: 0; /* Pas d'arrondi du fond de la barre */
+}
+
+.progress-bar .text {
+    -fx-fill: white; /* Couleur du texte */
+    -fx-font-size: 10px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+}

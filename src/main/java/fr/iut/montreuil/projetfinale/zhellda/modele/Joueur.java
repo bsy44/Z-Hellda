@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -119,10 +120,12 @@ public class Joueur extends Acteur {
                     !Environnement.getTerrain().obstacle(droite, haut) &&
                     !Environnement.getTerrain().obstacle(gauche, bas) &&
                     !Environnement.getTerrain().obstacle(droite, bas);
-        } else {
+        }
+        else {
             return false;
         }
     }
+
 
     public boolean colisionEnnemis() {
         int cpt = 0;
@@ -132,6 +135,8 @@ public class Joueur extends Acteur {
         int joueurHeight = (int) this.getHitbox().getHeight();
 
         for (Ennemis ennemi : Environnement.getObsEnnemis()) {
+
+        for (Ennemis ennemi : getEnvironnement().getObsEnnemis()) {
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
@@ -148,13 +153,25 @@ public class Joueur extends Acteur {
         return etatAltere;
     }
 
-    @Override
-    public IntegerProperty getVie() {
-        return super.getVie();
-    }
-
     public int getVieMax() {
         return 10;
+    }
+
+    public boolean ramasserItem(Item item) {
+        if (this.getInventaire().estPlein()) {
+            return false;
+        }
+
+        if (item.getX() + 10 >= this.getHitbox().getX() &&
+                item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                item.getY() + 10 >= this.getHitbox().getY() &&
+                item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+            return true;
+        }
+        return false;
+    }
+    public Inventaire getInventaire() {
+        return inventaire;
     }
 
     public void setEtatAltere(boolean etatAltere) {
@@ -168,4 +185,5 @@ public class Joueur extends Acteur {
     public void buffVitesse(int viteseBuff) {
         this.vitesse = (vitesse + viteseBuff);
     }
+
 }

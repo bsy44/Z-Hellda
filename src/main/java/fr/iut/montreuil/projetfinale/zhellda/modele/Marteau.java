@@ -1,17 +1,22 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+
 import static java.lang.Math.sqrt;
+
 
 public class Marteau extends Arme {
     public Marteau(Environnement environnement) {
-        super(environnement, 1, 40);
+        super(environnement, 1, 160);
     }
+
 
     @Override
     public void attaquer(Joueur j, int x, int y) {
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size(); i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
             if (ennemie.getType()==0) {
+
+
 
 
                 if (j.getX() == x) {
@@ -24,6 +29,9 @@ public class Marteau extends Arme {
                     }
                 }
             }
+
+
+
 
 
 

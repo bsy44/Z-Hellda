@@ -22,10 +22,8 @@ public class VueCoeurs {
         URL url = Lancement.class.getResource(urlImg);
         Image image = new Image(String.valueOf(url));;
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(25);
-        imageView.setFitWidth(25);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
         coeur.getChildren().add(imageView);
     }
-
-
 }

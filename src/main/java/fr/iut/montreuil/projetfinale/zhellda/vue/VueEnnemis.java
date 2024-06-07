@@ -20,19 +20,16 @@ public class VueEnnemis {
             Image image = new Image(String.valueOf(url));;
             ImageView imageView = new ImageView(image);
             this.barreDeVie = new ProgressBar();
+
             barreDeVie.translateYProperty().bind(ennemis.getYProperty().subtract(10));
             barreDeVie.translateXProperty().bind(ennemis.getXProperty().subtract(8));
             barreDeVie.setPrefWidth(50);
             barreDeVie.setPrefHeight(10);
-
-
-
             barreDeVie.progressProperty().bind(ennemis.getVie().divide((double)ennemis.getPvMax()));
             barreDeVie.setId(ennemis.getId() + 1);
 
             imageView.setFitHeight(30);
             imageView.setFitWidth(30);
-
             imageView.setId(e.getId());
             imageView.translateXProperty().bind(e.getXProperty());
             imageView.translateYProperty().bind(e.getYProperty());
