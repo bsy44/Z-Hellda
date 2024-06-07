@@ -49,14 +49,11 @@ public class Controleur implements Initializable {
         env.ajouterEnnemi(e2);
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
 
-        // Initialiser les gestionnaires de touches après que la scène soit prête
         pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 initKeyHandlers(newScene);
             }
         });
-
-        // Mettre à jour l'affichage initial des cœurs
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
