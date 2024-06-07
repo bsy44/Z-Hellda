@@ -110,11 +110,11 @@ public class Controleur implements Initializable {
                 (ev -> {
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
-                    if (Environnement.getJ().isEtatAltere()){
-                        tempsAlteration+=10;
+                    if (Environnement.getJ().isEtatAltere()) {
+                        tempsAlteration += 10;
                     }
-                    if (tempsAlteration==50000){
-                        tempsAlteration=0;
+                    if (tempsAlteration == 50000) {
+                        tempsAlteration = 0;
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
@@ -175,5 +175,4 @@ public class Controleur implements Initializable {
             });
         }
     }
-
 }
