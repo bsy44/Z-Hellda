@@ -15,5 +15,6 @@ public class PommeDor extends Item{
                 Environnement.getJ().setVie(2);
             }
         }
+        Environnement.getJ().getInventaire().retirerItem(this);
     }
 }

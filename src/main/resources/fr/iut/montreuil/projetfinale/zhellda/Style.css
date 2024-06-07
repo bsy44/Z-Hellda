@@ -4,7 +4,7 @@
 }
 
 .button {
-    -fx-background-color: transparent;
+    -fx-background-color: #dba028;
     -fx-border-color: transparent;
     -fx-cursor: hand; /* Pour indiquer qu'il s'agit d'un lien cliquable */
 }

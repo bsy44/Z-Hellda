@@ -3,10 +3,14 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Item;
 import javafx.collections.ListChangeListener;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
+import java.awt.event.ActionEvent;
 import java.net.URL;
 
 public class ListObsItemInventaire implements ListChangeListener<Item> {
@@ -53,7 +57,6 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
         }
     }
 
-
     public void retirerImageDeInventaire(Item item) {
         int index = item.getIndexInventaire();
         if (index != -1) {
@@ -70,7 +73,7 @@ public class ListObsItemInventaire implements ListChangeListener<Item> {
         }
     }
 
-    private int getFirstSlot() {// Méthode pour trouver le premier slot disponible dans l'inventaire
+    public int getFirstSlot() {// Méthode pour trouver le premier slot disponible dans l'inventaire
         for (int i = 0; i < 6; i++) {
             ImageView imageView = (ImageView) inventaireItem.lookup("#item" + i);
             if (imageView != null && imageView.getImage() == null) {

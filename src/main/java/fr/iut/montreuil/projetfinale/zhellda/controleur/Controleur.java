@@ -12,6 +12,7 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -28,7 +29,7 @@ public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
     private int temps;
-    private int tempsAlteration=0;
+    private int tempsAlteration = 0;
     private int tempsEcoule = 0;
     @FXML
     private Pane pane;
@@ -80,6 +81,7 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
         Environnement.getJ().getInventaire().getListItem().addListener(listObsItemInventaire);
+
         /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
             this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
         });
@@ -130,4 +132,47 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
+
+    @FXML
+    public void interactionItem(MouseEvent event) {
+        Button sourceButton = (Button) event.getSource();
+        ImageView imageView = (ImageView) sourceButton.getGraphic();
+
+        if (imageView.getImage() != null) {
+            Button boutonConsommer = new Button("Consommer");
+            Button boutonJeter = new Button("Jeter");
+            Button boutonAnuler = new Button("X");
+
+            inventaireItem.getChildren().add(boutonConsommer);
+            inventaireItem.getChildren().add(boutonJeter);
+            inventaireItem.getChildren().add(boutonAnuler);
+
+            boutonConsommer.setOnAction(event1 -> {
+                int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
+                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
+                item.consommerItem();
+
+                inventaireItem.getChildren().remove(boutonConsommer);
+                inventaireItem.getChildren().remove(boutonJeter);
+                inventaireItem.getChildren().remove(boutonAnuler);
+            });
+
+            boutonJeter.setOnAction(event1 -> {
+                int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
+                Item item = Environnement.getJ().getInventaire().getListItem().get(index);
+                Environnement.getJ().getInventaire().retirerItem(item);
+
+                inventaireItem.getChildren().remove(boutonConsommer);
+                inventaireItem.getChildren().remove(boutonJeter);
+                inventaireItem.getChildren().remove(boutonAnuler);
+            });
+
+            boutonAnuler.setOnAction(event1 -> {
+                inventaireItem.getChildren().remove(boutonConsommer);
+                inventaireItem.getChildren().remove(boutonJeter);
+                inventaireItem.getChildren().remove(boutonAnuler);
+            });
+        }
+    }
+
 }
