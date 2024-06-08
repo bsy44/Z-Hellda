@@ -74,11 +74,12 @@ public class Environnement {
         }
     }
 
-    public void mortJoueur(){
-        if (getObsJoueur().get(0).getVie().getValue()==0) {
-            getObsJoueur().remove(0);
-            System.out.println("Vous avez perdu.");
+    public boolean mortJoueur(){
+        if (getJ().getVie().getValue()<=0) {
+            getObsJoueur().remove(getJ());
+            return true;
         }
+        return false;
     }
 
     public void actionProjectile(){

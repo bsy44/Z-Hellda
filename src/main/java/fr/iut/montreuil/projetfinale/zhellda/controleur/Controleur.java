@@ -1,12 +1,15 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
+import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -16,7 +19,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -150,6 +156,11 @@ public class Controleur implements Initializable {
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
+
+                    if (env.mortJoueur()){
+                        gameLoop.stop();
+                        afficherGameOverScene();
+                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -196,5 +207,21 @@ public class Controleur implements Initializable {
             boutonJeter.getStyleClass().add("bouton-dynamique");
             boutonAnuler.getStyleClass().add("bouton-dynamique");
         }
+    }
+
+    public void afficherGameOverScene(){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL resource = Lancement.class.getResource("VueGameOver.fxml");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return; // Arrêter la méthode si une exception se produit Lors du chargement, du fichier. FxML
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = (Stage) ((Node) pane).getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

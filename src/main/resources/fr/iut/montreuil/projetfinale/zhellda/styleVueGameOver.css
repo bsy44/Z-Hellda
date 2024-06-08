@@ -1,0 +1,23 @@
+.game-over-button {
+    -fx-background-color: transparent;
+    -fx-background-image: url("bouton-game-over.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-color: white; /* Ajout du contour blanc */
+    -fx-border-width: 2px; /* Épaisseur du contour */
+    -fx-cursor: hand;
+    -fx-text-transform: uppercase; 
+    -fx-font-weight: bold; 
+}
+
+.game-over-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.game-over-button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+}
