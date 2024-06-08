@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@styleVueDebut.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.ControleurVueDebut">
+   <children>
+      <ImageView fitHeight="920.0" fitWidth="1480.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@vueDbut.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="338.0" layoutY="266.0" prefHeight="212.0" prefWidth="707.0" styleClass="title-label" text="Z-Hellda" textFill="#6f6868">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="507.0" layoutY="527.0" prefHeight="304.0" prefWidth="368.0" spacing="30.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#lancerJeu" prefHeight="55.0" prefWidth="215.0" text="Jouer" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="215.0" text="Règle" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#quitterJeu" prefHeight="55.0" prefWidth="215.0" text="Quitter" />
+         </children>
+      </VBox>
+   </children>
+</Pane>

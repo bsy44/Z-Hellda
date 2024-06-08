@@ -11,8 +11,8 @@ import java.io.IOException;
 public class Lancement extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("Vue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),1480 , 920);
+        FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("VueDebut.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),1380 , 920);
         scene.setOnKeyPressed(e -> Clavier.keyPressed(e));
         stage.setTitle("Z-Hellda");
         stage.setScene(scene);
