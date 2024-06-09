@@ -55,6 +55,12 @@ public abstract class Ennemis extends Acteur {
         }
     }
 
+    public boolean reussitProba(double pourcent){
+        double x= Math.random();
+        double pp=pourcent/100;
+        return (x<=pp);
+    }
+
     public void nouveauChemin (){
       cheminVersJoueur = Environnement.getBfs().cheminVersSource(getX(), getY());
     }

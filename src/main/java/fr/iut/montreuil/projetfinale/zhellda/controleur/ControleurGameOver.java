@@ -24,8 +24,7 @@ public class ControleurGameOver {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("VueDebut.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1380, 920);
-        scene.setOnKeyPressed(e -> Clavier.keyPressed(e));
-        primaryStage.setTitle("Z-Hellda");
+        primaryStage.setTitle("Z-Hellda - Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

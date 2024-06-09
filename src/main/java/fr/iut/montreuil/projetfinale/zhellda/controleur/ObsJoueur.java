@@ -53,11 +53,10 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
             }
         });
 
-        // Ajout d'un écouteur pour détecter le changement de l'état altéré du joueur
-        Environnement.getJ().transparentProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+
+        Environnement.getJ().transparentProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {// Ajout d'un écouteur pour détecter le changement de l'état altéré du joueur
             if (newValue) {
-                // Si l'état altéré est activé, faire clignoter l'image du joueur en blanc
-                clignoterBlanc(pane.lookup("#" + Environnement.getJ().getId()));
+                clignoterBlanc(pane.lookup("#" + Environnement.getJ().getId()));// Si l'état altéré est activé, faire clignoter l'image du joueur en blanc
             }
         });
     }
@@ -83,13 +82,9 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
 
         timeline.play();
 
-        // Ajouter une action à exécuter après les 7 secondes
         timeline.setOnFinished(event -> {
             node.setEffect(null);
-            // Si nécessaire, arrêter explicitement la timeline
             timeline.stop();
         });
     }
-
-
 }

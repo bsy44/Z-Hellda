@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class GrimoirArme extends ItemConsomable{
 
     public GrimoirArme(int posX, int posY) {
-        super(posX, posY, "grimoireArme");
+        super(posX, posY, "grimoArme");
     }
 
     @Override

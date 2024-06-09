@@ -2,7 +2,6 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;

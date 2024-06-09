@@ -72,6 +72,12 @@ public class Clavier {
                 System.out.println("arme 3");
                 Environnement.getJ().setNumArmeUtilise(3);
                 break;
+
+            case E:
+                System.out.println("interaction");
+                Environnement.getJ().interagirAvecCoffre();
+                break;
+
             default:
                 break;
         }

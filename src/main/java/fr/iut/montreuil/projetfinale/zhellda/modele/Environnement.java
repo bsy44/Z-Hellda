@@ -7,15 +7,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Environnement {
-    private int width;
-
-    private int height;
     private ObservableList<Joueur> obsJoueur;
     private static Terrain terrain;
     private static Joueur j;
     private ObservableList<Ennemis> obsEnnemis;
     private ObservableList<Projectile> obsProjectile;
     private  ObservableList<Item> obsItemParTerre;
+    private ObservableList<Coffre> listCoffre;
     private static Bfs bfs;
 
     public Environnement() {
@@ -26,7 +24,14 @@ public class Environnement {
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
         this.obsItemParTerre = FXCollections.observableArrayList();
-        bfs = new Bfs();
+        this.listCoffre = FXCollections.observableArrayList();
+        this.bfs = new Bfs();
+        Coffre coffre1 = new Coffre(this);
+        Coffre coffre2 = new Coffre(this);
+        Coffre coffre3 = new Coffre(this);
+        ajouterCoffre(coffre1);
+        ajouterCoffre(coffre2);
+        ajouterCoffre(coffre3);
     }
 
     public static Terrain getTerrain() {
@@ -39,6 +44,18 @@ public class Environnement {
 
     public ObservableList<Ennemis> getObsEnnemis(){
         return obsEnnemis;
+    }
+
+    public  ObservableList<Projectile> getObsProjectile() {
+        return obsProjectile;
+    }
+
+    public ObservableList<Item> getObsItemParTerre() {
+        return obsItemParTerre;
+    }
+
+    public ObservableList<Coffre> getListCoffre() {
+        return listCoffre;
     }
 
     public static Bfs getBfs (){
@@ -60,11 +77,15 @@ public class Environnement {
         this.obsItemParTerre.add(item);
     }
 
+    public void ajouterCoffre(Coffre coffre){
+        this.listCoffre.add(coffre);
+    }
+
     public void ennemiMort() {
         for(int i = getObsEnnemis().size()-1; i>=0;i--){
             Ennemis e = getObsEnnemis().get(i);
             if(e.getVie().get()==0){
-                if (Acteur.reussitProba(Zombie.getPourcentageDropItem())){
+                if (e.reussitProba(Zombie.getPourcentageDropItem())){
                     Item item;
                     double random = Math.random();
                     if (random < 0.33) {
@@ -99,11 +120,9 @@ public class Environnement {
                 System.out.println(obsProjectile.get(i).getX()+obsProjectile.get(i).getY());
                 System.out.println("supprimerP");
                 obsProjectile.remove(i);
-
                 System.out.println("est supprimé");
             }
         }
-
     }
 
     public void actionItem(){
@@ -115,19 +134,11 @@ public class Environnement {
                 }
                 else {
                     getJ().getInventaireItem().ajouterItem(obsItemParTerre.get(i));
-                    System.out.println("Consomable ajouté à l'inventaire");
+                    System.out.println("Item ajouté à l'inventaire");
                 }
                 obsItemParTerre.remove(obsItemParTerre.get(i));
             }
         }
-    }
-    
-    public  ObservableList<Projectile> getObsProjectile() {
-        return obsProjectile;
-    }
-
-    public ObservableList<Item> getObsItemParTerre() {
-        return obsItemParTerre;
     }
 
     public static Joueur getJ() {

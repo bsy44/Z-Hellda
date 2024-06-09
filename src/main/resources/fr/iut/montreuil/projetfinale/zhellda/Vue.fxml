@@ -60,7 +60,7 @@
                <children>
                   <VBox fx:id="case0" prefHeight="120.0" prefWidth="150.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton0" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton0" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item0" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -70,7 +70,7 @@
                   </VBox>
                   <VBox fx:id="case1" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="150.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -91,7 +91,7 @@
                <children>
                   <VBox fx:id="case2" prefHeight="300.0" prefWidth="150.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton2" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton2" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -101,7 +101,7 @@
                   </VBox>
                   <VBox fx:id="case3" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="153.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton3" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton3" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -118,7 +118,7 @@
                <children>
                   <VBox fx:id="case4" prefHeight="300.0" prefWidth="153.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton4" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton4" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -128,7 +128,7 @@
                   </VBox>
                   <VBox fx:id="case5" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="153.0" styleClass="case">
                      <children>
-                        <Button fx:id="bouton5" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItem">
+                        <Button fx:id="bouton5" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#interactionItemInventaire">
                            <graphic>
                               <ImageView fx:id="item5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>

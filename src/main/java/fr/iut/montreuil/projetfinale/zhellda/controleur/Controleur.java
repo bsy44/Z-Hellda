@@ -29,7 +29,6 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
-    private int temps;
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
     @FXML
@@ -53,7 +52,6 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        Ennemis e = new Zombie(80, 80, this.env);
         Ennemis e2 = new Zombie(410, 110, this.env);
         Ennemis e3 = new Zombie(510, 110, this.env);
         Ennemis e4 = new Zombie(610, 110, this.env);
@@ -61,15 +59,6 @@ public class Controleur implements Initializable {
         Ennemis e6 = new Zombie(610, 210, this.env);
         Ennemis e7 = new Zombie(410, 210, this.env);
 
-        Arc arc = new Arc(320, 110, env);
-        Epee epee = new Epee(env, 410, 367);
-        Marteau marteau = new Marteau(env, 710, 210);
-        env.ajouterItem(arc);
-        /*env.ajouterItem(epee);
-        env.ajouterItem(marteau);*/
-
-
-        env.ajouterEnnemi(e);
         env.ajouterEnnemi(e2);
         env.ajouterEnnemi(e3);
         env.ajouterEnnemi(e4);
@@ -119,8 +108,18 @@ public class Controleur implements Initializable {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
         }
 
-        for (Item item:env.getObsItemParTerre()) {
-            new VueItem(pane, item, item.getNom() + ".png");
+        for (Coffre coffre : env.getListCoffre()) {
+            new VueCoffre(pane, coffre, coffre.getNom() + ".png");
+
+            coffre.estOuvert().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    Node node = pane.lookup("#" + coffre.getId());
+                    if (node != null) {
+                        pane.getChildren().remove(node);
+                        new VueCoffre(pane, coffre, "coffreOuvert.png");
+                    }
+                }
+            });
         }
 
         initAnimation();
@@ -129,7 +128,6 @@ public class Controleur implements Initializable {
 
     private void initAnimation() {
         gameLoop = new Timeline();
-        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
@@ -167,7 +165,7 @@ public class Controleur implements Initializable {
     }
 
     @FXML
-    public void interactionItem(MouseEvent event) {
+    public void interactionItemInventaire(MouseEvent event) {
         Button sourceButton = (Button) event.getSource();
         ImageView imageView = (ImageView) sourceButton.getGraphic();
 
@@ -217,7 +215,7 @@ public class Controleur implements Initializable {
             root = fxmlLoader.load(resource);
         } catch (IOException e) {
             e.printStackTrace();
-            return; // Arrêter la méthode si une exception se produit Lors du chargement, du fichier. FxML
+            return;
         }
         Scene scene = new Scene(root);
         Stage primaryStage = (Stage) ((Node) pane).getScene().getWindow();

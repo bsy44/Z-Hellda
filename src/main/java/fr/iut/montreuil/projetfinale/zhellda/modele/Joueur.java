@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(282, 100, 10, 4, "joueur", 30, 30, environnement);
+        super(282, 100, 10, 5, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
@@ -104,7 +104,7 @@ public class Joueur extends Acteur {
             this.setX(newX);
             this.setY(newY);
         }
-        if (colisionEnnemis()){
+        if (colisionEnnemis() || colisionCoffre()){
             this.setX(oldX);
             this.setY(oldY);
         }
@@ -156,6 +156,21 @@ public class Joueur extends Acteur {
         }
         return (cpt != 0);
     }
+
+    public boolean colisionCoffre(){
+        for (Coffre coffre : getEnvironnement().getListCoffre()) {
+            int coffreX = coffre.getX();
+            int coffreY = coffre.getY();
+            int coffreWidth = 32;
+            int coffreHeight = 32;
+
+            if (getX() < coffreX + coffreWidth && getX() + getHitbox().getWidth() > coffreX && getY() < coffreY + coffreHeight && getY() + getHitbox().getHeight() > coffreY) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public boolean isEtatAltere() {
         return etatAltere;
@@ -190,7 +205,33 @@ public class Joueur extends Acteur {
         else {
             inventaireItem.supprimerItem(item);
         }
-        getEnvironnement().getObsItemParTerre().add(item);
+        environnement.getObsItemParTerre().add(item);
+    }
+
+    public Coffre coffreAuTour(){
+        for (Coffre coffre : environnement.getListCoffre()){
+            if (coffre.getX() >= this.getHitbox().getX() &&
+                    coffre.getX() <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                    coffre.getY() >= this.getHitbox().getY() &&
+                    coffre.getY() <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+            }
+            return coffre;
+        }
+        return null;
+    }
+
+    public void interagirAvecCoffre(){
+        Coffre coffre = coffreAuTour();
+        if (coffre != null && coffre.estOuvert().getValue() == false){
+            coffre.setOuvert(true);
+            if (coffre.getItem() instanceof Arme){
+                inventaireArme.ajouterItem(coffre.getItem());
+            }
+            else {
+                inventaireItem.ajouterItem(coffre.getItem());
+            }
+            coffre.supprimerItem();
+        }
     }
     
     public void setEtatAltere(boolean etatAltere) {
