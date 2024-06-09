@@ -6,5 +6,5 @@ public abstract class ItemConsomable extends Item{
         super(posX, posY, nom, "item");
     }
 
-    public abstract void consommerItem();
+    public abstract void consommerItem(Joueur joueur);
 }

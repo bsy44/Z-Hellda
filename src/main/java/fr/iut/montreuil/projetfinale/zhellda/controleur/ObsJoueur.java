@@ -3,18 +3,21 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
-import javafx.beans.value.ChangeListener;
-
+import javafx.util.Duration;
 
 public class ObsJoueur implements ListChangeListener<Joueur> {
     @FXML
-    Pane pane;
-    Environnement env;
+    private Pane pane;
+    private Environnement env;
 
     public ObsJoueur(Pane pane, Environnement env){
         this.pane=pane;
@@ -36,24 +39,57 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
     }
 
     public void ajouterListners() {
-        Environnement.getJ().getXProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                Environnement.nouveauBfs();
-                for (Ennemis e : env.getObsEnnemis()) {
-                    e.nouveauChemin();
-                }
+        Environnement.getJ().getXProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
+            Environnement.nouveauBfs();
+            for (Ennemis e : env.getObsEnnemis()) {
+                e.nouveauChemin();
             }
         });
 
-        Environnement.getJ().getYProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                Environnement.nouveauBfs();
-                for (Ennemis e : env.getObsEnnemis()) {
-                    e.nouveauChemin();
-                }
+        Environnement.getJ().getYProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
+            Environnement.nouveauBfs();
+            for (Ennemis e : env.getObsEnnemis()) {
+                e.nouveauChemin();
+            }
+        });
+
+        // Ajout d'un écouteur pour détecter le changement de l'état altéré du joueur
+        Environnement.getJ().transparentProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (newValue) {
+                // Si l'état altéré est activé, faire clignoter l'image du joueur en blanc
+                clignoterBlanc(pane.lookup("#" + Environnement.getJ().getId()));
             }
         });
     }
+
+    public void clignoterBlanc(Node node) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setInput(node.getEffect());
+
+        double totalDuration = 7.0; // Durée totale en secondes
+        double cycleDuration = 1.0; // Durée d'un cycle de clignotement
+        int cycleCount = (int) (totalDuration / cycleDuration);
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(colorAdjust.brightnessProperty(), 0.0)),
+                new KeyFrame(Duration.seconds(cycleDuration / 2), new KeyValue(colorAdjust.brightnessProperty(), 1.0)),
+                new KeyFrame(Duration.seconds(cycleDuration), new KeyValue(colorAdjust.brightnessProperty(), 0.0))
+        );
+
+        timeline.setCycleCount(cycleCount); // Nombre de cycles pour couvrir 7 secondes
+        timeline.setAutoReverse(false);
+
+        node.setEffect(colorAdjust);
+
+        timeline.play();
+
+        // Ajouter une action à exécuter après les 7 secondes
+        timeline.setOnFinished(event -> {
+            node.setEffect(null);
+            // Si nécessaire, arrêter explicitement la timeline
+            timeline.stop();
+        });
+    }
+
+
 }

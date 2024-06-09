@@ -186,7 +186,7 @@ public class Controleur implements Initializable {
             boutonConsommer.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
                 ItemConsomable item = (ItemConsomable) Environnement.getJ().getInventaireItem().getListItem().get(index);
-                item.consommerItem();
+                item.consommerItem(Environnement.getJ());
 
                 inventaireItem.getChildren().remove(hBox);
             });

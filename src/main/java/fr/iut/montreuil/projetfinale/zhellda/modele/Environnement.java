@@ -65,8 +65,14 @@ public class Environnement {
             Acteur a = getObsEnnemis().get(i);
             if(a.getVie().get()==0){
                 if (Acteur.reussitProba(Zombie.getPourcentageDropItem())){
-                    Item pommeOr = new PommeDor(a.getX(), a.getY());
-                    obsItemParTerre.add(pommeOr);
+                    Item item;
+                    double random = Math.random();
+                    if (random < 0.5) {
+                         item = new PommeDor(a.getX(), a.getY());
+                    } else {
+                        item = new PotionMagique(a.getX(), a.getY());
+                    }
+                    obsItemParTerre.add(item);
                 }
                 System.out.println("mort de : " + a);
                 getObsEnnemis().remove(i);

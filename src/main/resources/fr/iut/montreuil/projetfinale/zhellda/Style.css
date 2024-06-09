@@ -102,3 +102,7 @@
     -fx-border-width: 3px;
 }
 
+.clignotement-blanc {
+    -fx-effect: dropshadow(gaussian, white, 1, 1, 1, 1);
+    -fx-transition: brightness 0.7s linear infinite alternate;
+}

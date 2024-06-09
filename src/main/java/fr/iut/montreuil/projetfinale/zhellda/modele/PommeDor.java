@@ -6,15 +6,15 @@ public class PommeDor extends ItemConsomable{
     }
 
     @Override
-    public void consommerItem() {
-        if (Environnement.getJ().getVie().getValue() < Environnement.getJ().getVieMax()) {
-            if (Environnement.getJ().getVie().getValue() == 9) {
-                Environnement.getJ().setVie(1);
+    public void consommerItem(Joueur joueur) {
+        if (joueur.getVie().getValue() < joueur.getVieMax()) {
+            if (joueur.getVie().getValue() == 9) {
+                joueur.setVie(1);
             }
             else {
-                Environnement.getJ().setVie(2);
+                joueur.setVie(2);
             }
-            Environnement.getJ().getInventaireItem().supprimerItem(this);
+            joueur.getInventaireItem().supprimerItem(this);
         }
     }
 }

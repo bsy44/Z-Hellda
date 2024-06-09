@@ -73,9 +73,7 @@ public class Clavier {
                 Environnement.getJ().setNumArmeUtilise(3);
                 break;
             default:
-                System.out.println("default");
                 break;
         }
     }
-
 }

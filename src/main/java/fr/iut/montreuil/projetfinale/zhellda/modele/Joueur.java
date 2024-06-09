@@ -1,6 +1,8 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Joueur extends Acteur {
@@ -8,15 +10,17 @@ public class Joueur extends Acteur {
     private int numArmeUtilise;
     private IntegerProperty directionProperty;
     private boolean etatAltere;
+    private BooleanProperty transparent;
     private Inventaire inventaireArme;
     private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(282, 100, 10, 3, "joueur", 30, 30, environnement);
+        super(282, 100, 10, 4, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere = false;
+        this.transparent = new SimpleBooleanProperty(false);
         this.inventaireArme = new Inventaire(3);
         this.inventaireItem = new Inventaire(6);
     }
@@ -37,6 +41,18 @@ public class Joueur extends Acteur {
 
     public Inventaire getInventaireArme() {
         return inventaireArme;
+    }
+
+    public boolean getTransparent() {
+        return transparent.getValue();
+    }
+
+    public BooleanProperty transparentProperty() {
+        return transparent;
+    }
+
+    public void setTransparent(boolean transparent) {
+        this.transparent.set(transparent);
     }
 
     public void setNumArmeUtilise(int numArmeUtilise) {
@@ -78,12 +94,12 @@ public class Joueur extends Acteur {
 
         int newX = this.getX() + deltaX;
         int newY = this.getY() + deltaY;
-        
+
         int gauche = (newX + this.vitesse) / 16;
         int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
         int haut = (newY + this.vitesse) / 16;
         int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 16);
-        
+
         if (colisionEnv(haut, bas, droite, gauche)) {
             this.setX(newX);
             this.setY(newY);
@@ -92,7 +108,11 @@ public class Joueur extends Acteur {
             this.setX(oldX);
             this.setY(oldY);
         }
-        
+        if (getTransparent() == true){
+            this.setX(newX);
+            this.setY(newY);
+        }
+
         for (int i = 0; i < this.directions.length; i++) {
             this.directions[i] = false;
         }
