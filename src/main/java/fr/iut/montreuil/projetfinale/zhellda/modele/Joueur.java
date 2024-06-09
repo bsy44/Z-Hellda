@@ -199,41 +199,40 @@ public class Joueur extends Acteur {
     public void jeterItem(Item item){
         item.setX(getX());
         item.setY(getY() - 30);
-        if (item instanceof Arme){
-            inventaireArme.supprimerItem(item);
-        }
-        else {
-            inventaireItem.supprimerItem(item);
-        }
+        inventaireItem.supprimerItem(item);
         environnement.getObsItemParTerre().add(item);
     }
 
     public Coffre coffreAuTour(){
-        for (Coffre coffre : environnement.getListCoffre()){
-            if (coffre.getX() >= this.getHitbox().getX() &&
-                    coffre.getX() <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
-                    coffre.getY() >= this.getHitbox().getY() &&
-                    coffre.getY() <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+        for (Coffre coffre : environnement.getListCoffre()) {
+            int coffreWidth = 32;
+            int coffreHeight = 32;
+
+            if (coffre.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
+                    coffre.getX() + coffreWidth > this.getHitbox().getX() - 16 &&
+                    coffre.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
+                    coffre.getY() + coffreHeight > this.getHitbox().getY() - 16) {
+                return coffre;
             }
-            return coffre;
         }
         return null;
     }
 
     public void interagirAvecCoffre(){
         Coffre coffre = coffreAuTour();
-        if (coffre != null && coffre.estOuvert().getValue() == false){
+        if (coffre != null && !coffre.estOuvert().getValue()){
             coffre.setOuvert(true);
+            System.out.println("Coffre ouvert");
             if (coffre.getItem() instanceof Arme){
                 inventaireArme.ajouterItem(coffre.getItem());
-            }
-            else {
+            } else {
                 inventaireItem.ajouterItem(coffre.getItem());
             }
             coffre.supprimerItem();
         }
     }
-    
+
+
     public void setEtatAltere(boolean etatAltere) {
         this.etatAltere = etatAltere;
     }
