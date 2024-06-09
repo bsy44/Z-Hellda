@@ -36,4 +36,12 @@ public abstract class Arme extends Item{
         this.indexInventaire = indexInventaire;
     }
 
+    public void setAttaque(int attaque) {
+        this.attaque = attaque;
+    }
+
+    @Override
+    public String toString() {
+        return "nom : "+ getNom() + "Dégat : " + getAttaque() + ", portée : " + getPortee();
+    }
 }
