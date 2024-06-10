@@ -110,6 +110,14 @@ public class Terrain {
         };
     }
 
+    public int getLargeur() {
+        return tab.length;
+    }
+
+    public int getHauteur() {
+        return tab[0].length;
+    }
+
     public int[][] getTerrain() {
         return tab;
     }

@@ -31,6 +31,9 @@ public class Controleur implements Initializable {
     private Timeline gameLoop;
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
+    private double posX = 0;
+    private double posY = 0;
+    private double scrollingVitesse;
     @FXML
     private Pane pane;
     @FXML
@@ -42,6 +45,12 @@ public class Controleur implements Initializable {
     @FXML HBox inventaireArme;
 
     public void initKeyHandlers(Scene scene) {
+        scene.setOnKeyPressed(event -> {
+            Clavier.keyPressed(event);
+        });
+        scene.setOnKeyReleased(event -> {
+            Clavier.keyReleased(event);
+        });
         scene.setOnKeyPressed(Clavier::keyPressed);
         scene.setOnKeyReleased(Clavier::keyReleased);
     }
@@ -110,6 +119,7 @@ public class Controleur implements Initializable {
                 }
             });
         }
+        scrollingVitesse = env.getJ().getVitesse();
 
         initAnimation();
         gameLoop.play();
@@ -143,6 +153,7 @@ public class Controleur implements Initializable {
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
+                    updateScrolling();
 
                     if (env.mortJoueur()){
                         gameLoop.stop();
@@ -152,6 +163,63 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
+    private void updateScrolling() {
+        Scene scene = pane.getScene();
+        if (scene == null) return;
+
+        double largeurScene = scene.getWidth();
+        double hauteurScene = scene.getHeight();
+
+        Joueur joueur = env.getJ();
+
+        int joueurX = joueur.getX();
+        int joueurY = joueur.getY();
+
+        // Calculer la position du joueur dans la fenêtre
+        double joueurScreenX = joueurX - posX;
+        double joueurScreenY = joueurY - posY;
+
+        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
+        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
+        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
+
+        // Si le joueur se déplace vers le bord gauche de la fenêtre
+        if (joueurScreenX < largeurScene * 0.2) {
+            posX -= scrollingVitesse;
+        }
+        // Si le joueur se déplace vers le bord droit de la fenêtre
+        else if (joueurScreenX > largeurScene * 0.8) {
+            posX += scrollingVitesse;
+        }
+
+        // Si le joueur se déplace vers le bord supérieur de la fenêtre
+        if (joueurScreenY < hauteurScene * 0.2) {
+            posY -= scrollingVitesse;
+        }
+        // Si le joueur se déplace vers le bord inférieur de la fenêtre
+        else if (joueurScreenY > hauteurScene * 0.8) {
+            posY += scrollingVitesse;
+        }
+
+        // Limiter le défilement pour ne pas sortir de la carte
+        double maxX = (env.getTerrain().getLargeur() * 16) - largeurScene;
+        double maxY = (env.getTerrain().getHauteur() * 16) - hauteurScene;
+
+        posX = clamp(posX, 0, maxX);
+        posY = clamp(posY, 0, maxY);
+
+        System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
+
+        // Appliquer le décalage de défilement à la TilePane
+        pane.setLayoutX(-posX);
+        pane.setLayoutY(-posY);
+    }
+
+    private double clamp(double value, double min, double max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+
 
     @FXML
     public void interactionItemInventaire(MouseEvent event) {
@@ -211,4 +279,5 @@ public class Controleur implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }
