@@ -45,12 +45,6 @@ public class Controleur implements Initializable {
     @FXML HBox inventaireArme;
 
     public void initKeyHandlers(Scene scene) {
-//        scene.setOnKeyPressed(event -> {
-//            Clavier.keyPressed(event);
-//        });
-//        scene.setOnKeyReleased(event -> {
-//            Clavier.keyReleased(event);
-//        });
         scene.setOnKeyPressed(Clavier::keyPressed);
         scene.setOnKeyReleased(Clavier::keyReleased);
     }
