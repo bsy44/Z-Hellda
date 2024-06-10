@@ -9,13 +9,13 @@ import java.net.URL;
 
 public class VueVilageois {
 
-    public void VueVilageois(Pane pane, Villageois villageois){
+    public  VueVilageois(Pane pane, Villageois villageois){
         URL url = Lancement.class.getResource("villageois.png");
         Image image = new Image(String.valueOf(url));
         ImageView imageView = new ImageView(image);
 
-        imageView.setFitHeight(30);
-        imageView.setFitWidth(30);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
         imageView.setId(villageois.getId());
         imageView.translateXProperty().bind(villageois.getXProperty());
         imageView.translateYProperty().bind(villageois.getYProperty());

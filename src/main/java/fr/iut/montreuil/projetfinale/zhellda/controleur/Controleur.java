@@ -21,7 +21,6 @@ import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +53,10 @@ public class Controleur implements Initializable {
         this.env = new Environnement();
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
+
+        Villageois villageois = new Villageois(env);
+        env.getObsVillageois().add(villageois);
+        new VueVilageois(pane, villageois);
 
         Ennemis e2 = new Zombie(410, 110, this.env);
         Ennemis e3 = new Zombie(510, 110, this.env);
@@ -126,8 +129,6 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    System.out.println(Environnement.getJ().getX());
-                    System.out.println(Environnement.getJ().getY());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {
@@ -149,24 +150,11 @@ public class Controleur implements Initializable {
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
-                    updateScrolling();
-
-
-//                    Environnement.getJ().getXProperty().addListener((observable, oldValue, newValue) -> {
-//                        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
-//                    });
-//                    Environnement.getJ().getYProperty().addListener((observable, oldValue, newValue) -> {
-//                        this.pane.setTranslateY( pane.getPrefHeight() / 2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
-//                    });
-//                    this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
-//                    this.pane.setTranslateY(pane.getPrefHeight() /2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
-//
-
-
                     if (env.mortJoueur()){
                         gameLoop.stop();
                         afficherGameOverScene();
                     }
+                    updateScrolling();
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -175,8 +163,8 @@ public class Controleur implements Initializable {
         Scene scene = pane.getScene();
         if (scene == null) return;
 
-        double largeurScene = scene.getWidth();
-        double hauteurScene = scene.getHeight();
+        double largeurScene = scene.getWindow().getWidth() - inventaireItem.getWidth();
+        double hauteurScene = scene.getWindow().getHeight();
 
         Joueur joueur = env.getJ();
 
@@ -186,10 +174,6 @@ public class Controleur implements Initializable {
         // Calculer la position du joueur dans la fenêtre
         double joueurScreenX = joueurX - posX;
         double joueurScreenY = joueurY - posY;
-
-        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
-        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
-        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
 
         // Si le joueur se déplace vers le bord gauche de la fenêtre
         if (joueurScreenX < largeurScene * 0.2) {
@@ -216,7 +200,7 @@ public class Controleur implements Initializable {
         posX = clamp(posX, 0, maxX);
         posY = clamp(posY, 0, maxY);
 
-        System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
+        //System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
 
         // Appliquer le décalage de défilement à la TilePane
         pane.setLayoutX(-posX);
@@ -287,5 +271,4 @@ public class Controleur implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 }

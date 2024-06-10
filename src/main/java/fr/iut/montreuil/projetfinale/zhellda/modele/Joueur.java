@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(282, 100, 10, 5, "joueur", 30, 30, environnement);
+        super(282, 10, 10, 5, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
@@ -24,11 +24,11 @@ public class Joueur extends Acteur {
         this.inventaireArme = new Inventaire(3);
         this.inventaireItem = new Inventaire(6);
     }
-    
+
     public boolean getDirections(int i) {
         return directions[i];
     }
-    
+
     public Arme getArme() {
         if (this.inventaireArme.getListItem().size() - 1 > numArmeUtilise)
             return null;
@@ -117,13 +117,13 @@ public class Joueur extends Acteur {
             this.directions[i] = false;
         }
     }
-    
+
     public void resetDeplacement (){
         for (int i = 0; i < this.directions.length; i++) {
             this.directions[i] = false;
         }
     }
-    
+
     public boolean colisionEnv(int haut, int bas, int droite, int gauche){
         if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
                 gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {
@@ -136,20 +136,20 @@ public class Joueur extends Acteur {
             return false;
         }
     }
-    
+
     public boolean colisionEnnemis() {
         int cpt = 0;
         int joueurX = (int) this.getHitbox().getX();
         int joueurY = (int) this.getHitbox().getY();
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
-        
+
         for (Ennemis ennemi : getEnvironnement().getObsEnnemis()) {
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
             int ennemiHeight = (int) ennemi.getHitbox().getHeight();
-            
+
             if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
                 cpt++;
             }
@@ -171,7 +171,7 @@ public class Joueur extends Acteur {
 
         return false;
     }
-    
+
     public boolean isEtatAltere() {
         return etatAltere;
     }
@@ -180,12 +180,12 @@ public class Joueur extends Acteur {
     public int getVieMax() {
         return 10;
     }
-    
+
     public boolean ramasserItem(Item item) {
         if (inventaireItem.estPlein()) {
             return false;
         }
-        
+
         if (item.getX() + 10 >= this.getHitbox().getX() &&
                 item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
                 item.getY() + 10 >= this.getHitbox().getY() &&
@@ -210,7 +210,7 @@ public class Joueur extends Acteur {
         environnement.ajouterItem(arme);
     }
 
-    public Coffre coffreAuTour(){
+    public Coffre coffreAutour(){
         for (Coffre coffre : environnement.getListCoffre()) {
             int coffreWidth = 32;
             int coffreHeight = 32;
@@ -226,19 +226,45 @@ public class Joueur extends Acteur {
     }
 
     public void interagirAvecCoffre(){
-        Coffre coffre = coffreAuTour();
+        Coffre coffre = coffreAutour();
         if (coffre != null && !coffre.estOuvert().getValue()){
             coffre.setOuvert(true);
             System.out.println("Coffre ouvert");
             if (coffre.getItem() instanceof Arme){
                 inventaireArme.ajouterItem(coffre.getItem());
-            } else {
-                inventaireItem.ajouterItem(coffre.getItem());
+            }
+            else {
+                if (!inventaireItem.estPlein()) {
+                    inventaireItem.ajouterItem(coffre.getItem());
+                }
+                else {
+                    coffre.getItem().setX(getX());
+                    coffre.getItem().setY(getY() + 25);
+                    environnement.ajouterItem(coffre.getItem());
+                }
             }
             coffre.supprimerItem();
         }
     }
 
+    public Villageois villageoisAutour(){
+        for (Villageois villageois : environnement.getObsVillageois()){
+            int villageoisWidth = 40;
+            int villageoisHeight = 40;
+            if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 10 &&
+                    villageois.getX() + villageoisWidth > this.getHitbox().getX() - 10 &&
+                    villageois.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 10 &&
+                    villageois.getY() + villageoisHeight > this.getHitbox().getY() - 10) {
+                return villageois;
+            }
+        }
+        return null;
+    }
+
+    public boolean interagirAvecVillageois(){
+        Villageois villageois = villageoisAutour();
+        return  (villageois != null);
+    }
 
     public void setEtatAltere(boolean etatAltere) {
         this.etatAltere = etatAltere;
