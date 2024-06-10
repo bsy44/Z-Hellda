@@ -45,12 +45,12 @@ public class Controleur implements Initializable {
     @FXML HBox inventaireArme;
 
     public void initKeyHandlers(Scene scene) {
-        scene.setOnKeyPressed(event -> {
-            Clavier.keyPressed(event);
-        });
-        scene.setOnKeyReleased(event -> {
-            Clavier.keyReleased(event);
-        });
+//        scene.setOnKeyPressed(event -> {
+//            Clavier.keyPressed(event);
+//        });
+//        scene.setOnKeyReleased(event -> {
+//            Clavier.keyReleased(event);
+//        });
         scene.setOnKeyPressed(Clavier::keyPressed);
         scene.setOnKeyReleased(Clavier::keyReleased);
     }
@@ -154,6 +154,18 @@ public class Controleur implements Initializable {
                         env.actionProjectile();
                     }
                     updateScrolling();
+
+
+//                    Environnement.getJ().getXProperty().addListener((observable, oldValue, newValue) -> {
+//                        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
+//                    });
+//                    Environnement.getJ().getYProperty().addListener((observable, oldValue, newValue) -> {
+//                        this.pane.setTranslateY( pane.getPrefHeight() / 2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
+//                    });
+//                    this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
+//                    this.pane.setTranslateY(pane.getPrefHeight() /2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
+//
+
 
                     if (env.mortJoueur()){
                         gameLoop.stop();
