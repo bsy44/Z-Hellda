@@ -132,6 +132,8 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
+                    System.out.println(Environnement.getJ().getX());
+                    System.out.println(Environnement.getJ().getY());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {
