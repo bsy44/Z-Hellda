@@ -34,6 +34,7 @@ public class Controleur implements Initializable {
     private double posX = 0;
     private double posY = 0;
     private double scrollingVitesse;
+    private ChangeurStringEnnemi changeurStringEnnemi;
     @FXML
     private Pane pane;
     @FXML
@@ -58,22 +59,17 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
+        this.changeurStringEnnemi=new ChangeurStringEnnemi(env);
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        Ennemis e2 = new Zombie(410, 110, this.env);
-        Ennemis e3 = new Zombie(510, 110, this.env);
-        Ennemis e4 = new Zombie(610, 110, this.env);
-        Ennemis e5 = new Zombie(510, 210, this.env);
-        Ennemis e6 = new Zombie(610, 210, this.env);
-        Ennemis e7 = new Zombie(410, 210, this.env);
+        for (int i = 0; i < 6; i++) {
+            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
 
-        env.ajouterEnnemi(e2);
-        env.ajouterEnnemi(e3);
-        env.ajouterEnnemi(e4);
-        env.ajouterEnnemi(e5);
-        env.ajouterEnnemi(e6);
-        env.ajouterEnnemi(e7);
+        }
+
+            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
+
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
