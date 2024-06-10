@@ -203,6 +203,13 @@ public class Joueur extends Acteur {
         environnement.getObsItemParTerre().add(item);
     }
 
+    public void jeterArme(Arme arme){
+        arme.setX(getX());
+        arme.setY(getY() - 30);
+        inventaireArme.supprimerItem(arme);
+        environnement.ajouterItem(arme);
+    }
+
     public Coffre coffreAuTour(){
         for (Coffre coffre : environnement.getListCoffre()) {
             int coffreWidth = 32;

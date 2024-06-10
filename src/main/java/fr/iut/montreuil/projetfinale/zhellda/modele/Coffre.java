@@ -17,17 +17,17 @@ public class Coffre {
     private Environnement environnement;
     private static int cpt = 0;
     private ArrayList<int[]> listSpawn;
+    private static ArrayList<int[]> coordonneesPrises = new ArrayList<>();
 
     public Coffre(Environnement environnement) {
         this.environnement = environnement;
         this.listSpawn = new ArrayList<>();
-        ajouterSpawn();
-        this.x = new SimpleIntegerProperty(spawnAleatoire()[0]);
-        this.y = new SimpleIntegerProperty(spawnAleatoire()[1]);
+        this.ajouterSpawn();
         this.nom = "coffre";
         this.id = nom + "#" + cpt;
+        this.spawnAleatoire();
+        this.item = genererItem();
         this.ouvert = new SimpleBooleanProperty(false);
-        this.item = new Marteau(environnement, getX(), getY());
         cpt++;
     }
 
@@ -39,7 +39,7 @@ public class Coffre {
         return x.getValue();
     }
 
-    public IntegerProperty xProperty() {
+    public final IntegerProperty xProperty() {
         return x;
     }
 
@@ -47,7 +47,7 @@ public class Coffre {
         return y.getValue();
     }
 
-    public IntegerProperty yProperty() {
+    public final IntegerProperty yProperty() {
         return y;
     }
 
@@ -71,6 +71,10 @@ public class Coffre {
         return id;
     }
 
+    public ArrayList<int[]> getListSpawn() {
+        return listSpawn;
+    }
+
     public void ajouterSpawn() {
         listSpawn.add(new int[]{80, 60});
         listSpawn.add(new int[]{1560, 155});
@@ -78,13 +82,61 @@ public class Coffre {
         listSpawn.add(new int[]{1035, 530});
         listSpawn.add(new int[]{710, 30});
     }
+    public void spawnAleatoire(){
+        boolean spawnDispo = false;
 
-    public int[] spawnAleatoire() {
-        for (int i = 0; i < listSpawn.size(); i++) {
+        while (!spawnDispo){
             int indiceRandom = (int) (Math.random() * listSpawn.size());
-            return listSpawn.get(indiceRandom);
+            int[] coordonee = listSpawn.get(indiceRandom);
+            boolean etPrise = false;
+
+            for (int i = 0; i < coordonneesPrises.size(); i++) {
+                if (coordonee[0] == coordonneesPrises.get(i)[0] && coordonee[1] == coordonneesPrises.get(i)[1]){
+                    etPrise = true;
+                }
+            }
+            if (!etPrise){
+                this.x = new SimpleIntegerProperty(coordonee[0]);
+                this.y = new SimpleIntegerProperty(coordonee[1]);
+                coordonneesPrises.add(coordonee);
+                spawnDispo = true;
+            }
         }
-        return null;
+    }
+
+    public Item genererItem() {
+        double random = Math.random();
+        Item itemGenerer;
+
+        if (random < 0.35){
+            double randomItemConsomable = Math.random();
+            if (randomItemConsomable < 0.33){
+                itemGenerer = new PommeDor(getX(), getY());
+            } else if (randomItemConsomable < 0.66) {
+                itemGenerer = new PotionMagique(getX(), getY());
+            }
+            else {
+                itemGenerer = new GrimoirArme(getX(), getY());
+            }
+        }
+        else {
+            double randomArme = Math.random();
+            if (randomArme < 0.33){
+                itemGenerer = new Arc(getX(), getY(), environnement);
+            }
+            else if (randomArme < 0.66){
+                itemGenerer = new Marteau(environnement, getX(), getY());
+            }
+            else {
+                itemGenerer = new Epee(environnement, getX(), getY());
+            }
+        }
+        return itemGenerer;
+    }
+
+    @Override
+    public String toString() {
+        return "Coffre{" + "x=" + x + ", y=" + y + ", nom='" + nom + '\'' + ", id='" + id + '\'' + ", ouvert=" + ouvert + ", item=" + item + '}';
     }
 }
 

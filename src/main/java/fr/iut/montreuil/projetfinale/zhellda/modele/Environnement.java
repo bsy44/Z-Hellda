@@ -79,6 +79,9 @@ public class Environnement {
 
     public void ajouterCoffre(Coffre coffre){
         this.listCoffre.add(coffre);
+        for (int i = 0; i < coffre.getListSpawn().size(); i++) {
+            coffre.getListSpawn().remove(coffre.getListSpawn().get(i));
+        }
     }
 
     public void ennemiMort() {

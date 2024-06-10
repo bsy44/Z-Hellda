@@ -77,7 +77,9 @@ public class Clavier {
                 System.out.println("interaction");
                 Environnement.getJ().interagirAvecCoffre();
                 break;
-
+            case G:
+                Environnement.getJ().jeterArme(Environnement.getJ().getArme());
+                break;
             default:
                 break;
         }

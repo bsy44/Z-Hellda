@@ -23,7 +23,7 @@
       <VBox alignment="CENTER" layoutX="507.0" layoutY="527.0" prefHeight="304.0" prefWidth="368.0" spacing="30.0">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#lancerJeu" prefHeight="55.0" prefWidth="215.0" text="Jouer" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="215.0" text="Règle" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="215.0" text="Option" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#quitterJeu" prefHeight="55.0" prefWidth="215.0" text="Quitter" />
          </children>
       </VBox>

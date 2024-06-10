@@ -67,13 +67,6 @@ public class Controleur implements Initializable {
         env.ajouterEnnemi(e7);
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
-
-        pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                initKeyHandlers(newScene);
-            }
-        });
-
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
@@ -94,15 +87,11 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
         Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
-        /*Environnement.getJ().getXProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
+        pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                initKeyHandlers(newScene);
+            }
         });
-        Environnement.getJ().getYProperty().addListener((observable, old, now )-> {
-            this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());
-        });
-
-        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX());
-        this.pane.setTranslateY(pane.getPrefHeight() / 2 - Environnement.getJ().getY());*/
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
             new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
