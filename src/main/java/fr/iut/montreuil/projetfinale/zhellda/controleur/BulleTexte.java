@@ -21,7 +21,7 @@ public class BulleTexte extends StackPane {
 
 
         background = new Rectangle();
-        background.setFill(Color.WHITE);
+        background.setFill(Color.BLACK);
         background.setArcWidth(10);
         background.setArcHeight(10);
 

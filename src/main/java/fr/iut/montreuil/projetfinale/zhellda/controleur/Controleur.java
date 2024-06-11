@@ -150,6 +150,11 @@ public class Controleur implements Initializable {
 
 
                     }
+                    else if (bulleTexte != null) {
+                        System.out.println("ok");
+                        pane.getChildren().remove(bulleTexte);
+                        bulleTexte = null;
+                    }
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {
@@ -171,7 +176,7 @@ public class Controleur implements Initializable {
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
-                    updateScrolling();
+                    scrollingMap();
 
 
 //                    Environnement.getJ().getXProperty().addListener((observable, oldValue, newValue) -> {
@@ -193,7 +198,7 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-    private void updateScrolling() {
+    private void scrollingMap() {
         Scene scene = pane.getScene();
         if (scene == null) return;
 
