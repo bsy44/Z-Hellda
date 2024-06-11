@@ -59,9 +59,15 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
+
         this.changeurStringEnnemi=new ChangeurStringEnnemi(env);
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
+        Pnj pnj= new Pnj(250,250,env);
+        new VuePnj(pane, pnj,"perso2.png");
+
+
+        env.ajouterPnj(pnj);
 
         for (int i = 0; i < 6; i++) {
             env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
@@ -76,6 +82,10 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
+
+        ListChangeListener<Pnj> listePnj = new ListObsPnj(pane);
+        env.getObsPnj().addListener(listePnj);
+
 
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
         env.getObsJoueur().addListener(listeJoueur);

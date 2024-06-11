@@ -12,6 +12,7 @@ public class Environnement {
     private static Terrain terrain;
     private static Joueur j;
     private ObservableList<Ennemis> obsEnnemis;
+    private ObservableList<Pnj> obsPnj;
     private ObservableList<Projectile> obsProjectile;
     private  ObservableList<Item> obsItemParTerre;
     private ObservableList<Coffre> listCoffre;
@@ -22,6 +23,7 @@ public class Environnement {
         this.j = new Joueur(this);
         this.obsJoueur = FXCollections.observableArrayList();
         this.obsJoueur.add(j);
+        this.obsPnj = FXCollections.observableArrayList();
         this.obsEnnemis = FXCollections.observableArrayList();
         this.obsProjectile = FXCollections.observableArrayList();
         this.obsItemParTerre = FXCollections.observableArrayList();
@@ -37,6 +39,10 @@ public class Environnement {
 
     public static Terrain getTerrain() {
         return terrain;
+    }
+
+    public ObservableList<Pnj> getObsPnj() {
+        return obsPnj;
     }
 
     public ObservableList<Joueur> getObsJoueur() {
@@ -72,6 +78,9 @@ public class Environnement {
     }
     public void ajouterProjectile (Projectile projectile){
         this.obsProjectile.add(projectile);
+    }
+    public void ajouterPnj (Pnj pnj){
+        this.obsPnj.add(pnj);
     }
 
     public void ajouterItem(Item item){

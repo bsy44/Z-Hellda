@@ -104,7 +104,7 @@ public class Joueur extends Acteur {
             this.setX(newX);
             this.setY(newY);
         }
-        if (colisionEnnemis() || colisionCoffre()){
+        if (colisionEnnemis() || colisionCoffre() || colisionPnj()){
             this.setX(oldX);
             this.setY(oldY);
         }
@@ -165,6 +165,18 @@ public class Joueur extends Acteur {
             int coffreHeight = 32;
 
             if (getX() < coffreX + coffreWidth && getX() + getHitbox().getWidth() > coffreX && getY() < coffreY + coffreHeight && getY() + getHitbox().getHeight() > coffreY) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean colisionPnj(){
+        for (Pnj pnj : getEnvironnement().getObsPnj()) {
+            int pnjX = pnj.getX();
+            int pnjY = pnj.getY();
+            if (getX() < pnjX + pnj.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + pnj.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
                 return true;
             }
         }

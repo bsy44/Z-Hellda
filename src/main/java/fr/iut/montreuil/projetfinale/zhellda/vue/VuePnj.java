@@ -11,14 +11,12 @@ import java.net.URL;
 
 public class VuePnj {
 
-    public class VueProjectile {
-
         private Pnj pnj;
 
-        public VueProjectile(Pane pane, Projectile projectile, String urlImg){
-            this.pnj =projectile;
+        public VuePnj(Pane pane, Pnj pnj, String urlImg) {
+            this.pnj = pnj;
             URL url = Lancement.class.getResource(urlImg);
-            Image image = new Image(String.valueOf(url));;
+            Image image = new Image(String.valueOf(url));
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(30);
             imageView.setFitWidth(30);
