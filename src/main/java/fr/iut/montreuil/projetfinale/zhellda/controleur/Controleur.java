@@ -67,9 +67,16 @@ public class Controleur implements Initializable {
             env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
 
         }
+        env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
 
-            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-
+        Ennemis z = new Zombie(500,50, env);
+        env.ajouterEnnemi(z);
+        Ennemis s = new Sentinelle(500,100, env);
+        env.ajouterEnnemi(s);
+        Ennemis r = new Rapide(500,150, env);
+        env.ajouterEnnemi(r);
+        Ennemis t = new Tank(500,200, env);
+        env.ajouterEnnemi(t);
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
@@ -99,7 +106,7 @@ public class Controleur implements Initializable {
         });
 
         for (int i = 0; i < env.getObsEnnemis().size(); i++) {
-            new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
+            new VueEnnemis(pane, env.getObsEnnemis().get(i), (env.getObsEnnemis().get(i).getNom()+".png"));
         }
 
         for (Coffre coffre : env.getListCoffre()) {
@@ -144,8 +151,7 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
-                            //ennemi.seDeplacer();
-                            ennemi.attaquer();
+                            ennemi.agir();
                         }
                     }
                     if (tempsEcoule % 500 == 0) {

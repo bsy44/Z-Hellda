@@ -181,7 +181,7 @@ public class Environnement {
     }
     public  String genenerEnnemie() {
         Random random = new Random();
-        int randomNb = random.nextInt(3)+1;
+        int randomNb = random.nextInt(4)+1;
         if (randomNb == 1) {
             return "Tank";
         }
@@ -190,6 +190,9 @@ public class Environnement {
         }
         if (randomNb == 3) {
             return "Zombie";
+        }
+        if (randomNb == 4) {
+            return "Sentinelle";
         }
         return null;
     }

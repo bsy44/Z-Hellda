@@ -28,8 +28,16 @@ public class VueEnnemis {
             barreDeVie.progressProperty().bind(ennemis.getVie().divide((double)ennemis.getPvMax()));
             barreDeVie.setId(ennemis.getId() + 1);
 
-            imageView.setFitHeight(30);
-            imageView.setFitWidth(30);
+            if (urlImg.equals("tank.png")){
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+            } else if (urlImg.equals("sentinelle.png")){
+                imageView.setFitHeight(40);
+                imageView.setFitWidth(40);
+            } else {
+                imageView.setFitHeight(30);
+                imageView.setFitWidth(30);
+            }
             imageView.setId(e.getId());
             imageView.translateXProperty().bind(e.getXProperty());
             imageView.translateYProperty().bind(e.getYProperty());
