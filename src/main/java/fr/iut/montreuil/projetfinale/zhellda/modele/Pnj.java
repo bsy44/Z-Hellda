@@ -8,10 +8,10 @@ public class Pnj extends Acteur{
     public Pnj(int x, int y,Environnement environnement) {
         super(x, y, 1, 0, "pnj", 30, 30, environnement);
     }
-    public void parler(Pane pane, String message) {
+    public void parler(String message) {
+        System.out.println("dans parler");
         if (bulleTexte == null) {
-            bulleTexte = new BulleTexte(message);
-            pane.getChildren().add(bulleTexte);
+            bulleTexte = new BulleTexte(message, this);
             bulleTexte.setTranslateX(this.getX());
             bulleTexte.setTranslateY(this.getY() - 50);
             bulleTexte.setTexte(message);

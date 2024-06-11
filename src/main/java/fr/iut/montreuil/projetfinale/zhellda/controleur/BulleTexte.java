@@ -11,9 +11,8 @@ import javafx.scene.text.TextAlignment;
 public class BulleTexte extends StackPane {
     private Label label;
     private Rectangle background;
-    private Pnj pnj;
 
-    public BulleTexte(String texte) {
+    public BulleTexte(String texte, Pnj pnj) {
         label = new Label(texte);
         label.setFont(new Font("Arial", 14));
         label.setTextFill(Color.WHITE);
@@ -31,8 +30,8 @@ public class BulleTexte extends StackPane {
 
         this.getChildren().addAll(background, label);
 
-//        this.setTranslateY(pnj.getY());
-//        this.setTranslateX(pnj.getX());
+        this.setTranslateY(pnj.getY());
+        this.setTranslateX(pnj.getX());
     }
 
     public void setTexte(String texte) {

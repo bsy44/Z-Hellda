@@ -222,7 +222,7 @@ public class Joueur extends Acteur {
         environnement.ajouterItem(arme);
     }
 
-    public Coffre coffreAuTour(){
+    public Coffre coffreAutour(){
         for (Coffre coffre : environnement.getListCoffre()) {
             int coffreWidth = 32;
             int coffreHeight = 32;
@@ -237,8 +237,37 @@ public class Joueur extends Acteur {
         return null;
     }
 
-    public void interagirAvecCoffre(){
-        Coffre coffre = coffreAuTour();
+
+    public Pnj pnjProche(){
+        for (Pnj pnj : environnement.getObsPnj()) {
+
+
+            if (pnj.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
+                    pnj.getX() + pnj.getHitbox().getWidth() > this.getHitbox().getX() - 16 &&
+                    pnj.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
+                    pnj.getY() + pnj.getHitbox().getHeight() > this.getHitbox().getY() - 16) {
+                return pnj;
+            }
+        }
+        return null;
+    }
+//    public void interagirAvecCoffre(){
+//        Coffre coffre = coffreAutour();
+//        if (coffre != null && !coffre.estOuvert().getValue()){
+//            coffre.setOuvert(true);
+//            System.out.println("Coffre ouvert");
+//            if (coffre.getItem() instanceof Arme){
+//                inventaireArme.ajouterItem(coffre.getItem());
+//            } else {
+//                inventaireItem.ajouterItem(coffre.getItem());
+//            }
+//            coffre.supprimerItem();
+//        }
+//    }
+
+    public void interagir(){
+        Coffre coffre = coffreAutour();
+        Pnj pnj = pnjProche();
         if (coffre != null && !coffre.estOuvert().getValue()){
             coffre.setOuvert(true);
             System.out.println("Coffre ouvert");
@@ -248,6 +277,9 @@ public class Joueur extends Acteur {
                 inventaireItem.ajouterItem(coffre.getItem());
             }
             coffre.supprimerItem();
+        }
+        else if (pnj != null){
+            pnj.parler(" vous devez tuez le boss");
         }
     }
 

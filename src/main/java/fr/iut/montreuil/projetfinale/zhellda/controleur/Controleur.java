@@ -46,12 +46,7 @@ public class Controleur implements Initializable {
     @FXML HBox inventaireArme;
 
     public void initKeyHandlers(Scene scene) {
-//        scene.setOnKeyPressed(event -> {
-//            Clavier.keyPressed(event);
-//        });
-//        scene.setOnKeyReleased(event -> {
-//            Clavier.keyReleased(event);
-//        });
+
         scene.setOnKeyPressed(Clavier::keyPressed);
         scene.setOnKeyReleased(Clavier::keyReleased);
     }
@@ -138,8 +133,6 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    System.out.println(Environnement.getJ().getX());
-                    System.out.println(Environnement.getJ().getY());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {
@@ -199,9 +192,6 @@ public class Controleur implements Initializable {
         double joueurScreenX = joueurX - posX;
         double joueurScreenY = joueurY - posY;
 
-        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
-        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
-        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
 
         // Si le joueur se déplace vers le bord gauche de la fenêtre
         if (joueurScreenX < largeurScene * 0.2) {
@@ -228,7 +218,6 @@ public class Controleur implements Initializable {
         posX = clamp(posX, 0, maxX);
         posY = clamp(posY, 0, maxY);
 
-        System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
 
         // Appliquer le décalage de défilement à la TilePane
         pane.setLayoutX(-posX);
