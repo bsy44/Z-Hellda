@@ -35,6 +35,7 @@ public class Controleur implements Initializable {
     private double posY = 0;
     private double scrollingVitesse;
     private ChangeurStringEnnemi changeurStringEnnemi;
+    private BulleTexte bulleTexte;
     @FXML
     private Pane pane;
     @FXML
@@ -131,8 +132,26 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
+
                 Duration.seconds(0.001),
                 (ev -> {
+                    Pnj pnj=env.getObsPnj().get(0);
+                    if (pnj.getX() < Environnement.getJ().getHitbox().getX() + Environnement.getJ().getHitbox().getWidth() + 16 &&
+                            pnj.getX() + pnj.getHitbox().getWidth() > Environnement.getJ().getHitbox().getX() - 16 &&
+                            pnj.getY() < Environnement.getJ().getHitbox().getY() + Environnement.getJ().getHitbox().getHeight() + 16 &&
+                            pnj.getY() + pnj.getHitbox().getHeight() > Environnement.getJ().getHitbox().getY() - 16) {
+
+                        if (bulleTexte == null) {
+                            bulleTexte = new BulleTexte("message", pnj, pane);
+                            bulleTexte.setTranslateX(pnj.getX());
+                            bulleTexte.setTranslateY(pnj.getY() - 50);
+                            bulleTexte.setTexte("message");
+                        }
+
+
+
+
+                    }
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {

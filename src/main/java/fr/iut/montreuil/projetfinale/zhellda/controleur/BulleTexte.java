@@ -2,6 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Pnj;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,15 +13,15 @@ public class BulleTexte extends StackPane {
     private Label label;
     private Rectangle background;
 
-    public BulleTexte(String texte, Pnj pnj) {
+    public BulleTexte(String texte, Pnj pnj, Pane pane) {
         label = new Label(texte);
-        label.setFont(new Font("Arial", 14));
-        label.setTextFill(Color.WHITE);
+        label.setFont(new Font("Arial",20));
+        label.setTextFill(Color.BLACK);
         label.setTextAlignment(TextAlignment.CENTER);
 
 
         background = new Rectangle();
-        background.setFill(Color.BLACK);
+        background.setFill(Color.WHITE);
         background.setArcWidth(10);
         background.setArcHeight(10);
 
@@ -32,6 +33,7 @@ public class BulleTexte extends StackPane {
 
         this.setTranslateY(pnj.getY());
         this.setTranslateX(pnj.getX());
+        pane.getChildren().add(this);
     }
 
     public void setTexte(String texte) {

@@ -3,11 +3,14 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Clavier {
+
+    private Pane pane;
 
     private static final Set<KeyCode> currentlyPressedKeys = new HashSet<>();
 

@@ -10,12 +10,12 @@ public class Pnj extends Acteur{
     }
     public void parler(String message) {
         System.out.println("dans parler");
-        if (bulleTexte == null) {
-            bulleTexte = new BulleTexte(message, this);
-            bulleTexte.setTranslateX(this.getX());
-            bulleTexte.setTranslateY(this.getY() - 50);
-            bulleTexte.setTexte(message);
-        }
+//        if (bulleTexte == null) {
+//            bulleTexte = new BulleTexte(message, this);
+//            bulleTexte.setTranslateX(this.getX());
+//            bulleTexte.setTranslateY(this.getY() - 50);
+//            bulleTexte.setTexte(message);
+//        }
     }
 
     public void cacherBulleTexte(Pane pane) {
