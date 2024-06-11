@@ -148,7 +148,9 @@ public class Controleur implements Initializable {
                         afficherGameOverScene();
                     }
                     dialogue();
-                    updateScrolling();
+                    if (pane.getScene().getWindow() != null){
+                        updateScrolling();
+                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -267,12 +269,29 @@ public class Controleur implements Initializable {
     public void dialogue(){
         Villageois villageois = Environnement.getJ().villageoisAutour();
 
-        if (villageois != null && bulleTexte == null){
-            bulleTexte = new BulleTexte(villageois);
-            bulleTexte.setTranslateX(villageois.getX());
-            bulleTexte.setTranslateY(villageois.getY() + 30);
-            bulleTexte.setTexte(villageois.getListMessage().get(0).getValue());
-            pane.getChildren().add(bulleTexte);
+        if (villageois != null){
+            if (bulleTexte == null) {
+                bulleTexte = new BulleTexte(villageois);
+                pane.getChildren().add(bulleTexte);
+                double villageoisX = villageois.getX();
+                double villageoisY = villageois.getY();
+
+                double bulleX = villageoisX / 2;
+                double bulleY = villageoisY - 95;
+
+                bulleTexte.setTranslateX(bulleX);
+                bulleTexte.setTranslateY(bulleY);
+                bulleTexte.setTexte(villageois.getListMessage().get(0).getValue());
+                bulleTexte.messageSuivant();
+
+                if (villageois.getIndiceMessageActuel() == villageois.getListMessage().size()){
+                    pane.getChildren().remove(bulleTexte);
+                }
+            }
+        }
+        else if (bulleTexte != null) {
+            pane.getChildren().remove(bulleTexte);
+            bulleTexte = null;
         }
     }
 }

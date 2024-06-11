@@ -14,8 +14,8 @@ public class VueVilageois {
         Image image = new Image(String.valueOf(url));
         ImageView imageView = new ImageView(image);
 
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
+        imageView.setFitHeight(25);
+        imageView.setFitWidth(25);
         imageView.setId(villageois.getId());
         imageView.translateXProperty().bind(villageois.getXProperty());
         imageView.translateYProperty().bind(villageois.getYProperty());

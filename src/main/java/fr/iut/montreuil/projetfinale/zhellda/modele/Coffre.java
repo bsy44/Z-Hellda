@@ -108,7 +108,7 @@ public class Coffre {
         double random = Math.random();
         Item itemGenerer;
 
-        if (random < 0.35){
+        if (random < 0.25){
             double randomItemConsomable = Math.random();
             if (randomItemConsomable < 0.33){
                 itemGenerer = new PommeDor(getX(), getY());

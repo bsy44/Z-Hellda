@@ -237,7 +237,7 @@ public class Joueur extends Acteur {
 
     public void interagir(){
         Coffre coffre = coffreAuTour();
-        Villageois villageois = villageoisAutour();
+
         if (coffre != null && !coffre.estOuvert().getValue()){
             coffre.setOuvert(true);
             if (coffre.getItem() instanceof Arme){

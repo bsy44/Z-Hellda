@@ -27,7 +27,6 @@
     -fx-border-color: #eb9f09; 
 }
 
-
 .case {
     -fx-border-color: #e0c080;
     -fx-border-width: 2px;
@@ -38,7 +37,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 0);
 }
 
-#inventaireItem .label {
+.label {
     -fx-font-family: "Zapfino", cursive;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -110,4 +109,46 @@
 .arme-selectionnee {
     -fx-border-color: yellow;
     -fx-border-width: 3;
+}
+
+.bulle-texte {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-background-radius: 15px;
+    -fx-padding: 5px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-pref-width: 200px; /* Ajuster la largeur pour la rendre plus petite */
+    -fx-max-width: 200px;  /* S'assurer qu'elle ne grandit pas au-delà de cette largeur */
+    -fx-pref-height: 90px; /* Ajuster la hauteur pour la rendre plus petite */
+    -fx-max-height: 100px;  /* S'assurer qu'elle ne grandit pas au-delà de cette hauteur */
+}
+
+/* Style pour le label de texte à l'intérieur de la bulle */
+.bulle-texte .label {
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px; /* Ajuster la taille de la police pour s'adapter à la bulle plus petite */
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true; /* Activer le retour à la ligne */
+    -fx-padding: 5px ; /* Appliquer un padding de 5px en haut et sur les côtés */
+}
+
+/* Style pour le bouton */
+.bulle-texte .button {
+    -fx-font-family: 'Arial';
+    -fx-font-size: 10px; /* Diminuer la taille de la police pour un bouton plus petit */
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Diminuer le rayon des bordures */
+    -fx-padding: 5px; /* Diminuer le padding pour un bouton plus petit */
+    -fx-cursor: hand;
+    -fx-alignment: bottom-right; /* S'assurer que le bouton est aligné en bas à droite */
+}
+
+.bulle-texte .button:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
