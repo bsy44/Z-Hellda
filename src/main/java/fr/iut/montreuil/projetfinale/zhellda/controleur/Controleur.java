@@ -149,8 +149,6 @@ public class Controleur implements Initializable {
                         }
 
 
-
-
                     }
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
