@@ -18,10 +18,10 @@ public class Pnj extends Acteur{
         }
     }
 
-//    public void cacherBulleTexte(Pane pane) {
-//        if (bulleTexte != null) {
-//            pane.getChildren().remove(bulleTexte);
-//            bulleTexte = null;
-//        }
-//    }
+    public void cacherBulleTexte(Pane pane) {
+        if (bulleTexte != null) {
+            pane.getChildren().remove(bulleTexte);
+            bulleTexte = null;
+        }
+    }
 }
