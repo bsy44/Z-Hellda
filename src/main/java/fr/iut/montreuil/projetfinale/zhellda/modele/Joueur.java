@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(282, 10, 10, 5, "joueur", 30, 30, environnement);
+        super(282, 50, 10, 5, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 1;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
@@ -104,7 +104,7 @@ public class Joueur extends Acteur {
             this.setX(newX);
             this.setY(newY);
         }
-        if (colisionEnnemis() || colisionCoffre() || colisionPnj()){
+        if (colisionEnnemis() || colisionCoffre() || colisionVillageois()){
             this.setX(oldX);
             this.setY(oldY);
         }
@@ -168,15 +168,14 @@ public class Joueur extends Acteur {
                 return true;
             }
         }
-
         return false;
     }
 
-    public boolean colisionPnj(){
-        for (Pnj pnj : getEnvironnement().getObsPnj()) {
-            int pnjX = pnj.getX();
-            int pnjY = pnj.getY();
-            if (getX() < pnjX + pnj.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + pnj.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
+    public boolean colisionVillageois(){
+        for (Villageois villageois : getEnvironnement().getObsVillageois()) {
+            int pnjX = villageois.getX();
+            int pnjY = villageois.getY();
+            if (getX() < pnjX + villageois.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + villageois.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
                 return true;
             }
         }
@@ -187,7 +186,6 @@ public class Joueur extends Acteur {
     public boolean isEtatAltere() {
         return etatAltere;
     }
-
 
     public int getVieMax() {
         return 10;
@@ -237,11 +235,11 @@ public class Joueur extends Acteur {
         return null;
     }
 
-    public void interagirAvecCoffre(){
+    public void interagir(){
         Coffre coffre = coffreAuTour();
+        Villageois villageois = villageoisAutour();
         if (coffre != null && !coffre.estOuvert().getValue()){
             coffre.setOuvert(true);
-            System.out.println("Coffre ouvert");
             if (coffre.getItem() instanceof Arme){
                 inventaireArme.ajouterItem(coffre.getItem());
             }
@@ -257,28 +255,20 @@ public class Joueur extends Acteur {
             }
             coffre.supprimerItem();
         }
-        else if (pnj != null){
-            pnj.parler(" vous devez tuez le boss");
-        }
     }
 
     public Villageois villageoisAutour(){
         for (Villageois villageois : environnement.getObsVillageois()){
             int villageoisWidth = 40;
             int villageoisHeight = 40;
-            if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 10 &&
-                    villageois.getX() + villageoisWidth > this.getHitbox().getX() - 10 &&
-                    villageois.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 10 &&
-                    villageois.getY() + villageoisHeight > this.getHitbox().getY() - 10) {
+            if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
+                    villageois.getX() + villageoisWidth > this.getHitbox().getX() - 16 &&
+                    villageois.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
+                    villageois.getY() + villageoisHeight > this.getHitbox().getY() - 16) {
                 return villageois;
             }
         }
         return null;
-    }
-
-    public boolean interagirAvecVillageois(){
-        Villageois villageois = villageoisAutour();
-        return  (villageois != null);
     }
 
     public void setEtatAltere(boolean etatAltere) {

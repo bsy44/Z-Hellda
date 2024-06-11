@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Pnj;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -12,12 +12,11 @@ public class BulleTexte extends StackPane {
     private Label label;
     private Rectangle background;
 
-    public BulleTexte(String texte, Pnj pnj) {
-        label = new Label(texte);
+    public BulleTexte(Villageois villageois) {
+        label = new Label();
         label.setFont(new Font("Arial", 14));
         label.setTextFill(Color.WHITE);
         label.setTextAlignment(TextAlignment.CENTER);
-
 
         background = new Rectangle();
         background.setFill(Color.BLACK);
@@ -30,8 +29,8 @@ public class BulleTexte extends StackPane {
 
         this.getChildren().addAll(background, label);
 
-        this.setTranslateY(pnj.getY());
-        this.setTranslateX(pnj.getX());
+        this.setTranslateY(villageois.getY());
+        this.setTranslateX(villageois.getX());
     }
 
     public void setTexte(String texte) {

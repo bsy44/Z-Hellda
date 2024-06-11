@@ -1,7 +1,9 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.controleur.BulleTexte;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
@@ -28,4 +30,10 @@ public class Villageois extends Acteur{
     public void supprimerMessage(StringProperty message){
         listMessage.remove(message);
     }
+    /*public void cacherBulleTexte(Pane pane) {
+        if (bulleTexte != null) {
+            pane.getChildren().remove(bulleTexte);
+            bulleTexte = null;
+        }
+    }*/
 }

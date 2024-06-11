@@ -2,9 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Random;
 
 public class Environnement {
     private ObservableList<Joueur> obsJoueur;

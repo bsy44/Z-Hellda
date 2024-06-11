@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -34,6 +35,7 @@ public class Controleur implements Initializable {
     private double posY = 0;
     private double scrollingVitesse;
     private ChangeurStringEnnemi changeurStringEnnemi;
+    private BulleTexte bulleTexte;
     @FXML
     private Pane pane;
     @FXML
@@ -52,23 +54,16 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
-
         this.changeurStringEnnemi=new ChangeurStringEnnemi(env);
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
-        Pnj pnj= new Pnj(250,250,env);
-        new VuePnj(pane, pnj,"perso2.png");
-
-
-        env.ajouterPnj(pnj);
+        Villageois villageois = new Villageois(env);
+        env.getObsVillageois().add(villageois);
+        new VueVilageois(pane, villageois);
 
         for (int i = 0; i < 6; i++) {
             env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-
         }
-
-            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
@@ -76,18 +71,14 @@ public class Controleur implements Initializable {
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
         env.getObsEnnemis().addListener(listeEnnemis);
 
-        ListChangeListener<Pnj> listePnj = new ListObsPnj(pane);
-        env.getObsPnj().addListener(listePnj);
-
-
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
         env.getObsJoueur().addListener(listeJoueur);
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getObsProjectile().addListener(listeProjectile);
 
-        ListChangeListener<Item> listObsItem = new ListObsItem(pane);
-        env.getObsItemParTerre().addListener(listObsItem);
+        ListChangeListener<Item> listObsItemEnvironement = new ListObsItem(pane);
+        env.getObsItemParTerre().addListener(listObsItemEnvironement);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
         Environnement.getJ().getInventaireItem().getListItem().addListener(listObsItemInventaire);
@@ -156,6 +147,8 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                         afficherGameOverScene();
                     }
+                    dialogue();
+                    updateScrolling();
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -211,8 +204,6 @@ public class Controleur implements Initializable {
     private double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
     }
-
-
 
     @FXML
     public void interactionItemInventaire(MouseEvent event) {
@@ -273,4 +264,15 @@ public class Controleur implements Initializable {
         primaryStage.show();
     }
 
+    public void dialogue(){
+        Villageois villageois = Environnement.getJ().villageoisAutour();
+
+        if (villageois != null && bulleTexte == null){
+            bulleTexte = new BulleTexte(villageois);
+            bulleTexte.setTranslateX(villageois.getX());
+            bulleTexte.setTranslateY(villageois.getY() + 30);
+            bulleTexte.setTexte(villageois.getListMessage().get(0).getValue());
+            pane.getChildren().add(bulleTexte);
+        }
+    }
 }
