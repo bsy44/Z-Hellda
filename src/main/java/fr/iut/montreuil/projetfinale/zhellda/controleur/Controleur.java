@@ -136,7 +136,7 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
-                            //ennemi.seDeplacer();
+                            ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }

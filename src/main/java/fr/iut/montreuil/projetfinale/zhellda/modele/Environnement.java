@@ -26,12 +26,7 @@ public class Environnement {
         this.listCoffre = FXCollections.observableArrayList();
         this.obsVillageois = FXCollections.observableArrayList();
         this.bfs = new Bfs();
-        Coffre coffre1 = new Coffre(this);
-        Coffre coffre2 = new Coffre(this);
-        Coffre coffre3 = new Coffre(this);
-        ajouterCoffre(coffre1);
-        ajouterCoffre(coffre2);
-        ajouterCoffre(coffre3);
+        this.creationCoffre();
     }
 
     public static Terrain getTerrain() {
@@ -195,6 +190,13 @@ public class Environnement {
             return "Zombie";
         }
         return null;
+    }
+
+    public void creationCoffre(){
+        for (int i = 0; i < 5; i++) {
+            Coffre coffre = new Coffre(this);
+            ajouterCoffre(coffre);
+        }
     }
 
     public static Joueur getJ() {
