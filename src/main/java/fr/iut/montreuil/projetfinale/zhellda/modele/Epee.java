@@ -13,6 +13,7 @@ public class Epee extends Arme{
 
     @Override
     public void attaquer(Joueur j, int x, int y) {
+        System.out.println("attaque Epee");
         boolean ennemieTouche = false;
         for (int i = 0; i < getEnvironnement().getObsEnnemis().size() && ennemieTouche==false; i++) {
             Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);

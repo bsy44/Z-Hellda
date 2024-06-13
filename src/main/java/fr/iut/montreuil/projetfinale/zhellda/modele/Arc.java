@@ -7,6 +7,7 @@ public class Arc extends Arme {
 
     @Override
     public void attaquer (Joueur j, int x, int y) {
+        System.out.println("attaque Arc");
         Projectile projectile = new Fleche(j.getX(), j.getY(), x,y, this.getEnvironnement());
         getEnvironnement().ajouterProjectile(projectile);
     }

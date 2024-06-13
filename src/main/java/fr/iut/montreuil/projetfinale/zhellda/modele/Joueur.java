@@ -16,7 +16,7 @@ public class Joueur extends Acteur {
 
     public Joueur(Environnement environnement) {
         super(282, 50, 10, 5, "joueur", 30, 30, environnement);
-        this.numArmeUtilise = 1;
+        this.numArmeUtilise = 0;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
         this.etatAltere = false;
@@ -30,9 +30,7 @@ public class Joueur extends Acteur {
     }
 
     public Arme getArme() {
-        if (this.inventaireArme.getListItem().size() - 1 > numArmeUtilise)
-            return null;
-        return (Arme) this.inventaireArme.getListItem().get(numArmeUtilise - 1);
+        return (Arme) this.inventaireArme.getListItem().get(numArmeUtilise);
     }
 
     public Inventaire getInventaireItem() {

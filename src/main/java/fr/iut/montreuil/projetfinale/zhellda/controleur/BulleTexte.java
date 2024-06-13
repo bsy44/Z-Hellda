@@ -38,6 +38,9 @@ public class BulleTexte extends StackPane {
         this.getStyleClass().add("bulle-texte");
         label.getStyleClass().add("label");
         boutonPasser.getStyleClass().add("button");
+
+        // Appel à la méthode pour configurer l'action du bouton
+        messageSuivant();
     }
 
     public void setTexte(String texte) {
@@ -45,6 +48,7 @@ public class BulleTexte extends StackPane {
     }
 
     public void messageSuivant() {
+        System.out.println("ok");
         boutonPasser.setOnAction(event -> {
             System.out.println("Click");
             if (villageois != null) {
