@@ -46,11 +46,6 @@ public class Controleur implements Initializable {
     private VBox inventaireItem;
     @FXML HBox inventaireArme;
 
-    public void initKeyHandlers(Scene scene) {
-        scene.setOnKeyPressed(Clavier::keyPressed);
-        scene.setOnKeyReleased(Clavier::keyReleased);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
@@ -115,6 +110,11 @@ public class Controleur implements Initializable {
         gameLoop.play();
     }
 
+    public void initKeyHandlers(Scene scene) {
+        scene.setOnKeyPressed(Clavier::keyPressed);
+        scene.setOnKeyReleased(Clavier::keyReleased);
+    }
+
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
@@ -136,7 +136,7 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
-//                            ennemi.seDeplacer();
+                            //ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }
@@ -147,7 +147,7 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                         afficherGameOverScene();
                     }
-                    dialogue();
+
                     if (pane.getScene().getWindow() != null){
                         updateScrolling();
                     }
@@ -155,7 +155,8 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-    private void updateScrolling() {
+
+    public void updateScrolling() {
         Scene scene = pane.getScene();
         if (scene == null) return;
 
@@ -203,7 +204,7 @@ public class Controleur implements Initializable {
         pane.setLayoutY(-posY);
     }
 
-    private double clamp(double value, double min, double max) {
+    public double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
     }
 
@@ -266,32 +267,29 @@ public class Controleur implements Initializable {
         primaryStage.show();
     }
 
-    public void dialogue(){
+    public void dialogue() {
         Villageois villageois = Environnement.getJ().villageoisAutour();
 
-        if (villageois != null){
+        /*if (villageois != null) {
             if (bulleTexte == null) {
                 bulleTexte = new BulleTexte(villageois);
+                bulleTexte.setStyle("-fx-background-color: lightblue; -fx-text-fill: black;");
                 pane.getChildren().add(bulleTexte);
+
                 double villageoisX = villageois.getX();
                 double villageoisY = villageois.getY();
-
-                double bulleX = villageoisX / 2;
+                double bulleX = villageoisX;
                 double bulleY = villageoisY - 95;
 
                 bulleTexte.setTranslateX(bulleX);
                 bulleTexte.setTranslateY(bulleY);
-                bulleTexte.setTexte(villageois.getListMessage().get(0).getValue());
-                bulleTexte.messageSuivant();
 
-                if (villageois.getIndiceMessageActuel() == villageois.getListMessage().size()){
-                    pane.getChildren().remove(bulleTexte);
-                }
+                bulleTexte.setMinWidth(150);
+                bulleTexte.setMinHeight(50);
             }
-        }
-        else if (bulleTexte != null) {
+        } else if (bulleTexte != null) {
             pane.getChildren().remove(bulleTexte);
             bulleTexte = null;
-        }
+        }*/
     }
 }

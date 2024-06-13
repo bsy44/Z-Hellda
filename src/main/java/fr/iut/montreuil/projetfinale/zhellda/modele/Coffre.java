@@ -76,9 +76,9 @@ public class Coffre {
     }
 
     public void ajouterSpawn() {
-        //listSpawn.add(new int[]{80, 60});
-        //listSpawn.add(new int[]{1560, 155});
-        //listSpawn.add(new int[]{85, 660});
+        listSpawn.add(new int[]{80, 60});
+        listSpawn.add(new int[]{1560, 155});
+        listSpawn.add(new int[]{85, 660});
         listSpawn.add(new int[]{1035, 530});
         listSpawn.add(new int[]{710, 30});
         listSpawn.add(new int[]{10, 1140});

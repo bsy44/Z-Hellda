@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+<BorderPane stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
    <Pane fx:id="pane">
       <TilePane fx:id="tilePane" prefHeight="1600" prefWidth="1600" />
    </Pane>
@@ -45,8 +45,6 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-
-
          </children>
       </VBox>
    </center>

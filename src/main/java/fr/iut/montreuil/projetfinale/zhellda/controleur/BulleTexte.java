@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur;
+/*package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
 import javafx.geometry.Pos;
@@ -11,36 +11,28 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class BulleTexte extends StackPane {
+public class BulleTexte extends Button {
     private Villageois villageois;
     private Label label;
-    private Button boutonPasser;
 
-    public BulleTexte(Villageois villageois) {
+/*    public BulleTexte(Villageois villageois) {
         this.villageois = villageois;
         label = new Label();
-        boutonPasser = new Button("Suivant");
         VBox vbox = new VBox();
-        HBox hbox = new HBox(boutonPasser);
 
         label.setFont(new Font("Arial", 15));
         label.setTextFill(Color.WHITE);
         label.setTextAlignment(TextAlignment.CENTER);
         label.setWrapText(true); // Activer le retour à la ligne pour le label
 
-        vbox.getChildren().addAll(label);
-        hbox.setAlignment(Pos.BOTTOM_RIGHT);
+        vbox.getChildren().add(label);
 
-        this.getChildren().addAll(vbox, hbox);
+        this.getChildren().add(vbox);
         this.setTranslateY(villageois.getY());
         this.setTranslateX(villageois.getX());
 
         this.getStyleClass().add("bulle-texte");
         label.getStyleClass().add("label");
-        boutonPasser.getStyleClass().add("button");
-
-        // Appel à la méthode pour configurer l'action du bouton
-        messageSuivant();
     }
 
     public void setTexte(String texte) {
@@ -48,13 +40,49 @@ public class BulleTexte extends StackPane {
     }
 
     public void messageSuivant() {
-        System.out.println("ok");
-        boutonPasser.setOnAction(event -> {
-            System.out.println("Click");
-            if (villageois != null) {
+        villageois.incrementerIndiceMessage();
+        setTexte(villageois.getListMessage().get(villageois.getIndiceMessageActuel()).getValue());
+    }
+}
+
+    public BulleTexte(Villageois villageois) {
+        this.villageois = villageois;
+        this.setText(villageois.getListMessage().get(0).getValue());
+        messageSuivant();
+    }
+
+    public void messageSuivant() {
+        this.setOnMouseClicked(mouseEvent -> {
+            if (villageois.getIndiceMessageActuel() <= villageois.getListMessage().size()) {
                 villageois.incrementerIndiceMessage();
-                setTexte(villageois.getListMessage().get(villageois.getIndiceMessageActuel()).getValue());
+                this.setText(villageois.getListMessage().get(villageois.getIndiceMessageActuel()).getValue());
             }
         });
     }
+}*/
+
+package fr.iut.montreuil.projetfinale.zhellda.controleur;
+
+import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
+import javafx.scene.control.Button;
+
+public class BulleTexte extends Button {
+    private Villageois villageois;
+
+    public BulleTexte(Villageois villageois) {
+        this.villageois = villageois;
+        this.setText(villageois.getListMessage().get(0).getValue());
+        this.setFocusTraversable(false);
+        this.isMnemonicParsing();
+        this.setOnAction(mouseEvent -> messageSuivant());
+        this.setStyle("-fx-background-color: lightblue; -fx-text-fill: black;");
+    }
+
+    public void messageSuivant() {
+        if (villageois.getIndiceMessageActuel() < villageois.getListMessage().size() - 1) {
+            villageois.incrementerIndiceMessage();
+            this.setText(villageois.getListMessage().get(villageois.getIndiceMessageActuel()).getValue());
+        }
+    }
 }
+

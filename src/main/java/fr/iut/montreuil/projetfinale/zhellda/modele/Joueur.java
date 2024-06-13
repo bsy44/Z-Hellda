@@ -102,10 +102,12 @@ public class Joueur extends Acteur {
             this.setX(newX);
             this.setY(newY);
         }
+
         if (colisionEnnemis() || colisionCoffre() || colisionVillageois()){
             this.setX(oldX);
             this.setY(oldY);
         }
+
         if (getTransparent() == true){
             this.setX(newX);
             this.setY(newY);
@@ -177,7 +179,6 @@ public class Joueur extends Acteur {
                 return true;
             }
         }
-
         return false;
     }
     
@@ -190,7 +191,7 @@ public class Joueur extends Acteur {
     }
     
     public boolean ramasserItem(Item item) {
-        if (inventaireItem.estPlein()) {
+        if (inventaireItem.estPlein() || inventaireArme.estPlein()) {
             return false;
         }
         
@@ -246,8 +247,8 @@ public class Joueur extends Acteur {
                     inventaireItem.ajouterItem(coffre.getItem());
                 }
                 else {
-                    coffre.getItem().setX(getX());
-                    coffre.getItem().setY(getY() + 25);
+                    coffre.getItem().setX(coffre.getX());
+                    coffre.getItem().setY(coffre.getY() + 25);
                     environnement.ajouterItem(coffre.getItem());
                 }
             }

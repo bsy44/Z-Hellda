@@ -5,10 +5,9 @@ import javafx.scene.image.Image;
 import static java.lang.Math.sqrt;
 
 public class Epee extends Arme{
-    private Image image;
+
     public Epee(Environnement environnement, int x, int y){
-        super(x, y, "épée", environnement,2,80);
-        this.image=new Image(getClass().getResource("/fr/iut/montreuil/projetfinale/zhellda/bouleDeFeu.png").toExternalForm());
+        super(x, y, "épée", environnement,2,60);
     }
 
     @Override
@@ -34,8 +33,5 @@ public class Epee extends Arme{
                 }
             }
         }
-    }
-    public Image getImage() {
-        return image;
     }
 }

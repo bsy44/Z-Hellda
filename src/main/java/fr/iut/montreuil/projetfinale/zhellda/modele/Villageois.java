@@ -23,7 +23,7 @@ public class Villageois extends Acteur{
         listMessage.add(new SimpleStringProperty("Bonjour jeune Aventurier. Bienvenue dans Z-Hellda !"));
         listMessage.add(new SimpleStringProperty("Avant de commencer Equipe toi bien, tu en auras besoin !"));
         listMessage.add(new SimpleStringProperty("Tu retrouveras des coffres un peu partout dans ce monde qui contiennent des items consomables ou des amres"));
-        listMessage.add(new SimpleStringProperty("Je te laisse avant qu'il arrive."));
+        listMessage.add(new SimpleStringProperty("Je te laisse avant qu'il arrive..."));
         listMessage.add(new SimpleStringProperty(" A revoyure jeune aventurier !"));
     }
 
@@ -38,4 +38,5 @@ public class Villageois extends Acteur{
     public void incrementerIndiceMessage() {
         indiceMessageActuel = (indiceMessageActuel + 1) % listMessage.size();
     }
+
 }
