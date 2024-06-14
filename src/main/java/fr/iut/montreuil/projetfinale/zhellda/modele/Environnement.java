@@ -200,4 +200,11 @@ public class Environnement {
     public static Joueur getJ() {
         return j;
     }
+
+    public Boss getBoss(){
+        for(Ennemis e : getObsEnnemis()){
+            if(e.getNom().equals("boss")) return (Boss) e;
+        }
+        return null;
+    }
 }

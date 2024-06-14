@@ -28,11 +28,15 @@ public class VueEnnemis {
             barreDeVie.progressProperty().bind(ennemis.getVie().divide((double)ennemis.getPvMax()));
             barreDeVie.setId(ennemis.getId() + 1);
 
-            if (urlImg.equals("tank.png")){
+            if (urlImg.equals("boss.png")){
+                imageView.setFitHeight(100);
+                imageView.setFitWidth(100);
+            }
+            else if (urlImg.equals("tank.png")){
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(50);
             } else if (urlImg.equals("sentinelle.png")){
-                imageView.setFitHeight(40);
+                imageView.setFitHeight(50);
                 imageView.setFitWidth(40);
             } else {
                 imageView.setFitHeight(30);

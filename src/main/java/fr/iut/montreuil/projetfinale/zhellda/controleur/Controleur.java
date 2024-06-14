@@ -63,20 +63,14 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        for (int i = 0; i < 6; i++) {
-            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
 
-        }
-        env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-
-        Ennemis z = new Zombie(500,50, env);
-        env.ajouterEnnemi(z);
-        Ennemis s = new Sentinelle(500,100, env);
-        env.ajouterEnnemi(s);
-        Ennemis r = new Rapide(500,150, env);
-        env.ajouterEnnemi(r);
-        Ennemis t = new Tank(500,200, env);
-        env.ajouterEnnemi(t);
+//        for (int i = 0; i < 6; i++) {
+//            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
+//
+//        }
+        env.ajouterEnnemi(new Boss(150,250,env));
+        ObsPaterneBoss obsPaterneBoss = new ObsPaterneBoss(env, env.getBoss());
+        obsPaterneBoss.ajouterListner();
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
@@ -135,8 +129,8 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    System.out.println(Environnement.getJ().getX());
-                    System.out.println(Environnement.getJ().getY());
+//                    System.out.println(Environnement.getJ().getX());
+//                    System.out.println(Environnement.getJ().getY());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     if (Environnement.getJ().isEtatAltere()) {
@@ -151,9 +145,18 @@ public class Controleur implements Initializable {
                     Environnement.getJ().resetDeplacement();
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getObsEnnemis()) {
-                            ennemi.agir();
+                            if (!ennemi.getNom().equals("boss"))
+                                ennemi.agir();
                         }
                     }
+
+                    if (tempsEcoule % 25000 == 0) {
+                        for (Ennemis ennemi : env.getObsEnnemis()) {
+                            if (ennemi.getNom().equals("boss"))
+                                ennemi.agir();
+                        }
+                    }
+
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
@@ -195,9 +198,9 @@ public class Controleur implements Initializable {
         double joueurScreenX = joueurX - posX;
         double joueurScreenY = joueurY - posY;
 
-        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
-        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
-        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
+//        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
+//        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
+//        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
 
         // Si le joueur se déplace vers le bord gauche de la fenêtre
         if (joueurScreenX < largeurScene * 0.2) {
@@ -224,7 +227,7 @@ public class Controleur implements Initializable {
         posX = clamp(posX, 0, maxX);
         posY = clamp(posY, 0, maxY);
 
-        System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
+//        System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
 
         // Appliquer le décalage de défilement à la TilePane
         pane.setLayoutX(-posX);

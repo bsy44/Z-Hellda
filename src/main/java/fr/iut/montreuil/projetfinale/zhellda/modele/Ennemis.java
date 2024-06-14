@@ -1,5 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import javafx.scene.shape.Rectangle;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -76,7 +78,7 @@ public abstract class Ennemis extends Acteur {
     }
 
     public void agir (){
-        //seDeplacer();
+//        seDeplacer();
         attaquer();
     }
 
