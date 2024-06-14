@@ -5,6 +5,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,6 +56,7 @@ public class Controleur implements Initializable {
         Villageois villageois = new Villageois(env);
         env.getListVillageois().add(villageois);
         new VueVilageois(pane, villageois);
+        bulleTexte = new BulleTexte(pane);
 
         for (int i = 0; i < 6; i++) {
             env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
@@ -124,7 +127,6 @@ public class Controleur implements Initializable {
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     env.actionItem();
-                    dialogue();
                     updateScrolling();
 
                     if (Environnement.getJ().isEtatAltere()) {
@@ -276,29 +278,5 @@ public class Controleur implements Initializable {
         primaryStage.show();
     }
 
-    public void dialogue() {
-        Villageois villageois = Environnement.getJ().villageoisAutour();
 
-        if (villageois != null) {
-            if (bulleTexte == null) {
-                bulleTexte = new BulleTexte(villageois);
-                bulleTexte.setStyle("-fx-background-color: lightblue; -fx-text-fill: black;");
-                pane.getChildren().add(bulleTexte);
-
-                double villageoisX = villageois.getX() /2;
-                double villageoisY = villageois.getY();
-                double bulleX = villageoisX;
-                double bulleY = villageoisY - 70;
-
-                bulleTexte.setTranslateX(bulleX);
-                bulleTexte.setTranslateY(bulleY);
-
-                bulleTexte.setMinWidth(150);
-                bulleTexte.setMinHeight(50);
-            }
-        } else if (bulleTexte != null) {
-            pane.getChildren().remove(bulleTexte);
-            bulleTexte = null;
-        }
-    }
 }

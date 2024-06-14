@@ -74,6 +74,7 @@ public class Clavier {
             case E:
                 System.out.println("interaction");
                 Environnement.getJ().interagir();
+                BulleTexte.messageSuivant();
                 break;
             case G:
                 Environnement.getJ().jeterArme(Environnement.getJ().getArme());

@@ -11,7 +11,7 @@ public class Villageois extends Acteur{
     public Villageois(Environnement environnement) {
         super(210, 125, 1, 0, "villageois", 30, 30, environnement);
         this.listMessage = new ArrayList<>();
-        this.indiceMessageActuel = 1;
+        this.indiceMessageActuel = 0;
         this.ajouterMessage();
     }
 
@@ -37,6 +37,7 @@ public class Villageois extends Acteur{
 
     public void incrementerIndiceMessage() {
         indiceMessageActuel = (indiceMessageActuel + 1) % listMessage.size();
+        System.out.println("nous sommes entrain de lire le message n° : " + indiceMessageActuel);
     }
 
     @Override
