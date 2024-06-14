@@ -29,6 +29,6 @@ public class Inventaire {
     }
 
     public boolean estPlein(){
-        return  listItem.size() > capaciteMax;
+        return  listItem.size() >= capaciteMax;
     }
 }

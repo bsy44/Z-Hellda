@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
+<BorderPane stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.Controleur">
    <Pane fx:id="pane">
       <TilePane fx:id="tilePane" prefHeight="1600" prefWidth="1600" />
    </Pane>
@@ -20,21 +20,21 @@
             <HBox fx:id="coeur" prefHeight="41.0" prefWidth="576.0">
             </HBox>
             <Pane VBox.vgrow="ALWAYS" />
-            <HBox fx:id="inventaireArme" alignment="CENTER" maxWidth="450.0" minWidth="400.0" prefHeight="105.0" prefWidth="450.0" spacing="10.0">
+            <HBox fx:id="inventaireArme" alignment="CENTER" maxWidth="400.0" spacing="10.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="130.0" styleClass="slot">
+                  <HBox fx:id="armeHBox0" prefHeight="100.0" prefWidth="115.0" styleClass="slot">
                      <children>
-                        <ImageView fx:id="arme0" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="arme0" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="130.0" styleClass="slot">
+                  <HBox fx:id="armeHBox1" prefHeight="100.0" prefWidth="115.0" styleClass="slot">
                      <children>
-                        <ImageView fx:id="arme1" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="arme1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="130.0" styleClass="slot">
+                  <HBox fx:id="armeHBox2" prefHeight="100.0" prefWidth="115.0" styleClass="slot">
                      <children>
-                        <ImageView fx:id="arme2" fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="arme2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
@@ -45,7 +45,6 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-
          </children>
       </VBox>
    </center>

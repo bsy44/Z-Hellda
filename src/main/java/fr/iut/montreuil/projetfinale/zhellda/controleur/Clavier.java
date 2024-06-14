@@ -62,20 +62,20 @@ public class Clavier {
                 break;
             case AMPERSAND:
                 System.out.println("arme 1");
-                Environnement.getJ().setNumArmeUtilise(1);
+                Environnement.getJ().setNumArmeUtilise(0);
                 break;
             case UNDEFINED:
                 System.out.println("arme 2");
-                Environnement.getJ().setNumArmeUtilise(2);
+                Environnement.getJ().setNumArmeUtilise(1);
                 break;
             case QUOTEDBL:
                 System.out.println("arme 3");
-                Environnement.getJ().setNumArmeUtilise(3);
+                Environnement.getJ().setNumArmeUtilise(2);
                 break;
 
             case E:
                 System.out.println("interaction");
-                Environnement.getJ().interagirAvecCoffre();
+                Environnement.getJ().interagir();
                 break;
             case G:
                 Environnement.getJ().jeterArme(Environnement.getJ().getArme());

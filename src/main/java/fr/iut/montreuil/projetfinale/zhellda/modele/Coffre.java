@@ -81,6 +81,9 @@ public class Coffre {
         listSpawn.add(new int[]{85, 660});
         listSpawn.add(new int[]{1035, 530});
         listSpawn.add(new int[]{710, 30});
+        listSpawn.add(new int[]{10, 1140});
+        listSpawn.add(new int[]{755, 745});
+        listSpawn.add(new int[]{1130, 820});
     }
     public void spawnAleatoire(){
         boolean spawnDispo = false;
@@ -108,7 +111,7 @@ public class Coffre {
         double random = Math.random();
         Item itemGenerer;
 
-        if (random < 0.35){
+        if (random < 0.25){
             double randomItemConsomable = Math.random();
             if (randomItemConsomable < 0.33){
                 itemGenerer = new PommeDor(getX(), getY());

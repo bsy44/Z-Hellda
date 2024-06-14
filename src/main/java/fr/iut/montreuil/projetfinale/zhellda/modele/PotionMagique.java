@@ -1,6 +1,9 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-public class PotionMagique extends ItemConsomable{
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class PotionMagique extends ItemConsomable {
     public PotionMagique(int posX, int posY) {
         super(posX, posY, "passeMuraille");
     }
@@ -8,13 +11,22 @@ public class PotionMagique extends ItemConsomable{
     @Override
     public void consommerItem(Joueur joueur) {
         joueur.setTransparent(true);
-        java.util.Timer timer = new java.util.Timer();
-        timer.schedule(new java.util.TimerTask() {
+        Timer timer = new Timer();
+
+        final long period = 100;
+        timer.scheduleAtFixedRate(new TimerTask() {
+            private long elapsedTime = 0;
+  // Vérification périodique tous les 100ms
+
             @Override
             public void run() {
-                joueur.setTransparent(false); // Désactiver la transparence
+                elapsedTime += period;
+                if (elapsedTime >= 7000 && joueur.colisionEnv((joueur.getY() +joueur.getVitesse())/16, (joueur.getY()+joueur.getVitesse())/16 + (int) joueur.getHitbox().getHeight()/16, ((joueur.getX()+joueur.getVitesse())/16+ ((int) joueur.getHitbox().getWidth()) / 16), (joueur.getX()+joueur.getVitesse())/16) ){
+                    joueur.setTransparent(false); // Désactiver la transparence
+                    timer.cancel(); // Arrêter le timer
+                }
             }
-        }, 7000);
+        }, 0, period);
 
         joueur.getInventaireItem().supprimerItem(this);
     }

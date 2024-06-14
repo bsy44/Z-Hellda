@@ -15,7 +15,7 @@ public class VueEnnemis {
         private ProgressBar barreDeVie;
 
         public VueEnnemis(Pane pane, Ennemis ennemis, String urlImg){
-            this.e =ennemis;
+            this.e = ennemis;
             URL url = Lancement.class.getResource(urlImg);
             Image image = new Image(String.valueOf(url));;
             ImageView imageView = new ImageView(image);

@@ -27,7 +27,6 @@
     -fx-border-color: #eb9f09; 
 }
 
-
 .case {
     -fx-border-color: #e0c080;
     -fx-border-width: 2px;
@@ -105,4 +104,9 @@
 .clignotement-blanc {
     -fx-effect: dropshadow(gaussian, white, 1, 1, 1, 1);
     -fx-transition: brightness 0.7s linear infinite alternate;
+}
+
+.arme-selectionnee {
+    -fx-border-color: yellow;
+    -fx-border-width: 3;
 }

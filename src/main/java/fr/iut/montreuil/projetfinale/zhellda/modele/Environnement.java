@@ -2,9 +2,6 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Environnement {
@@ -15,6 +12,7 @@ public class Environnement {
     private ObservableList<Projectile> obsProjectile;
     private  ObservableList<Item> obsItemParTerre;
     private ObservableList<Coffre> listCoffre;
+    private ObservableList<Villageois> obsVillageois;
     private static Bfs bfs;
 
     public Environnement() {
@@ -26,13 +24,9 @@ public class Environnement {
         this.obsProjectile = FXCollections.observableArrayList();
         this.obsItemParTerre = FXCollections.observableArrayList();
         this.listCoffre = FXCollections.observableArrayList();
+        this.obsVillageois = FXCollections.observableArrayList();
         this.bfs = new Bfs();
-        Coffre coffre1 = new Coffre(this);
-        Coffre coffre2 = new Coffre(this);
-        Coffre coffre3 = new Coffre(this);
-        ajouterCoffre(coffre1);
-        ajouterCoffre(coffre2);
-        ajouterCoffre(coffre3);
+        this.creationCoffre();
     }
 
     public static Terrain getTerrain() {
@@ -57,6 +51,10 @@ public class Environnement {
 
     public ObservableList<Coffre> getListCoffre() {
         return listCoffre;
+    }
+
+    public ObservableList<Villageois> getObsVillageois() {
+        return obsVillageois;
     }
 
     public static Bfs getBfs (){
@@ -192,6 +190,13 @@ public class Environnement {
             return "Zombie";
         }
         return null;
+    }
+
+    public void creationCoffre(){
+        for (int i = 0; i < 5; i++) {
+            Coffre coffre = new Coffre(this);
+            ajouterCoffre(coffre);
+        }
     }
 
     public static Joueur getJ() {
