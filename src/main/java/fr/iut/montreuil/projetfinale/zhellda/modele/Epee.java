@@ -8,7 +8,7 @@ public class Epee extends Arme{
     private Image image;
     public Epee(Environnement environnement, int x, int y){
         super(x, y, "épée", environnement,2,80);
-        this.image=new Image(getClass().getResource("/fr/iut/montreuil/projetfinale/zhellda/bouleDeFeu.png").toExternalForm());
+        this.image=new Image(getClass().getResource("/fr/iut/montreuil/projetfinale/zhellda/bouleDeFeuDroite.png").toExternalForm());
     }
 
     @Override

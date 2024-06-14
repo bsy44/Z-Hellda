@@ -2,7 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 public class BouleDeFeu extends Projectile {
     public BouleDeFeu(int x, int y, int xDirection, int yDirection, Environnement environnement) {
-        super(15, x, y, xDirection, yDirection, 1, environnement);
+        super(5, x, y, xDirection, yDirection, 1, environnement);
     }
 
     @Override

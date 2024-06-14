@@ -38,6 +38,25 @@ public class Boss extends Ennemis{
 
     @Override
     public void attaquer(){
+//        int random = (int) Math.round(Math.random()*2+1);
+//        switch(random){
+//
+//            case 1:
+//                clawAtk();
+//                break;
+//
+//            case 2:
+//                areaOfEffect();
+//                break;
+//
+//                case 3:
+//                    fireBall();
+//                    break;
+//
+//            default:
+//                break;
+//        }
+
         fireBall();
     }
 
@@ -197,7 +216,7 @@ public class Boss extends Ennemis{
 
         if (direction.equals("droite")) {
 
-            environnement.ajouterProjectile(new BouleDeFeu(1, getX(), getY(), Environnement.getJ().getX(), environnement));
+            environnement.ajouterProjectile(new BouleDeFeu(getX()+(int)getHitbox().getWidth(), getY()+(int)getHitbox().getHeight()/2, getX()+(int)getHitbox().getWidth()+120, getY()+(int)getHitbox().getHeight()/2, environnement));
 
         } else if (direction.equals("gauche")) {
 
