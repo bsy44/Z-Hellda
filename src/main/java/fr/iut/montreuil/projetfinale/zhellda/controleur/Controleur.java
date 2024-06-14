@@ -148,16 +148,14 @@ public class Controleur implements Initializable {
                         afficherGameOverScene();
                     }
                     dialogue();
-                    if (pane.getScene().getWindow() != null){
-                        updateScrolling();
-                    }
+                    updateScrolling();
+
                 })
         );
         gameLoop.getKeyFrames().add(kf);
     }
     private void updateScrolling() {
         Scene scene = pane.getScene();
-        if (scene == null) return;
 
         double largeurScene = scene.getWindow().getWidth() - inventaireItem.getWidth();
         double hauteurScene = scene.getWindow().getHeight();
@@ -167,29 +165,29 @@ public class Controleur implements Initializable {
         int joueurX = joueur.getX();
         int joueurY = joueur.getY();
 
-        // Calculer la position du joueur dans la fenêtre
+        // position du joueur dans la fenêtre
         double joueurScreenX = joueurX - posX;
         double joueurScreenY = joueurY - posY;
 
-        // Si le joueur se déplace vers le bord gauche de la fenêtre
-        if (joueurScreenX < largeurScene * 0.2) {
+        // Si le joueur se déplace vers la gauche
+        if (joueurScreenX < largeurScene*0.2) {
             posX -= scrollingVitesse;
         }
-        // Si le joueur se déplace vers le bord droit de la fenêtre
+        // Si le joueur se déplace vers la droite
         else if (joueurScreenX > largeurScene * 0.8) {
             posX += scrollingVitesse;
         }
 
-        // Si le joueur se déplace vers le bord supérieur de la fenêtre
-        if (joueurScreenY < hauteurScene * 0.2) {
+        // Si le joueur va vers le haut
+        if (joueurScreenY < hauteurScene*0.2) {
             posY -= scrollingVitesse;
         }
-        // Si le joueur se déplace vers le bord inférieur de la fenêtre
+        // Si le joueur va vers le bas
         else if (joueurScreenY > hauteurScene * 0.8) {
             posY += scrollingVitesse;
         }
 
-        // Limiter le défilement pour ne pas sortir de la carte
+        // max map
         double maxX = (env.getTerrain().getLargeur() * 16) - largeurScene;
         double maxY = (env.getTerrain().getHauteur() * 16) - hauteurScene;
 
@@ -198,14 +196,20 @@ public class Controleur implements Initializable {
 
         //System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
 
-        // Appliquer le décalage de défilement à la TilePane
         pane.setLayoutX(-posX);
         pane.setLayoutY(-posY);
     }
 
-    private double clamp(double value, double min, double max) {
-        return Math.max(min, Math.min(max, value));
+private double clamp(double value, double min, double max) {
+    if (value < min) {
+        return min;
+    } else if (value > max) {
+        return max;
+    } else {
+        return value;
     }
+}
+
 
     @FXML
     public void interactionItemInventaire(MouseEvent event) {
