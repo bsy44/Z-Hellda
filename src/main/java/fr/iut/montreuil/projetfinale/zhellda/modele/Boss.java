@@ -197,7 +197,7 @@ public class Boss extends Ennemis{
 
         if (direction.equals("droite")) {
 
-            environnement.ajouterProjectile(new Projectile(1, getX(), getY(), Environnement.getJ().getX(), Environnement.getJ().getY(), getAttaque(), environnement));
+            environnement.ajouterProjectile(new BouleDeFeu(1, getX(), getY(), Environnement.getJ().getX(), environnement));
 
         } else if (direction.equals("gauche")) {
 
