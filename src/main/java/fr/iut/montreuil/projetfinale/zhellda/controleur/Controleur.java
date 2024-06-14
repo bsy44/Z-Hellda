@@ -175,7 +175,6 @@ public class Controleur implements Initializable {
     }
     private void updateScrolling() {
         Scene scene = pane.getScene();
-        if (scene == null) return;
 
         double largeurScene = scene.getWidth();
         double hauteurScene = scene.getHeight();
@@ -189,24 +188,24 @@ public class Controleur implements Initializable {
         double joueurScreenX = joueurX - posX;
         double joueurScreenY = joueurY - posY;
 
-        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
-        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
-        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
+//        System.out.println("Position du joueur : X = " + joueurX + ", Y = " + joueurY);
+//        System.out.println("Position écran du joueur : X = " + joueurScreenX + ", Y = " + joueurScreenY);
+//        System.out.println("Position actuelle de la carte : X = " + posX + ", Y = " + posY);
 
-        // Si le joueur se déplace vers le bord gauche de la fenêtre
+        // gauche
         if (joueurScreenX < largeurScene * 0.2) {
             posX -= scrollingVitesse;
         }
-        // Si le joueur se déplace vers le bord droit de la fenêtre
+        // droite
         else if (joueurScreenX > largeurScene * 0.8) {
             posX += scrollingVitesse;
         }
 
-        // Si le joueur se déplace vers le bord supérieur de la fenêtre
+        // haut
         if (joueurScreenY < hauteurScene * 0.2) {
             posY -= scrollingVitesse;
         }
-        // Si le joueur se déplace vers le bord inférieur de la fenêtre
+        // bas
         else if (joueurScreenY > hauteurScene * 0.8) {
             posY += scrollingVitesse;
         }
@@ -220,15 +219,20 @@ public class Controleur implements Initializable {
 
         System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
 
-        // Appliquer le décalage de défilement à la TilePane
+
         pane.setLayoutX(-posX);
         pane.setLayoutY(-posY);
     }
 
     private double clamp(double value, double min, double max) {
-        return Math.max(min, Math.min(max, value));
+        if (value < min) {
+            return min;
+        } else if (value > max) {
+            return max;
+        } else {
+            return value;
+        }
     }
-
 
 
     @FXML
