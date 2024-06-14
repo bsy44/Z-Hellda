@@ -79,7 +79,7 @@ public class BulleTexte extends Button {
     }
 
     public void messageSuivant() {
-        if (villageois.getIndiceMessageActuel() < villageois.getListMessage().size() - 1) {
+        if (villageois.getIndiceMessageActuel() <= villageois.getListMessage().size() - 1) {
             villageois.incrementerIndiceMessage();
             this.setText(villageois.getListMessage().get(villageois.getIndiceMessageActuel()).getValue());
         }

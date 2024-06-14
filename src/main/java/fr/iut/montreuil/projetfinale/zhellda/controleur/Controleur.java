@@ -147,7 +147,7 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                         afficherGameOverScene();
                     }
-
+                    dialogue();
                     if (pane.getScene().getWindow() != null){
                         updateScrolling();
                     }
@@ -270,16 +270,16 @@ public class Controleur implements Initializable {
     public void dialogue() {
         Villageois villageois = Environnement.getJ().villageoisAutour();
 
-        /*if (villageois != null) {
+        if (villageois != null) {
             if (bulleTexte == null) {
                 bulleTexte = new BulleTexte(villageois);
                 bulleTexte.setStyle("-fx-background-color: lightblue; -fx-text-fill: black;");
                 pane.getChildren().add(bulleTexte);
 
-                double villageoisX = villageois.getX();
+                double villageoisX = villageois.getX() /2;
                 double villageoisY = villageois.getY();
                 double bulleX = villageoisX;
-                double bulleY = villageoisY - 95;
+                double bulleY = villageoisY - 70;
 
                 bulleTexte.setTranslateX(bulleX);
                 bulleTexte.setTranslateY(bulleY);
@@ -290,6 +290,6 @@ public class Controleur implements Initializable {
         } else if (bulleTexte != null) {
             pane.getChildren().remove(bulleTexte);
             bulleTexte = null;
-        }*/
+        }
     }
 }
