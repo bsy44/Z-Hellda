@@ -41,14 +41,14 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
     public void ajouterListners() {
         Environnement.getJ().getXProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemis e : env.getObsEnnemis()) {
+            for (Ennemis e : env.getListEnnemis()) {
                 e.nouveauChemin();
             }
         });
 
         Environnement.getJ().getYProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemis e : env.getObsEnnemis()) {
+            for (Ennemis e : env.getListEnnemis()) {
                 e.nouveauChemin();
             }
         });

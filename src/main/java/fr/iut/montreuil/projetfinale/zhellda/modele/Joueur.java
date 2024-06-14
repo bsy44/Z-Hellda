@@ -79,6 +79,7 @@ public class Joueur extends Acteur {
         return directionProperty;
     }
 
+    @Override
     public void seDeplacer() {
         int deltaX = 0;
         int deltaY = 0;
@@ -117,13 +118,16 @@ public class Joueur extends Acteur {
             this.directions[i] = false;
         }
     }
-    
-    public void resetDeplacement (){
-        for (int i = 0; i < this.directions.length; i++) {
-            this.directions[i] = false;
+
+    @Override
+    public boolean meurt() {
+        if (getVie().getValue()<=0) {
+            environnement.getListObsJoueur().remove(this);
+            return true;
         }
+        return false;
     }
-    
+
     public boolean colisionEnv(int haut, int bas, int droite, int gauche){
         if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
                 gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {
@@ -144,7 +148,7 @@ public class Joueur extends Acteur {
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
         
-        for (Ennemis ennemi : getEnvironnement().getObsEnnemis()) {
+        for (Ennemis ennemi : environnement.getListEnnemis()) {
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
@@ -158,7 +162,7 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionCoffre(){
-        for (Coffre coffre : getEnvironnement().getListCoffre()) {
+        for (Coffre coffre : environnement.getListCoffre()) {
             int coffreX = coffre.getX();
             int coffreY = coffre.getY();
             int coffreWidth = 32;
@@ -172,7 +176,7 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionVillageois(){
-        for (Villageois villageois : getEnvironnement().getObsVillageois()) {
+        for (Villageois villageois : environnement.getListVillageois()) {
             int pnjX = villageois.getX();
             int pnjY = villageois.getY();
             if (getX() < pnjX + villageois.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + villageois.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
@@ -191,7 +195,7 @@ public class Joueur extends Acteur {
     }
     
     public boolean ramasserItem(Item item) {
-        if (inventaireItem.estPlein() || inventaireArme.estPlein()) {
+        if (inventaireItem.estPlein()) {
             return false;
         }
         
@@ -209,7 +213,7 @@ public class Joueur extends Acteur {
         item.setX(getX());
         item.setY(getY() - 30);
         inventaireItem.supprimerItem(item);
-        environnement.getObsItemParTerre().add(item);
+        environnement.getListItemParTerre().add(item);
     }
 
     public void jeterArme(Arme arme){
@@ -257,7 +261,7 @@ public class Joueur extends Acteur {
     }
 
     public Villageois villageoisAutour(){
-        for (Villageois villageois : environnement.getObsVillageois()){
+        for (Villageois villageois : environnement.getListVillageois()){
             int villageoisWidth = 40;
             int villageoisHeight = 40;
             if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&

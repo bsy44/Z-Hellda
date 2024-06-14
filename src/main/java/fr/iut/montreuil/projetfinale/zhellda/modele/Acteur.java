@@ -65,14 +65,9 @@ public abstract class Acteur {
         return hitbox;
     }
 
-    public Environnement getEnvironnement() {
-        return environnement;
-    }
-
     public int getVitesse() {
         return vitesse;
     }
-
 
     public void subirDegats (int dmg) {
         if ((this.vie.get()-dmg)<=0)
@@ -80,4 +75,8 @@ public abstract class Acteur {
         else
             this.vie.set((this.vie.get()-dmg));
     }
+
+    public abstract void seDeplacer();
+
+    public abstract boolean meurt();
 }

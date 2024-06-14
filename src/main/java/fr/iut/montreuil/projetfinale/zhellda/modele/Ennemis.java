@@ -42,6 +42,7 @@ public abstract class Ennemis extends Acteur {
         return nom;
     }
 
+    @Override
     public void seDeplacer (){
         Case c;
         for (int i=0; i < this.getVitesse(); i++) {
@@ -64,4 +65,30 @@ public abstract class Ennemis extends Acteur {
       cheminVersJoueur = Environnement.getBfs().cheminVersSource(getX(), getY());
     }
 
+    @Override
+    public boolean meurt() {
+        for(int i = environnement.getListEnnemis().size()-1; i>=0;i--){
+            Ennemis e = environnement.getListEnnemis().get(i);
+            if(e.getVie().get()==0){
+                if (e.reussitProba(Zombie.getPourcentageDropItem())){
+                    Item item;
+                    double random = Math.random();
+                    if (random < 0.33) {
+                        item = new PommeDor(e.getX(), e.getY());
+                    }
+                    else if (random < 0.66){
+                        item = new PotionMagique(e.getX(), e.getY());
+                    }
+                    else {
+                        item = new GrimoirArme(e.getX(), e.getY());
+                    }
+                    environnement.getListItemParTerre().add(item);
+                }
+                System.out.println("mort de : " + e);
+                environnement.getListEnnemis().remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }

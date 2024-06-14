@@ -14,20 +14,20 @@ public class Epee extends Arme{
     public void attaquer(Joueur j, int x, int y) {
         System.out.println("attaque Epee");
         boolean ennemieTouche = false;
-        for (int i = 0; i < getEnvironnement().getObsEnnemis().size() && ennemieTouche==false; i++) {
-            Ennemis ennemie = getEnvironnement().getObsEnnemis().get(i);
+        for (int i = 0; i < getEnvironnement().getListEnnemis().size() && ennemieTouche==false; i++) {
+            Ennemis ennemie = getEnvironnement().getListEnnemis().get(i);
             if (ennemie.getType()==0){
                 if (j.getX()==x) {
                     if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
                         ennemie.subirDegats(getAttaque());
-                        this.getEnvironnement().ennemiMort();
+                        ennemie.meurt();
                         ennemieTouche = true;
                     }
                 }
                 else {
                     if ((sqrt(Math.pow(ennemie.getY() - j.getY(), 2))) <= 6 && (ennemie.getX() >= j.getX() && ennemie.getX() <= x) || ((ennemie.getX() <= j.getX() && ennemie.getX() >= x))) {
                         ennemie.subirDegats(getAttaque());
-                        this.getEnvironnement().ennemiMort();
+                        ennemie.meurt();
                         ennemieTouche = true;
                     }
                 }

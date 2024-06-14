@@ -39,4 +39,12 @@ public class Villageois extends Acteur{
         indiceMessageActuel = (indiceMessageActuel + 1) % listMessage.size();
     }
 
+    @Override
+    public void seDeplacer() {
+    }
+
+    @Override
+    public boolean meurt() {
+        return false;
+    }
 }

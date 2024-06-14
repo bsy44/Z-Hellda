@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -46,17 +45,6 @@ public class Controleur implements Initializable {
     private VBox inventaireItem;
     @FXML HBox inventaireArme;
 
-    public void initKeyHandlers(Scene scene) {
-//        scene.setOnKeyPressed(event -> {
-//            Clavier.keyPressed(event);
-//        });
-//        scene.setOnKeyReleased(event -> {
-//            Clavier.keyReleased(event);
-//        });
-        scene.setOnKeyPressed(Clavier::keyPressed);
-        scene.setOnKeyReleased(Clavier::keyReleased);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.env = new Environnement();
@@ -64,7 +52,7 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
         Villageois villageois = new Villageois(env);
-        env.getObsVillageois().add(villageois);
+        env.getListVillageois().add(villageois);
         new VueVilageois(pane, villageois);
 
         for (int i = 0; i < 6; i++) {
@@ -75,16 +63,16 @@ public class Controleur implements Initializable {
         listObsVie.mettreAJourCoeurs();
 
         ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
-        env.getObsEnnemis().addListener(listeEnnemis);
+        env.getListEnnemis().addListener(listeEnnemis);
 
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
-        env.getObsJoueur().addListener(listeJoueur);
+        env.getListObsJoueur().addListener(listeJoueur);
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
-        env.getObsProjectile().addListener(listeProjectile);
+        env.getListProjectile().addListener(listeProjectile);
 
         ListChangeListener<Item> listObsItemEnvironement = new ListObsItem(pane);
-        env.getObsItemParTerre().addListener(listObsItemEnvironement);
+        env.getListItemParTerre().addListener(listObsItemEnvironement);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
         Environnement.getJ().getInventaireItem().getListItem().addListener(listObsItemInventaire);
@@ -98,8 +86,8 @@ public class Controleur implements Initializable {
             }
         });
 
-        for (int i = 0; i < env.getObsEnnemis().size(); i++) {
-            new VueEnnemis(pane, env.getObsEnnemis().get(i), "ennemi.png");
+        for (int i = 0; i < env.getListEnnemis().size(); i++) {
+            new VueEnnemis(pane, env.getListEnnemis().get(i), "ennemi.png");
         }
 
         for (Coffre coffre : env.getListCoffre()) {
@@ -133,48 +121,38 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    System.out.println(Environnement.getJ().getX());
-                    System.out.println(Environnement.getJ().getY());
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
+                    env.actionItem();
+                    dialogue();
+                    updateScrolling();
+
                     if (Environnement.getJ().isEtatAltere()) {
                         tempsAlteration += 10;
                     }
+
                     if (tempsAlteration == 50000) {
                         tempsAlteration = 0;
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
-                    env.actionItem();
-                    Environnement.getJ().resetDeplacement();
+
                     if (tempsEcoule % 10000 == 0) {
-                        for (Ennemis ennemi : env.getObsEnnemis()) {
+                        for (Ennemis ennemi : env.getListEnnemis()) {
                             //ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }
+
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
-                    updateScrolling();
 
-
-//                    Environnement.getJ().getXProperty().addListener((observable, oldValue, newValue) -> {
-//                        this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
-//                    });
-//                    Environnement.getJ().getYProperty().addListener((observable, oldValue, newValue) -> {
-//                        this.pane.setTranslateY( pane.getPrefHeight() / 2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
-//                    });
-//                    this.pane.setTranslateX(pane.getPrefWidth() / 2 - Environnement.getJ().getX()-(Environnement.getJ().getHitbox().getWidth()/2));
-//                    this.pane.setTranslateY(pane.getPrefHeight() /2 - Environnement.getJ().getY()-(Environnement.getJ().getHitbox().getHeight()/2));
-//
-
-
-                    if (env.mortJoueur()){
+                    if (Environnement.getJ().meurt()){
                         gameLoop.stop();
                         afficherGameOverScene();
                     }
-                    dialogue();
+
                     if (pane.getScene().getWindow() != null){
                         updateScrolling();
                     }
@@ -224,8 +202,6 @@ public class Controleur implements Initializable {
         posX = clamp(posX, 0, maxX);
         posY = clamp(posY, 0, maxY);
 
-        //System.out.println("Nouvelle position de la carte : X = " + posX + ", Y = " + posY);
-
         // Appliquer le décalage de défilement à la TilePane
         pane.setLayoutX(-posX);
         pane.setLayoutY(-posY);
@@ -240,8 +216,6 @@ public class Controleur implements Initializable {
             return value;
         }
     }
-
-
 
     @FXML
     public void interactionItemInventaire(MouseEvent event) {

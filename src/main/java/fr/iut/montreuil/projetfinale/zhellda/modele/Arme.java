@@ -18,7 +18,7 @@ public abstract class Arme extends Item{
         return env;
     }
 
-    public abstract void attaquer(Joueur j, int x, int y);
+    public abstract void attaquer(Joueur joueur, int x, int y);
 
     public int getPortee (){
         return this.portee;
