@@ -30,6 +30,10 @@ public class ObsPaterneBoss {
                     vueAreaOfEffect();
                     break;
 
+                    case 3:
+                        vueFireBall();
+                        break;
+
                 default:
                     break;
             }
@@ -117,6 +121,42 @@ public class ObsPaterneBoss {
                 }
             }
         }
+    }
+
+    public void vueFireBall (){
+
+        if (boss.getDirection().equals("droite")) {
+            for (int i=0; i <= 12; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    VueTerrain.faireClignoterTile((int) Math.round((boss.getX() + (boss.getHitbox().getWidth())) / 16) + i, Math.round(boss.getY() / 16) + 1 + j);
+                }
+            }
+        } else if (boss.getDirection().equals("gauche")) {
+
+            for (int i=0; i <= 12; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    VueTerrain.faireClignoterTile((int) Math.round(boss.getX()/ 16) - i, Math.round(boss.getY() / 16) + 1 + j);
+                }
+            }
+
+        } else if (boss.getDirection().equals("bas")) {
+
+            for (int i=0; i <= 12; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    VueTerrain.faireClignoterTile(Math.round(boss.getX()/ 16)+1+j, (int) Math.round((boss.getY()+boss.getHitbox().getHeight())/ 16)+i);
+                }
+            }
+
+        } else {
+
+            for (int i=0; i <= 12; i++) {
+                for (int j = 0; j <= 4; j++) {
+                    VueTerrain.faireClignoterTile(Math.round(boss.getX()/ 16)+1+j, Math.round(boss.getY() / 16)-i);
+                }
+            }
+
+        }
+
     }
 }
 

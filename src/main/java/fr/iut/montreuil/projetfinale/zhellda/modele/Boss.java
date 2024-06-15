@@ -26,6 +26,7 @@ public class Boss extends Ennemis{
 
     @Override
     public void agir(){
+//        seDeplacer();
         attaquer();
         Timeline attendreDeplacement = new Timeline(
                 new KeyFrame(Duration.seconds(2), e -> {
@@ -210,26 +211,27 @@ public class Boss extends Ennemis{
         attaque.play();
     }
 
-    public void fireBall(){
+    public void fireBall() {
         setShemaAttaque(3);
         nouvelleDirection();
+        Timeline lancerBouleDeFeu = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> {
+                    if (direction.equals("droite")) {
+                        environnement.ajouterProjectile(new BouleDeFeu(getX() + (int) getHitbox().getWidth(), getY(),
+                                getX() + (int) getHitbox().getWidth() + 120, getY(), environnement));
+                    } else if (direction.equals("gauche")) {
+                        environnement.ajouterProjectile(new BouleDeFeu(getX() - 80, getY(),
+                                getX() - 200, getY(), environnement));
+                    } else if (direction.equals("bas")) {
+                        environnement.ajouterProjectile(new BouleDeFeu(getX(), getY() + (int) getHitbox().getHeight(),
+                                getX(), getY() + (int) getHitbox().getHeight() + 120, environnement));
+                    } else {
+                        environnement.ajouterProjectile(new BouleDeFeu(getX(), getY() - 80,
+                                getX(), getY() - 200, environnement));
+                    }
 
-        if (direction.equals("droite")) {
-
-            environnement.ajouterProjectile(new BouleDeFeu(getX()+(int)getHitbox().getWidth(), getY()+(int)getHitbox().getHeight()/2, getX()+(int)getHitbox().getWidth()+120, getY()+(int)getHitbox().getHeight()/2, environnement));
-
-        } else if (direction.equals("gauche")) {
-
-
-
-        } else if (direction.equals("bas")) {
-
-
-
-        } else {
-
-
-
-        }
+                })
+        );
+        lancerBouleDeFeu.play();
     }
 }

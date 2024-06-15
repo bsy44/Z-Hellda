@@ -10,10 +10,10 @@ public class BouleDeFeu extends Projectile {
         for (int i = 0; i < environnement.getObsJoueur().size(); i++) {
             Joueur joueurCible = environnement.getObsJoueur().get(i);
 
-            if (this.getX() >= joueurCible.getHitbox().getX() - 10 &&
-                    this.getX() <= joueurCible.getHitbox().getX() - 15 + joueurCible.getHitbox().getWidth() &&
-                    this.getY() >= joueurCible.getHitbox().getY() - 10 &&
-                    this.getY() <= joueurCible.getHitbox().getY() - 15 + joueurCible.getHitbox().getHeight()) {
+            if (this.getX() >= joueurCible.getHitbox().getX() - 0 &&
+                    this.getX() <= joueurCible.getHitbox().getX() - 5 + joueurCible.getHitbox().getWidth() &&
+                    this.getY() >= joueurCible.getHitbox().getY() - 0 &&
+                    this.getY() <= joueurCible.getHitbox().getY() - 5 + joueurCible.getHitbox().getHeight()) {
                 joueurCible.subirDegats(getDegat());
                 return true;
             }
