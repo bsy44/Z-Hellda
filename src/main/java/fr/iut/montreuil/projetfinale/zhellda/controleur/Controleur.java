@@ -279,6 +279,22 @@ public class Controleur implements Initializable {
         primaryStage.show();
     }
 
+    public void afficherVictoireScene(){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL resource = Lancement.class.getResource("VueVictoire.fxml");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Scene scene = new Scene(root);
+        Stage primaryStage = (Stage) ((Node) pane).getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     public void dialogueDebut(){
         Villageois villageois = Environnement.getJ().villageoisAutour();
 

@@ -111,7 +111,7 @@ public class Coffre {
         double random = Math.random();
         Item itemGenerer;
 
-        if (random < 0.25){
+        if (random < 0.35){
             double randomItemConsomable = Math.random();
             if (randomItemConsomable < 0.33){
                 itemGenerer = new PommeDor(getX(), getY());
@@ -124,14 +124,11 @@ public class Coffre {
         }
         else {
             double randomArme = Math.random();
-            if (randomArme < 0.33){
+            if (randomArme < 0.5){
                 itemGenerer = new Arc(getX(), getY(), environnement);
             }
-            else if (randomArme < 0.66){
+            else{
                 itemGenerer = new Marteau(environnement, getX(), getY());
-            }
-            else {
-                itemGenerer = new Epee(environnement, getX(), getY());
             }
         }
         return itemGenerer;

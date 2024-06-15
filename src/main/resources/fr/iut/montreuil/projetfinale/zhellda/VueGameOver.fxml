@@ -4,27 +4,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <Pane prefHeight="920.0" prefWidth="1480.0" style="-fx-background-color: black;" stylesheets="@styleVueGameOver.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.ControleurGameOver">
    <children>
-      <StackPane>
+      <ImageView fitHeight="845.0" fitWidth="1480.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@GameOver.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="BOTTOM_CENTER" layoutX="545.0" layoutY="519.0" prefHeight="207.0" prefWidth="390.0" spacing="30.0">
          <children>
-            <ImageView fitHeight="845.0" fitWidth="1480.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@GameOver.jpg" />
-               </image>
-            </ImageView>
-            <VBox alignment="BOTTOM_CENTER" spacing="30.0">
-               <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#rejouer" prefHeight="51.0" prefWidth="300.0" styleClass="game-over-button" text="Rejouer" />
-                  <Button mnemonicParsing="false" onMouseClicked="#retournerAuMenu" prefHeight="40.0" prefWidth="300.0" styleClass="game-over-button" text="Retourner au menu" />
-                  <Button mnemonicParsing="false" onMouseClicked="#quitter" prefHeight="40.0" prefWidth="300.0" styleClass="game-over-button" text="Quitter" />
-               </children>
-            </VBox>
+            <Button mnemonicParsing="false" onMouseClicked="#retournerAuMenu" prefHeight="60.0" prefWidth="300.0" styleClass="game-over-button" text="Retourner au menu" />
+            <Button mnemonicParsing="false" onMouseClicked="#quitter" prefHeight="60.0" prefWidth="300.0" styleClass="game-over-button" text="Quitter" />
          </children>
-      </StackPane>
+      </VBox>
    </children>
 </Pane>

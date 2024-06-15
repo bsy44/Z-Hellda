@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Cinzel";
+    src: url("Cinzel-Bold.ttf");
+}
+
+.root {
+    -fx-background-color: linear-gradient(to bottom, #2e8b57, #006400);
+}
+
+#titre {
+    -fx-font-family: "Cinzel", "Papyrus", "Arial", sans-serif; 
+    -fx-font-size: 90px;
+    -fx-text-fill: #ffd700; /* Couleur dorée pour le titre */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, black, 5, 0.5, 0, 1);
+}
+
+#sousTitre {
+    -fx-font-size: 45 px;
+    -fx-text-fill: #ffffff; /* Couleur blanche pour le sous-titre */
+    -fx-font-style: italic;
+    -fx-effect: dropshadow(one-pass-box, black, 5, 0.5, 0, 1);
+}
+
+Button {
+    -fx-background-color: #8b4513; /* Couleur marron pour les boutons */
+    -fx-text-fill: #ffffff; /* Texte blanc */
+    -fx-font-size: 24px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #ffd700; /* Bordure dorée */
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, black, 5, 0.5, 0, 1);
+    -fx-text-transform: uppercase; 
+    -fx-font-weight: bold; 
+}
+
+Button:hover {
+    -fx-background-color: #daa520; /* Couleur dorée foncée au survol */
+
+}
+
+VBox {
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+}
