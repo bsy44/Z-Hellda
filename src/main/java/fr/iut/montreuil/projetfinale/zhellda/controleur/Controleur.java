@@ -5,8 +5,6 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,10 +51,9 @@ public class Controleur implements Initializable {
         this.changeurStringEnnemi=new ChangeurStringEnnemi(env);
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
-        Villageois villageois = new Villageois(env);
+        Villageois villageois = new Villageois(210, 125, env);
         env.getListVillageois().add(villageois);
         new VueVilageois(pane, villageois);
-        bulleTexte = new BulleTexte(pane);
 
         for (int i = 0; i < 6; i++) {
             env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
@@ -70,6 +67,9 @@ public class Controleur implements Initializable {
 
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
         env.getListObsJoueur().addListener(listeJoueur);
+
+        ListChangeListener<Villageois> listObsVillageois = new ObsVillageois(pane);
+        env.getListVillageois().addListener(listObsVillageois);
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
         env.getListProjectile().addListener(listeProjectile);
@@ -158,6 +158,7 @@ public class Controleur implements Initializable {
                     if (pane.getScene().getWindow() != null){
                         updateScrolling();
                     }
+                    dialogueDebut();
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -278,5 +279,51 @@ public class Controleur implements Initializable {
         primaryStage.show();
     }
 
+    public void dialogueDebut(){
+        Villageois villageois = Environnement.getJ().villageoisAutour();
 
+        if (villageois != null) {
+            if (bulleTexte == null) {
+                bulleTexte = new BulleTexte(villageois);
+
+                double villageoisX = villageois.getHitbox().getWidth() / 2;
+                double villageoisY = villageois.getY();
+                double bulleX = villageoisX;
+                double bulleY = villageoisY - 100;
+
+                bulleTexte.setTranslateX(bulleX);
+                bulleTexte.setTranslateY(bulleY);
+                pane.getChildren().add(bulleTexte);
+            }
+            villageois.meurt();
+        }
+        else if (bulleTexte != null) {
+            pane.getChildren().remove(bulleTexte);
+            bulleTexte = null;
+        }
+    }
+
+    public void dialogueFin(){
+        Villageois villageois = Environnement.getJ().villageoisAutour();
+
+        if (villageois != null) {
+            if (bulleTexte == null) {
+                bulleTexte = new BulleTexte(villageois);
+
+                double villageoisX = villageois.getHitbox().getWidth() / 2;
+                double villageoisY = villageois.getY();
+                double bulleX = villageoisX;
+                double bulleY = villageoisY - 100;
+
+                bulleTexte.setTranslateX(bulleX);
+                bulleTexte.setTranslateY(bulleY);
+                pane.getChildren().add(bulleTexte);
+            }
+            villageois.meurt();
+        }
+        else if (bulleTexte != null) {
+            pane.getChildren().remove(bulleTexte);
+            bulleTexte = null;
+        }
+    }
 }

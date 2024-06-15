@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import java.util.HashSet;
@@ -74,7 +75,12 @@ public class Clavier {
             case E:
                 System.out.println("interaction");
                 Environnement.getJ().interagir();
-                BulleTexte.messageSuivant();
+                break;
+            case F:
+                Villageois villageois = Environnement.getJ().villageoisAutour();
+                if (villageois !=null) {
+                    villageois.incrementerIndiceMessage();
+                }
                 break;
             case G:
                 Environnement.getJ().jeterArme(Environnement.getJ().getArme());

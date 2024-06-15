@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Press Start 2P";
+    src: url("PressStart2P-Regular.ttf");
+}
+
 #inventaireItem {
     -fx-background-color: #333333;
 }
@@ -110,3 +115,24 @@
     -fx-border-color: yellow;
     -fx-border-width: 3;
 }
+
+.bulle-texte {
+    -fx-background-color: rgba(0, 0, 0, 0.8); 
+    -fx-background-radius: 15px; 
+    -fx-border-color: #ffffffd5; 
+    -fx-border-width: 3px; 
+    -fx-border-radius: 15px; 
+    -fx-padding: 15px; 
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 15, 0.5, 0, 0); 
+    -fx-max-width: 450px; 
+}
+
+.bulle-texte .label {
+    -fx-font-family: 'Press Start 2P', sans-serif; 
+    -fx-font-size: 15px;
+    -fx-text-fill: #ffffff; 
+    -fx-wrap-text: true; 
+    -fx-text-alignment: center;
+    -fx-line-spacing: 5px;
+}
+
