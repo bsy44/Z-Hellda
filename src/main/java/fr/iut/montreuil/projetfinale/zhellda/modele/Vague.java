@@ -3,26 +3,21 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 import java.util.Random;
 
 public class Vague {
+    private Environnement environnement;
+    private int debutVague;
+    private int finVague;
+    private int delaiApparition;
+    private boolean bossGenerer;
+    private ChangeurStringEnnemi changeurStringEnnemi;
 
-
-
-        private Environnement environnement;
-        private int debutVague;
-        private int finVague;
-        private int delaiApparition;
-
-        private boolean bossGenerer;
-        private ChangeurStringEnnemi changeurStringEnnemi;
-
-        public Vague (Environnement environnement, int delaiApparition) {
-            this.environnement = environnement;
-            this.debutVague = 0;
-            this.finVague = 1000000;//A régler
-            this.delaiApparition = delaiApparition;
-            this.bossGenerer = false;
-            this.changeurStringEnnemi=new ChangeurStringEnnemi(environnement);
-        }
-
+    public Vague (Environnement environnement, int delaiApparition) {
+        this.environnement = environnement;
+        this.debutVague = 0;
+        this.finVague = 1000000;//A régler
+        this.delaiApparition = delaiApparition;
+        this.bossGenerer = false;
+        this.changeurStringEnnemi=new ChangeurStringEnnemi(environnement);
+    }
 
     public Case genererSpawn() {
         Random random = new Random();
@@ -79,33 +74,33 @@ public class Vague {
     public void genenerAddEnnemie(){
         environnement.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(genererSpawn(),genenerEnnemie()));
     }
-        public void agit () {
-            if (debute() && !estFini()) {
-                if (environnement.getTourJeu() % delaiApparition == 0) {
-                    System.out.println("ennemis");
-                    genenerAddEnnemie();
-                }
-            }
-            if (estFini() && environnement.getListEnnemis()==null && !bossGenerer) {
-                //ajouter le boss
-                bossGenerer = true;
+
+    public void agit () {
+        if (debute() && !estFini()) {
+            if (environnement.getTourJeu() % delaiApparition == 0) {
+                System.out.println("ennemis");
+                genenerAddEnnemie();
             }
         }
-
-        public boolean debute () {
-            return environnement.getTourJeu() >= debutVague;
+        if (estFini() && environnement.getListEnnemis()==null && !bossGenerer) {
+            //ajouter le boss
+            bossGenerer = true;
         }
+    }
 
-        public boolean estFini () {
-            return environnement.getTourJeu() > finVague;
-        }
+    public boolean debute () {
+        return environnement.getTourJeu() >= debutVague;
+    }
 
-        public Environnement getEnvironnement() {
-            return environnement;
-        }
+    public boolean estFini () {
+        return environnement.getTourJeu() > finVague;
+    }
 
-        public int getDelaiApparition() {
-            return delaiApparition;
-        }
+    public Environnement getEnvironnement() {
+        return environnement;
+    }
 
+    public int getDelaiApparition() {
+        return delaiApparition;
+    }
 }

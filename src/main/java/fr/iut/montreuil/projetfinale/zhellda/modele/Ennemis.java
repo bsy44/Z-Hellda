@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Ennemis extends Acteur {
-    private static int compteur = 1;
-    private int vitesse;
+    private static int compteur = 0;
     private int attaque;
     private int portee;
     private String nom;
@@ -13,13 +12,13 @@ public abstract class Ennemis extends Acteur {
     private ArrayList<Case> cheminVersJoueur;
 
     public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom){
-        super(x, y, vie,vitesse,"#"+compteur, HitBoxW, HitBoxH, environnement);
-        compteur++;
+        super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH, environnement);
         this.attaque = attaque;
         this.portee=portee;
-        this.type=type;
+        this.type = type;
         this.nom = nom;
         this.cheminVersJoueur = Environnement.getBfs().cheminVersSource(x, y);
+        compteur++;
     }
 
     public int getPortee() {
