@@ -14,7 +14,7 @@
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="508.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="364.0" styleClass="label-main" text="Menu Option" />
       <VBox layoutY="70.0" prefHeight="885.0" prefWidth="460.0" spacing="40.0" styleClass="vbox-container">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="418.0" styleClass="label-section" text="Touches" />
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="418.0" styleClass="label-section" text="Touches" />
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="46.0" prefWidth="460.0" styleClass="label-texte" text="Déplacement" />
@@ -151,11 +151,11 @@
             </VBox>
          </children>
       </VBox>
-      <VBox layoutX="460.0" layoutY="70.0" prefHeight="848.0" prefWidth="460.0" styleClass="vbox-container">
+      <VBox layoutX="460.0" layoutY="70.0" prefHeight="885.0" prefWidth="460.0" styleClass="vbox-container">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="418.0" styleClass="label-section" text="Ennemis">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="-95.0" />
                </VBox.margin></Label>
             <VBox prefHeight="66.0" prefWidth="388.0" spacing="15.0">
                <children>
@@ -189,7 +189,7 @@
                      <children>
                         <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@zombie.png" />
+                              <Image url="@rapide.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
@@ -209,36 +209,12 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="132.0" prefHeight="74.0" prefWidth="460.0" spacing="15.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Tank" />
+                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Sentinelle" />
                   <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
                      <children>
                         <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@zombie.png" />
-                           </image>
-                        </ImageView>
-                        <VBox prefHeight="75.0" prefWidth="424.0">
-                           <children>
-                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 20" />
-                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 2" />
-                              <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
-                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 1" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="224.0" prefHeight="43.0" prefWidth="386.0" spacing="15.0">
-               <children>
-                  <HBox prefHeight="82.0" prefWidth="460.0" spacing="40.0">
-                     <children>
-                        <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@zombie.png" />
+                              <Image url="@sentinelle.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
@@ -263,7 +239,7 @@
                      <children>
                         <ImageView fitHeight="108.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@zombie.png" />
+                              <Image url="@boss.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
