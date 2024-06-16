@@ -17,7 +17,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
     public void onChanged(Change<? extends Ennemis> change) {
         while (change.next()) {
             if (change.wasAdded()){
-                for (Ennemis e : change.getRemoved()) {
+                for (Ennemis e : change.getAddedSubList()) {
                     new VueEnnemis(pane, e, e.getNom() + ".png");
                 }
             }

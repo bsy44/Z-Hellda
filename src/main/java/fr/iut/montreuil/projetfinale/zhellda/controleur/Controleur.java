@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
+
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
     private double posX = 0;
@@ -55,9 +56,7 @@ public class Controleur implements Initializable {
         env.getListVillageois().add(villageois);
         new VueVilageois(pane, villageois);
 
-        for (int i = 0; i < 6; i++) {
-            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-        }
+
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
@@ -90,7 +89,7 @@ public class Controleur implements Initializable {
         });
 
         for (int i = 0; i < env.getListEnnemis().size(); i++) {
-            new VueEnnemis(pane, env.getListEnnemis().get(i), "ennemi.png");
+            new VueEnnemis(pane, env.getListEnnemis().get(i), "zombie.png");
         }
 
         for (Coffre coffre : env.getListCoffre()) {
@@ -124,6 +123,11 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
+                    for (int i = 0; i < 6; i++) {
+                    }
+                    if (env.getListVillageois().get(0).meurt()) {
+                        env.unTour();
+                    }
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     env.actionItem();
@@ -141,7 +145,7 @@ public class Controleur implements Initializable {
 
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getListEnnemis()) {
-                            //ennemi.seDeplacer();
+                            ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }
