@@ -21,6 +21,8 @@ public class VueJoueur {
         imageView.setId(j.getId());
         imageView.translateXProperty().bind(j.getXProperty());
         imageView.translateYProperty().bind(j.getYProperty());
+        j.getHitbox().xProperty().bind(j.getXProperty());
+        j.getHitbox().yProperty().bind(j.getYProperty());
 
         pane.getChildren().add(imageView);
 
