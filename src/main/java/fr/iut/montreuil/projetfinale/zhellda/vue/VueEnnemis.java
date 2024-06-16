@@ -22,6 +22,8 @@ public class VueEnnemis {
             imageView.setId(ennemis.getId());
             imageView.translateXProperty().bind(ennemis.getXProperty());
             imageView.translateYProperty().bind(ennemis.getYProperty());
+            ennemis.getHitbox().xProperty().bind(ennemis.getXProperty());
+            ennemis.getHitbox().yProperty().bind(ennemis.getYProperty());
             if (urlImg.equals("boss.png")){
                 imageView.setFitHeight(100);
                 imageView.setFitWidth(100);
