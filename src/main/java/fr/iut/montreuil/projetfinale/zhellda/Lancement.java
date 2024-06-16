@@ -13,7 +13,7 @@ public class Lancement extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("VueDebut.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1380 , 920);
-        stage.setTitle("Z-Hellda");
+        stage.setTitle("Z-Hellda - Menu principale");
         stage.setScene(scene);
         stage.show();
     }

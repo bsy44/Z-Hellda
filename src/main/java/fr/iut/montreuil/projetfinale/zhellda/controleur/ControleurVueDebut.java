@@ -21,6 +21,16 @@ public class ControleurVueDebut{
         primaryStage.show();
     }
 
+   @FXML
+   public void menuOption(MouseEvent event) throws IOException{
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Lancement.class.getResource("MenuOption.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),1380 , 950);
+        primaryStage.setTitle("Z-Hellda - Menu option");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     @FXML
     public void quitterJeu(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
