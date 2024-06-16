@@ -144,16 +144,16 @@ public class Villageois extends Acteur{
     }
 
     @Override
+    public void agit() {
+    }
+
+    @Override
     public boolean meurt() {
         if (indiceMessageActuel == listMessage.size()){
             environnement.getListVillageois().remove(this);
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void seDeplacer() {
     }
 }
 

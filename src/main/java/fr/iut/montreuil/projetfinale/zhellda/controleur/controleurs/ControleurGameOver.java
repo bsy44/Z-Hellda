@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur.controlleurs;
+package fr.iut.montreuil.projetfinale.zhellda.controleur.controleurs;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import javafx.fxml.FXMLLoader;

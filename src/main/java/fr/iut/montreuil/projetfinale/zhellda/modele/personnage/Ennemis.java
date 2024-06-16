@@ -46,7 +46,6 @@ public abstract class Ennemis extends Acteur {
         return nom;
     }
 
-    @Override
     public void seDeplacer (){
         Case c;
         for (int i=0; i < this.getVitesse(); i++) {
@@ -94,5 +93,9 @@ public abstract class Ennemis extends Acteur {
             }
         }
         return false;
+    }
+
+    public ArrayList<Case> getCheminVersJoueur() {
+        return cheminVersJoueur;
     }
 }

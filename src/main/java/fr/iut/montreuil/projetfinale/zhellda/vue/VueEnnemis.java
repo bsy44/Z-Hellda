@@ -19,42 +19,23 @@ public class VueEnnemis {
             ImageView imageView = new ImageView(image);
             this.barreDeVie = new ProgressBar();
 
-            imageView.setFitHeight(30);
-            imageView.setFitWidth(30);
             imageView.setId(ennemis.getId());
             imageView.translateXProperty().bind(ennemis.getXProperty());
             imageView.translateYProperty().bind(ennemis.getYProperty());
-            barreDeVie.translateYProperty().bind(ennemis.getYProperty().subtract(10));
-            barreDeVie.translateXProperty().bind(ennemis.getXProperty().subtract(8));
-            barreDeVie.setPrefWidth(50);
-            barreDeVie.setPrefHeight(10);
-            barreDeVie.progressProperty().bind(ennemis.getVie().divide((double)ennemis.getPvMax()));
-            barreDeVie.setId(ennemis.getId() + 1);
-
             if (urlImg.equals("boss.png")){
                 imageView.setFitHeight(100);
                 imageView.setFitWidth(100);
             }
-            else if (urlImg.equals("tank.png")){
+            /*else if (urlImg.equals("tank.png")){
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(50);
-            } else if (urlImg.equals("sentinelle.png")){
+            } */else if (urlImg.equals("sentinelle.png")){
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(40);
             } else {
                 imageView.setFitHeight(30);
                 imageView.setFitWidth(30);
             }
-            imageView.setId(e.getId());
-            imageView.translateXProperty().bind(e.getXProperty());
-            imageView.translateYProperty().bind(e.getYProperty());
-
-            ennemis.getHitbox().setFill(Color.TRANSPARENT);
-            ennemis.getHitbox().setStroke(Color.RED);
-            ennemis.getHitbox().setStrokeWidth(2);
-            ennemis.getHitbox().setId(ennemis.getId() + 2);
-            ennemis.getHitbox().xProperty().bind(ennemis.getXProperty());
-            ennemis.getHitbox().yProperty().bind(ennemis.getYProperty());
 
             barreDeVie.translateYProperty().bind(ennemis.getYProperty().subtract(10));
             barreDeVie.translateXProperty().bind(ennemis.getXProperty().subtract(8));

@@ -1,5 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
+
 import java.util.Random;
 
 public class Vague {
@@ -13,7 +15,7 @@ public class Vague {
     public Vague (Environnement environnement, int delaiApparition) {
         this.environnement = environnement;
         this.debutVague = 0;
-        this.finVague = 1000000;//A régler
+        this.finVague = 100000;//A régler
         this.delaiApparition = delaiApparition;
         this.bossGenerer = false;
         this.changeurStringEnnemi=new ChangeurStringEnnemi(environnement);
@@ -60,13 +62,13 @@ public class Vague {
         Random random = new Random();
         int randomNb = random.nextInt(3)+1;
         if (randomNb == 1) {
-            return "Tank";
+            return "sentinelle";
         }
         if (randomNb == 2) {
-            return "Rapide";
+            return "rapide";
         }
         if (randomNb == 3) {
-            return "Zombie";
+            return "zombie";
         }
         return null;
     }
@@ -78,12 +80,12 @@ public class Vague {
     public void agit () {
         if (debute() && !estFini()) {
             if (environnement.getTourJeu() % delaiApparition == 0) {
-                System.out.println("ennemis");
                 genenerAddEnnemie();
             }
         }
-        if (estFini() && environnement.getListEnnemis()==null && !bossGenerer) {
-            //ajouter le boss
+        if (estFini() && environnement.getListEnnemis().isEmpty() && bossGenerer == false) {
+
+            environnement.ajouterEnnemi(new Boss(1190, 900, environnement));
             bossGenerer = true;
         }
     }
@@ -102,5 +104,9 @@ public class Vague {
 
     public int getDelaiApparition() {
         return delaiApparition;
+    }
+
+    public boolean isBossGenerer() {
+        return bossGenerer;
     }
 }

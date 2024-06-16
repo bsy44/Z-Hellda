@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Fleche;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueProjectile;
 import javafx.collections.ListChangeListener;

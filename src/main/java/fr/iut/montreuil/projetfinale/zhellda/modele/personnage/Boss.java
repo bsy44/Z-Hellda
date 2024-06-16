@@ -1,6 +1,8 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
+import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.BouleDeFeu;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
+import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
@@ -25,40 +27,36 @@ public class Boss extends Ennemis{
     }
 
     @Override
-    public void agir(){
-//        seDeplacer();
+    public void agit(){
+        seDeplacer();
         attaquer();
         Timeline attendreDeplacement = new Timeline(
                 new KeyFrame(Duration.seconds(2), e -> {
-//                    seDeplacer();
                     setShemaAttaque(0);
                 })
         );
         attendreDeplacement.play();
     }
-
-    @Override
     public void attaquer(){
-//        int random = (int) Math.round(Math.random()*2+1);
-//        switch(random){
-//
-//            case 1:
-//                clawAtk();
-//                break;
-//
-//            case 2:
-//                areaOfEffect();
-//                break;
-//
-//                case 3:
-//                    fireBall();
-//                    break;
-//
-//            default:
-//                break;
-//        }
+       int random = (int) Math.round(Math.random()*2+1);
+       switch(random){
 
-        fireBall();
+           case 1:
+                clawAtk();
+                break;
+
+            case 2:
+                areaOfEffect();
+                break;
+
+                case 3:
+                    fireBall();
+                    break;
+
+            default:
+               break;
+        }
+
     }
 
     public void clawAtk(){

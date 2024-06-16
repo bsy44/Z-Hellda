@@ -1,7 +1,6 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur;
+package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Boss;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.beans.value.ObservableValue;

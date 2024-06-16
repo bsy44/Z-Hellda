@@ -83,7 +83,7 @@ public class Joueur extends Acteur {
     }
 
     @Override
-    public void seDeplacer() {
+    public void agit() {
         int deltaX = 0;
         int deltaY = 0;
         int oldX = this.getX();

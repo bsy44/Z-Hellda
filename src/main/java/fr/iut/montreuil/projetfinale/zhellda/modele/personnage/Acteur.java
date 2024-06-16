@@ -76,7 +76,7 @@ public abstract class Acteur {
             this.vie.set((this.vie.get()-dmg));
     }
 
-    public abstract void seDeplacer();
+    public abstract void agit();
 
     public abstract boolean meurt();
 }

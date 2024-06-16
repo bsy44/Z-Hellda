@@ -2,6 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Arme;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Acteur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
@@ -79,7 +80,6 @@ public class Environnement {
     }
 
     public void ajouterEnnemi (Ennemis ennemi){
-        System.out.println(ennemi.getX());
         this.listEnnemis.add(ennemi);
     }
 
@@ -105,8 +105,6 @@ public class Environnement {
     public void actionProjectile(){
         for (int i = listProjectile.size()-1; i >=0 ; i--) {
             if(!(listProjectile.get(i).tirProjectile()) || listProjectile.get(i).estTouche()){
-                System.out.println(listProjectile.get(i).getX()+ listProjectile.get(i).getY());
-                System.out.println("supprimerP");
                 listProjectile.remove(i);
                 System.out.println("est supprimé");
             }
@@ -130,7 +128,17 @@ public class Environnement {
     }
     public void unTour () {
         //appeler les méthode agir
-        vague.agit();
+        for (Joueur joueur : listObsJoueur) {
+            joueur.agit();
+        }
+        if (tourJeu % 500==0) {
+            for (Ennemis ennemis : listEnnemis) {
+                ennemis.agit();
+            }
+        }
+        if (villageois.meurt()){
+            vague.agit();
+        }
         tourJeu++;
     }
 
@@ -152,4 +160,5 @@ public class Environnement {
     public Villageois getVillageois() {
         return villageois;
     }
+
 }

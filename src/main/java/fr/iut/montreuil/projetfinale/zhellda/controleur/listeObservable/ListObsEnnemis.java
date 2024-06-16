@@ -18,7 +18,6 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
         while (change.next()) {
             if (change.wasAdded()){
                 for (Ennemis e : change.getAddedSubList()) {
-                    System.out.println(e.getNom());
                     new VueEnnemis(pane, e, e.getNom() + ".png");
                 }
             }
@@ -29,9 +28,6 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
 
                 Node n1 = pane.lookup("#" + e.getId()+1);
                 pane.getChildren().remove(n1);
-
-                Node n2 = pane.lookup("#" + e.getId()+2);
-                pane.getChildren().remove(n2);
             }
         }
     }

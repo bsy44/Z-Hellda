@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur;
+package fr.iut.montreuil.projetfinale.zhellda.controleur.controleurs;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import fr.iut.montreuil.projetfinale.zhellda.controleur.BulleTexte;
@@ -127,29 +127,21 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    if (env.getVillageois().meurt()){
-                        env.unTour();
-                    }
+                    env.unTour();
                     tempsEcoule += 10;
-                    Environnement.getJ().seDeplacer();
                     env.actionItem();
                     updateScrolling();
 
                     if (Environnement.getJ().isEtatAltere()) {
                         tempsAlteration += 10;
                     }
+
                     if (tempsAlteration == 50000) {
                         tempsAlteration = 0;
                         Environnement.getJ().setEtatAltere(false);
                         Environnement.getJ().buffVitesse(2);
                     }
 
-                    if (tempsEcoule % 10000 == 0) {
-                        for (Ennemis ennemi : env.getListEnnemis()) {
-                            ennemi.seDeplacer();
-                            ennemi.attaquer();
-                        }
-                    }
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }
