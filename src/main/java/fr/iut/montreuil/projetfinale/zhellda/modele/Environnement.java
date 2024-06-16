@@ -11,6 +11,7 @@ public class Environnement {
 
     private static Terrain terrain;
     private static Joueur j;
+    private Villageois villageois;
     private ObservableList<Joueur> listObsJoueur;
     private ObservableList<Ennemis> listEnnemis;
     private ObservableList<Projectile> listProjectile;
@@ -22,6 +23,7 @@ public class Environnement {
     public Environnement() {
         this.terrain= new Terrain();
         this.j = new Joueur(this);
+        this.villageois = new Villageois(210, 125, this);
         this.listObsJoueur = FXCollections.observableArrayList();
         this.listObsJoueur.add(j);
         this.listEnnemis = FXCollections.observableArrayList();
@@ -32,6 +34,7 @@ public class Environnement {
         this.bfs = new Bfs();
         this.vague=new Vague(this,20000);
         this.creationCoffre();
+        ajouterVillageois(villageois);
     }
 
     public static Terrain getTerrain() {
@@ -90,6 +93,10 @@ public class Environnement {
         }
     }
 
+    public void ajouterVillageois(Villageois villageois){
+        listVillageois.add(villageois);
+    }
+
     public void actionProjectile(){
         for (int i = listProjectile.size()-1; i >=0 ; i--) {
             if(!(listProjectile.get(i).tirProjectile()) || listProjectile.get(i).estTouche()){
@@ -135,5 +142,9 @@ public class Environnement {
 
     public static Joueur getJ() {
         return j;
+    }
+
+    public Villageois getVillageois() {
+        return villageois;
     }
 }

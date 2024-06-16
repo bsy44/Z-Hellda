@@ -1,6 +1,5 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 
 public class ChangeurStringEnnemi {
     private Environnement environnement;
@@ -12,10 +11,10 @@ public class ChangeurStringEnnemi {
     public Ennemis choisirEnnemie(Case Case, String typeEnnemie) {
 
         switch (typeEnnemie) {
-            case "Zombie":
+            case "zombie":
                 return new Zombie(Case.getX(), Case.getY(),this.environnement);
 
-            case "Tank":
+            case "tank":
                 return new Tank(Case.getX(), Case.getY(),this.environnement);
 
             default:
