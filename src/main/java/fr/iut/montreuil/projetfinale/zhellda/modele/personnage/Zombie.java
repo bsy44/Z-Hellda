@@ -9,20 +9,6 @@ public class Zombie extends Ennemis {
         super(x, y, 10, 2, 1, 35,30, 30, environnement, "zombie");
     }
 
-    @Override
-    public void attaquer() {
-        for (int i = 0; i < environnement.getListObsJoueur().size(); i++) {
-            Joueur j = environnement.getListObsJoueur().get(i);
-
-            double distance = Math.sqrt(Math.pow(this.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(this.getYProperty().get() - j.getYProperty().get(), 2));
-            if (distance <= this.getPortee() && distance >= 0) {
-                j.subirDegats(this.getAttaque());
-                Environnement.getJ().meurt();
-                this.getX();
-            }
-        }
-    }
-
     public int getPvMax() {return 10;}
 
     public static double getPourcentageDropItem() {

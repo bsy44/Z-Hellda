@@ -22,6 +22,9 @@ public class ChangeurStringEnnemi {
             case "tank":
                 return new Tank(Case.getX(), Case.getY(),this.environnement);
 
+            case "Sentinelle":
+                return new Sentinelle(Case.getX(), Case.getY(),this.environnement);
+
             default:
                 return new Rapide(Case.getX(), Case.getY(),this.environnement);
 

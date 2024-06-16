@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur.controlleurs;
+package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
 import fr.iut.montreuil.projetfinale.zhellda.controleur.BulleTexte;
@@ -31,6 +31,7 @@ import javafx.animation.KeyFrame;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -137,7 +138,6 @@ public class Controleur implements Initializable {
                     if (Environnement.getJ().isEtatAltere()) {
                         tempsAlteration += 10;
                     }
-
                     if (tempsAlteration == 50000) {
                         tempsAlteration = 0;
                         Environnement.getJ().setEtatAltere(false);
@@ -150,7 +150,6 @@ public class Controleur implements Initializable {
                             ennemi.attaquer();
                         }
                     }
-
                     if (tempsEcoule % 500 == 0) {
                         env.actionProjectile();
                     }

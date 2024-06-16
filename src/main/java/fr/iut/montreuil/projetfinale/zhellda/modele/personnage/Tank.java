@@ -4,7 +4,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 public class Tank extends Ennemis{
     public Tank(int x, int y,  Environnement environnement) {
-        super(x, y, 20, 1, 2, 35, 30, 30, environnement, "zombie");
+        super(x, y, 20, 1, 2, 35, 50, 50, environnement, "tank");
     }
 
     @Override
