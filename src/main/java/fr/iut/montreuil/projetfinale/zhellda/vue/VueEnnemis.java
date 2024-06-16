@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.vue;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -1,8 +1,13 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.item.Arme;
+import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.util.Random;
 
 public class Environnement {
 

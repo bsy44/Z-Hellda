@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="993.0" prefWidth="1380.0" stylesheets="@styleVueVictoire.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.ControleurVictoire">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="993.0" prefWidth="1380.0" stylesheets="@styleVueVictoire.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.controlleurs.ControleurVictoire">
    <children>
       <ImageView fitHeight="993.0" fitWidth="1672.0" pickOnBounds="true" preserveRatio="true">
          <image>
