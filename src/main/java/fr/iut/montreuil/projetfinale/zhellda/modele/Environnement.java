@@ -7,6 +7,7 @@ import java.util.Random;
 public class Environnement {
 
     private int tourJeu;
+    private Vague vague;
 
     private static Terrain terrain;
     private static Joueur j;
@@ -29,6 +30,7 @@ public class Environnement {
         this.listCoffre = FXCollections.observableArrayList();
         this.listVillageois = FXCollections.observableArrayList();
         this.bfs = new Bfs();
+        this.vague=new Vague(this,20000);
         this.creationCoffre();
     }
 
@@ -69,6 +71,7 @@ public class Environnement {
     }
 
     public void ajouterEnnemi (Ennemis ennemi){
+        System.out.println(ennemi.getX());
         this.listEnnemis.add(ennemi);
     }
 
@@ -115,6 +118,7 @@ public class Environnement {
     }
     public void unTour () {
         //appeler les méthode agir
+        vague.agit();
         tourJeu++;
     }
 

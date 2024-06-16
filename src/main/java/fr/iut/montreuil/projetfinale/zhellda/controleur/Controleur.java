@@ -123,6 +123,9 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
+                    for (int i = 0; i < 6; i++) {
+                    }
+                    env.unTour();
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     env.actionItem();
@@ -140,7 +143,7 @@ public class Controleur implements Initializable {
 
                     if (tempsEcoule % 10000 == 0) {
                         for (Ennemis ennemi : env.getListEnnemis()) {
-                            //ennemi.seDeplacer();
+                            ennemi.seDeplacer();
                             ennemi.attaquer();
                         }
                     }

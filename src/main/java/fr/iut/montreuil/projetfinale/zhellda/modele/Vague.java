@@ -10,13 +10,16 @@ public class Vague {
         private int debutVague;
         private int finVague;
         private int delaiApparition;
+
+        private boolean bossGenerer;
         private ChangeurStringEnnemi changeurStringEnnemi;
 
-        public Vague (Environnement environnement, int debutVague, int finVague, int delaiApparition) {
+        public Vague (Environnement environnement, int delaiApparition) {
             this.environnement = environnement;
-            this.debutVague = debutVague;
-            this.finVague = finVague;
+            this.debutVague = 0;
+            this.finVague = 1000000;//A régler
             this.delaiApparition = delaiApparition;
+            this.bossGenerer = false;
             this.changeurStringEnnemi=new ChangeurStringEnnemi(environnement);
         }
 
@@ -79,8 +82,13 @@ public class Vague {
         public void agit () {
             if (debute() && !estFini()) {
                 if (environnement.getTourJeu() % delaiApparition == 0) {
+                    System.out.println("ennemis");
                     genenerAddEnnemie();
                 }
+            }
+            if (estFini() && environnement.getListEnnemis()==null && !bossGenerer) {
+                //ajouter le boss
+                bossGenerer = true;
             }
         }
 
