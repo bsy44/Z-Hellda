@@ -244,10 +244,10 @@
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
                            <children>
-                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 20" />
-                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 2" />
+                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 200" />
+                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 5" />
                               <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
-                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 1" />
+                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 2" />
                            </children>
                         </VBox>
                      </children>
