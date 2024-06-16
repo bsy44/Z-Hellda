@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     private Environnement env;
     private Timeline gameLoop;
+
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
     private double posX = 0;
@@ -55,9 +56,7 @@ public class Controleur implements Initializable {
         env.getListVillageois().add(villageois);
         new VueVilageois(pane, villageois);
 
-        for (int i = 0; i < 6; i++) {
-            env.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(env.genererSpawn(),env.genenerEnnemie()));
-        }
+
 
         ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
         listObsVie.mettreAJourCoeurs();
