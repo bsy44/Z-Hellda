@@ -89,7 +89,7 @@ public class Controleur implements Initializable {
         });
 
         for (int i = 0; i < env.getListEnnemis().size(); i++) {
-            new VueEnnemis(pane, env.getListEnnemis().get(i), "ennemi.png");
+            new VueEnnemis(pane, env.getListEnnemis().get(i), "zombie.png");
         }
 
         for (Coffre coffre : env.getListCoffre()) {
@@ -125,7 +125,9 @@ public class Controleur implements Initializable {
                 (ev -> {
                     for (int i = 0; i < 6; i++) {
                     }
-                    env.unTour();
+                    if (env.getListVillageois().get(0).meurt()) {
+                        env.unTour();
+                    }
                     tempsEcoule += 10;
                     Environnement.getJ().seDeplacer();
                     env.actionItem();
