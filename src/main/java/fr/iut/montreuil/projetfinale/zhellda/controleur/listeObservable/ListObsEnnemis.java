@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueEnnemis;
 import javafx.collections.ListChangeListener;
@@ -19,6 +20,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemis> {
             if (change.wasAdded()){
                 for (Ennemis e : change.getAddedSubList()) {
                     new VueEnnemis(pane, e, e.getNom() + ".png");
+                    if (e.getNom().equals("boss")) new ObsPaterneBoss((Boss) e);
                 }
             }
 

@@ -110,7 +110,7 @@ public class Villageois extends Acteur{
         listMessage.add(new Message("Tien voici une épée pour commencer."));
         listMessage.add(new Message("Tu retrouveras des coffres un peu partout dans ce monde, "));
         listMessage.add(new Message("ils contiennent des items consomables ou d'autres amres."));
-        listMessage.add(new Message("Je te laisse avant qu'il arrive..."));
+        listMessage.add(new Message("Je te laisse avant qu'ils arrivent..."));
         listMessage.add(new Message("A revoyure jeune aventurier!"));
 
         /*listMessage.add(new Message("WOW! félicitation tu as vaincu le boss final !"));

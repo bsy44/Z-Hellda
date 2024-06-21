@@ -16,7 +16,7 @@ public class Marteau extends Arme {
         Ennemis ennemie = null;
         for (int i = 0; i < getEnvironnement().getListEnnemis().size(); i++) {
             ennemie = getEnvironnement().getListEnnemis().get(i);
-            if (ennemie.getType()==0) {
+            if (ennemie.getAerien()==false) {
                 if (j.getX() == x) {
                     if ((sqrt(Math.pow(ennemie.getX() - j.getX(), 2))) <= 40 && ((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
                         ennemie.subirDegats(getAttaque());

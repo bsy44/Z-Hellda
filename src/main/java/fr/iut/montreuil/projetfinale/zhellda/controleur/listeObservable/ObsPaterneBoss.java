@@ -6,13 +6,11 @@ import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.beans.value.ObservableValue;
 
 public class ObsPaterneBoss {
-
-    private Environnement env;
     private Boss boss;
 
-    public ObsPaterneBoss(Environnement env, Boss boss) {
-        this.env = env;
+    public ObsPaterneBoss(Boss boss) {
         this.boss = boss;
+        ajouterListner();
     }
 
     public void ajouterListner() {

@@ -67,7 +67,6 @@ public class Joueur extends Acteur {
         directions[i] = true;
         directionProperty.set(i);
     }
-
     public void setDoubleDirections(int i, int j) {
         for (int z = 0; z < this.directions.length; z++) {
             this.directions[z] = false;
@@ -102,12 +101,12 @@ public class Joueur extends Acteur {
         int haut = (newY + this.vitesse) / 16;
         int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 16);
 
-        if (colisionEnv(haut, bas, droite, gauche)) {
+        if (colisionObstacle(haut, bas, droite, gauche)) {
             this.setX(newX);
             this.setY(newY);
         }
 
-        if (colisionEnnemis() || colisionCoffre() || colisionVillageois()){
+        if (colisionEnnemis() || colisionEnv()){
             this.setX(oldX);
             this.setY(oldY);
         }
@@ -131,7 +130,7 @@ public class Joueur extends Acteur {
         return false;
     }
 
-    public boolean colisionEnv(int haut, int bas, int droite, int gauche){
+    public boolean colisionObstacle(int haut, int bas, int droite, int gauche){
         if (haut >= 0 && bas < Environnement.getTerrain().getTerrain().length &&
                 gauche >= 0 && droite < Environnement.getTerrain().getTerrain()[0].length) {
             return !Environnement.getTerrain().obstacle(gauche, haut) &&
@@ -143,20 +142,20 @@ public class Joueur extends Acteur {
             return false;
         }
     }
-    
+
     public boolean colisionEnnemis() {
         int cpt = 0;
         int joueurX = (int) this.getHitbox().getX();
         int joueurY = (int) this.getHitbox().getY();
         int joueurWidth = (int) this.getHitbox().getWidth();
         int joueurHeight = (int) this.getHitbox().getHeight();
-        
+
         for (Ennemis ennemi : environnement.getListEnnemis()) {
             int ennemiX = (int) ennemi.getHitbox().getX();
             int ennemiY = (int) ennemi.getHitbox().getY();
             int ennemiWidth = (int) ennemi.getHitbox().getWidth();
             int ennemiHeight = (int) ennemi.getHitbox().getHeight();
-            
+
             if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
                 cpt++;
             }
@@ -164,7 +163,7 @@ public class Joueur extends Acteur {
         return (cpt != 0);
     }
 
-    public boolean colisionCoffre(){
+    public boolean colisionEnv(){
         for (Coffre coffre : environnement.getListCoffre()) {
             int coffreX = coffre.getX();
             int coffreY = coffre.getY();
@@ -175,10 +174,7 @@ public class Joueur extends Acteur {
                 return true;
             }
         }
-        return false;
-    }
 
-    public boolean colisionVillageois(){
         for (Villageois villageois : environnement.getListVillageois()) {
             int pnjX = villageois.getX();
             int pnjY = villageois.getY();

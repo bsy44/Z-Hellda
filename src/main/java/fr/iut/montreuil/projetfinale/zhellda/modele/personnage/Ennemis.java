@@ -13,14 +13,14 @@ public abstract class Ennemis extends Acteur {
     private int attaque;
     private int portee;
     private String nom;
-    private int type;//0 pour sol et 1 pour aérien
+    private boolean aerien;
     private ArrayList<Case> cheminVersJoueur;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom){
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien){
         super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH, environnement);
         this.attaque = attaque;
         this.portee=portee;
-        this.type = type;
+        this.aerien = aerien;
         this.nom = nom;
         this.cheminVersJoueur = Environnement.getBfs().cheminVersSource(x, y);
         compteur++;
@@ -30,8 +30,8 @@ public abstract class Ennemis extends Acteur {
         return portee;
     }
 
-    public int getType() {
-        return type;
+    public boolean getAerien() {
+        return aerien;
     }
 
     public int getAttaque() {

@@ -28,10 +28,10 @@ public class VueEnnemis {
                 imageView.setFitHeight(100);
                 imageView.setFitWidth(100);
             }
-            /*else if (urlImg.equals("tank.png")){
+            else if (urlImg.equals("tank.png")){
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(50);
-            } */else if (urlImg.equals("sentinelle.png")){
+            } else if (urlImg.equals("sentinelle.png")){
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(40);
             } else {

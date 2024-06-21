@@ -16,7 +16,7 @@ public class Boss extends Ennemis{
     private String direction;
 
     public Boss(int x, int y, Environnement environnement) {
-        super(x, y, 200, 3, 5, 0, 100, 100, environnement, "boss");
+        super(x, y, 200, 3, 5, 0, 100, 100, environnement, "boss", false);
         shemaAttaque.set(0);
         direction = null;
     }

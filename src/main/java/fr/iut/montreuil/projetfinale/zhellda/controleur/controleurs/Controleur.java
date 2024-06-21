@@ -8,6 +8,7 @@ import fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.ItemConsomable;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
@@ -155,6 +156,15 @@ public class Controleur implements Initializable {
                         updateScrolling();
                     }
                     dialogueDebut();
+
+                    for (Ennemis boss: env.getListEnnemis()){
+                        if (boss instanceof Boss){
+                            if (boss.meurt()) {
+                                gameLoop.stop();
+                                afficherVictoireScene();
+                            }
+                        }
+                    }
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -177,20 +187,20 @@ public class Controleur implements Initializable {
         double joueurScreenY = joueurY - posY;
 
         // Si le joueur se déplace vers le bord gauche de la fenêtre
-        if (joueurScreenX < largeurScene * 0.2) {
+        if (joueurScreenX < largeurScene * 0.49) {
             posX -= scrollingVitesse;
         }
         // Si le joueur se déplace vers le bord droit de la fenêtre
-        else if (joueurScreenX > largeurScene * 0.8) {
+        else if (joueurScreenX > largeurScene * 0.51) {
             posX += scrollingVitesse;
         }
 
         // Si le joueur se déplace vers le bord supérieur de la fenêtre
-        if (joueurScreenY < hauteurScene * 0.2) {
+        if (joueurScreenY < hauteurScene * 0.49) {
             posY -= scrollingVitesse;
         }
         // Si le joueur se déplace vers le bord inférieur de la fenêtre
-        else if (joueurScreenY > hauteurScene * 0.8) {
+        else if (joueurScreenY > hauteurScene * 0.51) {
             posY += scrollingVitesse;
         }
 

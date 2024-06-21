@@ -6,7 +6,7 @@ public class Zombie extends Ennemis {
 
     private static double pourcentageDropItem = 100;
     public Zombie(int x, int y, Environnement environnement) {
-        super(x, y, 10, 2, 1, 35,30, 30, environnement, "zombie");
+        super(x, y, 10, 2, 1, 35,30, 30, environnement, "zombie", false);
     }
 
     @Override

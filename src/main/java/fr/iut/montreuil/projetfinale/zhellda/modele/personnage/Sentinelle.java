@@ -4,7 +4,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 public class Sentinelle extends Ennemis{
     public Sentinelle(int x, int y, Environnement environnement) {
-        super(x, y, 15, 2, 4, 40, 40, 50, environnement, "sentinelle");
+        super(x, y, 15, 2, 3, 40, 40, 50, environnement, "sentinelle", false);
     }
 
     @Override

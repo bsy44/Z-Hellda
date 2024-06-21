@@ -131,9 +131,10 @@ public class Environnement {
         for (Joueur joueur : listObsJoueur) {
             joueur.agit();
         }
-        if (tourJeu % 500==0) {
+        if (tourJeu % 750==0) {
             for (Ennemis ennemis : listEnnemis) {
-                ennemis.agit();
+                if (!ennemis.getNom().equals("boss")) ennemis.agit();
+                else if (tourJeu % 3000 == 0) ennemis.agit();
             }
         }
         if (villageois.meurt()){

@@ -18,7 +18,7 @@ public class Epee extends Arme{
         boolean ennemieTouche = false;
         for (int i = 0; i < getEnvironnement().getListEnnemis().size() && ennemieTouche==false; i++) {
             Ennemis ennemie = getEnvironnement().getListEnnemis().get(i);
-            if (ennemie.getType()==0){
+            if (ennemie.getAerien() == false){
                 if (j.getX()==x) {
                     if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
                         ennemie.subirDegats(getAttaque());

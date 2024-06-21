@@ -12,34 +12,11 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class VueTerrain {
-
-//    public VueTerrain(TilePane tilePane, Environnement environnement) {
-//        URL imageTileUrl = Lancement.class.getResource("DecorTileset.png");
-//        Image imTile = new Image(String.valueOf(imageTileUrl));
-//        for (int i = 0; i < environnement.getTerrain().getTerrain().length; i++) {
-//            for (int j = 0; j < environnement.getTerrain().getTerrain()[i].length; j++) {
-//                mettreTile(environnement.getTerrain().getTerrain()[i][j], imTile, tilePane);
-//            }
-//        }
-//    }
-//
-//    private void mettreTile(int id, Image im, TilePane tilePane) {
-//        ImageView imv = new ImageView(im);
-//        int taille = 16;
-//        int tilesPerRow = (int) (im.getWidth() / taille);
-//        int x = (id % tilesPerRow) * taille;
-//        int y = (id / tilesPerRow) * taille;
-//        Rectangle2D imviewport = new Rectangle2D(x, y, taille, taille);
-//        imv.setViewport(imviewport);
-//        tilePane.getChildren().add(imv);
-//    }
-
     private static Map<Integer, ImageView> tileMap = new HashMap<>();
     private static final int tailleTile = 16;
 
@@ -61,7 +38,7 @@ public class VueTerrain {
         Rectangle2D imviewport = new Rectangle2D(x, y, tailleTile, tailleTile);
         imv.setViewport(imviewport);
         tilePane.getChildren().add(imv);
-        tileMap.put(row * 1000 + col, imv);  // Using a simple unique key based on row and column
+        tileMap.put(row * 1000 + col, imv);
     }
 
     public static void faireClignoterTile(int x, int y) {

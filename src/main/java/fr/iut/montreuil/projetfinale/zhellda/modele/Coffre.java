@@ -140,4 +140,3 @@ public class Coffre {
         return "Coffre{" + "x=" + x + ", y=" + y + ", nom='" + nom + '\'' + ", id='" + id + '\'' + ", ouvert=" + ouvert + ", item=" + item + '}';
     }
 }
-
