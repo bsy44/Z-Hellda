@@ -3,7 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele.item;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Item {
+public abstract class Item {
     private IntegerProperty x;
     private IntegerProperty y;
     private String id;
