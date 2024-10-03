@@ -10,6 +10,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.IllegalFormatCodePointException;
+
 public class Environnement {
 
     private int tourJeu;
@@ -127,10 +129,24 @@ public class Environnement {
         }
     }
     public void unTour () {
+    int tempsAlteration=0;
         //appeler les méthode agir
         for (Joueur joueur : listObsJoueur) {
             joueur.agit();
         }
+        if (Environnement.getJ().isEtatAltere()) {
+            tempsAlteration += 10;
+        }
+
+        if (tempsAlteration == 1500) {
+            tempsAlteration = 0;
+            j.setEtatAltere(false);
+            j.buffVitesse(2);
+        }
+        if (tourJeu % 50==0)
+            actionProjectile();
+
+
         if (tourJeu % 750==0) {
             for (Ennemis ennemis : listEnnemis) {
                 if (!ennemis.getNom().equals("boss")) ennemis.agit();
@@ -138,7 +154,7 @@ public class Environnement {
             }
         }
         if (villageois.meurt()){
-            vague.agit();
+            vague.lancerVague();
         }
         tourJeu++;
     }

@@ -133,20 +133,6 @@ public class Controleur implements Initializable {
                     env.actionItem();
                     updateScrolling();
 
-                    if (Environnement.getJ().isEtatAltere()) {
-                        tempsAlteration += 10;
-                    }
-
-                    if (tempsAlteration == 50000) {
-                        tempsAlteration = 0;
-                        Environnement.getJ().setEtatAltere(false);
-                        Environnement.getJ().buffVitesse(2);
-                    }
-
-                    if (tempsEcoule % 500 == 0) {
-                        env.actionProjectile();
-                    }
-
                     if (Environnement.getJ().meurt()){
                         gameLoop.stop();
                         afficherGameOverScene();
