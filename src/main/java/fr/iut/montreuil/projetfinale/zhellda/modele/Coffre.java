@@ -86,6 +86,7 @@ public class Coffre {
         listSpawn.add(new int[]{755, 745});
         listSpawn.add(new int[]{1130, 820});
     }
+
     public void spawnAleatoire(){
         boolean spawnDispo = false;
 
@@ -113,26 +114,40 @@ public class Coffre {
         Item itemGenerer;
 
         if (random < 0.3){
-            double randomItemConsomable = Math.random();
-            if (randomItemConsomable < 0.33){
-                itemGenerer = new PommeDor(getX(), getY());
-            } else if (randomItemConsomable < 0.66) {
-                itemGenerer = new PotionMagique(getX(), getY());
-            }
-            else {
-                itemGenerer = new GrimoirArme(getX(), getY());
-            }
+            itemGenerer = this.genererConsomable();
         }
         else {
-            double randomArme = Math.random();
-            if (randomArme < 0.5){
-                itemGenerer = new Arc(getX(), getY(), environnement);
-            }
-            else{
-                itemGenerer = new Marteau(environnement, getX(), getY());
-            }
+            itemGenerer = this.genererArme();
         }
         return itemGenerer;
+    }
+
+    public Arme genererArme(){
+        double randomArme = Math.random();
+        Arme armeGenerer;
+
+        if (randomArme < 0.5){
+            armeGenerer = new Arc(getX(), getY(), environnement);
+        }
+        else{
+            armeGenerer = new Marteau(environnement, getX(), getY());
+        }
+        return armeGenerer;
+    }
+
+    public ItemConsomable genererConsomable(){
+        double randomItemConsomable = Math.random();
+        ItemConsomable consomableGenerer;
+
+        if (randomItemConsomable < 0.33){
+            consomableGenerer = new PommeDor(getX(), getY());
+        } else if (randomItemConsomable < 0.66) {
+            consomableGenerer = new PotionMagique(getX(), getY());
+        }
+        else {
+            consomableGenerer = new GrimoirArme(getX(), getY());
+        }
+        return consomableGenerer;
     }
 
     @Override
