@@ -2,6 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.StrategieAttaqueBoss;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.beans.value.ObservableValue;
 
@@ -17,7 +18,7 @@ public class ObsPaterneBoss {
 
         boss.getShemaAttaque().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
 
-            switch (boss.getShemaAttaque().getValue()) {
+            switch (StrategieAttaqueBoss.getShemaAttaque()) {
 
                 case 1:
                     vueClawAtk();

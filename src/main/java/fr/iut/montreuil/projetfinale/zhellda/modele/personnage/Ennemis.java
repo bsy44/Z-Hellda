@@ -15,13 +15,15 @@ public abstract class Ennemis extends Acteur {
     private String nom;
     private boolean aerien;
     private ArrayList<Case> cheminVersJoueur;
+    private AttaqueEnnemis attaqueEnnemis;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien){
+    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien,AttaqueEnnemis attaqueEnnemis){
         super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH, environnement);
         this.attaque = attaque;
         this.portee=portee;
         this.aerien = aerien;
         this.nom = nom;
+        this.attaqueEnnemis=attaqueEnnemis;
         this.cheminVersJoueur = Environnement.getBfs().cheminVersSource(x, y);
         compteur++;
     }
@@ -38,7 +40,9 @@ public abstract class Ennemis extends Acteur {
         return attaque;
     }
 
-    public abstract void attaquer();
+    public void attaquer(){
+        this.attaqueEnnemis.attaqer(environnement,this);
+    }
 
     public abstract int getPvMax();
 
