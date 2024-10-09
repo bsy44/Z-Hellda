@@ -19,7 +19,7 @@ public class StrategieAttaqueBoss implements AttaqueEnnemis{
         this.attaqueEnnemis.add(new AttaqueFireBall());
     }
 
-        public void setShemaAttaque(int shemaAttaque) {
+    public void setShemaAttaque(int shemaAttaque) {
             this.shemaAttaque.set(shemaAttaque);
         }
 
@@ -33,20 +33,20 @@ public class StrategieAttaqueBoss implements AttaqueEnnemis{
 
     @Override
     public void attaqer(Environnement environnement, Ennemis ennemis) {
-        int random = (int) Math.round(Math.random()*2+1);
+        int random = (int) (Math.random()*4);
         switch(random){
 
-            case 1:
+            case 0:
                 setShemaAttaque(1);
                 this.attaqueEnnemis.get(0).attaqer(environnement, ennemis);
                 break;
 
-            case 2:
+            case 1:
                 setShemaAttaque(2);
                 this.attaqueEnnemis.get(1).attaqer(environnement, ennemis);
                 break;
 
-            case 3:
+            case 2:
                 setShemaAttaque(3);
                 this.attaqueEnnemis.get(2).attaqer(environnement, ennemis);
                 break;

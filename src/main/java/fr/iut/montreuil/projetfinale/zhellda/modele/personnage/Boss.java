@@ -17,7 +17,6 @@ public class Boss extends Ennemis{
 
     public Boss(int x, int y, Environnement environnement) {
         super(x, y, 200, 3, 5, 0, 100, 100, environnement, "boss", false,new StrategieAttaqueBoss());
-        shemaAttaque.set(0);
         direction = null;
     }
 
@@ -50,6 +49,4 @@ public class Boss extends Ennemis{
     public void setShemaAttaque(int shemaAttaque) {
         this.shemaAttaque.set(shemaAttaque);
     }
-
-
 }
