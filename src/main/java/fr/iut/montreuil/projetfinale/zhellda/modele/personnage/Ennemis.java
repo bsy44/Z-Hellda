@@ -73,26 +73,31 @@ public abstract class Ennemis extends Acteur {
         for(int i = environnement.getListEnnemis().size()-1; i>=0;i--){
             Ennemis e = environnement.getListEnnemis().get(i);
             if(e.getVie().get()==0){
-                if (e.reussitProba(Zombie.getPourcentageDropItem())){
-                    Item item;
-                    double random = Math.random();
-                    if (random < 0.33) {
-                        item = new PommeDor(e.getX(), e.getY());
-                    }
-                    else if (random < 0.66){
-                        item = new PotionMagique(e.getX(), e.getY());
-                    }
-                    else {
-                        item = new GrimoirArme(e.getX(), e.getY());
-                    }
-                    environnement.getListItemParTerre().add(item);
-                }
+                this.dropItem(e);
                 System.out.println("mort de : " + e);
                 environnement.getListEnnemis().remove(i);
                 return true;
             }
         }
         return false;
+    }
+
+    public Item dropItem(Ennemis e){
+        Item item = null;
+        if (e.reussitProba(Zombie.getPourcentageDropItem())){
+            double random = Math.random();
+            if (random < 0.33) {
+                item = new PommeDor(e.getX(), e.getY());
+            }
+            else if (random < 0.66){
+                item = new PotionMagique(e.getX(), e.getY());
+            }
+            else {
+                item = new GrimoirArme(e.getX(), e.getY());
+            }
+            environnement.getListItemParTerre().add(item);
+        }
+        return item;
     }
 
     public ArrayList<Case> getCheminVersJoueur() {
