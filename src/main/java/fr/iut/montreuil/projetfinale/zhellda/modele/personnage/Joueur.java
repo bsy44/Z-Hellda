@@ -60,6 +60,18 @@ public class Joueur extends Acteur {
         this.numArmeUtilise = numArmeUtilise;
     }
 
+    public void setEtatAltere(boolean etatAltere) {
+        this.etatAltere = etatAltere;
+    }
+
+    public void debuffVitesse(int viteseDebuff) {
+        this.vitesse = (vitesse - viteseDebuff);
+    }
+
+    public void buffVitesse(int viteseBuff) {
+        this.vitesse = (vitesse + viteseBuff);
+    }
+
     public void setDirections(int i) {
         for (int j = 0; j < this.directions.length; j++) {
             this.directions[j] = false;
@@ -67,6 +79,7 @@ public class Joueur extends Acteur {
         directions[i] = true;
         directionProperty.set(i);
     }
+
     public void setDoubleDirections(int i, int j) {
         for (int z = 0; z < this.directions.length; z++) {
             this.directions[z] = false;
@@ -83,39 +96,56 @@ public class Joueur extends Acteur {
 
     @Override
     public void agit() {
-        int deltaX = 0;
-        int deltaY = 0;
         int oldX = this.getX();
         int oldY = this.getY();
 
-        if (this.directions[0]) deltaY -= this.vitesse; // Haut
-        if (this.directions[1]) deltaX -= this.vitesse; // Gauche
-        if (this.directions[2]) deltaY += this.vitesse; // Bas
-        if (this.directions[3]) deltaX += this.vitesse; // Droite
+        int deltaX = calculerDeltaX();
+        int deltaY = calculerDeltaY();
 
-        int newX = this.getX() + deltaX;
-        int newY = this.getY() + deltaY;
+        int newX = oldX + deltaX;
+        int newY = oldY + deltaY;
 
-        int gauche = (newX + this.vitesse) / 16;
-        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
-        int haut = (newY + this.vitesse) / 16;
-        int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 16);
-
-        if (colisionObstacle(haut, bas, droite, gauche)) {
+        if (peutSeDeplacer(newX, newY)) {
             this.setX(newX);
             this.setY(newY);
         }
 
-        if (colisionEnnemis() || colisionEnv()){
+        if (colisionEnnemis() || colisionEnv()) {
             this.setX(oldX);
             this.setY(oldY);
         }
 
-        if (getTransparent()){
+        if (getTransparent()) {
             this.setX(newX);
             this.setY(newY);
         }
+        resetDirections();
+    }
 
+    public int calculerDeltaX() {
+        int deltaX = 0;
+        if (this.directions[1]) deltaX -= this.vitesse; // Gauche
+        if (this.directions[3]) deltaX += this.vitesse; // Droite
+        return deltaX;
+    }
+
+    public int calculerDeltaY() {
+        int deltaY = 0;
+        if (this.directions[0]) deltaY -= this.vitesse; // Haut
+        if (this.directions[2]) deltaY += this.vitesse; // Bas
+        return deltaY;
+    }
+
+    public boolean peutSeDeplacer(int newX, int newY) {
+        int gauche = (newX + this.vitesse) / 16;
+        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
+        int haut = (newY + this.vitesse) / 16;
+        int bas = (newY + this.vitesse + (int) getHitbox().getHeight()) / 16;
+
+        return colisionObstacle(haut, bas, droite, gauche);
+    }
+
+    public void resetDirections() {
         for (int i = 0; i < this.directions.length; i++) {
             this.directions[i] = false;
         }
@@ -163,7 +193,6 @@ public class Joueur extends Acteur {
         return (cpt != 0);
     }
 
-
     private boolean estEnCollision(int objetX, int objetY, int objetWidth, int objetHeight) {
         return getX() < objetX + objetWidth &&
                 getX() + getHitbox().getWidth() > objetX &&
@@ -172,7 +201,6 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnv(){
-
         int coffreWidth = 32;
         int coffreHeight = 32;
         for (Coffre coffre : environnement.getListCoffre()) {
@@ -188,7 +216,6 @@ public class Joueur extends Acteur {
         }
         return false;
     }
-
 
     public boolean isEtatAltere() {
         return etatAltere;
@@ -281,17 +308,5 @@ public class Joueur extends Acteur {
                 objetX + objetWidth > this.getHitbox().getX() - tailleDetection &&
                 objetY < this.getHitbox().getY() + this.getHitbox().getHeight() + tailleDetection &&
                 objetY + objetHeight > this.getHitbox().getY() - tailleDetection;
-    }
-
-    public void setEtatAltere(boolean etatAltere) {
-        this.etatAltere = etatAltere;
-    }
-
-    public void debuffVitesse(int viteseDebuff) {
-        this.vitesse = (vitesse - viteseDebuff);
-    }
-
-    public void buffVitesse(int viteseBuff) {
-        this.vitesse = (vitesse + viteseBuff);
     }
 }
