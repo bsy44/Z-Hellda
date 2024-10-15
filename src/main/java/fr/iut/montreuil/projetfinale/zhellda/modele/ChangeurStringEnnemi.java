@@ -10,7 +10,7 @@ public class ChangeurStringEnnemi {
         this.environnement = environnement;
     }
 
-    public Ennemis choisirEnnemie(Case Case, String typeEnnemie) {
+    public Ennemi choisirEnnemie(Case Case, String typeEnnemie) {
 
         switch (typeEnnemie) {
             case "zombie":

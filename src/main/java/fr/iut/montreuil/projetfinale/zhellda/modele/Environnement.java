@@ -2,8 +2,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Arme;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Acteur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
@@ -19,7 +18,7 @@ public class Environnement {
     private static Joueur j;
     private Villageois villageois;
     private ObservableList<Joueur> listObsJoueur;
-    private ObservableList<Ennemis> listEnnemis;
+    private ObservableList<Ennemi> listEnnemis;
     private ObservableList<Projectile> listProjectile;
     private  ObservableList<Item> listItemParTerre;
     private ObservableList<Coffre> listCoffre;
@@ -51,7 +50,7 @@ public class Environnement {
         return listObsJoueur;
     }
 
-    public ObservableList<Ennemis> getListEnnemis(){
+    public ObservableList<Ennemi> getListEnnemis(){
         return listEnnemis;
     }
 
@@ -79,7 +78,7 @@ public class Environnement {
         bfs = new Bfs();
     }
 
-    public void ajouterEnnemi (Ennemis ennemi){
+    public void ajouterEnnemi (Ennemi ennemi){
         this.listEnnemis.add(ennemi);
     }
 
@@ -132,9 +131,9 @@ public class Environnement {
             joueur.agit();
         }
         if (tourJeu % 750==0) {
-            for (Ennemis ennemis : listEnnemis) {
-                if (!ennemis.getNom().equals("boss")) ennemis.agit();
-                else if (tourJeu % 3000 == 0) ennemis.agit();
+            for (Ennemi ennemi : listEnnemis) {
+                if (!ennemi.getNom().equals("boss")) ennemi.agit();
+                else if (tourJeu % 3000 == 0) ennemi.agit();
             }
         }
         if (villageois.meurt()){

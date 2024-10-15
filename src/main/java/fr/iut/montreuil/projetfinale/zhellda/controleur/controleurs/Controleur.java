@@ -9,7 +9,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.ItemConsomable;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
@@ -64,7 +64,7 @@ public class Controleur implements Initializable {
         new VueTerrain(tilePane, env);
         new VueJoueur(pane, env.getJ());
 
-        ListChangeListener<Ennemis> listeEnnemis = new ListObsEnnemis(pane);
+        ListChangeListener<Ennemi> listeEnnemis = new ListObsEnnemis(pane);
         env.getListEnnemis().addListener(listeEnnemis);
 
         ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
@@ -157,7 +157,7 @@ public class Controleur implements Initializable {
                     }
                     dialogueDebut();
 
-                    for (Ennemis boss: env.getListEnnemis()){
+                    for (Ennemi boss: env.getListEnnemis()){
                         if (boss instanceof Boss){
                             if (boss.meurt()) {
                                 gameLoop.stop();

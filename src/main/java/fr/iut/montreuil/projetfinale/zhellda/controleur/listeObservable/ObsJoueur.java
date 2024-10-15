@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.animation.KeyFrame;
@@ -41,14 +41,14 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
     public void ajouterListners() {
         Environnement.getJ().getXProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemis e : env.getListEnnemis()) {
+            for (Ennemi e : env.getListEnnemis()) {
                 e.nouveauChemin();
             }
         });
 
         Environnement.getJ().getYProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemis e : env.getListEnnemis()) {
+            for (Ennemi e : env.getListEnnemis()) {
                 e.nouveauChemin();
             }
         });

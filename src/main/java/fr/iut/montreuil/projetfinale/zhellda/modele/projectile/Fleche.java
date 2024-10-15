@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.projectile;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 
 public class Fleche extends Projectile {
     public Fleche(int x, int y, int xDirection, int yDirection, Environnement environnement) {
@@ -11,7 +11,7 @@ public class Fleche extends Projectile {
     @Override
     public boolean estTouche() {
         for (int i = 0; i < environnement.getListEnnemis().size(); i++) {
-            Ennemis ennemieCible = environnement.getListEnnemis().get(i);
+            Ennemi ennemieCible = environnement.getListEnnemis().get(i);
 
             if (this.getX() >= ennemieCible.getHitbox().getX() - 10 &&
                     this.getX() <= ennemieCible.getHitbox().getX() - 15 + ennemieCible.getHitbox().getWidth() &&

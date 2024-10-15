@@ -8,23 +8,23 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.item.PotionMagique;
 
 import java.util.ArrayList;
 
-public abstract class Ennemis extends Acteur {
+public abstract class Ennemi extends Acteur {
     private static int compteur = 0;
     private int attaque;
     private int portee;
     private String nom;
     private boolean aerien;
     private ArrayList<Case> cheminVersJoueur;
-    private AttaqueEnnemis attaqueEnnemis;
+    private SchemaAttaqueEnnemi schemaAttaqueEnnemi;
 
-    public Ennemis(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien,AttaqueEnnemis attaqueEnnemis){
+    public Ennemi(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien, SchemaAttaqueEnnemi schemaAttaqueEnnemi){
         super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH, environnement);
         this.attaque = attaque;
         this.portee=portee;
         this.aerien = aerien;
         this.nom = nom;
-        this.attaqueEnnemis=attaqueEnnemis;
         this.cheminVersJoueur = Environnement.getBfs().cheminVersSource(x, y);
+        this.schemaAttaqueEnnemi = schemaAttaqueEnnemi;
         compteur++;
     }
 
@@ -41,7 +41,7 @@ public abstract class Ennemis extends Acteur {
     }
 
     public void attaquer(){
-        this.attaqueEnnemis.attaqer(environnement,this);
+        this.schemaAttaqueEnnemi.attaquer(environnement, this);
     }
 
     public abstract int getPvMax();
@@ -62,6 +62,12 @@ public abstract class Ennemis extends Acteur {
         }
     }
 
+    @Override
+    public void agit() {
+        seDeplacer();
+        attaquer();
+    }
+
     public boolean reussitProba(double pourcent){
         double x= Math.random();
         double pp=pourcent/100;
@@ -75,7 +81,7 @@ public abstract class Ennemis extends Acteur {
     @Override
     public boolean meurt() {
         for(int i = environnement.getListEnnemis().size()-1; i>=0;i--){
-            Ennemis e = environnement.getListEnnemis().get(i);
+            Ennemi e = environnement.getListEnnemis().get(i);
             if(e.getVie().get()==0){
                 this.dropItem(e);
                 System.out.println("mort de : " + e);
@@ -86,7 +92,7 @@ public abstract class Ennemis extends Acteur {
         return false;
     }
 
-    public Item dropItem(Ennemis e){
+    public Item dropItem(Ennemi e){
         Item item = null;
         if (e.reussitProba(Zombie.getPourcentageDropItem())){
             double random = Math.random();
@@ -106,5 +112,9 @@ public abstract class Ennemis extends Acteur {
 
     public ArrayList<Case> getCheminVersJoueur() {
         return cheminVersJoueur;
+    }
+
+    public SchemaAttaqueEnnemi getSchemaAttaqueEnnemi() {
+        return schemaAttaqueEnnemi;
     }
 }
