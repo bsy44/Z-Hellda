@@ -85,8 +85,6 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
         Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
-        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
-
         pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 initKeyHandlers(newScene);

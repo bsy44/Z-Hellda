@@ -111,7 +111,7 @@ public class Joueur extends Acteur {
             this.setY(oldY);
         }
 
-        if (getTransparent() == true){
+        if (getTransparent()){
             this.setX(newX);
             this.setY(newY);
         }
@@ -163,27 +163,33 @@ public class Joueur extends Acteur {
         return (cpt != 0);
     }
 
-    public boolean colisionEnv(){
-        for (Coffre coffre : environnement.getListCoffre()) {
-            int coffreX = coffre.getX();
-            int coffreY = coffre.getY();
-            int coffreWidth = 32;
-            int coffreHeight = 32;
 
-            if (getX() < coffreX + coffreWidth && getX() + getHitbox().getWidth() > coffreX && getY() < coffreY + coffreHeight && getY() + getHitbox().getHeight() > coffreY) {
+    private boolean estEnCollision(int objetX, int objetY, int objetWidth, int objetHeight) {
+        return getX() < objetX + objetWidth &&
+                getX() + getHitbox().getWidth() > objetX &&
+                getY() < objetY + objetHeight &&
+                getY() + getHitbox().getHeight() > objetY;
+    }
+
+    public boolean colisionEnv(){
+
+        int coffreWidth = 32;
+        int coffreHeight = 32;
+        for (Coffre coffre : environnement.getListCoffre()) {
+            if (estEnCollision(coffre.getX(), coffre.getY(), coffreWidth, coffreHeight)) {
                 return true;
             }
         }
 
         for (Villageois villageois : environnement.getListVillageois()) {
-            int pnjX = villageois.getX();
-            int pnjY = villageois.getY();
-            if (getX() < pnjX + villageois.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + villageois.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
+            if (estEnCollision(villageois.getX(), villageois.getY(), (int)villageois.getHitbox().getWidth(), (int)villageois.getHitbox().getHeight())) {
                 return true;
             }
         }
+
         return false;
     }
+
     
     public boolean isEtatAltere() {
         return etatAltere;
@@ -193,20 +199,7 @@ public class Joueur extends Acteur {
         return 10;
     }
     
-    public boolean ramasserItem(Item item) {
-        if (inventaireItem.estPlein()) {
-            return false;
-        }
-        
-        if (item.getX() + 10 >= this.getHitbox().getX() &&
-                item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
-                item.getY() + 10 >= this.getHitbox().getY() &&
-                item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
-            System.out.println("Ramasser");
-            return true;
-        }
-        return false;
-    }
+
 
     public void jeterItem(Item item){
         item.setX(getX());
@@ -222,19 +215,20 @@ public class Joueur extends Acteur {
         environnement.ajouterItem(arme);
     }
 
-    public Coffre coffreAuTour(){
-        for (Coffre coffre : environnement.getListCoffre()) {
-            int coffreWidth = 32;
-            int coffreHeight = 32;
 
-            if (coffre.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
-                    coffre.getX() + coffreWidth > this.getHitbox().getX() - 16 &&
-                    coffre.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
-                    coffre.getY() + coffreHeight > this.getHitbox().getY() - 16) {
-                return coffre;
-            }
+    public boolean ramasserItem(Item item) {
+        if (inventaireItem.estPlein()) {
+            return false;
         }
-        return null;
+
+        if (item.getX() + 10 >= this.getHitbox().getX() &&
+                item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
+                item.getY() + 10 >= this.getHitbox().getY() &&
+                item.getY() + 10 <= this.getHitbox().getY() + this.getHitbox().getHeight()) {
+            System.out.println("Ramasser");
+            return true;
+        }
+        return false;
     }
 
     public void interagir(){
@@ -259,18 +253,34 @@ public class Joueur extends Acteur {
         }
     }
 
+    public Coffre coffreAuTour(){
+        for (Coffre coffre : environnement.getListCoffre()) {
+            int coffreWidth = 32;
+            int coffreHeight = 32;
+
+            if (estProche(coffre.getX(), coffre.getY(), coffreWidth, coffreHeight,16))
+                return coffre;
+            }
+
+        return null;
+    }
+
     public Villageois villageoisAutour(){
         for (Villageois villageois : environnement.getListVillageois()){
             int villageoisWidth = 40;
             int villageoisHeight = 40;
-            if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
-                    villageois.getX() + villageoisWidth > this.getHitbox().getX() - 16 &&
-                    villageois.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
-                    villageois.getY() + villageoisHeight > this.getHitbox().getY() - 16) {
+            if (estProche(villageois.getX(), villageois.getY(),villageoisWidth,villageoisHeight,16)){
                 return villageois;
             }
         }
         return null;
+    }
+
+    public boolean estProche(int objetX, int objetY, int objetWidth, int objetHeight, int tailleDetection) {
+        return objetX < this.getHitbox().getX() + this.getHitbox().getWidth() + tailleDetection &&
+                objetX + objetWidth > this.getHitbox().getX() - tailleDetection &&
+                objetY < this.getHitbox().getY() + this.getHitbox().getHeight() + tailleDetection &&
+                objetY + objetHeight > this.getHitbox().getY() - tailleDetection;
     }
 
     public void setEtatAltere(boolean etatAltere) {
