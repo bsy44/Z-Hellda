@@ -41,7 +41,7 @@ public abstract class Ennemi extends Acteur {
     }
 
     public void attaquer(){
-        this.schemaAttaqueEnnemi.attaquer(environnement, this);
+        getSchemaAttaqueEnnemi().attaquer(environnement, this);
     }
 
     public abstract int getPvMax();

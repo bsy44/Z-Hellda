@@ -34,8 +34,6 @@ public class Case {
         return adj;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,5 +45,10 @@ public class Case {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return (getX()+", "+getY());
     }
 }

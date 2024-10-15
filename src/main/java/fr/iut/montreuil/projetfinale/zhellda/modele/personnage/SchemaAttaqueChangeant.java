@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 import java.util.ArrayList;
@@ -17,8 +18,16 @@ public class SchemaAttaqueChangeant extends SchemaAttaqueBoss {
 
     @Override
     public void attaquer(Environnement environnement, Ennemi ennemi) {
+        faireAttaque(environnement, (Boss) ennemi, direction(ennemi));
+    }
+
+    @Override
+    public void faireAttaque(Environnement environnement, Boss boss, String direction) {
         Random random = new Random();
         int randomInt = random.nextInt(listeSchemaAttaque.size());
-        listeSchemaAttaque.get(randomInt).attaquer(environnement, ennemi);
+        System.out.println(randomInt);
+        listeSchemaAttaque.get(randomInt).attaquer(environnement, boss);
+        for (Case c : listeSchemaAttaque.get(randomInt).getCasesAttaqueesProperty()) this.getCasesAttaquees().add(c);
+        mettreAJourCasesAttaqueesProperty();
     }
 }

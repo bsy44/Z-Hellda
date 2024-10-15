@@ -82,12 +82,12 @@ public class Vague {
     }
 
     public void agit () {
-        if (debute() && !estFini()) {
-            if (environnement.getTourJeu() % delaiApparition == 0) {
-                genenerAddEnnemie();
-            }
-        }
-        if (estFini() && environnement.getListEnnemis().isEmpty() && bossGenerer == false) {
+//        if (debute() && !estFini()) {
+//            if (environnement.getTourJeu() % delaiApparition == 0) {
+//                genenerAddEnnemie();
+//            }
+//        }
+        if (/*estFini() && environnement.getListEnnemis().isEmpty() && */bossGenerer == false) {
             Boss boss = new Boss(1190, 900, environnement);
             new ObsPaterneBoss(boss);
             environnement.ajouterEnnemi(boss);

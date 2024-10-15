@@ -21,9 +21,11 @@ public class ObsPaterneBoss {
 
         paterneAttaqueBoss.getCasesAttaqueesProperty().addListener((ListChangeListener.Change<? extends Case> change) -> {
 
-        for (Case c : change.getList()) {
-            VueTerrain.faireClignoterTile(c.getX(), c.getY());
-        }   
+            System.out.println("changement vue");
+
+            for (Case c : change.getList()) {
+                VueTerrain.faireClignoterTile(c.getX(), c.getY());
+            }
 
 //            switch (paterneAttaqueBoss.getShemaAttaque()) {
 //
