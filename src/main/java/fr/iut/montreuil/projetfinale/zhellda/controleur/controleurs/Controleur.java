@@ -240,7 +240,7 @@ public class Controleur implements Initializable {
             boutonJeter.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
                 Item item = Environnement.getJ().getInventaireItem().getListItem().get(index);
-                Environnement.getJ().jeterItem(item);
+                Environnement.getJ().jeterItemInventaire(item);
 
                 inventaireItem.getChildren().remove(hBox);
             });
