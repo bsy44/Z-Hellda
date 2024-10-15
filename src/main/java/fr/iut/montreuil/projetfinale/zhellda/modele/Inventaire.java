@@ -22,7 +22,9 @@ public class Inventaire {
     }
 
     public void ajouterItem(Item item){
-        listItem.add(item);
+        if (!estPlein()) {
+            listItem.add(item);
+        }
     }
 
     public void supprimerItem(Item i){

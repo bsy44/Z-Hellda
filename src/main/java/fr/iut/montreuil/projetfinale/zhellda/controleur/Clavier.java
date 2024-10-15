@@ -83,7 +83,7 @@ public class Clavier {
                 }
                 break;
             case G:
-                Environnement.getJ().jeterArme(Environnement.getJ().getArme());
+                Environnement.getJ().jeterItemInventaire(Environnement.getJ().getArme());
                 break;
             default:
                 break;

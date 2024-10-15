@@ -186,11 +186,10 @@ public class Joueur extends Acteur {
                 return true;
             }
         }
-
         return false;
     }
 
-    
+
     public boolean isEtatAltere() {
         return etatAltere;
     }
@@ -199,28 +198,11 @@ public class Joueur extends Acteur {
         return 10;
     }
     
-
-
-    public void jeterItem(Item item){
-        item.setX(getX());
-        item.setY(getY() - 30);
-        inventaireItem.supprimerItem(item);
-        environnement.getListItemParTerre().add(item);
-    }
-
-    public void jeterArme(Arme arme){
-        arme.setX(getX());
-        arme.setY(getY() - 30);
-        inventaireArme.supprimerItem(arme);
-        environnement.ajouterItem(arme);
-    }
-
-
     public boolean ramasserItem(Item item) {
         if (inventaireItem.estPlein()) {
             return false;
         }
-
+        
         if (item.getX() + 10 >= this.getHitbox().getX() &&
                 item.getX() + 10 <= this.getHitbox().getX() + this.getHitbox().getWidth() &&
                 item.getY() + 10 >= this.getHitbox().getY() &&
@@ -231,26 +213,44 @@ public class Joueur extends Acteur {
         return false;
     }
 
-    public void interagir(){
+    public void jeterItemInventaire(Item item){
+        item.setX(getX());
+        item.setY(getY() - 30);
+        if (item instanceof Arme){
+            inventaireArme.supprimerItem(item);
+        }
+        else {
+            inventaireItem.supprimerItem(item);
+        }
+        environnement.getListItemParTerre().add(item);
+    }
+
+    public void interagir() {
         Coffre coffre = coffreAuTour();
 
-        if (coffre != null && !coffre.estOuvert().getValue()){
+        if (coffre != null && !coffre.estOuvert().getValue()) {
             coffre.setOuvert(true);
-            if (coffre.getItem() instanceof Arme){
-                inventaireArme.ajouterItem(coffre.getItem());
-            }
-            else {
-                if (!inventaireItem.estPlein()) {
-                    inventaireItem.ajouterItem(coffre.getItem());
-                }
-                else {
-                    coffre.getItem().setX(coffre.getX());
-                    coffre.getItem().setY(coffre.getY() + 25);
-                    environnement.ajouterItem(coffre.getItem());
-                }
-            }
+            traiterItemCoffre(coffre);
             coffre.supprimerItem();
         }
+    }
+
+    public void traiterItemCoffre(Coffre coffre) {
+        if (coffre.getItem() instanceof Arme) {
+            inventaireArme.ajouterItem(coffre.getItem());
+        }
+        else if (coffre.getItem() instanceof Item) {
+            inventaireItem.ajouterItem(coffre.getItem());
+        }
+        else {
+            deposerItemDeCoffre(coffre);
+        }
+    }
+
+    public void deposerItemDeCoffre(Coffre coffre) {
+        coffre.getItem().setX(coffre.getX());
+        coffre.getItem().setY(coffre.getY() + 25);
+        environnement.ajouterItem(coffre.getItem());
     }
 
     public Coffre coffreAuTour(){
