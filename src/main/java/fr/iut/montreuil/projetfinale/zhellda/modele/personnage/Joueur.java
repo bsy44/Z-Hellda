@@ -99,8 +99,10 @@ public class Joueur extends Acteur {
         int oldX = this.getX();
         int oldY = this.getY();
 
-        int deltaX = calculerDeltaX();
-        int deltaY = calculerDeltaY();
+        Case delta = calculerDelta();
+
+        int deltaX = delta.getX();
+        int deltaY = delta.getY();
 
         int newX = oldX + deltaX;
         int newY = oldY + deltaY;
@@ -122,18 +124,14 @@ public class Joueur extends Acteur {
         resetDirections();
     }
 
-    public int calculerDeltaX() {
+    private Case calculerDelta() {
         int deltaX = 0;
-        if (this.directions[1]) deltaX -= this.vitesse; // Gauche
-        if (this.directions[3]) deltaX += this.vitesse; // Droite
-        return deltaX;
-    }
-
-    public int calculerDeltaY() {
         int deltaY = 0;
-        if (this.directions[0]) deltaY -= this.vitesse; // Haut
-        if (this.directions[2]) deltaY += this.vitesse; // Bas
-        return deltaY;
+        if (directions[1]) deltaX -= vitesse; // Gauche
+        if (directions[3]) deltaX += vitesse; // Droite
+        if (directions[0]) deltaY -= vitesse; // Haut
+        if (directions[2]) deltaY += vitesse; // Bas
+        return new Case(deltaX, deltaY);
     }
 
     public boolean peutSeDeplacer(int newX, int newY) {
