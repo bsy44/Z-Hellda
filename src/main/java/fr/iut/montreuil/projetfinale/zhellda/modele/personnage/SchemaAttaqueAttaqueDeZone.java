@@ -17,6 +17,7 @@ public class SchemaAttaqueAttaqueDeZone extends SchemaAttaqueBoss {
                     getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+i, Math.round(boss.getY() / 16)+8));
                     getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+i, Math.round(boss.getY() / 16)-2));
                     if (i > 1 && i < 5){
+                        getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+9, Math.round(boss.getY() / 16)+i));
                         getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)-3, Math.round(boss.getY() / 16)+i));
                         getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+i, Math.round(boss.getY() / 16)+9));
                         getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+i, Math.round(boss.getY() / 16)-3));
