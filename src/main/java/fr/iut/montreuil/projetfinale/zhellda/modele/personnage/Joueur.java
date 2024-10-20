@@ -172,23 +172,13 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnnemis() {
-        int cpt = 0;
-        int joueurX = (int) this.getHitbox().getX();
-        int joueurY = (int) this.getHitbox().getY();
-        int joueurWidth = (int) this.getHitbox().getWidth();
-        int joueurHeight = (int) this.getHitbox().getHeight();
-
         for (Ennemis ennemi : environnement.getListEnnemis()) {
-            int ennemiX = (int) ennemi.getHitbox().getX();
-            int ennemiY = (int) ennemi.getHitbox().getY();
-            int ennemiWidth = (int) ennemi.getHitbox().getWidth();
-            int ennemiHeight = (int) ennemi.getHitbox().getHeight();
-
-            if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
-                cpt++;
+            if (estEnCollision((int)ennemi.getHitbox().getX(), (int)ennemi.getHitbox().getY(),
+                    (int)ennemi.getHitbox().getWidth(), (int)ennemi.getHitbox().getHeight())) {
+                return true;
             }
         }
-        return (cpt != 0);
+        return false;
     }
 
     private boolean estEnCollision(int objetX, int objetY, int objetWidth, int objetHeight) {
