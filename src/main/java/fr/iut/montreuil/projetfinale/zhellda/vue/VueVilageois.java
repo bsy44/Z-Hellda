@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.vue;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

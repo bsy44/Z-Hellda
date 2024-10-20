@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane prefHeight="920.0" prefWidth="1480.0" style="-fx-background-color: black;" stylesheets="@styleVueGameOver.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.ControleurGameOver">
+<Pane prefHeight="920.0" prefWidth="1480.0" style="-fx-background-color: black;" stylesheets="@styleVueGameOver.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.controleurs.ControleurGameOver">
    <children>
       <ImageView fitHeight="845.0" fitWidth="1480.0" pickOnBounds="true" preserveRatio="true">
          <image>

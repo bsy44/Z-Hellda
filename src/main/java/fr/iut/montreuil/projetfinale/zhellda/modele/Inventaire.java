@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -21,7 +22,9 @@ public class Inventaire {
     }
 
     public void ajouterItem(Item item){
-        listItem.add(item);
+        if (!estPlein()) {
+            listItem.add(item);
+        }
     }
 
     public void supprimerItem(Item i){

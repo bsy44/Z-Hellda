@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import java.util.HashSet;
@@ -83,7 +83,7 @@ public class Clavier {
                 }
                 break;
             case G:
-                Environnement.getJ().jeterArme(Environnement.getJ().getArme());
+                Environnement.getJ().jeterItemInventaire(Environnement.getJ().getArme());
                 break;
             default:
                 break;

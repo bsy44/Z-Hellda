@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.controleur;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 

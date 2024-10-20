@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,12 +14,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane prefHeight="950.0" prefWidth="1380.0" stylesheets="@menuOption.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.ControlleurMenuOption">
+<Pane prefHeight="950.0" prefWidth="1380.0" stylesheets="@menuOption.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.projetfinale.zhellda.controleur.controleurs.ControlleurMenuOption">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="508.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="364.0" styleClass="label-main" text="Menu Option" />
       <VBox layoutY="70.0" prefHeight="885.0" prefWidth="460.0" spacing="40.0" styleClass="vbox-container">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="418.0" styleClass="label-section" text="Touches" />
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="418.0" styleClass="label-section" text="Touches" />
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="46.0" prefWidth="460.0" styleClass="label-texte" text="Déplacement" />
@@ -134,6 +139,16 @@
                         <Label prefHeight="48.0" prefWidth="110.0" styleClass="label-texte" text="Parler" />
                      </children>
                   </HBox>
+                  <HBox layoutX="30.0" layoutY="122.0" prefHeight="21.0" prefWidth="460.0" spacing="30.0">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@toucheG.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="48.0" prefWidth="110.0" styleClass="label-texte" text="Jeter Arme" />
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -141,7 +156,7 @@
             </VBox>
          </children>
       </VBox>
-      <VBox layoutX="460.0" layoutY="70.0" prefHeight="848.0" prefWidth="460.0" styleClass="vbox-container">
+      <VBox layoutX="460.0" layoutY="70.0" prefHeight="885.0" prefWidth="460.0" styleClass="vbox-container">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="418.0" styleClass="label-section" text="Ennemis">
                <VBox.margin>
@@ -152,9 +167,9 @@
                   <Label prefHeight="0.0" prefWidth="388.0" styleClass="label-texte" text="Zombie" />
                   <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="108.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ennemi.png" />
+                              <Image url="@zombie.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
@@ -177,9 +192,9 @@
                   <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Rapide" />
                   <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ennemi.png" />
+                              <Image url="@rapide.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
@@ -199,44 +214,20 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="132.0" prefHeight="74.0" prefWidth="460.0" spacing="15.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Tank" />
+                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Sentinelle" />
                   <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ennemi.png" />
+                              <Image url="@sentinelle.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
                            <children>
-                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 20" />
-                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 2" />
-                              <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
-                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 1" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="224.0" prefHeight="43.0" prefWidth="386.0" spacing="15.0">
-               <children>
-                  <HBox prefHeight="82.0" prefWidth="460.0" spacing="40.0">
-                     <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@ennemi.png" />
-                           </image>
-                        </ImageView>
-                        <VBox prefHeight="75.0" prefWidth="424.0">
-                           <children>
-                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 20" />
-                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 2" />
-                              <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
-                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 1" />
+                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 15" />
+                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 3" />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 40" />
+                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 2" />
                            </children>
                         </VBox>
                      </children>
@@ -248,12 +239,12 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="316.0" prefHeight="74.0" prefWidth="460.0" spacing="15.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Boss final" />
+                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Tank" />
                   <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="108.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ennemi.png" />
+                              <Image url="@tank.png" />
                            </image>
                         </ImageView>
                         <VBox prefHeight="75.0" prefWidth="424.0">
@@ -262,6 +253,31 @@
                               <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 2" />
                               <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
                               <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 1" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox layoutX="60.0" layoutY="456.0" prefHeight="74.0" prefWidth="460.0" spacing="15.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="464.0" styleClass="label-texte" text="Boss" />
+                  <HBox prefHeight="58.0" prefWidth="460.0" spacing="40.0">
+                     <children>
+                        <ImageView fitHeight="108.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@boss.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="75.0" prefWidth="424.0">
+                           <children>
+                              <Label prefHeight="33.0" prefWidth="413.0" styleClass="label-texte" text="PV : 200" />
+                              <Label prefHeight="33.0" prefWidth="405.0" styleClass="label-texte" text="Dégâts : 3" />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="432.0" styleClass="label-texte" text="Portée : 35" />
+                              <Label prefHeight="17.0" prefWidth="508.0" styleClass="label-texte" text="Vitesse : 2" />
                            </children>
                         </VBox>
                      </children>
@@ -352,9 +368,9 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <VBox layoutX="10.0" layoutY="55.0" prefHeight="0.0" prefWidth="460.0" spacing="30.0">
+            <VBox layoutX="10.0" layoutY="55.0" prefHeight="337.0" prefWidth="418.0" spacing="25.0">
                <children>
-                  <VBox prefHeight="98.0" prefWidth="440.0" spacing="15.0">
+                  <VBox prefHeight="111.0" prefWidth="388.0" spacing="15.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="692.0" styleClass="label-texte" text="Pomme dorée :" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -372,17 +388,17 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox layoutX="30.0" layoutY="27.0" prefHeight="98.0" prefWidth="440.0" spacing="15.0">
+                  <VBox layoutX="30.0" layoutY="27.0" prefHeight="269.0" prefWidth="388.0" spacing="15.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="692.0" styleClass="label-texte" text="Potion passe muraille :" />
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                        <HBox prefHeight="102.0" prefWidth="388.0" spacing="30.0">
                            <children>
                               <ImageView fitHeight="100.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@passeMuraille.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="64.0" prefWidth="380.0" styleClass="label-texte" text="Permet de passer à travers tout les obstacles pendant 7 secondes" wrapText="true" />
+                              <Label prefHeight="82.0" prefWidth="308.0" styleClass="label-texte" text="Permet de passer à travers tout les obstacles pendant 7 secondes" wrapText="true" />
                            </children>
                         </HBox>
                      </children>
@@ -390,9 +406,9 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="234.0" prefHeight="98.0" prefWidth="440.0" spacing="15.0">
+                  <VBox layoutX="10.0" layoutY="234.0" prefHeight="145.0" prefWidth="399.0" spacing="15.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="692.0" styleClass="label-texte" text="GrimoArme :" />
+                        <Label prefHeight="52.0" prefWidth="388.0" styleClass="label-texte" text="GrimoArme :" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
                               <ImageView fitHeight="100.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -400,7 +416,7 @@
                                     <Image url="@grimoArme.png" />
                                  </image>
                               </ImageView>
-                              <Label prefHeight="62.0" prefWidth="380.0" styleClass="label-texte" text="Améliore les dégats des armes de 20% pendant 10 secondes" wrapText="true" />
+                              <Label prefHeight="58.0" prefWidth="355.0" styleClass="label-texte" text="Améliore les dégats des armes de 20% (10 secondes)" wrapText="true" />
                            </children>
                         </HBox>
                      </children>

@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.vue;
 
 import fr.iut.montreuil.projetfinale.zhellda.Lancement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Joueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -21,16 +21,10 @@ public class VueJoueur {
         imageView.setId(j.getId());
         imageView.translateXProperty().bind(j.getXProperty());
         imageView.translateYProperty().bind(j.getYProperty());
-
-        j.getHitbox().setFill(Color.TRANSPARENT);
-        j.getHitbox().setStroke(Color.BLUE);
-        j.getHitbox().setStrokeWidth(2);
-        j.getHitbox().setId(j.getId() + 1);
         j.getHitbox().xProperty().bind(j.getXProperty());
         j.getHitbox().yProperty().bind(j.getYProperty());
 
         pane.getChildren().add(imageView);
-        pane.getChildren().add(j.getHitbox());
 
         j.directionProperty().addListener((obs, old, nouv) -> {
             modifImage(nouv.intValue());
