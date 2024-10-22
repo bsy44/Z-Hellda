@@ -60,6 +60,18 @@ public class Joueur extends Acteur {
         this.numArmeUtilise = numArmeUtilise;
     }
 
+    public void setEtatAltere(boolean etatAltere) {
+        this.etatAltere = etatAltere;
+    }
+
+    public void debuffVitesse(int viteseDebuff) {
+        this.vitesse = (vitesse - viteseDebuff);
+    }
+
+    public void buffVitesse(int viteseBuff) {
+        this.vitesse = (vitesse + viteseBuff);
+    }
+
     public void setDirections(int i) {
         for (int j = 0; j < this.directions.length; j++) {
             this.directions[j] = false;
@@ -83,39 +95,54 @@ public class Joueur extends Acteur {
 
     @Override
     public void agit() {
-        int deltaX = 0;
-        int deltaY = 0;
         int oldX = this.getX();
         int oldY = this.getY();
 
-        if (this.directions[0]) deltaY -= this.vitesse; // Haut
-        if (this.directions[1]) deltaX -= this.vitesse; // Gauche
-        if (this.directions[2]) deltaY += this.vitesse; // Bas
-        if (this.directions[3]) deltaX += this.vitesse; // Droite
+        Case delta = calculerDelta();
 
-        int newX = this.getX() + deltaX;
-        int newY = this.getY() + deltaY;
+        int deltaX = delta.getX();
+        int deltaY = delta.getY();
 
-        int gauche = (newX + this.vitesse) / 16;
-        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
-        int haut = (newY + this.vitesse) / 16;
-        int bas = ((newY + this.vitesse + (int) getHitbox().getHeight()) / 16);
+        int newX = oldX + deltaX;
+        int newY = oldY + deltaY;
 
-        if (colisionObstacle(haut, bas, droite, gauche)) {
+        if (peutSeDeplacer(newX, newY)) {
             this.setX(newX);
             this.setY(newY);
         }
 
-        if (colisionEnnemis() || colisionEnv()){
+        if (colisionEnnemis() || colisionEnv()) {
             this.setX(oldX);
             this.setY(oldY);
         }
 
-        if (getTransparent() == true){
+        if (getTransparent()) {
             this.setX(newX);
             this.setY(newY);
         }
+        resetDirections();
+    }
 
+    private Case calculerDelta() {
+        int deltaX = 0;
+        int deltaY = 0;
+        if (directions[1]) deltaX -= vitesse; // Gauche
+        if (directions[3]) deltaX += vitesse; // Droite
+        if (directions[0]) deltaY -= vitesse; // Haut
+        if (directions[2]) deltaY += vitesse; // Bas
+        return new Case(deltaX, deltaY);
+    }
+
+    public boolean peutSeDeplacer(int newX, int newY) {
+        int gauche = (newX + this.vitesse) / 16;
+        int droite = (newX + this.vitesse + (int) getHitbox().getWidth()) / 16;
+        int haut = (newY + this.vitesse) / 16;
+        int bas = (newY + this.vitesse + (int) getHitbox().getHeight()) / 16;
+
+        return colisionObstacle(haut, bas, droite, gauche);
+    }
+
+    public void resetDirections() {
         for (int i = 0; i < this.directions.length; i++) {
             this.directions[i] = false;
         }
@@ -144,47 +171,39 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnnemis() {
-        int cpt = 0;
-        int joueurX = (int) this.getHitbox().getX();
-        int joueurY = (int) this.getHitbox().getY();
-        int joueurWidth = (int) this.getHitbox().getWidth();
-        int joueurHeight = (int) this.getHitbox().getHeight();
-
-        for (Ennemi ennemi : environnement.getListEnnemis()) {
-            int ennemiX = (int) ennemi.getHitbox().getX();
-            int ennemiY = (int) ennemi.getHitbox().getY();
-            int ennemiWidth = (int) ennemi.getHitbox().getWidth();
-            int ennemiHeight = (int) ennemi.getHitbox().getHeight();
-
-            if ( joueurX < ennemiX + ennemiWidth && joueurX + joueurWidth > ennemiX && joueurY < ennemiY + ennemiHeight && joueurY + joueurHeight > ennemiY){
-                cpt++;
-            }
-        }
-        return (cpt != 0);
-    }
-
-    public boolean colisionEnv(){
-        for (Coffre coffre : environnement.getListCoffre()) {
-            int coffreX = coffre.getX();
-            int coffreY = coffre.getY();
-            int coffreWidth = 32;
-            int coffreHeight = 32;
-
-            if (getX() < coffreX + coffreWidth && getX() + getHitbox().getWidth() > coffreX && getY() < coffreY + coffreHeight && getY() + getHitbox().getHeight() > coffreY) {
-                return true;
-            }
-        }
-
-        for (Villageois villageois : environnement.getListVillageois()) {
-            int pnjX = villageois.getX();
-            int pnjY = villageois.getY();
-            if (getX() < pnjX + villageois.getHitbox().getWidth() && getX() + getHitbox().getWidth() > pnjX && getY() < pnjY + villageois.getHitbox().getHeight() && getY() + getHitbox().getHeight() > pnjY) {
+        for (Ennemis ennemi : environnement.getListEnnemis()) {
+            if (estEnCollision((int)ennemi.getHitbox().getX(), (int)ennemi.getHitbox().getY(),
+                    (int)ennemi.getHitbox().getWidth(), (int)ennemi.getHitbox().getHeight())) {
                 return true;
             }
         }
         return false;
     }
-    
+
+    private boolean estEnCollision(int objetX, int objetY, int objetWidth, int objetHeight) {
+        return getX() < objetX + objetWidth &&
+                getX() + getHitbox().getWidth() > objetX &&
+                getY() < objetY + objetHeight &&
+                getY() + getHitbox().getHeight() > objetY;
+    }
+
+    public boolean colisionEnv(){
+        int coffreWidth = 32;
+        int coffreHeight = 32;
+        for (Coffre coffre : environnement.getListCoffre()) {
+            if (estEnCollision(coffre.getX(), coffre.getY(), coffreWidth, coffreHeight)) {
+                return true;
+            }
+        }
+
+        for (Villageois villageois : environnement.getListVillageois()) {
+            if (estEnCollision(villageois.getX(), villageois.getY(), (int)villageois.getHitbox().getWidth(), (int)villageois.getHitbox().getHeight())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isEtatAltere() {
         return etatAltere;
     }
@@ -208,18 +227,44 @@ public class Joueur extends Acteur {
         return false;
     }
 
-    public void jeterItem(Item item){
+    public void jeterItemInventaire(Item item){
         item.setX(getX());
         item.setY(getY() - 30);
-        inventaireItem.supprimerItem(item);
+        if (item instanceof Arme){
+            inventaireArme.supprimerItem(item);
+        }
+        else {
+            inventaireItem.supprimerItem(item);
+        }
         environnement.getListItemParTerre().add(item);
     }
 
-    public void jeterArme(Arme arme){
-        arme.setX(getX());
-        arme.setY(getY() - 30);
-        inventaireArme.supprimerItem(arme);
-        environnement.ajouterItem(arme);
+    public void interagir() {
+        Coffre coffre = coffreAuTour();
+
+        if (coffre != null && !coffre.estOuvert().getValue()) {
+            coffre.setOuvert(true);
+            traiterItemCoffre(coffre);
+            coffre.supprimerItem();
+        }
+    }
+
+    public void traiterItemCoffre(Coffre coffre) {
+        if (coffre.getItem() instanceof Arme) {
+            inventaireArme.ajouterItem(coffre.getItem());
+        }
+        else if (coffre.getItem() instanceof Item) {
+            inventaireItem.ajouterItem(coffre.getItem());
+        }
+        else {
+            deposerItemDeCoffre(coffre);
+        }
+    }
+
+    public void deposerItemDeCoffre(Coffre coffre) {
+        coffre.getItem().setX(coffre.getX());
+        coffre.getItem().setY(coffre.getY() + 25);
+        environnement.ajouterItem(coffre.getItem());
     }
 
     public Coffre coffreAuTour(){
@@ -227,61 +272,28 @@ public class Joueur extends Acteur {
             int coffreWidth = 32;
             int coffreHeight = 32;
 
-            if (coffre.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
-                    coffre.getX() + coffreWidth > this.getHitbox().getX() - 16 &&
-                    coffre.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
-                    coffre.getY() + coffreHeight > this.getHitbox().getY() - 16) {
+            if (estProche(coffre.getX(), coffre.getY(), coffreWidth, coffreHeight,16))
                 return coffre;
             }
-        }
+
         return null;
-    }
-
-    public void interagir(){
-        Coffre coffre = coffreAuTour();
-
-        if (coffre != null && !coffre.estOuvert().getValue()){
-            coffre.setOuvert(true);
-            if (coffre.getItem() instanceof Arme){
-                inventaireArme.ajouterItem(coffre.getItem());
-            }
-            else {
-                if (!inventaireItem.estPlein()) {
-                    inventaireItem.ajouterItem(coffre.getItem());
-                }
-                else {
-                    coffre.getItem().setX(coffre.getX());
-                    coffre.getItem().setY(coffre.getY() + 25);
-                    environnement.ajouterItem(coffre.getItem());
-                }
-            }
-            coffre.supprimerItem();
-        }
     }
 
     public Villageois villageoisAutour(){
         for (Villageois villageois : environnement.getListVillageois()){
             int villageoisWidth = 40;
             int villageoisHeight = 40;
-            if (villageois.getX() < this.getHitbox().getX() + this.getHitbox().getWidth() + 16 &&
-                    villageois.getX() + villageoisWidth > this.getHitbox().getX() - 16 &&
-                    villageois.getY() < this.getHitbox().getY() + this.getHitbox().getHeight() + 16 &&
-                    villageois.getY() + villageoisHeight > this.getHitbox().getY() - 16) {
+            if (estProche(villageois.getX(), villageois.getY(),villageoisWidth,villageoisHeight,16)){
                 return villageois;
             }
         }
         return null;
     }
 
-    public void setEtatAltere(boolean etatAltere) {
-        this.etatAltere = etatAltere;
-    }
-
-    public void debuffVitesse(int viteseDebuff) {
-        this.vitesse = (vitesse - viteseDebuff);
-    }
-
-    public void buffVitesse(int viteseBuff) {
-        this.vitesse = (vitesse + viteseBuff);
+    public boolean estProche(int objetX, int objetY, int objetWidth, int objetHeight, int tailleDetection) {
+        return objetX < this.getHitbox().getX() + this.getHitbox().getWidth() + tailleDetection &&
+                objetX + objetWidth > this.getHitbox().getX() - tailleDetection &&
+                objetY < this.getHitbox().getY() + this.getHitbox().getHeight() + tailleDetection &&
+                objetY + objetHeight > this.getHitbox().getY() - tailleDetection;
     }
 }

@@ -85,8 +85,6 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
         Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
-        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
-
         pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 initKeyHandlers(newScene);
@@ -132,20 +130,6 @@ public class Controleur implements Initializable {
                     tempsEcoule += 10;
                     env.actionItem();
                     updateScrolling();
-
-                    if (Environnement.getJ().isEtatAltere()) {
-                        tempsAlteration += 10;
-                    }
-
-                    if (tempsAlteration == 50000) {
-                        tempsAlteration = 0;
-                        Environnement.getJ().setEtatAltere(false);
-                        Environnement.getJ().buffVitesse(2);
-                    }
-
-                    if (tempsEcoule % 500 == 0) {
-                        env.actionProjectile();
-                    }
 
                     if (Environnement.getJ().meurt()){
                         gameLoop.stop();
@@ -254,7 +238,7 @@ public class Controleur implements Initializable {
             boutonJeter.setOnAction(event1 -> {
                 int index = Integer.parseInt(sourceButton.getId().replace("bouton", ""));
                 Item item = Environnement.getJ().getInventaireItem().getListItem().get(index);
-                Environnement.getJ().jeterItem(item);
+                Environnement.getJ().jeterItemInventaire(item);
 
                 inventaireItem.getChildren().remove(hBox);
             });

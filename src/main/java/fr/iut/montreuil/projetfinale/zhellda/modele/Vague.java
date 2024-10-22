@@ -81,7 +81,7 @@ public class Vague {
         environnement.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(genererSpawn(),genenerEnnemie()));
     }
 
-    public void agit () {
+    public void lancerVague () {
         if (debute() && !estFini()) {
             if (environnement.getTourJeu() % delaiApparition == 0) {
                 genenerAddEnnemie();

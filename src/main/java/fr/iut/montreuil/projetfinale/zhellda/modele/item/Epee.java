@@ -1,7 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.item;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemis;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 import static java.lang.Math.sqrt;
@@ -18,7 +18,7 @@ public class Epee extends Arme{
         boolean ennemieTouche = false;
         for (int i = 0; i < getEnvironnement().getListEnnemis().size() && ennemieTouche==false; i++) {
             Ennemi ennemie = getEnvironnement().getListEnnemis().get(i);
-            if (ennemie.getAerien() == false){
+            if (!ennemie.getAerien()){
                 if (j.getX()==x) {
                     if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {
                         ennemie.subirDegats(getAttaque());
