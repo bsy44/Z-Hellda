@@ -7,6 +7,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Joueur extends Acteur {
     private boolean[] directions; // haut, gauche, bas, droite
@@ -16,6 +19,7 @@ public class Joueur extends Acteur {
     private BooleanProperty transparent;
     private Inventaire inventaireArme;
     private Inventaire inventaireItem;
+    private static Logger LOGGJOUEUR = LogManager.getLogger(Joueur.class);
 
     public Joueur(Environnement environnement) {
         super(282, 50, 10, 5, "joueur", 30, 30, environnement);
@@ -157,6 +161,7 @@ public class Joueur extends Acteur {
             environnement.getListObsJoueur().remove(this);
             return true;
         }
+        LOGGJOUEUR.log(Level.INFO, "Class [Joueur], méthode [meurt()], Le joueur est mort");
         return false;
     }
 

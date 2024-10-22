@@ -2,6 +2,8 @@ module fr.iut.montreuil.projetfinale.zhellda {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires java.logging;
+    requires org.apache.logging.log4j;
 
 
     opens fr.iut.montreuil.projetfinale.zhellda to javafx.fxml;
