@@ -171,7 +171,7 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnnemis() {
-        for (Ennemis ennemi : environnement.getListEnnemis()) {
+        for (Ennemi ennemi : environnement.getListEnnemis()) {
             if (estEnCollision((int)ennemi.getHitbox().getX(), (int)ennemi.getHitbox().getY(),
                     (int)ennemi.getHitbox().getWidth(), (int)ennemi.getHitbox().getHeight())) {
                 return true;
