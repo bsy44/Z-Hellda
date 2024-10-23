@@ -18,7 +18,7 @@ public class Joueur extends Acteur {
     private Inventaire inventaireItem;
 
     public Joueur(Environnement environnement) {
-        super(282, 50, 10, 5, "joueur", 30, 30, environnement);
+        super(282, 50, 10, 5, "joueur", 30, 30);
         this.numArmeUtilise = 0;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
@@ -151,7 +151,7 @@ public class Joueur extends Acteur {
     @Override
     public boolean meurt() {
         if (getVie().getValue()<=0) {
-            environnement.getListObsJoueur().remove(this);
+            Environnement.getUniqueInstance().getListObsJoueur().remove(this);
             return true;
         }
         return false;
@@ -171,7 +171,7 @@ public class Joueur extends Acteur {
     }
 
     public boolean colisionEnnemis() {
-        for (Ennemi ennemi : environnement.getListEnnemis()) {
+        for (Ennemi ennemi : Environnement.getUniqueInstance().getListEnnemis()) {
             if (estEnCollision((int)ennemi.getHitbox().getX(), (int)ennemi.getHitbox().getY(),
                     (int)ennemi.getHitbox().getWidth(), (int)ennemi.getHitbox().getHeight())) {
                 return true;
@@ -190,13 +190,13 @@ public class Joueur extends Acteur {
     public boolean colisionEnv(){
         int coffreWidth = 32;
         int coffreHeight = 32;
-        for (Coffre coffre : environnement.getListCoffre()) {
+        for (Coffre coffre : Environnement.getUniqueInstance().getListCoffre()) {
             if (estEnCollision(coffre.getX(), coffre.getY(), coffreWidth, coffreHeight)) {
                 return true;
             }
         }
 
-        for (Villageois villageois : environnement.getListVillageois()) {
+        for (Villageois villageois : Environnement.getUniqueInstance().getListVillageois()) {
             if (estEnCollision(villageois.getX(), villageois.getY(), (int)villageois.getHitbox().getWidth(), (int)villageois.getHitbox().getHeight())) {
                 return true;
             }
@@ -236,7 +236,7 @@ public class Joueur extends Acteur {
         else {
             inventaireItem.supprimerItem(item);
         }
-        environnement.getListItemParTerre().add(item);
+        Environnement.getUniqueInstance().getListItemParTerre().add(item);
     }
 
     public void interagir() {
@@ -264,11 +264,11 @@ public class Joueur extends Acteur {
     public void deposerItemDeCoffre(Coffre coffre) {
         coffre.getItem().setX(coffre.getX());
         coffre.getItem().setY(coffre.getY() + 25);
-        environnement.ajouterItem(coffre.getItem());
+        Environnement.getUniqueInstance().ajouterItem(coffre.getItem());
     }
 
     public Coffre coffreAuTour(){
-        for (Coffre coffre : environnement.getListCoffre()) {
+        for (Coffre coffre : Environnement.getUniqueInstance().getListCoffre()) {
             int coffreWidth = 32;
             int coffreHeight = 32;
 
@@ -280,7 +280,7 @@ public class Joueur extends Acteur {
     }
 
     public Villageois villageoisAutour(){
-        for (Villageois villageois : environnement.getListVillageois()){
+        for (Villageois villageois : Environnement.getUniqueInstance().getListVillageois()){
             int villageoisWidth = 40;
             int villageoisHeight = 40;
             if (estProche(villageois.getX(), villageois.getY(),villageoisWidth,villageoisHeight,16)){

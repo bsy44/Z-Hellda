@@ -15,13 +15,11 @@ public class Coffre {
     private String id;
     private BooleanProperty ouvert;
     private Item item;
-    private Environnement environnement;
     private static int cpt = 0;
     private ArrayList<int[]> listSpawn;
     private static ArrayList<int[]> coordonneesPrises = new ArrayList<>();
 
-    public Coffre(Environnement environnement) {
-        this.environnement = environnement;
+    public Coffre() {
         this.listSpawn = new ArrayList<>();
         this.ajouterSpawn();
         this.nom = "coffre";
@@ -126,10 +124,10 @@ public class Coffre {
         else {
             double randomArme = Math.random();
             if (randomArme < 0.5){
-                itemGenerer = new Arc(getX(), getY(), environnement);
+                itemGenerer = new Arc(getX(), getY());
             }
             else{
-                itemGenerer = new Marteau(environnement, getX(), getY());
+                itemGenerer = new Marteau(getX(), getY());
             }
         }
         return itemGenerer;

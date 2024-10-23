@@ -13,9 +13,8 @@ public abstract class Projectile {
     private int degat;
     private IntegerProperty x;
     private IntegerProperty y;
-    Environnement environnement;
 
-    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat, Environnement environnement) {
+    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat) {
         this.id = "P" + compteur;
         compteur++;
         this.vitesse = vitesse;
@@ -24,7 +23,6 @@ public abstract class Projectile {
         this.xDirection= xDirection;
         this.yDirection=yDirection;
         this.degat=degat;
-        this.environnement=environnement;
 
     }
 

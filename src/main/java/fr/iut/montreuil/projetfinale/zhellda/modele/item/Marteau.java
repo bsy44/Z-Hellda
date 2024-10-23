@@ -7,15 +7,15 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import static java.lang.Math.sqrt;
 
 public class Marteau extends Arme {
-    public Marteau(Environnement environnement, int x, int y) {
-        super(x, y, "marteau", environnement, 1, 120);
+    public Marteau(int x, int y) {
+        super(x, y, "marteau", 1, 120);
     }
 
     @Override
     public void attaquer(Joueur j, int x, int y) {
         Ennemi ennemie = null;
-        for (int i = 0; i < getEnvironnement().getListEnnemis().size(); i++) {
-            ennemie = getEnvironnement().getListEnnemis().get(i);
+        for (int i = 0; i < Environnement.getUniqueInstance().getListEnnemis().size(); i++) {
+            ennemie = Environnement.getUniqueInstance().getListEnnemis().get(i);
             if (ennemie.getAerien()==false) {
                 if (j.getX() == x) {
                     if ((sqrt(Math.pow(ennemie.getX() - j.getX(), 2))) <= 40 && ((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {

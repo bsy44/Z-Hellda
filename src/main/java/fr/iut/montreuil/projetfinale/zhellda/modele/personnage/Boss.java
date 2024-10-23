@@ -9,8 +9,8 @@ import javafx.util.Duration;
 
 public class Boss extends Ennemi {
 
-    public Boss(int x, int y, Environnement environnement) {
-        super(x, y, 200, 3, 5, 0, 100, 100, environnement, "boss", false , new SchemaAttaqueChangeant());
+    public Boss(int x, int y) {
+        super(x, y, 200, 3, 5, 0, 100, 100,"boss", false , new SchemaAttaqueChangeant());
     }
 
     @Override

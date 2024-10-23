@@ -6,20 +6,18 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 import java.util.Random;
 
 public class Vague {
-    private Environnement environnement;
     private int debutVague;
     private int finVague;
     private int delaiApparition;
     private boolean bossGenerer;
     private ChangeurStringEnnemi changeurStringEnnemi;
 
-    public Vague (Environnement environnement, int delaiApparition) {
-        this.environnement = environnement;
+    public Vague (int delaiApparition) {
         this.debutVague = 0;
         this.finVague = 100000;//A régler
         this.delaiApparition = delaiApparition;
         this.bossGenerer = false;
-        this.changeurStringEnnemi=new ChangeurStringEnnemi(environnement);
+        this.changeurStringEnnemi=new ChangeurStringEnnemi();
     }
 
     public Case genererSpawn() {
@@ -78,33 +76,29 @@ public class Vague {
     }
 
     public void genenerAddEnnemie(){
-        environnement.ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(genererSpawn(),genenerEnnemie()));
+        Environnement.getUniqueInstance().ajouterEnnemi(changeurStringEnnemi.choisirEnnemie(genererSpawn(),genenerEnnemie()));
     }
 
     public void lancerVague () {
         if (debute() && !estFini()) {
-            if (environnement.getTourJeu() % delaiApparition == 0) {
+            if (Environnement.getUniqueInstance().getTourJeu() % delaiApparition == 0) {
                 genenerAddEnnemie();
             }
         }
-        if (estFini() && environnement.getListEnnemis().isEmpty() && bossGenerer == false) {
-            Boss boss = new Boss(1190, 900, environnement);
+        if (estFini() && Environnement.getUniqueInstance().getListEnnemis().isEmpty() && bossGenerer == false) {
+            Boss boss = new Boss(1190, 900);
             new ObsPaterneBoss(boss);
-            environnement.ajouterEnnemi(boss);
+            Environnement.getUniqueInstance().ajouterEnnemi(boss);
             bossGenerer = true;
         }
     }
 
     public boolean debute () {
-        return environnement.getTourJeu() >= debutVague;
+        return Environnement.getUniqueInstance().getTourJeu() >= debutVague;
     }
 
     public boolean estFini () {
-        return environnement.getTourJeu() > finVague;
-    }
-
-    public Environnement getEnvironnement() {
-        return environnement;
+        return Environnement.getUniqueInstance().getTourJeu() > finVague;
     }
 
     public int getDelaiApparition() {

@@ -10,18 +10,15 @@ public abstract class Acteur {
     private IntegerProperty y;
     private IntegerProperty vie;
     private String id;
-
-    protected Environnement environnement;
     private Rectangle hitbox;
     int vitesse;
 
-    public Acteur (int x, int y, int vie, int vitesse, String id, int tailleHx, int tailleHy, Environnement environnement){
+    public Acteur (int x, int y, int vie, int vitesse, String id, int tailleHx, int tailleHy){
         this.x =  new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.vie= new SimpleIntegerProperty(vie);
         this.vitesse=vitesse;
         this.id = id;
-        this.environnement = environnement;
         this.hitbox = new Rectangle(this.getX(), this.getY(), tailleHx, tailleHy);
     }
 

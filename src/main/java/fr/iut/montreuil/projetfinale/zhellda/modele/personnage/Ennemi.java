@@ -17,8 +17,8 @@ public abstract class Ennemi extends Acteur {
     private ArrayList<Case> cheminVersJoueur;
     private SchemaAttaqueEnnemi schemaAttaqueEnnemi;
 
-    public Ennemi(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, Environnement environnement, String nom, boolean aerien, SchemaAttaqueEnnemi schemaAttaqueEnnemi){
-        super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH, environnement);
+    public Ennemi(int x, int y, int vie, int vitesse, int attaque, int portee, int HitBoxW, int HitBoxH, String nom, boolean aerien, SchemaAttaqueEnnemi schemaAttaqueEnnemi){
+        super(x, y, vie,vitesse,nom+"#"+compteur, HitBoxW, HitBoxH);
         this.attaque = attaque;
         this.portee=portee;
         this.aerien = aerien;
@@ -41,7 +41,7 @@ public abstract class Ennemi extends Acteur {
     }
 
     public void attaquer(){
-        getSchemaAttaqueEnnemi().attaquer(environnement, this);
+        getSchemaAttaqueEnnemi().attaquer(this);
     }
 
     public abstract int getPvMax();
@@ -80,12 +80,12 @@ public abstract class Ennemi extends Acteur {
 
     @Override
     public boolean meurt() {
-        for(int i = environnement.getListEnnemis().size()-1; i>=0;i--){
-            Ennemi e = environnement.getListEnnemis().get(i);
+        for(int i = Environnement.getUniqueInstance().getListEnnemis().size()-1; i>=0;i--){
+            Ennemi e = Environnement.getUniqueInstance().getListEnnemis().get(i);
             if(e.getVie().get()==0){
                 this.dropItem(e);
                 System.out.println("mort de : " + e);
-                environnement.getListEnnemis().remove(i);
+                Environnement.getUniqueInstance().getListEnnemis().remove(i);
                 return true;
             }
         }
@@ -105,7 +105,7 @@ public abstract class Ennemi extends Acteur {
             else {
                 item = new GrimoirArme(e.getX(), e.getY());
             }
-            environnement.getListItemParTerre().add(item);
+            Environnement.getUniqueInstance().getListItemParTerre().add(item);
         }
         return item;
     }

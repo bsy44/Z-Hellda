@@ -2,15 +2,11 @@ package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 
 public abstract class SchemaAttaqueBoss implements SchemaAttaqueEnnemi {
@@ -18,14 +14,14 @@ public abstract class SchemaAttaqueBoss implements SchemaAttaqueEnnemi {
     private ObservableList<Case> casesAttaqueesProperty = FXCollections.<Case>observableArrayList();
     private ArrayList<Case> casesAttaquees = new ArrayList<>();
 
-    public void attaquer (Environnement environnement, Ennemi ennemi){
-        faireAttaque(environnement, (Boss) ennemi, direction(ennemi));
+    public void attaquer (Ennemi ennemi){
+        faireAttaque((Boss) ennemi, direction(ennemi));
         mettreAJourCasesAttaqueesProperty();
         verfificationZone((Boss) ennemi);
         System.out.println("Super attaque");
     }
 
-    public abstract void faireAttaque(Environnement environnement, Boss boss, String direction);
+    public abstract void faireAttaque(Boss boss, String direction);
 
     public String direction(Ennemi ennemi){
         // Est à 0 si on est collé à la hitbox du boss et augmente plus on s'en éloigne

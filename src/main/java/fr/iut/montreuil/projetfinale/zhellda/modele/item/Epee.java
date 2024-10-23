@@ -8,16 +8,16 @@ import static java.lang.Math.sqrt;
 
 public class Epee extends Arme{
 
-    public Epee(Environnement environnement, int x, int y){
-        super(x, y, "épée", environnement,2,60);
+    public Epee(int x, int y){
+        super(x, y, "épée",2,60);
     }
 
     @Override
     public void attaquer(Joueur j, int x, int y) {
         System.out.println("attaque Epee");
         boolean ennemieTouche = false;
-        for (int i = 0; i < getEnvironnement().getListEnnemis().size() && ennemieTouche==false; i++) {
-            Ennemi ennemie = getEnvironnement().getListEnnemis().get(i);
+        for (int i = 0; i < Environnement.getUniqueInstance().getListEnnemis().size() && ennemieTouche==false; i++) {
+            Ennemi ennemie = Environnement.getUniqueInstance().getListEnnemis().get(i);
             if (!ennemie.getAerien()){
                 if (j.getX()==x) {
                     if ((sqrt(Math.pow(ennemie.getX()- j.getX(),2)))<=6 &&((ennemie.getY() >= j.getY() && ennemie.getY() <= y) || ((ennemie.getY() <= j.getY() && ennemie.getY() >= y)))) {

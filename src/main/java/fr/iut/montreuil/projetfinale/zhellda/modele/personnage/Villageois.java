@@ -90,8 +90,8 @@ public class Villageois extends Acteur{
     private int indiceMessageActuel;
     private StringProperty messageActuel;
 
-    public Villageois(int x, int y, Environnement environnement) {
-        super(x, y, 1, 0, "villageois", 30, 30, environnement);
+    public Villageois(int x, int y) {
+        super(x, y, 1, 0, "villageois", 30, 30);
         this.listMessage = new ArrayList<>();
         this.indiceMessageActuel = 0;
         this.messageActuel = new SimpleStringProperty();
@@ -138,7 +138,7 @@ public class Villageois extends Acteur{
 
     public void donArme(){
         if (indiceMessageActuel == 3){
-            Epee epee = new Epee(environnement, getX(), getY() + 25);
+            Epee epee = new Epee(getX(), getY() + 25);
             Environnement.getJ().getInventaireArme().ajouterItem(epee);
         }
     }
@@ -150,7 +150,7 @@ public class Villageois extends Acteur{
     @Override
     public boolean meurt() {
         if (indiceMessageActuel == listMessage.size()){
-            environnement.getListVillageois().remove(this);
+            Environnement.getUniqueInstance().getListVillageois().remove(this);
             return true;
         }
         return false;

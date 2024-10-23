@@ -20,12 +20,12 @@ public class VueTerrain {
     private static Map<Integer, ImageView> tileMap = new HashMap<>();
     private static final int tailleTile = 16;
 
-    public VueTerrain(TilePane tilePane, Environnement environnement) {
+    public VueTerrain(TilePane tilePane) {
         URL imageTileUrl = Lancement.class.getResource("DecorTileset.png");
         Image imTile = new Image(String.valueOf(imageTileUrl));
-        for (int i = 0; i < environnement.getTerrain().getTerrain().length; i++) {
-            for (int j = 0; j < environnement.getTerrain().getTerrain()[i].length; j++) {
-                mettreTile(environnement.getTerrain().getTerrain()[i][j], imTile, tilePane, i, j);
+        for (int i = 0; i < Environnement.getTerrain().getTerrain().length; i++) {
+            for (int j = 0; j < Environnement.getTerrain().getTerrain()[i].length; j++) {
+                mettreTile(Environnement.getTerrain().getTerrain()[i][j], imTile, tilePane, i, j);
             }
         }
     }

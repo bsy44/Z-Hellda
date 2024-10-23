@@ -17,11 +17,9 @@ import javafx.util.Duration;
 public class ObsJoueur implements ListChangeListener<Joueur> {
     @FXML
     private Pane pane;
-    private Environnement env;
 
-    public ObsJoueur(Pane pane, Environnement env){
+    public ObsJoueur(Pane pane){
         this.pane=pane;
-        this.env=env;
         ajouterListners();
     }
 
@@ -41,14 +39,14 @@ public class ObsJoueur implements ListChangeListener<Joueur> {
     public void ajouterListners() {
         Environnement.getJ().getXProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemi e : env.getListEnnemis()) {
+            for (Ennemi e : Environnement.getUniqueInstance().getListEnnemis()) {
                 e.nouveauChemin();
             }
         });
 
         Environnement.getJ().getYProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number t1) -> {
             Environnement.nouveauBfs();
-            for (Ennemi e : env.getListEnnemis()) {
+            for (Ennemi e : Environnement.getUniqueInstance().getListEnnemis()) {
                 e.nouveauChemin();
             }
         });
