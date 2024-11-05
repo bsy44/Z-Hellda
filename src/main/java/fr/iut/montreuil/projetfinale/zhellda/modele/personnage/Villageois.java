@@ -85,7 +85,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import java.util.ArrayList;
 
-public class Villageois extends Acteur{
+public class Villageois extends Acteur {
     private ArrayList<Message> listMessage;
     private int indiceMessageActuel;
     private StringProperty messageActuel;

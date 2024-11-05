@@ -15,8 +15,8 @@ public class VueItem {
         Image image = new Image(String.valueOf(url));
         ImageView imageView = new ImageView(image);
 
-        imageView.translateXProperty().bind(item.xProperty());
-        imageView.translateYProperty().bind(item.yProperty());
+        imageView.translateXProperty().bind(item.getXProperty());
+        imageView.translateYProperty().bind(item.getYProperty());
         imageView.setId(item.getId());
 
         imageView.setFitWidth(16);
