@@ -5,7 +5,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 
 public class SchemaAttaqueAttaqueDeZone extends SchemaAttaqueBoss {
 
-    public void faireAttaque (Environnement environnement, Boss boss, String direction) {
+    public void faireAttaque (Boss boss, String direction) {
             for (int i = -1; i < 8; i++) {
                 getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)+7, Math.round(boss.getY() / 16)+i));
                 getCasesAttaquees().add(new Case(Math.round(boss.getX() / 16)-1, Math.round(boss.getY() / 16)+i));

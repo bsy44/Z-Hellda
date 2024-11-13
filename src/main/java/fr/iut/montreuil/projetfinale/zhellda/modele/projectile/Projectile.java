@@ -1,25 +1,23 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.projectile;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.Entiter.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Projectile extends Entite {
     private int vitesse;
-
     private static int compteur;
     private int xDirection;
     private int yDirection;
     private int degat;
-    Environnement environnement;
 
-    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat, Environnement environnement) {
+    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat) {
         super(x,y,"P" + compteur);
         compteur++;
         this.vitesse = vitesse;
         this.xDirection= xDirection;
         this.yDirection=yDirection;
         this.degat=degat;
-        this.environnement=environnement;
 
     }
 

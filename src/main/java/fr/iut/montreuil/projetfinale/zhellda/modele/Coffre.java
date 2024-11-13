@@ -1,9 +1,10 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.Entiter.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.*;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
@@ -12,14 +13,12 @@ public class Coffre extends Entite {
     private String nom;
     private BooleanProperty ouvert;
     private Item item;
-    private Environnement environnement;
     private static int cpt = 0;
     private ArrayList<int[]> listSpawn;
     private static ArrayList<int[]> coordonneesPrises = new ArrayList<>();
 
-    public Coffre(Environnement environnement) {
+    public Coffre() {
         super(0,0, "coffre" + "#" + cpt);
-        this.environnement = environnement;
         this.listSpawn = new ArrayList<>();
         this.ajouterSpawn();
         this.nom = "coffre";

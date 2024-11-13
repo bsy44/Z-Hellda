@@ -17,16 +17,16 @@ public class SchemaAttaqueChangeant extends SchemaAttaqueBoss {
     }
 
     @Override
-    public void attaquer(Environnement environnement, Ennemi ennemi) {
-        faireAttaque(environnement, (Boss) ennemi, direction(ennemi));
+    public void attaquer(Ennemi ennemi) {
+        faireAttaque((Boss) ennemi, direction(ennemi));
     }
 
     @Override
-    public void faireAttaque(Environnement environnement, Boss boss, String direction) {
+    public void faireAttaque(Boss boss, String direction) {
         Random random = new Random();
         int randomInt = random.nextInt(listeSchemaAttaque.size());
         System.out.println(randomInt);
-        listeSchemaAttaque.get(randomInt).attaquer(environnement, boss);
+        listeSchemaAttaque.get(randomInt).attaquer(boss);
         for (Case c : listeSchemaAttaque.get(randomInt).getCasesAttaqueesProperty()) this.getCasesAttaquees().add(c);
         mettreAJourCasesAttaqueesProperty();
     }

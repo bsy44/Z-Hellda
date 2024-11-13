@@ -1,6 +1,5 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.Entiter.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -8,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Acteur extends Entite {
     private IntegerProperty vie;
-    protected Environnement environnement;
+    private String id;
     private Rectangle hitbox;
     int vitesse;
 
@@ -16,14 +15,13 @@ public abstract class Acteur extends Entite {
         super(x,y,id);
         this.vie= new SimpleIntegerProperty(vie);
         this.vitesse=vitesse;
-        this.environnement = environnement;
+        this.id = id;
         this.hitbox = new Rectangle(this.getX(), this.getY(), tailleHx, tailleHy);
     }
 
     public void setVie(int vie) {
         this.vie.setValue(this.vie.getValue() + vie);
     }
-
     public final IntegerProperty getVie (){
         return this.vie;
     }
