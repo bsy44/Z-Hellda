@@ -1,5 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.projectile;
 
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

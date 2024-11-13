@@ -38,7 +38,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
-    private Environnement environnement;
     private Timeline gameLoop;
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
@@ -59,7 +58,6 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.environnement = Environnement.getUniqueInstance();
         this.changeurStringEnnemi=new ChangeurStringEnnemi();
         new VueTerrain(tilePane);
         new VueJoueur(pane, Environnement.getJ());
@@ -85,7 +83,7 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
         Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
-        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
+        ListObsVie listObsVie = new ListObsVie(coeur, Environnement.getUniqueInstance().getJ(), coeur);
 
         pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {

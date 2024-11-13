@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur.Entiter;
+package fr.iut.montreuil.projetfinale.zhellda.controleur.Entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Rectangle;
@@ -11,7 +11,7 @@ public abstract class Acteur extends Entite {
     private Rectangle hitbox;
     int vitesse;
 
-    public Acteur(int x, int y, int vie, int vitesse, String id, int tailleHx, int tailleHy, Environnement environnement){
+    public Acteur(int x, int y, int vie, int vitesse, String id, int tailleHx, int tailleHy){
         super(x,y,id);
         this.vie= new SimpleIntegerProperty(vie);
         this.vitesse=vitesse;

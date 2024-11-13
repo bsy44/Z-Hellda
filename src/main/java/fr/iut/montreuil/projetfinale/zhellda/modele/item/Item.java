@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.item;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.Entiter.Entite;
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 
 public abstract class Item extends Entite {
 

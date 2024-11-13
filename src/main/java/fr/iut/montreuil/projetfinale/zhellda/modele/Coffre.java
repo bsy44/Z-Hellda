@@ -1,10 +1,9 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.*;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
@@ -102,10 +101,10 @@ public class Coffre extends Entite {
         else {
             double randomArme = Math.random();
             if (randomArme < 0.5){
-                itemGenerer = new Arc(getX(), getY(), environnement);
+                itemGenerer = new Arc(getX(), getY());
             }
             else{
-                itemGenerer = new Marteau(environnement, getX(), getY());
+                itemGenerer = new Marteau(getX(), getY());
             }
         }
         return itemGenerer;
