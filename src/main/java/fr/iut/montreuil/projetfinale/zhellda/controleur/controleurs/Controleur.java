@@ -59,7 +59,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.environnement = new Environnement();
+        this.environnement = Environnement.getUniqueInstance();
         this.changeurStringEnnemi=new ChangeurStringEnnemi();
         new VueTerrain(tilePane);
         new VueJoueur(pane, Environnement.getJ());
