@@ -8,10 +8,7 @@ import fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.ItemConsomable;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
@@ -92,7 +89,6 @@ public class Controleur implements Initializable {
                 initKeyHandlers(newScene);
             }
         });
-
         for (Villageois v: env.getListVillageois()) {
             new VueVilageois(pane, v);
         }
