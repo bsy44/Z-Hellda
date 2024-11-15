@@ -7,8 +7,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class Arc extends ArmeAirSol {
-    public Arc (int x, int y, Environnement environnement){
-        super(x, y, "arc", environnement,50,120);
+    public Arc (int x, int y){
+        super(x, y, "arc",50,120);
     }
 
     @Override

@@ -7,7 +7,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Fleche;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 
 public abstract class ArmeAirSol extends Arme {
-    public ArmeAirSol(int x, int y, String nom, Environnement env, int attaque, int portee) {
-        super(x, y, nom, env, attaque, portee);
+    public ArmeAirSol(int x, int y, String nom, int attaque, int portee) {
+        super(x, y, nom, attaque, portee);
     }
 }

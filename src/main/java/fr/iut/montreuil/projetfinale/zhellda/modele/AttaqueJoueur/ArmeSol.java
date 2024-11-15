@@ -10,19 +10,19 @@ import static java.lang.Math.sqrt;
 public abstract class ArmeSol extends Arme {
 
 
-    public ArmeSol(int x, int y, String nom, Environnement env, int attaque, int portee) {
-        super(x, y, nom, env, attaque, portee);
+    public ArmeSol(int x, int y, String nom, int attaque, int portee) {
+        super(x, y, nom, attaque, portee);
     }
 
     public void attaqueSol(Joueur j, int x, int y, double maxDistance, boolean toucherPlusieurs) {
         boolean ennemieTouche = false;
 
-        for (int i = 0; i < getEnvironnement().getListEnnemis().size(); i++) {
+        for (int i = 0; i < Environnement.getUniqueInstance().getListEnnemis().size(); i++) {
             if (ennemieTouche && !toucherPlusieurs) {
                 break;
             }
 
-            Ennemi ennemie = getEnvironnement().getListEnnemis().get(i);
+            Ennemi ennemie = Environnement.getUniqueInstance().getListEnnemis().get(i);
             if (!ennemie.getAerien()) {
                 double distance;
                 if (j.getX() == x) {

@@ -45,7 +45,9 @@ public class Environnement {
     }
 
     public static Environnement getUniqueInstance() {
-        if (environnement == null) environnement = new Environnement();
+        if (environnement == null) {
+            environnement = new Environnement();
+        }
         return environnement;
     }
 

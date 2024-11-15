@@ -9,7 +9,6 @@ import static java.lang.Math.sqrt;
 public abstract class Arme extends Item{
     private int portee;
     private int attaque;
-    private Environnement env;
     private int indexInventaire;
 
     public Arme (int x, int y, String nom, int attaque, int portee){

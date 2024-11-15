@@ -5,8 +5,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class Marteau extends ArmeSol {
-    public Marteau(Environnement environnement, int x, int y) {
-        super(x, y, "marteau", environnement, 1, 120);
+    public Marteau(int x, int y) {
+        super(x, y, "marteau", 1, 120);
     }
 
     @Override

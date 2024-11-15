@@ -23,9 +23,9 @@ public class VueTerrain {
     public VueTerrain(TilePane tilePane) {
         URL imageTileUrl = Lancement.class.getResource("DecorTileset.png");
         Image imTile = new Image(String.valueOf(imageTileUrl));
-        for (int i = 0; i < Environnement.getTerrain().getTerrain().length; i++) {
-            for (int j = 0; j < Environnement.getTerrain().getTerrain()[i].length; j++) {
-                mettreTile(Environnement.getTerrain().getTerrain()[i][j], imTile, tilePane, i, j);
+        for (int i = 0; i < Environnement.getUniqueInstance().getTerrain().getTerrain().length; i++) {
+            for (int j = 0; j < Environnement.getUniqueInstance().getTerrain().getTerrain()[i].length; j++) {
+                mettreTile(Environnement.getUniqueInstance().getTerrain().getTerrain()[i][j], imTile, tilePane, i, j);
             }
         }
     }

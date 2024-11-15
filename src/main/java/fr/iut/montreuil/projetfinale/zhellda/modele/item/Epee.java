@@ -7,8 +7,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class Epee extends ArmeSol {
 
-    public Epee(Environnement environnement, int x, int y){
-        super(x, y, "épée", environnement,2,60);
+    public Epee(int x, int y){
+        super(x, y, "épée",2,60);
     }
 
     @Override
