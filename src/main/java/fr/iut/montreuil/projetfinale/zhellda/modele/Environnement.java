@@ -5,6 +5,9 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur.EtatJoueur;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur.EtatNormal;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur.EtatTransparent;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +32,7 @@ public class Environnement {
 
     public Environnement() {
         this.terrain= new Terrain();
-        this.j = new Joueur(this);
+        this.j = new Joueur(this, new EtatNormal(j));
         this.villageois = new Villageois(210, 125, this);
         this.listObsJoueur = FXCollections.observableArrayList();
         this.listObsJoueur.add(j);
@@ -128,23 +131,24 @@ public class Environnement {
         }
     }
     public void unTour () {
-    int tempsAlteration=0;
+    int tempsAlteration = 0;
         //appeler les méthode agir
         for (Joueur joueur : listObsJoueur) {
             joueur.agit();
         }
-        if (Environnement.getJ().isEtatAltere()) {
+
+        /*if (Environnement.getJ().isEtatAltere()) {
             tempsAlteration += 10;
-        }
+        }*/
 
         if (tempsAlteration == 1500) {
-            tempsAlteration = 0;
-            j.setEtatAltere(false);
-            j.buffVitesse(2);
+            System.out.println("Je redeviens normal");
+            j.changerEtat(new EtatNormal(j));
+            j.getEtatJoueur().agitSurEtat();
         }
+
         if (tourJeu % 50==0)
             actionProjectile();
-
 
         if (tourJeu % 750==0) {
             for (Ennemi ennemi : listEnnemis) {

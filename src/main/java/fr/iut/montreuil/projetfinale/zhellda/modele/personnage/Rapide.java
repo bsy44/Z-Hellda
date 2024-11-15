@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueClassique;
 
 public class Rapide extends Ennemi {
     public Rapide(int x, int y, Environnement environnement) {

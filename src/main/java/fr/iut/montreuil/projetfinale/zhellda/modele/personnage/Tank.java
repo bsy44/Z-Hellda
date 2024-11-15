@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueRalentissant;
 
 public class Tank extends Ennemi {
     public Tank(int x, int y,  Environnement environnement) {

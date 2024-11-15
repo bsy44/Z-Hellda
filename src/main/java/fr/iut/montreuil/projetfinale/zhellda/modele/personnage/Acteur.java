@@ -10,7 +10,6 @@ public abstract class Acteur {
     private IntegerProperty y;
     private IntegerProperty vie;
     private String id;
-
     protected Environnement environnement;
     private Rectangle hitbox;
     int vitesse;
@@ -47,6 +46,10 @@ public abstract class Acteur {
 
     public void setVie(int vie) {
         this.vie.setValue(this.vie.getValue() + vie);
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
     }
 
     public final IntegerProperty getXProperty() {

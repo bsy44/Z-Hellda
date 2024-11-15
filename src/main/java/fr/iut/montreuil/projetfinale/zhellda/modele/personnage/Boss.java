@@ -1,11 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.util.Duration;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueChangeant;
 
 public class Boss extends Ennemi {
 

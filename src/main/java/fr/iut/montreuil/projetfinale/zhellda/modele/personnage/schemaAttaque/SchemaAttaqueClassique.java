@@ -1,23 +1,22 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
-public class SchemaAttaqueRalentissant implements SchemaAttaqueEnnemi {
+public class SchemaAttaqueClassique implements SchemaAttaqueEnnemi {
 
+
+    @Override
     public void attaquer(Environnement environnement, Ennemi ennemi) {
         for (int i = 0; i < environnement.getListObsJoueur().size(); i++) {
             Joueur j = environnement.getListObsJoueur().get(i);
 
             double distance = Math.sqrt(Math.pow(ennemi.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(ennemi.getYProperty().get() - j.getYProperty().get(), 2));
             if (distance <= ennemi.getPortee() && distance >= 0) {
-                if (!j.isEtatAltere()) {
-                    j.setEtatAltere(true);
-                    j.debuffVitesse(2);
-                }
                 j.subirDegats(ennemi.getAttaque());
                 j.meurt();
             }
-
         }
     }
 }

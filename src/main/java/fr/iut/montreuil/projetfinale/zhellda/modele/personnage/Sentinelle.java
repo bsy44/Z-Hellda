@@ -1,6 +1,7 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueClassique;
 
 public class Sentinelle extends Ennemi {
     public Sentinelle(int x, int y, Environnement environnement) {

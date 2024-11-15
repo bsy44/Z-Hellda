@@ -1,15 +1,14 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 

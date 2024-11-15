@@ -3,6 +3,7 @@ package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Arme;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur.EtatJoueur;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,20 +13,21 @@ public class Joueur extends Acteur {
     private boolean[] directions; // haut, gauche, bas, droite
     private int numArmeUtilise;
     private IntegerProperty directionProperty;
-    private boolean etatAltere;
+    //private boolean etatAltere;
     private BooleanProperty transparent;
     private Inventaire inventaireArme;
     private Inventaire inventaireItem;
+    private EtatJoueur etatJoueur;
 
-    public Joueur(Environnement environnement) {
+    public Joueur(Environnement environnement, EtatJoueur etatJoueur) {
         super(282, 50, 10, 5, "joueur", 30, 30, environnement);
         this.numArmeUtilise = 0;
         this.directions = new boolean[]{false, false, false, false};
         this.directionProperty = new SimpleIntegerProperty(-1);
-        this.etatAltere = false;
         this.transparent = new SimpleBooleanProperty(false);
         this.inventaireArme = new Inventaire(3);
         this.inventaireItem = new Inventaire(6);
+        this.etatJoueur = etatJoueur;
     }
 
     public boolean getDirections(int i) {
@@ -60,17 +62,21 @@ public class Joueur extends Acteur {
         this.numArmeUtilise = numArmeUtilise;
     }
 
-    public void setEtatAltere(boolean etatAltere) {
+    public EtatJoueur getEtatJoueur() {
+        return etatJoueur;
+    }
+
+    public void changerEtat(EtatJoueur etatJoueur) {
+        this.etatJoueur = etatJoueur;
+    }
+
+    public void actionEtat(){
+        this.etatJoueur.agitSurEtat();
+    }
+
+    /*public void setEtatAltere(boolean etatAltere) {
         this.etatAltere = etatAltere;
-    }
-
-    public void debuffVitesse(int viteseDebuff) {
-        this.vitesse = (vitesse - viteseDebuff);
-    }
-
-    public void buffVitesse(int viteseBuff) {
-        this.vitesse = (vitesse + viteseBuff);
-    }
+    }*/
 
     public void setDirections(int i) {
         for (int j = 0; j < this.directions.length; j++) {
@@ -204,9 +210,9 @@ public class Joueur extends Acteur {
         return false;
     }
 
-    public boolean isEtatAltere() {
+    /*public boolean isEtatAltere() {
         return etatAltere;
-    }
+    }*/
 
     public int getVieMax() {
         return 10;
