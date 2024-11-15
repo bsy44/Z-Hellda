@@ -17,8 +17,8 @@ public class VueCoffre {
         Image image = new Image(String.valueOf(url));
         ImageView imageView = new ImageView(image);
 
-        imageView.xProperty().bind(coffre.xProperty());
-        imageView.yProperty().bind(coffre.yProperty());
+        imageView.xProperty().bind(coffre.getXProperty());
+        imageView.yProperty().bind(coffre.getYProperty());
         imageView.setId(coffre.getId());
         imageView.setFitWidth(32);
         imageView.setFitHeight(32);

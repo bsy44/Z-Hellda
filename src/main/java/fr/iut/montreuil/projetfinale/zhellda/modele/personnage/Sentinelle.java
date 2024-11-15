@@ -4,8 +4,8 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueClassique;
 
 public class Sentinelle extends Ennemi {
-    public Sentinelle(int x, int y, Environnement environnement) {
-        super(x, y, 15, 2, 3, 40, 40, 50, environnement, "sentinelle", false, new SchemaAttaqueClassique());
+    public Sentinelle(int x, int y) {
+        super(x, y, 15, 2, 3, 40, 40, 50, "sentinelle", false, new SchemaAttaqueClassique());
     }
 
     @Override

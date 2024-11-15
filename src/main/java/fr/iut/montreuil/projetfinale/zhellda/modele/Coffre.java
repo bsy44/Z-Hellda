@@ -1,31 +1,26 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.*;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
-public class Coffre {
-    private IntegerProperty x;
-    private IntegerProperty y;
+public class Coffre extends Entite {
+
     private String nom;
-    private String id;
     private BooleanProperty ouvert;
     private Item item;
-    private Environnement environnement;
     private static int cpt = 0;
     private ArrayList<int[]> listSpawn;
     private static ArrayList<int[]> coordonneesPrises = new ArrayList<>();
 
-    public Coffre(Environnement environnement) {
-        this.environnement = environnement;
+    public Coffre() {
+        super(0,0, "coffre" + "#" + cpt);
         this.listSpawn = new ArrayList<>();
         this.ajouterSpawn();
         this.nom = "coffre";
-        this.id = nom + "#" + cpt;
         this.spawnAleatoire();
         this.item = genererItem();
         this.ouvert = new SimpleBooleanProperty(false);
@@ -34,22 +29,6 @@ public class Coffre {
 
     public Item getItem() {
         return item;
-    }
-
-    public int getX() {
-        return x.getValue();
-    }
-
-    public final IntegerProperty xProperty() {
-        return x;
-    }
-
-    public int getY() {
-        return y.getValue();
-    }
-
-    public final IntegerProperty yProperty() {
-        return y;
     }
 
     public BooleanProperty estOuvert() {
@@ -66,10 +45,6 @@ public class Coffre {
 
     public String getNom() {
         return nom;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public ArrayList<int[]> getListSpawn() {
@@ -100,8 +75,8 @@ public class Coffre {
                 }
             }
             if (!etPrise){
-                this.x = new SimpleIntegerProperty(coordonee[0]);
-                this.y = new SimpleIntegerProperty(coordonee[1]);
+                setX(coordonee[0]);
+                setY(coordonee[1]);
                 coordonneesPrises.add(coordonee);
                 spawnDispo = true;
             }
@@ -126,10 +101,10 @@ public class Coffre {
         else {
             double randomArme = Math.random();
             if (randomArme < 0.5){
-                itemGenerer = new Arc(getX(), getY(), environnement);
+                itemGenerer = new Arc(getX(), getY());
             }
             else{
-                itemGenerer = new Marteau(environnement, getX(), getY());
+                itemGenerer = new Marteau(getX(), getY());
             }
         }
         return itemGenerer;
@@ -137,6 +112,6 @@ public class Coffre {
 
     @Override
     public String toString() {
-        return "Coffre{" + "x=" + x + ", y=" + y + ", nom='" + nom + '\'' + ", id='" + id + '\'' + ", ouvert=" + ouvert + ", item=" + item + '}';
+        return "Coffre{" + "x=" + getX() + ", y=" + getY() + ", nom='" + nom + '\'' + ", id='" + getId() + '\'' + ", ouvert=" + ouvert + ", item=" + item + '}';
     }
 }

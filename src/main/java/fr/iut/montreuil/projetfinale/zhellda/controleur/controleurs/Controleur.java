@@ -8,10 +8,7 @@ import fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.ItemConsomable;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Villageois;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.*;
 import fr.iut.montreuil.projetfinale.zhellda.modele.projectile.Projectile;
 import fr.iut.montreuil.projetfinale.zhellda.vue.*;
 import javafx.animation.Timeline;
@@ -38,7 +35,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
-    private Environnement env;
     private Timeline gameLoop;
     private int tempsAlteration = 0;
     private int tempsEcoule = 0;
@@ -59,25 +55,24 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.env = new Environnement();
-        this.changeurStringEnnemi=new ChangeurStringEnnemi(env);
-        new VueTerrain(tilePane, env);
-        new VueJoueur(pane, env.getJ());
+        this.changeurStringEnnemi=new ChangeurStringEnnemi();
+        new VueTerrain(tilePane);
+        new VueJoueur(pane, Environnement.getJ());
 
         ListChangeListener<Ennemi> listeEnnemis = new ListObsEnnemis(pane);
-        env.getListEnnemis().addListener(listeEnnemis);
+        Environnement.getUniqueInstance().getListEnnemis().addListener(listeEnnemis);
 
-        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane, env);
-        env.getListObsJoueur().addListener(listeJoueur);
+        ListChangeListener<Joueur> listeJoueur = new ObsJoueur(pane);
+        Environnement.getUniqueInstance().getListObsJoueur().addListener(listeJoueur);
 
         ListChangeListener<Villageois> listObsVillageois = new ObsVillageois(pane);
-        env.getListVillageois().addListener(listObsVillageois);
+        Environnement.getUniqueInstance().getListVillageois().addListener(listObsVillageois);
 
         ListChangeListener<Projectile> listeProjectile = new ListObsProjectile(pane);
-        env.getListProjectile().addListener(listeProjectile);
+        Environnement.getUniqueInstance().getListProjectile().addListener(listeProjectile);
 
         ListChangeListener<Item> listObsItemEnvironement = new ListObsItem(pane);
-        env.getListItemParTerre().addListener(listObsItemEnvironement);
+        Environnement.getUniqueInstance().getListItemParTerre().addListener(listObsItemEnvironement);
 
         ListChangeListener<Item> listObsItemInventaire = new ListObsItemInventaire(inventaireItem);
         Environnement.getJ().getInventaireItem().getListItem().addListener(listObsItemInventaire);
@@ -85,7 +80,7 @@ public class Controleur implements Initializable {
         ListChangeListener<Item> listObsArmeInventaire = new ListObsInventaireArme(inventaireArme);
         Environnement.getJ().getInventaireArme().getListItem().addListener(listObsArmeInventaire);
 
-        ListObsVie listObsVie = new ListObsVie(coeur, env.getJ(), coeur);
+        ListObsVie listObsVie = new ListObsVie(coeur, Environnement.getUniqueInstance().getJ(), coeur);
 
         pane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
@@ -93,11 +88,11 @@ public class Controleur implements Initializable {
             }
         });
 
-        for (Villageois v: env.getListVillageois()) {
+        for (Villageois v: Environnement.getUniqueInstance().getListVillageois()) {
             new VueVilageois(pane, v);
         }
 
-        for (Coffre coffre : env.getListCoffre()) {
+        for (Coffre coffre : Environnement.getUniqueInstance().getListCoffre()) {
             new VueCoffre(pane, coffre, coffre.getNom() + ".png");
 
             coffre.estOuvert().addListener((observable, oldValue, newValue) -> {
@@ -110,7 +105,7 @@ public class Controleur implements Initializable {
                 }
             });
         }
-        scrollingVitesse = env.getJ().getVitesse();
+        scrollingVitesse = Environnement.getUniqueInstance().getJ().getVitesse();
 
         initAnimation();
         gameLoop.play();
@@ -128,9 +123,9 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.001),
                 (ev -> {
-                    env.unTour();
+                    Environnement.getUniqueInstance().unTour();
                     tempsEcoule += 10;
-                    env.actionItem();
+                    Environnement.getUniqueInstance().actionItem();
                     updateScrolling();
 
                     if (Environnement.getJ().meurt()){
@@ -143,7 +138,7 @@ public class Controleur implements Initializable {
                     }
                     dialogueDebut();
 
-                    for (Ennemi boss: env.getListEnnemis()){
+                    for (Ennemi boss: Environnement.getUniqueInstance().getListEnnemis()){
                         if (boss instanceof Boss){
                             if (boss.meurt()) {
                                 gameLoop.stop();
@@ -163,7 +158,7 @@ public class Controleur implements Initializable {
         double largeurScene = scene.getWindow().getWidth() - inventaireItem.getWidth();
         double hauteurScene = scene.getWindow().getHeight();
 
-        Joueur joueur = env.getJ();
+        Joueur joueur = Environnement.getUniqueInstance().getJ();
 
         int joueurX = joueur.getX();
         int joueurY = joueur.getY();
@@ -191,8 +186,8 @@ public class Controleur implements Initializable {
         }
 
         // Limiter le défilement pour ne pas sortir de la carte
-        double maxX = (env.getTerrain().getLargeur() * 16) - largeurScene;
-        double maxY = (env.getTerrain().getHauteur() * 16) - hauteurScene;
+        double maxX = (Environnement.getUniqueInstance().getTerrain().getLargeur() * 16) - largeurScene;
+        double maxY = (Environnement.getUniqueInstance().getTerrain().getHauteur() * 16) - hauteurScene;
 
         posX = clamp(posX, 0, maxX);
         posY = clamp(posY, 0, maxY);

@@ -1,46 +1,40 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.projectile;
 
+import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Projectile {
+public abstract class Projectile extends Entite {
     private int vitesse;
-    private String id;
     private static int compteur;
     private int xDirection;
     private int yDirection;
     private int degat;
-    private IntegerProperty x;
-    private IntegerProperty y;
-    Environnement environnement;
 
-    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat, Environnement environnement) {
-        this.id = "P" + compteur;
+    public Projectile(int vitesse, int x, int y, int xDirection, int yDirection, int degat) {
+        super(x,y,"P" + compteur);
         compteur++;
         this.vitesse = vitesse;
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
         this.xDirection= xDirection;
         this.yDirection=yDirection;
         this.degat=degat;
-        this.environnement=environnement;
 
     }
 
     public boolean tirProjectile (){
         if (this.getX() < this.xDirection || this.getY()<this.yDirection) {
-            if (this.x.getValue() < this.xDirection)
-                this.setX(vitesse);
+            if (this.getX() < this.xDirection)
+                this.setX(this.getX()+vitesse);
             else
-                this.setY(vitesse);
+                this.setY(this.getY()+vitesse);
             return true;
         }
         else if (this.getX() > this.xDirection || this.getY()>this.yDirection){
-            if (this.x.getValue() > this.xDirection)
-                this.setX(-vitesse);
+            if (this.getX()> this.xDirection)
+                this.setX(this.getX()-vitesse);
             else
-                this.setY(-vitesse);
+                this.setY(this.getY()-vitesse);
             return true;
         }
         return false;
@@ -66,36 +60,8 @@ public abstract class Projectile {
 
     public abstract boolean estTouche();
 
-    public String getId () {
-        return this.id;
-    }
-    public IntegerProperty getXProperty() {
-        return x;
-    }
-
-    public IntegerProperty getYProperty() {
-        return y;
-    }
-
-
     public int getDegat() {
         return degat;
-    }
-
-    public void setX(int x) {
-        this.x.set(this.x.getValue()+x);
-    }
-
-    public void setY(int y) {
-        this.y.set(this.y.getValue()+y);
-    }
-
-    public int getX() {
-        return this.x.get();
-    }
-
-    public int getY() {
-        return this.y.get();
     }
 
     public int getxDirection() {

@@ -6,7 +6,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 
 public class SchemaAttaqueGriffe extends SchemaAttaqueBoss{
 
-    public void faireAttaque (Environnement environnement, Boss boss, String direction) {
+    public void faireAttaque (Boss boss, String direction) {
 
         if (direction.equals("droite")) faireAttaqueDroite(boss);
 

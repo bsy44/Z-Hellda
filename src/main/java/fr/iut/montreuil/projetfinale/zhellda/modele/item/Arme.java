@@ -1,24 +1,21 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.item;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
+
+import static java.lang.Math.sqrt;
 
 public abstract class Arme extends Item{
     private int portee;
     private int attaque;
-    private Environnement env;
     private int indexInventaire;
 
-    public Arme (int x, int y, String nom, Environnement env, int attaque, int portee){
+    public Arme (int x, int y, String nom, int attaque, int portee){
         super(x, y, nom, "arme");
         this.attaque = attaque;
         this.portee = portee;
-        this.env = env;
         this.indexInventaire = -1;
-    }
-
-    public Environnement getEnvironnement() {
-        return env;
     }
 
     public abstract void attaquer(Joueur joueur, int x, int y);

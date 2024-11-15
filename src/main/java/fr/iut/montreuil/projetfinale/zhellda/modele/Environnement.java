@@ -16,9 +16,9 @@ import java.util.IllegalFormatCodePointException;
 
 public class Environnement {
 
+    private static Environnement environnement = null;
     private int tourJeu;
     private Vague vague;
-
     private static Terrain terrain;
     private static Joueur j;
     private Villageois villageois;
@@ -42,9 +42,16 @@ public class Environnement {
         this.listCoffre = FXCollections.observableArrayList();
         this.listVillageois = FXCollections.observableArrayList();
         this.bfs = new Bfs();
-        this.vague=new Vague(this,20000);
+        this.vague=new Vague(20000);
         this.creationCoffre();
         ajouterVillageois(villageois);
+    }
+
+    public static Environnement getUniqueInstance() {
+        if (environnement == null) {
+            environnement = new Environnement();
+        }
+        return environnement;
     }
 
     public static Terrain getTerrain() {
@@ -131,15 +138,15 @@ public class Environnement {
         }
     }
     public void unTour () {
-    int tempsAlteration = 0;
+    int tempsAlteration=0;
         //appeler les méthode agir
         for (Joueur joueur : listObsJoueur) {
             joueur.agit();
         }
 
-        /*if (Environnement.getJ().isEtatAltere()) {
+        if (Environnement.getJ().isEtatAltere()) {
             tempsAlteration += 10;
-        }*/
+        }
 
         if (tempsAlteration == 1500) {
             System.out.println("Je redeviens normal");
@@ -168,7 +175,7 @@ public class Environnement {
 
     public void creationCoffre(){
         for (int i = 0; i < 5; i++) {
-            Coffre coffre = new Coffre(this);
+            Coffre coffre = new Coffre();
             ajouterCoffre(coffre);
         }
     }
