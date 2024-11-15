@@ -8,27 +8,16 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
-public class SchemaAttaqueBouleDeFeu extends SchemaAttaqueBoss {
+public class SchemaAttaqueBouleDeFeu extends SchemaAttaqueDirection {
 
     @Override
     public void attaquer (Ennemi ennemi){
-        faireAttaque((Boss) ennemi, direction(ennemi));
+        faireAttaque((Boss) ennemi);
         System.out.println("boule de feu");
     }
 
     @Override
-    public void faireAttaque (Boss boss, String direction) {
-
-        if (direction.equals("droite")) faireAttaqueDroite(boss);
-
-        else if (direction.equals("gauche")) faireAttaqueGauche(boss);
-
-        else if (direction.equals("bas")) faireAttaqueBas(boss);
-
-        else faireAttaqueHaut(boss);
-    }
-
-    private void faireAttaqueDroite (Boss boss) {
+    public void faireAttaqueDroite (Boss boss) {
         Timeline lancerBouleDeFeu = new Timeline(
                 new KeyFrame(Duration.seconds(1), e -> {
                     Environnement.getUniqueInstance().ajouterProjectile(new BouleDeFeu(boss.getX() + (int) boss.getHitbox().getWidth(), boss.getY(),
@@ -44,7 +33,8 @@ public class SchemaAttaqueBouleDeFeu extends SchemaAttaqueBoss {
         lancerBouleDeFeu.play();
     }
 
-    private void faireAttaqueGauche (Boss boss) {
+    @Override
+    public void faireAttaqueGauche (Boss boss) {
         Timeline lancerBouleDeFeu = new Timeline(
                 new KeyFrame(Duration.seconds(1), e -> {
                     Environnement.getUniqueInstance().ajouterProjectile(new BouleDeFeu(boss.getX() - 80, boss.getY(),
@@ -60,7 +50,8 @@ public class SchemaAttaqueBouleDeFeu extends SchemaAttaqueBoss {
         lancerBouleDeFeu.play();
     }
 
-    private void faireAttaqueBas (Boss boss) {
+    @Override
+    public void faireAttaqueBas (Boss boss) {
         Timeline lancerBouleDeFeu = new Timeline(
                 new KeyFrame(Duration.seconds(1), e -> {
                     Environnement.getUniqueInstance().ajouterProjectile(new BouleDeFeu(boss.getX(), boss.getY() + (int) boss.getHitbox().getHeight(),
@@ -76,7 +67,8 @@ public class SchemaAttaqueBouleDeFeu extends SchemaAttaqueBoss {
         lancerBouleDeFeu.play();
     }
 
-    private void faireAttaqueHaut (Boss boss) {
+    @Override
+    public void faireAttaqueHaut (Boss boss) {
         Timeline lancerBouleDeFeu = new Timeline(
                 new KeyFrame(Duration.seconds(1), e -> {
                     Environnement.getUniqueInstance().ajouterProjectile(new BouleDeFeu(boss.getX(), boss.getY() - 80,

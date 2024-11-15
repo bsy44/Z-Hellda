@@ -18,11 +18,11 @@ public class SchemaAttaqueChangeant extends SchemaAttaqueBoss {
 
     @Override
     public void attaquer(Ennemi ennemi) {
-        faireAttaque((Boss) ennemi, direction(ennemi));
+        faireAttaque((Boss) ennemi);
     }
 
     @Override
-    public void faireAttaque(Boss boss, String direction) {
+    public void faireAttaque(Boss boss) {
         Random random = new Random();
         int randomInt = random.nextInt(listeSchemaAttaque.size());
         System.out.println(randomInt);

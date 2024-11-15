@@ -15,37 +15,13 @@ public abstract class SchemaAttaqueBoss implements SchemaAttaqueEnnemi {
     private ArrayList<Case> casesAttaquees = new ArrayList<>();
 
     public void attaquer (Ennemi ennemi){
-        faireAttaque((Boss) ennemi, direction(ennemi));
+        faireAttaque((Boss) ennemi);
         mettreAJourCasesAttaqueesProperty();
         verfificationZone((Boss) ennemi);
         System.out.println("Super attaque");
     }
 
-    public abstract void faireAttaque(Boss boss, String direction);
-
-    public String direction(Ennemi ennemi){
-        // Est à 0 si on est collé à la hitbox du boss et augmente plus on s'en éloigne
-        // Passe en négatif si on est dans la direction opposé
-        double yBas = Environnement.getJ().getY() - (ennemi.getY() + ennemi.getHitbox().getHeight());
-        double yHaut = ennemi.getY() - (Environnement.getJ().getY() + Environnement.getJ().getHitbox().getHeight());
-        double xDroite = Environnement.getJ().getX() - (ennemi.getX() + ennemi.getHitbox().getWidth());
-        double xGauche = ennemi.getX() - (Environnement.getJ().getX() + Environnement.getJ().getHitbox().getWidth());
-
-        String direction = "bas";
-        double max = yBas;
-
-        if (yHaut > max) {
-            max = yHaut;
-            direction = "haut";
-        }
-        if (xDroite > max) {
-            max = xDroite;
-            direction = "droite";
-        }
-        if (xGauche > max) direction = "gauche";
-
-        return direction;
-    }
+    public abstract void faireAttaque(Boss boss);
 
     public void verfificationZone(Boss boss){
         int taille = (int) Math.round(Environnement.getJ().getHitbox().getHeight()/16);
