@@ -2,10 +2,10 @@ package fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
-public class EtatTransparent extends EtatJoueur{
+public class EtatTransparent extends EtatTemporaire{
 
     public EtatTransparent(Joueur joueur) {
-        super(joueur);
+        super(joueur, 7000);
     }
 
     @Override

@@ -13,7 +13,6 @@ public class Joueur extends Acteur {
     private boolean[] directions; // haut, gauche, bas, droite
     private int numArmeUtilise;
     private IntegerProperty directionProperty;
-    //private boolean etatAltere;
     private BooleanProperty transparent;
     private Inventaire inventaireArme;
     private Inventaire inventaireItem;
@@ -28,10 +27,6 @@ public class Joueur extends Acteur {
         this.inventaireArme = new Inventaire(3);
         this.inventaireItem = new Inventaire(6);
         this.etatJoueur = etatJoueur;
-    }
-
-    public boolean getDirections(int i) {
-        return directions[i];
     }
 
     public Arme getArme() {
@@ -74,10 +69,6 @@ public class Joueur extends Acteur {
         this.etatJoueur.agitSurEtat();
     }
 
-    /*public void setEtatAltere(boolean etatAltere) {
-        this.etatAltere = etatAltere;
-    }*/
-
     public void setDirections(int i) {
         for (int j = 0; j < this.directions.length; j++) {
             this.directions[j] = false;
@@ -85,6 +76,7 @@ public class Joueur extends Acteur {
         directions[i] = true;
         directionProperty.set(i);
     }
+
     public void setDoubleDirections(int i, int j) {
         for (int z = 0; z < this.directions.length; z++) {
             this.directions[z] = false;
@@ -209,10 +201,6 @@ public class Joueur extends Acteur {
         }
         return false;
     }
-
-    /*public boolean isEtatAltere() {
-        return etatAltere;
-    }*/
 
     public int getVieMax() {
         return 10;

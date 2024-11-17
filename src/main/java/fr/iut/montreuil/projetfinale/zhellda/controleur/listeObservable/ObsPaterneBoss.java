@@ -2,13 +2,13 @@ package fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueBoss;
+import fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque.SchemaAttaqueBoss;
 import fr.iut.montreuil.projetfinale.zhellda.vue.VueTerrain;
 import javafx.collections.ListChangeListener;
 
 public class ObsPaterneBoss {
     private Boss boss;
-    private SchemaAttaqueBoss paterneAttaqueBoss;
+    private fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque.SchemaAttaqueBoss paterneAttaqueBoss;
 
     public ObsPaterneBoss(Boss boss) {
         this.boss = boss;

@@ -2,10 +2,10 @@ package fr.iut.montreuil.projetfinale.zhellda.modele.personnage.etatJoueur;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
-public class EtatVitesseJoueur extends EtatJoueur{
+public class EtatVitesseJoueur extends EtatTemporaire {
 
     public EtatVitesseJoueur(Joueur joueur) {
-        super(joueur);
+        super(joueur, 7000);
     }
 
     @Override
@@ -15,6 +15,6 @@ public class EtatVitesseJoueur extends EtatJoueur{
 
     @Override
     public String toString() {
-        return "Etat vitesse";
+        return "Etat vitesse buff";
     }
 }

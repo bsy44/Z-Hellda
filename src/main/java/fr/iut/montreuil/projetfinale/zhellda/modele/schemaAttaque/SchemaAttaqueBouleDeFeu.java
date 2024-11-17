@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque;
+package fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;

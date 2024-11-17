@@ -9,7 +9,7 @@ public class EtatNormal extends EtatJoueur{
     }
 
     @Override
-    public void agitSurEtat() {
+    public void agitSurEtat() { // réinitialise les stats du joueur à celle de base
         getJoueur().setVitesse(5);
         getJoueur().setTransparent(false);
     }

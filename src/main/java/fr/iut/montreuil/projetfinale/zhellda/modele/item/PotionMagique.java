@@ -26,8 +26,6 @@ public class PotionMagique extends ItemConsomable {
             public void run() {
                 elapsedTime += period;
                 if (elapsedTime >= 7000 && joueur.colisionObstacle((joueur.getY() +joueur.getVitesse())/16, (joueur.getY()+joueur.getVitesse())/16 + (int) joueur.getHitbox().getHeight()/16, ((joueur.getX()+joueur.getVitesse())/16+ ((int) joueur.getHitbox().getWidth()) / 16), (joueur.getX()+joueur.getVitesse())/16) ){
-                    joueur.changerEtat(new EtatNormal(joueur));// Désactiver la transparence
-                    joueur.getEtatJoueur().agitSurEtat();
                     timer.cancel(); // Arrêter le timer
                 }
             }

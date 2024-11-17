@@ -1,4 +1,4 @@
-package fr.iut.montreuil.projetfinale.zhellda.controleur.Entite;
+package fr.iut.montreuil.projetfinale.zhellda.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -7,6 +7,7 @@ public class Entite {
     private IntegerProperty x;
     private IntegerProperty y;
     private String id;
+
     public Entite(int x, int y, String id) {
         this.x =  new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
@@ -36,6 +37,7 @@ public class Entite {
     public void setY(int y) {
         this.y.setValue(y);
     }
+
     public final IntegerProperty getXProperty() {
         return x;
     }

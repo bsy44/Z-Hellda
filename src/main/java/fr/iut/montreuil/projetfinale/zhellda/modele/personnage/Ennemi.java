@@ -5,7 +5,7 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.item.GrimoirArme;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.Item;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.PommeDor;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.PotionMagique;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueEnnemi;
+import fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque.SchemaAttaqueEnnemi;
 
 import java.util.ArrayList;
 

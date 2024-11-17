@@ -1,7 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
 
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
-import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.schemaAttaque.SchemaAttaqueChangeant;
+import fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque.SchemaAttaqueChangeant;
 
 public class Boss extends Ennemi {
 
