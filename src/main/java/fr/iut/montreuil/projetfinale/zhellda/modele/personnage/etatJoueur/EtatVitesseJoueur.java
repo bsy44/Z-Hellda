@@ -4,13 +4,13 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class EtatVitesseJoueur extends EtatTemporaire {
 
-    public EtatVitesseJoueur(Joueur joueur) {
-        super(joueur, 7000);
+    public EtatVitesseJoueur() {
+        super(7000);
     }
 
     @Override
-    public void agitSurEtat() {
-        getJoueur().setVitesse(3);
+    public void agitSurEtat(Joueur joueur) {
+        joueur.setVitesse(3);
     }
 
     @Override

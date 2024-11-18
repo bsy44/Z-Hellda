@@ -4,13 +4,13 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class EtatTransparent extends EtatTemporaire{
 
-    public EtatTransparent(Joueur joueur) {
-        super(joueur, 7000);
+    public EtatTransparent() {
+        super(7000);
     }
 
     @Override
-    public void agitSurEtat() {
-        getJoueur().setTransparent(true);
+    public void agitSurEtat(Joueur joueur) {
+        joueur.setTransparent(true);
     }
 
     @Override

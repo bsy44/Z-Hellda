@@ -66,7 +66,7 @@ public class Joueur extends Acteur {
     }
 
     public void actionEtat(){
-        this.etatJoueur.agitSurEtat();
+        this.etatJoueur.agitSurEtat(this);
     }
 
     public void setDirections(int i) {

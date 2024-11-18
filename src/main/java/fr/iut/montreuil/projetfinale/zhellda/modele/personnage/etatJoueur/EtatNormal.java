@@ -4,14 +4,10 @@ import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Joueur;
 
 public class EtatNormal extends EtatJoueur{
 
-    public EtatNormal(Joueur joueur) {
-        super(joueur);
-    }
-
     @Override
-    public void agitSurEtat() { // réinitialise les stats du joueur à celle de base
-        getJoueur().setVitesse(5);
-        getJoueur().setTransparent(false);
+    public void agitSurEtat(Joueur joueur) { // réinitialise les stats du joueur à celle de base
+        joueur.setVitesse(5);
+        joueur.setTransparent(false);
     }
 
     @Override

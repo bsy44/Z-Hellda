@@ -14,7 +14,7 @@ public class PotionMagique extends ItemConsomable {
 
     @Override
     public void consommerItem(Joueur joueur) {
-        joueur.changerEtat(new EtatTransparent(joueur));
+        joueur.changerEtat(new EtatTransparent());
         joueur.actionEtat();
         Timer timer = new Timer();
 

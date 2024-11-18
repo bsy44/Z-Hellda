@@ -13,7 +13,7 @@ public class SchemaAttaqueRalentissant implements SchemaAttaqueEnnemi {
 
             double distance = Math.sqrt(Math.pow(ennemi.getXProperty().get() - j.getXProperty().get(), 2) + Math.pow(ennemi.getYProperty().get() - j.getYProperty().get(), 2));
             if (distance <= ennemi.getPortee() && distance >= 0) {
-                j.changerEtat(new EtatVitesseJoueur(j));
+                j.changerEtat(new EtatVitesseJoueur());
                 j.actionEtat();
                 j.subirDegats(ennemi.getAttaque());
                 j.meurt();
