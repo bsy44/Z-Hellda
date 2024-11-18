@@ -18,7 +18,7 @@ public class Joueur extends Acteur {
     private Inventaire inventaireItem;
     private EtatJoueur etatJoueur;
 
-    public Joueur(Environnement environnement, EtatJoueur etatJoueur) {
+    public Joueur(EtatJoueur etatJoueur) {
         super(282, 50, 10, 5, "joueur", 30, 30);
         this.numArmeUtilise = 0;
         this.directions = new boolean[]{false, false, false, false};

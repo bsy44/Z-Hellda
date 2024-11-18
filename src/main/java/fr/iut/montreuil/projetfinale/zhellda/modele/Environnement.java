@@ -30,7 +30,7 @@ public class Environnement {
 
     public Environnement() {
         this.terrain = new Terrain();
-        this.j = new Joueur(this, new EtatNormal());
+        this.j = new Joueur(new EtatNormal());
         this.villageois = new Villageois(210, 125);
         this.listObsJoueur = FXCollections.observableArrayList();
         this.listObsJoueur.add(j);
@@ -147,7 +147,7 @@ public class Environnement {
         if (j.getEtatJoueur() instanceof EtatTemporaire) {
             if (((EtatTemporaire) j.getEtatJoueur()).dureeEffet(getTourJeu())) {
                 j.changerEtat(new EtatNormal());
-                j.getEtatJoueur().agitSurEtat(j);
+                j.actionEtat();
             }
         }
 
