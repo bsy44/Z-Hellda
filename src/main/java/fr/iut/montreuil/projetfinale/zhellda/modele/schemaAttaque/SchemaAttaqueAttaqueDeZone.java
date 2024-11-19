@@ -1,7 +1,7 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
-import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 
 public class SchemaAttaqueAttaqueDeZone extends SchemaAttaqueBoss {
 

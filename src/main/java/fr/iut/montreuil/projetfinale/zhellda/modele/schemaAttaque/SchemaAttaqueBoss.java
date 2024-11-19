@@ -1,7 +1,10 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Case;
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;

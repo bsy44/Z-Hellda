@@ -19,4 +19,6 @@ module fr.iut.montreuil.projetfinale.zhellda {
     opens fr.iut.montreuil.projetfinale.zhellda.controleur.controleurs to javafx.fxml;
     exports fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable;
     opens fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable to javafx.fxml;
+    exports fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque;
+    opens fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque to javafx.fxml;
 }

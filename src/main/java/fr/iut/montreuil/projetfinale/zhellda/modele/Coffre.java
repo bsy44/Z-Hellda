@@ -1,6 +1,5 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.Entite.Entite;
 import fr.iut.montreuil.projetfinale.zhellda.modele.item.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
