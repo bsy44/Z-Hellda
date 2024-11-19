@@ -1,6 +1,6 @@
 package fr.iut.montreuil.projetfinale.zhellda.modele;
 
-import fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable.ObsPaterneBoss;
+import fr.iut.montreuil.projetfinale.zhellda.controleur.listeObservable.ObsSchemaAtkBoss;
 import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
 
 import java.util.Random;
@@ -87,7 +87,7 @@ public class Vague {
         }
         if (estFini() && Environnement.getUniqueInstance().getListEnnemis().isEmpty() && bossGenerer == false) {
             Boss boss = new Boss(1190, 900);
-            new ObsPaterneBoss(boss);
+            new ObsSchemaAtkBoss(boss);
             Environnement.getUniqueInstance().ajouterEnnemi(boss);
             bossGenerer = true;
         }

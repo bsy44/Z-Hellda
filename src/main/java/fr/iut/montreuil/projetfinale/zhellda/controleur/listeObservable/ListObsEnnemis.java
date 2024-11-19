@@ -20,7 +20,7 @@ public class ListObsEnnemis implements ListChangeListener<Ennemi> {
             if (change.wasAdded()){
                 for (Ennemi e : change.getAddedSubList()) {
                     new VueEnnemis(pane, e, e.getNom() + ".png");
-                    if (e.getNom().equals("boss")) new ObsPaterneBoss((Boss) e);
+                    if (e.getNom().equals("boss")) new ObsSchemaAtkBoss((Boss) e);
                 }
             }
 
