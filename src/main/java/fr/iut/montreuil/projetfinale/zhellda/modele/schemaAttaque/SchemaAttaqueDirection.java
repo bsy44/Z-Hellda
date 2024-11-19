@@ -1,6 +1,8 @@
-package fr.iut.montreuil.projetfinale.zhellda.modele.personnage;
+package fr.iut.montreuil.projetfinale.zhellda.modele.schemaAttaque;
 
 import fr.iut.montreuil.projetfinale.zhellda.modele.Environnement;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Boss;
+import fr.iut.montreuil.projetfinale.zhellda.modele.personnage.Ennemi;
 
 public abstract class SchemaAttaqueDirection extends SchemaAttaqueBoss {
 
